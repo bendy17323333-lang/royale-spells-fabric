@@ -24,6 +24,6 @@ public final class CardRenderer {
     }
     private static void vertex(MatrixStack m,VertexConsumer v,float x,float y,float z,float u,float w,int light,int overlay) {
         var entry=m.peek();
-        v.vertex(entry.getPositionMatrix(),x,y,z).color(255,255,255,255).texture(u,w).overlay(overlay).light(light).normal(entry.getNormalMatrix(),0,0,1).next();
+        v.vertex(entry.getPositionMatrix(),x,y,z).color(255,255,255,255).texture(u,w).overlay(overlay).light(light).normal(entry,0,0,1);
     }
 }

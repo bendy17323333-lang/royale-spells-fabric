@@ -98,5 +98,5 @@ final class ZapRenderer {
             point(m,v,b.subtract(side),r,g,blue,alpha);point(m,v,b.add(side),r,g,blue,alpha);
         }
     }
-    private static void point(MatrixStack m,VertexConsumer v,Vec3d p,float r,float g,float b,float a){v.vertex(m.peek().getPositionMatrix(),(float)p.x,(float)p.y,(float)p.z).color(r,g,b,a).next();}
+    private static void point(MatrixStack m,VertexConsumer v,Vec3d p,float r,float g,float b,float a){v.vertex(m.peek().getPositionMatrix(),(float)p.x,(float)p.y,(float)p.z).color(r,g,b,a);}
 }

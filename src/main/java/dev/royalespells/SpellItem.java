@@ -1,6 +1,6 @@
 package dev.royalespells;
 
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -19,7 +19,7 @@ public class SpellItem extends Item {
         return TypedActionResult.success(stack,world.isClient);
     }
     @Override public boolean hasGlint(ItemStack stack) { return spell.evolved() || super.hasGlint(stack); }
-    @Override public void appendTooltip(ItemStack stack,World world,List<Text> tooltip,TooltipContext context) {
+    @Override public void appendTooltip(ItemStack stack,Item.TooltipContext context,List<Text> tooltip,TooltipType type) {
         tooltip.add(Text.translatable("tooltip.royalespells.cost",spell.cost).formatted(Formatting.LIGHT_PURPLE));
         tooltip.add(Text.translatable("spell.royalespells."+spell.id()).formatted(Formatting.GRAY));
         tooltip.add(Text.translatable("tooltip.royalespells.use").formatted(Formatting.DARK_GRAY));

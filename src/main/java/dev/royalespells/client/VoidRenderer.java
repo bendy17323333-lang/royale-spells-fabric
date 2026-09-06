@@ -8,7 +8,7 @@ import net.minecraft.util.math.*;
 /** Texture-free dark field, hot rim, and descending per-victim beams. */
 public final class VoidRenderer {
     private static void vertex(MatrixStack m,VertexConsumer v,double x,double y,double z,float r,float g,float b,float a){
-        v.vertex(m.peek().getPositionMatrix(),(float)x,(float)y,(float)z).color(r,g,b,a).next();
+        v.vertex(m.peek().getPositionMatrix(),(float)x,(float)y,(float)z).color(r,g,b,a);
     }
     private static void ring(MatrixStack m,VertexConsumer v,double x,double y,double z,double inner,double outer,float r,float g,float b,float alpha){
         for(int i=0;i<64;i++) {

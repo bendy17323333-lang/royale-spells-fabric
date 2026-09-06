@@ -56,7 +56,7 @@ public class SpellEntity extends Entity {
         data.put("VoidPoints",points);data.putInt("VoidStrikeTick",tick);data.putInt("VoidStrength",victims.size()==1?3:victims.size()<=4?2:1);dataTracker.set(DATA,data);
     }
     public SpellEntity(EntityType<? extends SpellEntity> type,World world){super(type,world);noClip=true;setNoGravity(true);}
-    @Override protected void initDataTracker(){dataTracker.startTracking(DATA,new NbtCompound());dataTracker.startTracking(TIME,0);}
+    @Override protected void initDataTracker(DataTracker.Builder builder){builder.add(DATA,new NbtCompound());builder.add(TIME,0);}
     public static SpellEntity create(ServerWorld world,Spell spell,UUID owner,Vec3d start,Vec3d end) {
         SpellEntity entity=new SpellEntity(RoyaleSpells.SPELL,world);entity.ownerId=owner;
         NbtCompound data=new NbtCompound();data.putInt("spell",spell.ordinal());
@@ -146,8 +146,8 @@ public class SpellEntity extends Entity {
         }
         if(t!=spell().duration)return;
         switch(spell()) {
-            case FIREBALL -> {area(world,target(),spell().radius,12,0,0.9);burst(world,ParticleTypes.FLAME,45);sound(SoundEvents.ENTITY_GENERIC_EXPLODE,1,1.1f);}
-            case ROCKET -> {area(world,target(),2.5,30,0,1.2);burst(world,ParticleTypes.EXPLOSION,12);sound(SoundEvents.ENTITY_GENERIC_EXPLODE,1.5f,0.7f);}
+            case FIREBALL -> {area(world,target(),spell().radius,12,0,0.9);burst(world,ParticleTypes.FLAME,45);sound(SoundEvents.ENTITY_GENERIC_EXPLODE.value(),1,1.1f);}
+            case ROCKET -> {area(world,target(),2.5,30,0,1.2);burst(world,ParticleTypes.EXPLOSION,12);sound(SoundEvents.ENTITY_GENERIC_EXPLODE.value(),1.5f,0.7f);}
             case PARTY_ROCKET -> {
                 var victims=enemies(world,target(),3);for(LivingEntity e:victims)SpellEngine.curse(ownerId,e,power());
                 area(world,target(),3,30,0,0.8);burst(world,ParticleTypes.HAPPY_VILLAGER,40);sound(SoundEvents.ENTITY_FIREWORK_ROCKET_BLAST,1,1);
@@ -267,7 +267,7 @@ public class SpellEntity extends Entity {
         for(NbtElement id:nbt.getList("Hits",NbtElement.STRING_TYPE))hit.add(UUID.fromString(id.asString()));
         for(NbtElement id:nbt.getList("Captured",NbtElement.STRING_TYPE))captured.add(UUID.fromString(id.asString()));
     }
-    @Override public Packet<ClientPlayPacketListener> createSpawnPacket(){return new EntitySpawnS2CPacket(this);}
+    @Override public Packet<ClientPlayPacketListener> createSpawnPacket(net.minecraft.server.network.EntityTrackerEntry entry){return new EntitySpawnS2CPacket(this,entry);}
     @Override public boolean shouldRender(double distance){return distance<128*128;}
 }
 

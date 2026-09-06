@@ -64,7 +64,8 @@ public final class TroopModel<T extends LivingEntity> extends EntityModel<T> imp
         m.multiply(RotationAxis.POSITIVE_Y.rotation(p.rotation[1]*MathHelper.RADIANS_PER_DEGREE+p.yaw));
         m.multiply(RotationAxis.POSITIVE_X.rotation(p.rotation[0]*MathHelper.RADIANS_PER_DEGREE+p.pitch));
     }
-    @Override public void render(MatrixStack matrices,VertexConsumer vertices,int light,int overlay,float red,float green,float blue,float alpha) {
+    @Override public void render(MatrixStack matrices,VertexConsumer vertices,int light,int overlay,int color) {
+        float red=(color>>16&255)/255f,green=(color>>8&255)/255f,blue=(color&255)/255f,alpha=(color>>>24)/255f;
         matrices.push();matrices.scale(1/16f,1/16f,1/16f);
         for(Part p:parts.values())if(p.parent.isEmpty())renderPart(p,matrices,vertices,light,overlay,red,green,blue,alpha);
         matrices.pop();
@@ -96,6 +97,6 @@ public final class TroopModel<T extends LivingEntity> extends EntityModel<T> imp
     private void face(MatrixStack m,VertexConsumer v,float[] xyz,float[] normal,int material,boolean flat,int light,int overlay,float r,float g,float b,float a) {
         float u=(material%4)*.25f+.012f,w=(material/4)*.25f+.012f;
         var entry=m.peek();
-        for(int i=0;i<4;i++)v.vertex(entry.getPositionMatrix(),xyz[i*3],xyz[i*3+1],xyz[i*3+2]).color(r,g,b,a).texture(u+(flat?.03f:i==0||i==3?.226f:0),w+(flat?.03f:i>=2?.226f:0)).overlay(overlay).light(light).normal(entry.getNormalMatrix(),normal[0],normal[1],normal[2]).next();
+        for(int i=0;i<4;i++)v.vertex(entry.getPositionMatrix(),xyz[i*3],xyz[i*3+1],xyz[i*3+2]).color(r,g,b,a).texture(u+(flat?.03f:i==0||i==3?.226f:0),w+(flat?.03f:i>=2?.226f:0)).overlay(overlay).light(light).normal(entry,normal[0],normal[1],normal[2]);
     }
 }

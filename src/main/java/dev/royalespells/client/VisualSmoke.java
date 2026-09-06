@@ -24,7 +24,7 @@ public final class VisualSmoke {
     private static void verifyGraveyardAudio(net.minecraft.client.MinecraftClient client) {
         try(var input=client.getResourceManager().open(RoyaleSpells.id("sounds/graveyard_deploy.ogg"));
             var ogg=new net.minecraft.client.sound.OggAudioStream(input)) {
-            var format=ogg.getFormat();var buffer=ogg.getBuffer();byte[] pcm=new byte[buffer.remaining()];buffer.get(pcm);
+            var format=ogg.getFormat();var buffer=ogg.readAll();byte[] pcm=new byte[buffer.remaining()];buffer.get(pcm);
             double seconds=(double)pcm.length/format.getFrameSize()/format.getFrameRate();
             if(format.getChannels()!=1 || seconds<3 || seconds>3.2)throw new IllegalStateException("Unexpected Graveyard audio format");
             try(var audio=new javax.sound.sampled.AudioInputStream(new java.io.ByteArrayInputStream(pcm),format,pcm.length/format.getFrameSize())) {
@@ -32,7 +32,7 @@ public final class VisualSmoke {
             }
             System.out.println("ROYALE_AUDIO_DECODE_OK seconds="+seconds+" format="+format);
         } catch(java.io.IOException ex) {throw new RuntimeException("Graveyard OGG decode failed",ex);}
-        client.getSoundManager().registerListener((sound,set)->{
+        client.getSoundManager().registerListener((sound,set,range)->{
             if(sound.getId().equals(RoyaleSpells.GRAVEYARD_DEPLOY.getId())) {
                 if(sound.getPitch()!=1 || sound.isRepeatable() || sound.isRelative() || sound.getSound()==net.minecraft.client.sound.SoundManager.MISSING_SOUND)
                     throw new IllegalStateException("Invalid Graveyard sound playback");

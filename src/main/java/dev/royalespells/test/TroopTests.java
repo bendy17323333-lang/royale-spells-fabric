@@ -13,6 +13,13 @@ import java.util.*;
 
 public class TroopTests implements FabricGameTest {
     private Vec3d at(TestContext c){return Vec3d.ofBottomCenter(c.getAbsolutePos(new BlockPos(2,2,2)));}
+    // 1.21's empty-template enclosure is too small for the 3.2-block-wide hut.
+    private Vec3d hutFloor(TestContext c){
+        var floor=BlockPos.ofFloored(at(c)).up(11);
+        for(int x=-5;x<=5;x++)for(int z=-5;z<=5;z++)for(int y=0;y<=9;y++)
+            c.getWorld().setBlockState(floor.add(x,y,z),(y==0?net.minecraft.block.Blocks.STONE:net.minecraft.block.Blocks.AIR).getDefaultState());
+        return Vec3d.ofBottomCenter(floor.up());
+    }
     private List<MobEntity> units(TestContext c,UUID owner){return c.getWorld().getEntitiesByClass(MobEntity.class,new Box(at(c).add(-40,-10,-40),at(c).add(40,20,40)),e->e instanceof Summoned s&&owner.equals(s.ownerId())&&e.isAlive());}
     private void cleanup(TestContext c,UUID owner){for(var e:c.getWorld().iterateEntities())if(e instanceof Summoned s&&owner.equals(s.ownerId()))e.discard();}
     @GameTest(templateName=EMPTY_STRUCTURE,batchId="retained-cards")
@@ -36,7 +43,7 @@ public class TroopTests implements FabricGameTest {
     }
     @GameTest(templateName=EMPTY_STRUCTURE,batchId="hut-spawner")
     public void hutProducesWavesReloadsAndExpiresOnce(TestContext c){
-        UUID owner=UUID.randomUUID();var hut=(RoyaleUnit)SpellEngine.summon(c.getWorld(),owner,at(c).add(0,3,0),"barbarian_hut",false);hut.lockFacing(123);hut.setNoGravity(true);Vec3d initial=hut.getPos();hut.setVelocity(2,2,2);
+        UUID owner=UUID.randomUUID();var hut=(RoyaleUnit)SpellEngine.summon(c.getWorld(),owner,hutFloor(c).add(0,3,0),"barbarian_hut",false);c.assertTrue(hut!=null,"Hut fixture must have space");hut.lockFacing(123);hut.setNoGravity(true);Vec3d initial=hut.getPos();hut.setVelocity(2,2,2);
         for(int i=0;i<302;i++)hut.tick();
         c.assertTrue(units(c,owner).stream().filter(e->e.getType()==RoyaleSpells.BARBARIAN).count()==6,"Two waves of three barbarians");
         c.assertTrue(hut.getPos().distanceTo(initial)<.01&&hut.getYaw()==123&&hut.bodyYaw==123,"Hut stays fixed in position and orientation");
@@ -49,8 +56,9 @@ public class TroopTests implements FabricGameTest {
     }
     @GameTest(templateName=EMPTY_STRUCTURE,batchId="retained-clone")
     public void cloneKeepsBarbarianEquipmentAndExcludesHut(TestContext c){
-        UUID owner=UUID.randomUUID();SpellEngine.summon(c.getWorld(),owner,at(c),"barbarian",false);SpellEngine.summon(c.getWorld(),owner,at(c).add(-2,3,0),"barbarian_hut",false);
-        SpellEngine.cloneAllies(c.getWorld(),owner,at(c),7);
+        UUID owner=UUID.randomUUID();var center=hutFloor(c);SpellEngine.summon(c.getWorld(),owner,center,"barbarian",false);var hut=SpellEngine.summon(c.getWorld(),owner,center.add(-2,3,0),"barbarian_hut",false);
+        c.assertTrue(hut!=null,"Clone fixture must have space for the hut");
+        SpellEngine.cloneAllies(c.getWorld(),owner,center,7);
         var clone=units(c,owner).stream().filter(e->e instanceof Summoned s&&s.isClone()).findFirst().orElseThrow();
         c.assertTrue(clone.getType()==RoyaleSpells.BARBARIAN&&clone.getMaxHealth()==1&&clone.getMainHandStack().isOf(Items.IRON_SWORD),"Clone retains Barbarian kind, one HP, and held sword");
         c.assertTrue(units(c,owner).stream().filter(e->e instanceof RoyaleUnit).count()==1,"Hut cannot be cloned");

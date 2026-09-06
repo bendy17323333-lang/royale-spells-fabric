@@ -27,7 +27,7 @@ final class ShowcaseCapture {
         if(c.currentScreen instanceof GameMenuScreen&&stage>=3)c.setScreen(null);
         if(stage==0&&ticks>60&&c.currentScreen instanceof TitleScreen){stage=1;CreateWorldScreen.create(c,c.currentScreen);}
         else if(stage==1&&c.currentScreen instanceof CreateWorldScreen screen){
-            var creator=screen.getWorldCreator();creator.setWorldName("皇室法术 · 录制片场 1.2.0");creator.setSeed("642155");
+            var creator=screen.getWorldCreator();creator.setWorldName("皇室法术 · 录制片场 1.2.0 (MC 1.21.1)");creator.setSeed("642155");
             creator.setGameMode(WorldCreator.Mode.CREATIVE);creator.setCheatsEnabled(true);creator.setDifficulty(Difficulty.NORMAL);creator.setGenerateStructures(false);
             creator.setWorldType(creator.getNormalWorldTypes().stream().filter(t->t.preset()!=null&&t.preset().matchesKey(WorldPresets.FLAT)).findFirst().orElseThrow());
             for(var child:screen.children())if(child instanceof ButtonWidget b&&b.getMessage().getString().equals(Text.translatable("selectWorld.create").getString())){stage=2;b.onPress();break;}

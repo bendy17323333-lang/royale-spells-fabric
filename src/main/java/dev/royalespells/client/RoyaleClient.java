@@ -32,8 +32,8 @@ public class RoyaleClient implements ClientModInitializer {
             var client=MinecraftClient.getInstance();if(client.world==null || context.matrixStack()==null)return;
             var buffers=client.getBufferBuilders().getEntityVertexConsumers();var matrices=context.matrixStack();var camera=context.camera().getPos();
             for(var entity:client.world.getEntities())if(entity instanceof SpellEntity effect && effect.squaredDistanceTo(camera)<96*96) {
-                Vec3d at=effect.visualPosition(context.tickDelta());matrices.push();matrices.translate(at.x-camera.x,at.y-camera.y,at.z-camera.z);
-                SpellFields.render(effect,context.tickDelta(),matrices,buffers);matrices.pop();
+                Vec3d at=effect.visualPosition(context.tickCounter().getTickDelta(false));matrices.push();matrices.translate(at.x-camera.x,at.y-camera.y,at.z-camera.z);
+                SpellFields.render(effect,context.tickCounter().getTickDelta(false),matrices,buffers);matrices.pop();
             }
             if(Boolean.getBoolean("royalespells.visualSmoke"))RangeDepthAudit.before();
             buffers.draw(SpellLayers.EFFECT);
@@ -64,8 +64,8 @@ public class RoyaleClient implements ClientModInitializer {
     }
     public static void line(MatrixStack matrices,VertexConsumer v,Vec3d a,Vec3d b,float r,float g,float blue,float alpha) {
         Vec3d normal=b.subtract(a).normalize();var entry=matrices.peek();
-        v.vertex(entry.getPositionMatrix(),(float)a.x,(float)a.y,(float)a.z).color(r,g,blue,alpha).normal(entry.getNormalMatrix(),(float)normal.x,(float)normal.y,(float)normal.z).next();
-        v.vertex(entry.getPositionMatrix(),(float)b.x,(float)b.y,(float)b.z).color(r,g,blue,alpha).normal(entry.getNormalMatrix(),(float)normal.x,(float)normal.y,(float)normal.z).next();
+        v.vertex(entry.getPositionMatrix(),(float)a.x,(float)a.y,(float)a.z).color(r,g,blue,alpha).normal(entry,(float)normal.x,(float)normal.y,(float)normal.z);
+        v.vertex(entry.getPositionMatrix(),(float)b.x,(float)b.y,(float)b.z).color(r,g,blue,alpha).normal(entry,(float)normal.x,(float)normal.y,(float)normal.z);
     }
     private static void particles(SpellEntity e) {
         Spell spell=e.spell();var world=e.getWorld();int t=e.time();Vec3d p=e.visualPosition(0);

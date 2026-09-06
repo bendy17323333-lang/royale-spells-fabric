@@ -199,8 +199,11 @@ public class SpellCoverageTests implements FabricGameTest {
     @GameTest(templateName=EMPTY_STRUCTURE,batchId="noai-snow",tickLimit=65)
     public void normalSnowballActuallyMovesNoAiTargets(TestContext c){
         var w=c.getWorld();var mob=c.spawnMob(EntityType.HUSK,2,15,2);mob.setAiDisabled(true);mob.setNoGravity(true);var before=mob.getPos();
-        var at=before.add(0,0,-.5);w.spawnEntity(SpellEntity.create(w,Spell.GIANT_SNOWBALL,UUID.randomUUID(),at.add(0,0,-6),at));
-        c.runAtTick(38,()->{c.assertTrue(mob.getZ()>before.z+1,"Normal Snowball must change position, not just velocity, on a NoAI target");c.assertTrue(mob.isAiDisabled(),"Do not permanently enable the target's AI");mob.discard();c.complete();});
+        // Randomized 1.21 test origins can put the projectile outside the template's ticking chunk.
+        var forced=new ArrayList<ChunkPos>();var origin=new ChunkPos(mob.getBlockPos());
+        for(int x=-1;x<=1;x++)for(int z=-1;z<=1;z++){var chunk=new ChunkPos(origin.x+x,origin.z+z);if(w.setChunkForced(chunk.x,chunk.z,true))forced.add(chunk);}
+        var at=before.add(0,0,-.5);var fx=SpellEntity.create(w,Spell.GIANT_SNOWBALL,UUID.randomUUID(),at.add(0,0,-6),at);w.spawnEntity(fx);
+        c.runAtTick(38,()->{c.assertTrue(mob.getZ()>before.z+1,"Normal Snowball must change position, not just velocity, on a NoAI target: ticks="+fx.time()+" before="+before+" after="+mob.getPos());c.assertTrue(mob.isAiDisabled(),"Do not permanently enable the target's AI");mob.discard();for(var chunk:forced)w.setChunkForced(chunk.x,chunk.z,false);c.complete();});
     }
     @GameTest(templateName=EMPTY_STRUCTURE,batchId="noai-tornado",tickLimit=55)
     public void tornadoActuallyPullsNoAiTargets(TestContext c){

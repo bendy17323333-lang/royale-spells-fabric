@@ -1,24 +1,48 @@
 plugins { id 'fabric-loom' version '1.16.1' }
 version = project.mod_version
 group = 'dev.royalespells'
-base { archivesName = 'royale-spells-fabric-1.20.1' }
+base { archivesName = 'royale-spells-fabric-1.21.1' }
 repositories { mavenCentral() }
 dependencies {
-    minecraft 'com.mojang:minecraft:1.20.1'
-    mappings 'net.fabricmc:yarn:1.20.1+build.10:v2'
-    modImplementation 'net.fabricmc:fabric-loader:0.16.14'
-    modImplementation 'net.fabricmc.fabric-api:fabric-api:0.92.6+1.20.1'
+    minecraft 'com.mojang:minecraft:1.21.1'
+    mappings 'net.fabricmc:yarn:1.21.1+build.3:v2'
+    modImplementation 'net.fabricmc:fabric-loader:0.19.3'
+    modImplementation 'net.fabricmc.fabric-api:fabric-api:0.116.17+1.21.1'
+    productionRuntimeMods 'net.fabricmc.fabric-api:fabric-api:0.116.17+1.21.1'
     // Optional local regression fixtures, never bundled in the published mod.
     if (project.hasProperty('compatModsDir')) {
         modRuntimeOnly fileTree(dir: project.property('compatModsDir'), include: '*.jar')
+    }
+}
+
+// Exercise the remapped release JAR in the normal Fabric client namespace.
+tasks.register('runProductionVisual', net.fabricmc.loom.task.prod.ClientProductionRunTask) {
+    runDir = layout.projectDirectory.dir('run-production-visual')
+    useXVFB = false
+    jvmArgs.addAll('-Droyalespells.visualSmoke=true', '-Xmx2G')
+    programArgs.addAll('--username', 'RoyaleQA', '--width', '1280', '--height', '800')
+}
+tasks.register('runProductionShowcase', net.fabricmc.loom.task.prod.ClientProductionRunTask) {
+    runDir = layout.projectDirectory.dir('run-production-showcase')
+    useXVFB = false
+    jvmArgs.addAll('-Droyalespells.visualSmoke=true', '-Droyalespells.buildShowcase=true', '-Xmx3G')
+    programArgs.addAll('--username', 'RoyaleQA', '--width', '1600', '--height', '1000')
+}
+tasks.withType(net.fabricmc.loom.task.prod.ClientProductionRunTask).configureEach {
+    doFirst {
+        def options = runDir.file('options.txt').get().asFile
+        if (!options.exists()) {
+            options.parentFile.mkdirs()
+            options.setText('lang:zh_cn\nrenderDistance:6\nsimulationDistance:5\nguiScale:2\nmaxFps:60\ntutorialStep:none\npauseOnLostFocus:false\nonboardAccessibility:false\n', 'UTF-8')
+        }
     }
 }
 processResources {
     inputs.property 'version', project.version
     filesMatching('fabric.mod.json') { expand 'version': project.version }
 }
-tasks.withType(JavaCompile).configureEach { options.release = 17; options.encoding = 'UTF-8' }
-java { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17; withSourcesJar() }
+tasks.withType(JavaCompile).configureEach { options.release = 21; options.encoding = 'UTF-8' }
+java { sourceCompatibility = JavaVersion.VERSION_21; targetCompatibility = JavaVersion.VERSION_21; withSourcesJar() }
 loom {
     runs {
         server { runDir 'run-server' }

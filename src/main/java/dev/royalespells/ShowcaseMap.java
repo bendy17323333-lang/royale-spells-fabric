@@ -58,15 +58,15 @@ public final class ShowcaseMap {
     private static final Map<MinecraftServer,Integer> BUILDING=new HashMap<>();
     public static final class State extends PersistentState {
         public boolean enabled,ready;public int index;
-        @Override public NbtCompound writeNbt(NbtCompound n){n.putBoolean("Enabled",enabled);n.putBoolean("Ready",ready);n.putInt("Index",index);return n;}
+        @Override public NbtCompound writeNbt(NbtCompound n,net.minecraft.registry.RegistryWrapper.WrapperLookup registries){n.putBoolean("Enabled",enabled);n.putBoolean("Ready",ready);n.putInt("Index",index);return n;}
         static State read(NbtCompound n){var s=new State();s.enabled=n.getBoolean("Enabled");s.ready=n.getBoolean("Ready");s.index=Math.floorMod(n.getInt("Index"),SCENES.size());return s;}
     }
-    private static State state(ServerWorld world){return world.getPersistentStateManager().getOrCreate(State::read,State::new,KEY);}
+    private static State state(ServerWorld world){return world.getPersistentStateManager().getOrCreate(new PersistentState.Type<>(State::new,(nbt,registries)->State.read(nbt),null),KEY);}
     public static boolean enabled(ServerWorld world){return state(world).enabled;}
     public static boolean ready(ServerWorld world){return state(world).ready;}
     public static int index(ServerWorld world){return state(world).index;}
     public static BlockPos center(int index){return new BlockPos((index%6)*SPACING,Y,(index/6)*SPACING);}
-    private static Box bounds(int index){var c=center(index);return new Box(c.add(-25,-5,-25),c.add(26,38,26));}
+    private static Box bounds(int index){var c=center(index);return new Box(Vec3d.of(c.add(-25,-5,-25)),Vec3d.of(c.add(26,38,26)));}
     public static void install(){
         ServerPlayConnectionEvents.JOIN.register((handler,sender,server)->{
             var world=handler.player.getServerWorld();if(enabled(world)&&ready(world))enter(handler.player,index(world));
@@ -139,7 +139,7 @@ public final class ShowcaseMap {
     private static void fill(ServerWorld w,BlockPos c,int x1,int y1,int z1,int x2,int y2,int z2,Block b){for(var p:BlockPos.iterate(c.add(x1,y1,z1),c.add(x2,y2,z2)))w.setBlockState(p,b.getDefaultState(),2);}
     private static void text(ServerWorld w,Vec3d p,String message,float scale){
         var e=EntityType.TEXT_DISPLAY.create(w);var n=new NbtCompound();e.writeNbt(n);
-        n.putString("text",Text.Serializer.toJson(Text.literal(message)));n.putString("billboard","center");n.putInt("line_width",360);n.putInt("background",0x90202b38);n.putByte("text_opacity",(byte)255);n.putBoolean("shadow",true);
+        n.putString("text",Text.Serialization.toJsonString(Text.literal(message),w.getRegistryManager()));n.putString("billboard","center");n.putInt("line_width",360);n.putInt("background",0x90202b38);n.putByte("text_opacity",(byte)255);n.putBoolean("shadow",true);
         var transform=new NbtList();for(int i=0;i<16;i++)transform.add(NbtFloat.of(i==15?1:i==0||i==5||i==10?scale:0));n.put("transformation",transform);
         var brightness=new NbtCompound();brightness.putInt("block",15);brightness.putInt("sky",15);n.put("brightness",brightness);
         e.readNbt(n);e.setPosition(p);w.spawnEntity(e);

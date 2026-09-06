@@ -20,7 +20,7 @@ public class RoyaleUnit extends PathAwareEntity implements Summoned {
     public String kind(){return "barbarian_hut";}
     public boolean building(){return true;}
     public static DefaultAttributeContainer.Builder attributes(){return createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH,65).add(EntityAttributes.GENERIC_ATTACK_DAMAGE,0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED,0).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE,1);}
-    @Override protected void initDataTracker(){super.initDataTracker();dataTracker.startTracking(FACING,0f);}
+    @Override protected void initDataTracker(DataTracker.Builder builder){super.initDataTracker(builder);builder.add(FACING,0f);}
     public void lockFacing(float yaw){dataTracker.set(FACING,yaw);setYaw(yaw);setHeadYaw(yaw);setBodyYaw(yaw);}
     @Override protected void initGoals(){}
     @Override protected boolean shouldDropLoot(){return false;}

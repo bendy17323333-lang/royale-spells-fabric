@@ -7,7 +7,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.*;
 
 public final class SpellFields {
-    private static void point(MatrixStack m,VertexConsumer v,double x,double y,double z,float r,float g,float b,float a){v.vertex(m.peek().getPositionMatrix(),(float)x,(float)y,(float)z).color(r,g,b,a).next();}
+    private static void point(MatrixStack m,VertexConsumer v,double x,double y,double z,float r,float g,float b,float a){v.vertex(m.peek().getPositionMatrix(),(float)x,(float)y,(float)z).color(r,g,b,a);}
     private static void ring(MatrixStack m,VertexConsumer v,double inner,double outer,float r,float g,float b,float alpha){
         for(int i=0;i<80;i++){double a=i*Math.PI/40,c=(i+1)*Math.PI/40;
             point(m,v,Math.cos(a)*inner,.08,Math.sin(a)*inner,r,g,b,alpha);point(m,v,Math.cos(c)*inner,.08,Math.sin(c)*inner,r,g,b,alpha);

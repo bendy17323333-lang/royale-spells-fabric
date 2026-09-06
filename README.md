@@ -1,21 +1,23 @@
 # 皇室法术 · Royale Spells
 
-把皇室战争的法术带进 **Minecraft Java 1.20.1 / Fabric**。
+把皇室战争的法术带进 **Minecraft Java 1.21.1 / Fabric**。
 
 当前版本 **1.2.0**：28 张法术卡牌与野蛮人小屋，原版卡图、圣水、觉醒、召唤物和独立法术效果。
 
-Clash Royale inspired spells and a Barbarian Hut for Minecraft Java 1.20.1, built with Fabric.
+Clash Royale inspired spells and a Barbarian Hut for Minecraft Java 1.21.1, built with Fabric.
 
 ## 下载与安装
 
-到本仓库右侧的 **Releases** 下载最新版：
+本分支是 **1.21.1 Fabric 适配版**，功能版本为 1.2.0。原有 [Minecraft 1.20.1 版](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0) 继续提供。两个版本的 JAR 和地图分别下载。
 
-- `royale-spells-fabric-1.20.1-1.2.0.jar`：模组本体。
-- `royale-spells-1.2.0-fabric-1.20.1.zip`：安装包，包含本体、Fabric API、说明与预览。
-- `royale-spells-1.2.0-recording-map.zip`：26 场法术演示／测试地图。
-- `royale-spells-1.2.0-source.zip`：完整源码、资源和可编辑模型。
+到 [1.21.1 发布页](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0-mc1.21.1) 下载：
 
-需要 Minecraft **1.20.1**、Fabric Loader **0.16.14 或兼容的新版本**、对应 1.20.1 的 **Fabric API**，以及 **Java 17 或以上**。
+- `royale-spells-fabric-1.21.1-1.2.0.jar`：模组本体。
+- `royale-spells-1.2.0-fabric-1.21.1.zip`：安装包，包含本体、Fabric API、说明与预览。
+- `royale-spells-1.2.0-mc1.21.1-recording-map.zip`：26 场法术演示／测试地图。
+- `royale-spells-1.2.0-mc1.21.1-source.zip`：完整源码、资源和可编辑模型。
+
+需要 Minecraft **1.21.1**、Fabric Loader、对应 1.21.1 的 **Fabric API**，以及 **Java 21**。本次验证使用 Loader **0.19.3**、Fabric API **0.116.17+1.21.1**，安装包已附带该 API。
 
 退出游戏，将 JAR 放入对应实例的 `mods` 文件夹。升级时替换旧版，只保留一份本模组；已有兼容 Fabric API 时也只保留一份。联机时服务端和每位玩家都需要安装本模组与 Fabric API。
 
@@ -55,7 +57,7 @@ Clash Royale inspired spells and a Barbarian Hut for Minecraft Java 1.20.1, buil
 - 地震改为三次累积破坏，短暂保留裂纹；飓风、雪球等推拉能实际移动关闭 AI 的目标，并保留墙体碰撞。
 - 新增 26 个演示场景，排除治疗和温暖。快捷栏羽毛切上一场、烈焰棒切下一场，潜行使用重置当前场景。详见 [录制地图说明](docs/recording-map.md)。
 
-下载地图 ZIP，解压后把包含 `level.dat` 的「皇室法术-录制片场-1.2.0」文件夹放进实例的 `saves`。安装 1.2.0 模组后，在单人游戏中打开「皇室法术 · 录制片场 1.2.0」。第 8 格羽毛右键上一场，第 9 格烈焰棒右键下一场；潜行右键任一控制物品可重置场景。
+下载地图 ZIP，解压后把包含 `level.dat` 的「皇室法术-录制片场-1.2.0-MC1.21.1」文件夹放进实例的 `saves`。安装 1.2.0 模组后，在单人游戏中打开「皇室法术 · 录制片场 1.2.0 (MC 1.21.1)」。第 8 格羽毛右键上一场，第 9 格烈焰棒右键下一场；潜行右键任一控制物品可重置场景。
 
 ![法术演示地图的电击试场](docs/images/recording-map.png)
 
@@ -75,14 +77,18 @@ Clash Royale inspired spells and a Barbarian Hut for Minecraft Java 1.20.1, buil
 
 ## 从源码构建
 
-构建使用 **JDK 21**，产物兼容 **Java 17**：
+构建和游戏运行均使用 **JDK / Java 21**：
 
 ```powershell
 ./gradlew.bat build
 ./gradlew.bat runGametest
+./gradlew.bat runProductionVisual
+./gradlew.bat runProductionShowcase
 ```
 
 Linux / macOS 使用 `./gradlew`。无 `sources` 后缀的安装 JAR 位于 `build/libs`。
+
+`runProductionVisual` 使用正式重映射 JAR 启动客户端；`runProductionShowcase` 用同一 JAR 生成并逐场验证原生 1.21.1 地图。两个任务使用独立的 `run-production-*` 目录。
 
 `runVisualSmoke` 会启动开发客户端，在工程自己的目录创建新测试世界并截图，完成后自动关闭。需要可用的图形环境；普通游戏不会启用该流程。游戏不会通过这个任务打开已有正式存档。
 
@@ -90,6 +96,6 @@ Linux / macOS 使用 `./gradlew`。无 `sources` 后缀的安装 JAR 位于 `bui
 
 ## 验证与素材
 
-1.2.0 已通过 36 项 Minecraft GameTest、开发客户端与整合包副本中的 26 场地图检查，以及范围深度、模型、音效和火箭飞行回归。详见 [验证记录](docs/validation-1.2.0.md)。
+1.21.1 适配与验证记录见 [验证说明](docs/validation-1.2.0-mc1.21.1.md)。旧的 `validation-1.2.0.md` 记录的是 1.20.1 版测试。
 
 本项目为玩家制作的非官方模组。皇室战争卡图与音效属于原权利人，素材来源、原始哈希和生成提示词见 [ASSETS.md](ASSETS.md)、各项 `*-SOURCES.json` 及 [TROOP-ASSETS.json](TROOP-ASSETS.json)。本仓库尚未为项目代码另行指定开源许可证。

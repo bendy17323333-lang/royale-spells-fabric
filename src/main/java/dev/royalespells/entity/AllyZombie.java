@@ -1,4 +1,5 @@
 package dev.royalespells.entity;
+import net.minecraft.entity.data.DataTracker;
 
 import dev.royalespells.*;
 import net.minecraft.entity.*;
@@ -20,7 +21,7 @@ public class AllyZombie extends ZombieEntity implements Summoned {
     private boolean deploymentPlayed;
     private int lastFootstepAge=-8;
     private static final net.minecraft.entity.data.TrackedData<Boolean> CLONED=net.minecraft.entity.data.DataTracker.registerData(AllyZombie.class,net.minecraft.entity.data.TrackedDataHandlerRegistry.BOOLEAN);
-    @Override protected void initDataTracker(){super.initDataTracker();dataTracker.startTracking(CLONED,false);}
+    @Override protected void initDataTracker(DataTracker.Builder builder){super.initDataTracker(builder);builder.add(CLONED,false);}
     public boolean hero;
     public long nextReroll;
     public AllyZombie(EntityType<? extends ZombieEntity> type,World world) { super(type,world);experiencePoints=0; }

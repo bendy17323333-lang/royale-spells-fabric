@@ -14,8 +14,9 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.*;
-import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.registry.*;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -27,12 +28,12 @@ public final class RoyaleSpells implements ModInitializer {
     public static final Map<Spell,SpellItem> ITEMS=new EnumMap<>(Spell.class);
     public static final Map<TroopCard,TroopItem> TROOP_ITEMS=new EnumMap<>(TroopCard.class);
     public static final Item PREVIOUS_SCENE=new SceneControlItem(-1),NEXT_SCENE=new SceneControlItem(1);
-    public static Identifier id(String path) { return new Identifier(MOD_ID,path); }
-    public static final StatusEffect STUN=new StatusEffect(StatusEffectCategory.HARMFUL,0x92CAFF) {};
-    public static final StatusEffect RAGED=new StatusEffect(StatusEffectCategory.BENEFICIAL,0xCC50ED) {}.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED,"e9786d48-7cfe-4ddf-8dbd-b373e65a431d",0.35,net.minecraft.entity.attribute.EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
-    public static final DefaultParticleType SPARK=FabricParticleTypes.simple();
-    public static final StatusEffect FROZEN=new StatusEffect(StatusEffectCategory.HARMFUL,0x9ADFFF) {};
-    public static final StatusEffect ROOTED=new StatusEffect(StatusEffectCategory.HARMFUL,0x438724) {};
+    public static Identifier id(String path) { return Identifier.of(MOD_ID,path); }
+    public static final RegistryEntry<StatusEffect> STUN=Registry.registerReference(Registries.STATUS_EFFECT,id("stun"),new StatusEffect(StatusEffectCategory.HARMFUL,0x92CAFF) {});
+    public static final RegistryEntry<StatusEffect> RAGED=Registry.registerReference(Registries.STATUS_EFFECT,id("rage"),new StatusEffect(StatusEffectCategory.BENEFICIAL,0xCC50ED) {}.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED,id("rage_attack_speed"),0.35,net.minecraft.entity.attribute.EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+    public static final SimpleParticleType SPARK=FabricParticleTypes.simple();
+    public static final RegistryEntry<StatusEffect> FROZEN=Registry.registerReference(Registries.STATUS_EFFECT,id("frozen"),new StatusEffect(StatusEffectCategory.HARMFUL,0x9ADFFF) {});
+    public static final RegistryEntry<StatusEffect> ROOTED=Registry.registerReference(Registries.STATUS_EFFECT,id("rooted"),new StatusEffect(StatusEffectCategory.HARMFUL,0x438724) {});
     public static final net.minecraft.sound.SoundEvent GRAVEYARD_DEPLOY=Registry.register(Registries.SOUND_EVENT,id("graveyard_deploy"),net.minecraft.sound.SoundEvent.of(id("graveyard_deploy")));
     public static final EntityType<SpellEntity> SPELL=Registry.register(Registries.ENTITY_TYPE,id("spell"),
         FabricEntityTypeBuilder.<SpellEntity>create(SpawnGroup.MISC,SpellEntity::new)
@@ -47,10 +48,6 @@ public final class RoyaleSpells implements ModInitializer {
             .dimensions(EntityDimensions.fixed(w,h)).trackRangeBlocks(80).build());
     }
     public void onInitialize() {
-        Registry.register(Registries.STATUS_EFFECT,id("stun"),STUN);
-        Registry.register(Registries.STATUS_EFFECT,id("rage"),RAGED);
-        Registry.register(Registries.STATUS_EFFECT,id("frozen"),FROZEN);
-        Registry.register(Registries.STATUS_EFFECT,id("rooted"),ROOTED);
         Registry.register(Registries.PARTICLE_TYPE,id("spell_spark"),SPARK);
         for(Spell spell:Spell.values()) ITEMS.put(spell,Registry.register(Registries.ITEM,id(spell.id()),new SpellItem(spell)));
         for(TroopCard card:TroopCard.values())TROOP_ITEMS.put(card,Registry.register(Registries.ITEM,id(card.id()),new TroopItem(card)));

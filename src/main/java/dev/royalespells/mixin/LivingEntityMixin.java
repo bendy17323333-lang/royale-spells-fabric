@@ -13,7 +13,7 @@ public abstract class LivingEntityMixin implements dev.royalespells.VisualState 
     @org.spongepowered.asm.mixin.Unique
     private static final net.minecraft.entity.data.TrackedData<Byte> ROYALE_VISUAL=net.minecraft.entity.data.DataTracker.registerData(LivingEntity.class,net.minecraft.entity.data.TrackedDataHandlerRegistry.BYTE);
     @Inject(method="initDataTracker",at=@At("TAIL"))
-    private void initVisualData(CallbackInfo ci){((LivingEntity)(Object)this).getDataTracker().startTracking(ROYALE_VISUAL,(byte)0);}
+    private void initVisualData(net.minecraft.entity.data.DataTracker.Builder builder,CallbackInfo ci){builder.add(ROYALE_VISUAL,(byte)0);}
     public byte royaleVisualFlags(){return ((LivingEntity)(Object)this).getDataTracker().get(ROYALE_VISUAL);}
     @Inject(method="tick",at=@At("TAIL"))
     private void syncVisualData(CallbackInfo ci){

@@ -12,7 +12,7 @@ final class BarbarianAudioSmoke {
         var resources=client.getResourceManager().findResources("sounds/barbarian",id->id.getNamespace().equals(RoyaleSpells.MOD_ID)&&id.getPath().endsWith(".ogg"));
         if(resources.size()!=15)throw new IllegalStateException("Missing original Barbarian recordings: "+resources.size());
         for(var entry:resources.entrySet())try(var input=entry.getValue().getInputStream();var ogg=new net.minecraft.client.sound.OggAudioStream(input)){
-            var format=ogg.getFormat();var pcm=ogg.getBuffer();
+            var format=ogg.getFormat();var pcm=ogg.readAll();
             if(format.getChannels()!=1||pcm.remaining()==0)throw new IllegalStateException("Invalid Barbarian audio "+entry.getKey());
             if(entry.getKey().getPath().contains("barb_footstep_")){
                 var folder=new java.io.File(client.runDirectory,"audio-review");folder.mkdirs();byte[] data=new byte[pcm.remaining()];pcm.get(data);
@@ -22,7 +22,7 @@ final class BarbarianAudioSmoke {
             }
         }catch(java.io.IOException ex){throw new RuntimeException("Barbarian audio decode failed",ex);}
         System.out.println("ROYALE_BARBARIAN_AUDIO_DECODE_OK files="+resources.size());
-        client.getSoundManager().registerListener((sound,set)->{
+        client.getSoundManager().registerListener((sound,set,range)->{
             var id=sound.getId();
             if(id.getNamespace().equals(RoyaleSpells.MOD_ID)&&id.getPath().startsWith("barbarian_")){
                 if(sound.getPitch()!=1||sound.isRepeatable()||sound.isRelative()||sound.getSound()==net.minecraft.client.sound.SoundManager.MISSING_SOUND)

@@ -21,7 +21,7 @@ import java.util.*;
 public final class SpellEngine {
     private SpellEngine(){}
     public static final int MAX_UNITS_PER_OWNER=64;
-    private static final UUID MIRROR_ATTACK=UUID.fromString("b27ad4dd-7a38-40cf-8cc4-7ddad5b601b0");
+    private static final net.minecraft.util.Identifier MIRROR_ATTACK=RoyaleSpells.id("mirror_attack");
     private static final Map<UUID,State> PLAYERS=new HashMap<>();
     private static final Map<UUID,Curse> CURSES=new HashMap<>();
     private static long clock;
@@ -239,7 +239,7 @@ public final class SpellEngine {
         var health=mob.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);health.setBaseValue(health.getBaseValue()*power);mob.setHealth(mob.getMaxHealth());
         var attack=mob.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
         if(mob instanceof AllySkeleton)attack.setBaseValue(attack.getBaseValue()*power);
-        else attack.addPersistentModifier(new net.minecraft.entity.attribute.EntityAttributeModifier(MIRROR_ATTACK,"Mirror level",power-1,net.minecraft.entity.attribute.EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+        else attack.addPersistentModifier(new net.minecraft.entity.attribute.EntityAttributeModifier(MIRROR_ATTACK,power-1,net.minecraft.entity.attribute.EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
     }
     public static void cloneAllies(ServerWorld world,UUID owner,Vec3d pos,double radius,float power) {
         for(LivingEntity original:targets(world,owner,pos,radius,true)) {
@@ -253,8 +253,8 @@ public final class SpellEngine {
                 var attack=clone.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);var source=original.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
                 attack.setBaseValue(source.getBaseValue()*(clone instanceof AllySkeleton?power:1));
                 if(!(clone instanceof AllySkeleton)) {
-                    var boost=source.getModifier(MIRROR_ATTACK);double factor=(boost==null?1:1+boost.getValue())*power;
-                    if(factor>1)attack.addPersistentModifier(new net.minecraft.entity.attribute.EntityAttributeModifier(MIRROR_ATTACK,"Mirror level",factor-1,net.minecraft.entity.attribute.EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+                    var boost=source.getModifier(MIRROR_ATTACK);double factor=(boost==null?1:1+boost.value())*power;
+                    if(factor>1)attack.addPersistentModifier(new net.minecraft.entity.attribute.EntityAttributeModifier(MIRROR_ATTACK,factor-1,net.minecraft.entity.attribute.EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
                 }
                 clone.removeStatusEffect(StatusEffects.ABSORPTION);
                 if(original instanceof RoyaleUnit sourceUnit && clone instanceof RoyaleUnit cloneUnit)cloneUnit.setPower(sourceUnit.power()*power);
