@@ -135,25 +135,51 @@ def barbarian():
     r.save()
 
 def recruit():
-    r=Rig('royal_recruit');body=r.part('body');r.bevel(body,BLUE,-4.7,0,-3,9.4,11,6,.6)
-    r.bevel(body,STEEL,-5,1,-3.5,10,7,7,.8);r.box(body,GOLD,-.5,2,-3.9,1,5,.6)
-    r.box(body,LEATHER,-5,9,-3.25,10,1.6,6.5);r.bevel(body,GOLD,-1,9,-3.7,2,1.6,.7,.2)
-    head=r.part('head','body');face(r,head,hair=True)
-    r.bevel(head,STEEL,-4.5,-8.9,-4,9,4.8,8.1,.8)
-    r.box(head,STEEL,-4.8,-5.25,-4.7,9.6,.65,9.4)
-    r.box(head,GOLD,-.45,-8.65,-4.2,.9,3.7,.6)
-    for s in [-1,1]:r.bevel(head,STEEL,s*3.85-.4,-4.5,-1.6,.8,3.8,4,.2)
-    crest=r.part('crest','head',(0,-8.8,0));r.box(crest,BLUE,-.75,-4,-1.8,1.5,4.5,4.5);r.box(crest,BLUE,-.6,-3,2.2,1.2,3.8,2.2)
+    r=Rig('royal_recruit');body=r.part('body')
+    cobalt=[.08,.4,.66];steel=[.39,.49,.54];rim=[.59,.66,.67];oak=[.62,.35,.16]
+    r.loft(body,cobalt,[(0,4,2.8,0),(4,4.8,3,0),(10,4.1,2.8,0)])
+    r.loft(body,steel,[(.5,3.8,2.85,-.2),(2.4,5,3.55,-.2),(6.8,4.7,3.3,-.2),(8.8,4.1,2.95,-.2)])
+    r.loft(body,cobalt,[(8.8,4.45,3.1,0),(10.4,4.5,3.15,0)])
+    r.solid(body,[.86,.6,.22],-1.3,8.7,-3.55,2.6,2,.45);r.solid(body,[.16,.25,.27],-.75,9.2,-3.81,1.5,.9,.1)
+    r.loft(body,[.19,.24,.27],[(10.2,4.5,3,0),(13.1,5.4,3.3,0)])
+    for side in [-1,1]:
+        for x in [-3.9,-2.35,-.8,.8,2.35,3.9]:
+            r.loft(body,steel,[(10.5,.65,.25,side*3.14),(11.25,.73,.3,side*3.35),(12.25,.63,.28,side*3.4),(12.5,.28,.2,side*3.4)],cx=x)
+    head=r.part('head','body')
+    # Twelve separate tapered staves, including real seams; this is a bucket, not a metal helmet.
+    for i in range(12):
+        a=i*math.tau/12;half=math.pi/12-.014;faces=[]
+        loops=[]
+        for y,rad in [(-9.3,4.05),(-.15,4.75)]:
+            loops.append([[math.sin(t)*rr,y,-math.cos(t)*rr] for rr,t in [(rad,a-half),(rad,a+half),(rad-.45,a+half),(rad-.45,a-half)]])
+        for j in range(4):faces.append(sum([loops[0][j],loops[0][(j+1)%4],loops[1][(j+1)%4],loops[1][j]],[]))
+        faces.extend([sum(loops[0],[]),sum(reversed(loops[1]),[])])
+        shade=.92+(i%3)*.055
+        head['boxes'].append(dict(material=WHITE,flat=True,color=[c*shade for c in oak],faces=faces))
+    r.loft(head,oak,[(-9.3,3.85,3.85,0),(-9,3.85,3.85,0)],corner=.3)
+    for y,rad in [(-8.3,4.22),(-1.9,4.72)]:
+        for i in range(12):
+            band=r.part('bucket_band_'+str(y)+'_'+str(i),'head',(0,0,0),(0,i*30,0))
+            r.solid(band,steel,-rad*.269,y,-rad-.08,rad*.538,1.12,.35)
+            r.loft(band,rim,[(y+.28,.22,.12,-rad-.49),(y+.7,.22,.12,-rad-.49)],corner=.25)
+    # The original conceals the eyes. Only the nose protrudes through the narrow face opening.
+    r.solid(head,[.16,.09,.04],-1.38,-4.35,-4.75,2.76,1.15,.18)
+    r.loft(head,[.95,.48,.28],[(-4.22,.56,.35,-4.97),(-3.99,1.03,.72,-5.04),(-3.4,1.06,.72,-5.04),(-3.13,.65,.37,-4.96)])
+    r.loft(head,steel,[(-9.8,.9,.9,0),(-9.2,1,.95,0)])
+    crest=r.part('crest','head')
+    r.loft(crest,[.04,.46,.72],[(-9.7,.3,.35,0),(-11.3,.36,.4,.25),(-12.7,.55,.65,.95),(-13.7,.9,1.3,2.05),(-14.1,.92,1.35,2.5)])
+    r.loft(crest,[.08,.65,.89],[(-14.3,.78,1.2,2.6),(-14.8,.95,1.5,2.8),(-14.4,1.13,1.75,3.3),(-13.5,1.1,1.65,3.7),(-12.4,.78,1.03,4),(-12.05,.4,.5,4)])
     for side,s in [('right',-1),('left',1)]:
-        arm=r.part(side+'_arm','body',(s*5.7,2,0));r.bevel(arm,BLUE,-2.1,-1,-2.3,4.2,10,4.6,.4)
-        r.bevel(arm,STEEL,-3,-2.5,-3.4,6,3.8,6.8,.65);r.bevel(arm,STEEL,-2.4,5.4,-2.7,4.8,3.2,5.4,.4)
-        r.bevel(arm,LEATHER,-2.1,8,-2.4,4.2,3,4.8,.4)
-        leg=r.part(side+'_leg','body',(s*2.4,11,0));r.box(leg,BLUE,-2,0,-2,4,9,4);r.bevel(leg,STEEL,-2.3,5.7,-2.7,4.6,4.6,5,.4);r.bevel(leg,LEATHER,-2.4,10,-3.3,4.8,3,6.2,.4)
+        arm=r.part(side+'_arm','body',(s*5.7,2,0));r.loft(arm,cobalt,[(-1.6,1.5,2.1,0),(0,2.5,2.6,0),(3.1,2.25,2.35,0)])
+        r.loft(arm,FLESH,[(3,1.9,2,0),(5.8,1.9,2.1,0),(6.2,1.8,1.9,0)])
+        r.loft(arm,steel,[(5.6,2.08,2.28,0),(8.4,2.05,2.25,0),(10.7,2.32,2.4,-.1),(11.3,1.7,2,-.1)])
+        leg=r.part(side+'_leg','body',(s*2.4,12,0));r.loft(leg,FLESH,[(0,1.8,1.95,0),(5.8,1.6,1.75,0),(9.7,1.4,1.65,0)])
+        r.loft(leg,FLESH,[(9.7,1.8,2.5,-.65),(11.45,1.96,2.9,-.9)])
+        r.loft(leg,BROWN,[(11.3,2.1,3.1,-.85),(12,2.1,3.1,-.85)])
+        for y,z,d in [(9.7,-.7,1),(10.65,-2.9,.7)]:r.solid(leg,BROWN,-1.95,y,z,3.9,.7,d)
     shield=r.part('shield','left_arm',(1,6,-4),(0,-12,0));r.bevel(shield,WOOD,-4,-5,-.4,8,10,1.5,.7)
-    r.bevel(shield,STEEL,-4.5,-5.6,-1.1,9,11.2,.8,.6);r.bevel(shield,BLUE,-3.7,-4.8,-1.6,7.4,9.6,.65,.55)
-    for x in [-3.1,3.1]:
-        for y in [-3.8,3.8]:r.box(shield,GOLD,x-.3,y-.3,-2.15,.6,.6,.4)
-    r.box(shield,GOLD,-.6,-3.4,-2.15,1.2,6.8,.55);r.box(shield,GOLD,-2.2,-.5,-2.15,4.4,1,.55)
+    r.bevel(shield,STEEL,-4.5,-5.6,-1.1,9,11.2,.8,.6)
+    for i in range(4):r.solid(shield,[c*(.94+i%2*.1) for c in oak],-3.55+i*1.8,-4.55,-1.64,1.7,9.1,.6)
     spear=r.part('spear','right_arm',(-1,8,-2));r.box(spear,WOOD,-.45,-25,-.45,.9,33,.9);r.box(spear,STEEL,-.85,-26,-.85,1.7,2,1.7)
     r.bevel(spear,STEEL,-1.3,-31,-.5,2.6,5,1,.25);r.box(spear,WHITE,-.7,-32.5,-.4,1.4,1.8,.8);r.save()
 

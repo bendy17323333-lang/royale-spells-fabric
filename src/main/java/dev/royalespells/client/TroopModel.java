@@ -50,9 +50,9 @@ public final class TroopModel<T extends LivingEntity> extends EntityModel<T> imp
         Part part=parts.get(arm==Arm.RIGHT?"right_arm":"left_arm");
         if(part==null)return;
         applyParents(part,matrices);
-        // HeldItemFeatureRenderer's standard grip is one pixel off the arm pivot.
-        // These wider fists are centered on the pivot, so center the grip in the palm.
-        matrices.translate((arm==Arm.RIGHT?-1:1)/16f,0,0);
+        // The feature's Y half-turn puts the right-hand grip at X=-1px, not +1px.
+        // Cancel that offset and move the handle from the front face into the palm.
+        matrices.translate((arm==Arm.RIGHT?1:-1)/16f,2.5f/16f,1.25f/16f);
     }
     private void applyParents(Part part,MatrixStack matrices){
         if(!part.parent.isEmpty())applyParents(parts.get(part.parent),matrices);

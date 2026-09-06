@@ -26,6 +26,7 @@ public final class RoyaleSpells implements ModInitializer {
     public static final String MOD_ID="royalespells";
     public static final Map<Spell,SpellItem> ITEMS=new EnumMap<>(Spell.class);
     public static final Map<TroopCard,TroopItem> TROOP_ITEMS=new EnumMap<>(TroopCard.class);
+    public static final Item PREVIOUS_SCENE=new SceneControlItem(-1),NEXT_SCENE=new SceneControlItem(1);
     public static Identifier id(String path) { return new Identifier(MOD_ID,path); }
     public static final StatusEffect STUN=new StatusEffect(StatusEffectCategory.HARMFUL,0x92CAFF) {};
     public static final StatusEffect RAGED=new StatusEffect(StatusEffectCategory.BENEFICIAL,0xCC50ED) {}.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED,"e9786d48-7cfe-4ddf-8dbd-b373e65a431d",0.35,net.minecraft.entity.attribute.EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
@@ -53,6 +54,9 @@ public final class RoyaleSpells implements ModInitializer {
         Registry.register(Registries.PARTICLE_TYPE,id("spell_spark"),SPARK);
         for(Spell spell:Spell.values()) ITEMS.put(spell,Registry.register(Registries.ITEM,id(spell.id()),new SpellItem(spell)));
         for(TroopCard card:TroopCard.values())TROOP_ITEMS.put(card,Registry.register(Registries.ITEM,id(card.id()),new TroopItem(card)));
+        Registry.register(Registries.ITEM,id("previous_scene"),PREVIOUS_SCENE);
+        Registry.register(Registries.ITEM,id("next_scene"),NEXT_SCENE);
+        ShowcaseMap.install();
         Registry.register(Registries.ITEM_GROUP,id("spells"),FabricItemGroup.builder()
             .displayName(Text.translatable("itemGroup.royalespells.spells"))
             .icon(()->new ItemStack(ITEMS.get(Spell.ZAP_EVOLUTION)))
@@ -64,6 +68,10 @@ public final class RoyaleSpells implements ModInitializer {
         FabricDefaultAttributeRegistry.register(BARBARIAN_HUT,RoyaleUnit.attributes());
         UnitSounds.initialize();
         ServerTickEvents.END_SERVER_TICK.register(SpellEngine::tick);
+        ServerTickEvents.END_SERVER_TICK.register(EarthquakeDestruction::tickAll);
+        ServerTickEvents.END_SERVER_TICK.register(SpellMotion::tick);
+        ServerLifecycleEvents.SERVER_STOPPED.register(server->SpellMotion.clear());
+        ServerLifecycleEvents.SERVER_STOPPED.register(server->EarthquakeDestruction.clear());
         ServerLifecycleEvents.SERVER_STOPPED.register(server->SpellEngine.clear());
         ServerLivingEntityEvents.AFTER_DEATH.register((entity,source)->SpellEngine.onDeath(entity));
         CommandRegistrationCallback.EVENT.register((dispatcher,access,environment)->dispatcher.register(
@@ -84,6 +92,9 @@ public final class RoyaleSpells implements ModInitializer {
                   ctx.getSource().sendError(Text.literal("Unknown spell: "+id)); return 0;
               })))
               .then(CommandManager.literal("refill").executes(ctx->{SpellEngine.refill(ctx.getSource().getPlayerOrThrow());return 1;}))
+              .then(CommandManager.literal("scene").executes(ctx->{ShowcaseMap.switchScene(ctx.getSource().getPlayerOrThrow(),0);return 1;})
+                  .then(CommandManager.literal("next").executes(ctx->{ShowcaseMap.switchScene(ctx.getSource().getPlayerOrThrow(),1);return 1;}))
+                  .then(CommandManager.literal("previous").executes(ctx->{ShowcaseMap.switchScene(ctx.getSource().getPlayerOrThrow(),-1);return 1;})))
               .then(CommandManager.literal("clear").executes(ctx->{
                   var player=ctx.getSource().getPlayerOrThrow();
                   for(Entity e:player.getServerWorld().iterateEntities())

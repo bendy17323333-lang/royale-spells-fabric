@@ -76,5 +76,7 @@
   "subtitles.royalespells.barbarian_deploy": "野蛮人：登场",
   "subtitles.royalespells.barbarian_attack": "野蛮人：攻击",
   "subtitles.royalespells.barbarian_step": "野蛮人：脚步",
-  "subtitles.royalespells.barbarian_death": "野蛮人：倒下"
+  "subtitles.royalespells.barbarian_death": "野蛮人：倒下",
+  "item.royalespells.previous_scene": "◀ 上一个场景（潜行使用：重置）",
+  "item.royalespells.next_scene": "下一个场景 ▶（潜行使用：重置）"
 }

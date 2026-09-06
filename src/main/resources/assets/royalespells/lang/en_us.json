@@ -76,5 +76,7 @@
   "subtitles.royalespells.barbarian_deploy": "Barbarian deploys",
   "subtitles.royalespells.barbarian_attack": "Barbarian attacks",
   "subtitles.royalespells.barbarian_step": "Barbarian footsteps",
-  "subtitles.royalespells.barbarian_death": "Barbarian dies"
+  "subtitles.royalespells.barbarian_death": "Barbarian dies",
+  "item.royalespells.previous_scene": "Previous scene (Sneak-use: reset)",
+  "item.royalespells.next_scene": "Next scene (Sneak-use: reset)"
 }

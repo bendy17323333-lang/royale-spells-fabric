@@ -32,6 +32,15 @@ loom {
     }
 }
 loom.runs {
+    showcase {
+        client()
+        name 'Royale Recording Map Builder'
+        runDir 'run-showcase'
+        vmArg '-Droyalespells.buildShowcase=true'
+        vmArg '-Droyalespells.visualSmoke=true'
+        vmArg '-Xmx3G'
+        programArgs '--width', '1600', '--height', '1000'
+    }
     visualSmoke {
         client()
         name 'Royale visual smoke'

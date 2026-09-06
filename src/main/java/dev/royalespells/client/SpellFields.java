@@ -14,27 +14,10 @@ public final class SpellFields {
             point(m,v,Math.cos(c)*outer,.08,Math.sin(c)*outer,r,g,b,alpha);point(m,v,Math.cos(a)*outer,.08,Math.sin(a)*outer,r,g,b,alpha);
         }
     }
-    private static void bolt(MatrixStack m,VertexConsumer v,double x,double z,double h,float width,float alpha,int seed){
-        Vec3d last=new Vec3d(x,0,z);
-        for(int i=1;i<=9;i++) {
-            Vec3d next=new Vec3d(x+Math.sin(i*2.7+seed)*.22,h*i/9,z+Math.cos(i*1.9+seed)*.17);
-            for(int face=0;face<4;face++){
-                double a=face*Math.PI/2+Math.PI/4,c=a+Math.PI/2;
-                point(m,v,last.x+Math.cos(a)*width,last.y,last.z+Math.sin(a)*width,.7f,.87f,1,alpha);
-                point(m,v,last.x+Math.cos(c)*width,last.y,last.z+Math.sin(c)*width,.7f,.87f,1,alpha);
-                point(m,v,next.x+Math.cos(c)*width,next.y,next.z+Math.sin(c)*width,.85f,.95f,1,alpha);
-                point(m,v,next.x+Math.cos(a)*width,next.y,next.z+Math.sin(a)*width,.85f,.95f,1,alpha);
-            }last=next;
-        }
-    }
     public static void render(SpellEntity e,float delta,MatrixStack m,VertexConsumerProvider buffers){
         Spell spell=e.spell();float time=e.time()+delta;
         if(spell==Spell.ZAP || spell==Spell.ZAP_EVOLUTION){
-            float age=time-(time>=21?21:1);if(age<0||age>6)return;
-            float alpha=1-age/6;double radius=SpellEntity.zapRadius(e.time());var v=buffers.getBuffer(SpellLayers.EFFECT);
-            bolt(m,v,0,0,7,.065f,alpha,0);
-            for(int i=0;i<4;i++){double a=i*Math.PI/2+.3;bolt(m,v,Math.cos(a)*radius*.65,Math.sin(a)*radius*.65,2.7,.035f,alpha*.7f,i+1);}
-            ring(m,v,radius-.05,radius+.035,.42f,.76f,1,alpha*.7f);return;
+            ZapRenderer.render(e,delta,m,buffers);return;
         }
         float r,g,b,a;
         switch(spell){

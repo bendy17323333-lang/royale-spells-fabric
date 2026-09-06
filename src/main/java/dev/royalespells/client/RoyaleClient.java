@@ -15,7 +15,8 @@ import org.joml.Vector3f;
 
 public class RoyaleClient implements ClientModInitializer {
     public void onInitializeClient() {
-        if(Boolean.getBoolean("royalespells.visualSmoke"))VisualSmoke.install();
+        if(Boolean.getBoolean("royalespells.buildShowcase"))ShowcaseCapture.install();
+        else if(Boolean.getBoolean("royalespells.visualSmoke"))VisualSmoke.install();
         EntityRendererRegistry.register(RoyaleSpells.SPELL,SpellRenderer::new);
         EntityRendererRegistry.register(RoyaleSpells.ZOMBIE,ZombieEntityRenderer::new);
         EntityRendererRegistry.register(RoyaleSpells.SKELETON,SkeletonEntityRenderer::new);

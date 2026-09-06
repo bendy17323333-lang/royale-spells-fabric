@@ -29,6 +29,7 @@ public final class SpellEngine {
     private record Curse(UUID owner,long until,float power){}
     public static void clear(){PLAYERS.clear();CURSES.clear();clock=0;}
     public static void refill(ServerPlayerEntity player){PLAYERS.computeIfAbsent(player.getUuid(),id->new State()).elixir=10;}
+    public static void resetForRecording(ServerPlayerEntity player){if(ShowcaseMap.enabled(player.getServerWorld()))PLAYERS.remove(player.getUuid());}
     public static void tick(MinecraftServer server) {
         clock++;
         for(ServerPlayerEntity p:server.getPlayerManager().getPlayerList()) {
@@ -162,6 +163,7 @@ public final class SpellEngine {
         target.timeUntilRegen=0; target.damage(world.getDamageSources().indirectMagic(caster,caster),damage);
     }
     public static void stun(LivingEntity target,int ticks) {
+        SpellMotion.cancel(target);
         target.addStatusEffect(new StatusEffectInstance(RoyaleSpells.STUN,ticks,0,false,false,true));
         target.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS,ticks,9,false,false));
         target.setVelocity(Vec3d.ZERO);target.velocityModified=true;

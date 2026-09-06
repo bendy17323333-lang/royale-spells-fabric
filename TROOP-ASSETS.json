@@ -5,12 +5,13 @@
   "finalEditPrompt": "Edit this 4x4 production material atlas. Keep every tile in the EXACT same grid position and same base color/material: tan skin, yellow hair, brown leather, steel / cobalt cloth, ivory bone, black, gray golem stone / purple crystal, deep violet cloth, blue-gray skin, purple bat wing / golden wood, straw, gold, cream white. Make it much cleaner and more stylized for low-poly Minecraft Clash Royale models. Remove ALL photographic noise, grain, fine scratches and tiny woven details. Each tile should read as a smooth clear material with just 3-5 broad painted tones, not speckled. Skin, leather, cloth, bone, metal should be mostly uniform color, subtle shading, maximum 4-6 very broad strokes per tile. Rock: light medium gray base (noticeably LIGHTER than existing), only 3-4 large broad soft facets with subtle cracks, NO dense mosaic of pebbles. Hair and wood and straw: only 6-8 broad parallel strokes per tile, no thin strands. Crystal: 4-6 broad pinkish-purple facets. Eyes tile bottom right almost solid warm white. Exact square equal 4x4 tiles, no margins, no text, no labels, no borders, no characters. Pure flat albedo texture sheet, not a preview.",
   "geometryGenerator": "art/make-troop-models.py",
   "editableModels": "art/blockbench",
-  "notes": "1.1.2 reuses the existing atlas. Barbarian now uses connected octagonal section meshes, clean vertex colors, broad jaw, flush eyes, golden bowl cut and long horseshoe moustache. Real held-item sword attachment is preserved. Recruit and Hut geometry unchanged; Skeleton uses vanilla renderer.",
+  "notes": "1.2.0 preserves the approved Barbarian face, corrects equipped sword grip, and rebuilds Royal Recruit with a twelve-stave wooden bucket, metal hoops, blue curled feather, recessed nose opening, breastplate, wood shield and sandals. Existing atlas reused; no new bitmap generation.",
   "models": [
     "barbarian",
     "royal_recruit",
     "barbarian_hut"
   ],
   "barbarianReference": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/chr/barbarians.png",
-  "blockbenchNotes": "Editable meshes include royale_vertex_color metadata; production renderer applies these colors. No bitmap editing or new image generation in 1.1.2."
+  "blockbenchNotes": "Editable meshes include royale_vertex_color metadata; production renderer applies these colors. No bitmap editing or new image generation in 1.1.2.",
+  "recruitReference": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/chr/royal_recruits.png"
 }

@@ -30,7 +30,19 @@ public class SpellEntity extends Entity {
     public float power(){return dataTracker.get(DATA).contains("Power")?dataTracker.get(DATA).getFloat("Power"):1;}
     public void setPower(float power){var data=dataTracker.get(DATA).copy();data.putFloat("Power",MathHelper.clamp(power,1,1.1f));dataTracker.set(DATA,data);}
     private MobEntity summon(ServerWorld world,Vec3d pos,String kind,boolean decoy){var mob=SpellEngine.summon(world,ownerId,pos,kind,decoy);SpellEngine.empower(mob,power());return mob;}
-    public static float zapRadius(int tick){return tick<21?2.5f:3f;}
+    public static float zapRadius(int tick){return (float)(tick<21?Spell.ZAP.radius:Spell.ZAP_EVOLUTION.radius);}
+    public List<Vec3d> zapPoints(){
+        List<Vec3d> points=new ArrayList<>();
+        for(NbtElement value:dataTracker.get(DATA).getList("ZapPoints",NbtElement.COMPOUND_TYPE))points.add(getVec((NbtCompound)value,"p"));
+        return points;
+    }
+    private void recordZapStrike(ServerWorld world,int tick){
+        NbtCompound data=dataTracker.get(DATA).copy();NbtList points=new NbtList();
+        for(LivingEntity victim:enemies(world,target(),zapRadius(tick)).stream().limit(16).toList()){
+            NbtCompound point=new NbtCompound();putVec(point,"p",victim.getPos().add(0,victim.getHeight()*.55,0));points.add(point);
+        }
+        data.put("ZapPoints",points);dataTracker.set(DATA,data);
+    }
     public int voidStrikeTick(){return dataTracker.get(DATA).getInt("VoidStrikeTick");}
     public int voidStrength(){return dataTracker.get(DATA).getInt("VoidStrength");}
     public List<Vec3d> voidStrikePoints(){
@@ -101,7 +113,7 @@ public class SpellEntity extends Entity {
         for(LivingEntity e:enemies(world,center,radius)) {
             damage(world,e,amount);
             if(stun>0)SpellEngine.stun(e,stun);
-            if(knock>0){Vec3d dir=SpellEngine.horizontal(e.getPos().subtract(center));e.addVelocity(dir.x*knock,0.2,dir.z*knock);e.velocityModified=true;}
+            if(knock>0){Vec3d dir=SpellEngine.horizontal(e.getPos().subtract(center));SpellMotion.impulse(e,new Vec3d(dir.x*knock,0.2,dir.z*knock));}
         }
     }
     private void roll(ServerWorld world) {
@@ -109,7 +121,7 @@ public class SpellEntity extends Entity {
             if(e.getY()>getY()+1.8 || !hit.add(e.getUuid()))continue;
             damage(world,e,spell()==Spell.THE_LOG?8:6);
             Vec3d direction=SpellEngine.horizontal(target().subtract(start()));
-            e.addVelocity(direction.x*0.85,0.15,direction.z*0.85);e.velocityModified=true;
+            SpellMotion.impulse(e,new Vec3d(direction.x*.85,.15,direction.z*.85));
         }
         if(time()==spell().duration && spell()!=Spell.THE_LOG && !reroll) {
             summon(world,getPos(),spell()==Spell.BARBARIAN_BARREL_HERO?"hero":"barbarian",false);
@@ -134,7 +146,7 @@ public class SpellEntity extends Entity {
         }
         if(t!=spell().duration)return;
         switch(spell()) {
-            case FIREBALL -> {area(world,target(),2.5,12,0,0.9);burst(world,ParticleTypes.FLAME,45);sound(SoundEvents.ENTITY_GENERIC_EXPLODE,1,1.1f);}
+            case FIREBALL -> {area(world,target(),spell().radius,12,0,0.9);burst(world,ParticleTypes.FLAME,45);sound(SoundEvents.ENTITY_GENERIC_EXPLODE,1,1.1f);}
             case ROCKET -> {area(world,target(),2.5,30,0,1.2);burst(world,ParticleTypes.EXPLOSION,12);sound(SoundEvents.ENTITY_GENERIC_EXPLODE,1.5f,0.7f);}
             case PARTY_ROCKET -> {
                 var victims=enemies(world,target(),3);for(LivingEntity e:victims)SpellEngine.curse(ownerId,e,power());
@@ -151,10 +163,10 @@ public class SpellEntity extends Entity {
     }
     private void field(ServerWorld world,int t) {
         switch(spell()) {
-            case ARROWS -> {if(t==4||t==12||t==20){area(world,target(),4,3,0,0);sound(SoundEvents.ENTITY_ARROW_HIT,0.8f,0.85f);}}
+            case ARROWS -> {if(t==4||t==12||t==20){area(world,target(),spell().radius,3,0,0);sound(SoundEvents.ENTITY_ARROW_HIT,0.8f,0.85f);}}
             case ZAP, ZAP_EVOLUTION -> {
                 if(t==1 || spell()==Spell.ZAP_EVOLUTION && t==21) {
-                    area(world,target(),zapRadius(t),4,10,0);sound(SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT,0.4f,1.9f);
+                    recordZapStrike(world,t);area(world,target(),zapRadius(t),4,10,0);sound(SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT,0.4f,1.9f);
                 }
             }
             case LIGHTNING -> {
@@ -184,13 +196,13 @@ public class SpellEntity extends Entity {
             case TORNADO -> {
                 for(LivingEntity e:enemies(world,target(),5.5)) {
                     Vec3d d=target().add(0,0.4,0).subtract(e.getPos());
-                    e.setVelocity(e.getVelocity().multiply(0.35).add(d.multiply(0.12)));e.velocityModified=true;
+                    SpellMotion.pull(e,e.getVelocity().multiply(0.35).add(d.multiply(0.12)));
                     if(t==1||t==16)damage(world,e,2);
                 }
             }
             case EARTHQUAKE -> {
                 if(earthquake==null)earthquake=new EarthquakeDestruction(world,target());
-                quakeBroken+=earthquake.tick(world,ownerId,quakeBroken);
+                quakeBroken+=earthquake.tick(world,ownerId,t);
                 if(t%20==1){for(LivingEntity e:enemies(world,target(),3.5))if(e.isOnGround() || e.getY()<=target().y+0.5){damage(world,e,3);slow(e,25);}
                     sound(SoundEvents.BLOCK_POINTED_DRIPSTONE_BREAK,0.8f,0.5f);}
             }
@@ -237,6 +249,7 @@ public class SpellEntity extends Entity {
     private void burst(ServerWorld world,net.minecraft.particle.ParticleEffect effect,int count){world.spawnParticles(effect,target().x,target().y+0.4,target().z,count,1,0.5,1,0.05);}
     @Override protected void writeCustomDataToNbt(NbtCompound nbt) {
         nbt.putInt("QuakeBroken",quakeBroken);
+        if(earthquake!=null)nbt.put("QuakeWork",earthquake.writeNbt());
         nbt.put("SpellData",dataTracker.get(DATA).copy());nbt.putInt("SpellTime",time());
         if(ownerId!=null)nbt.putUuid("Owner",ownerId);if(rerollId!=null)nbt.putUuid("RerollId",rerollId);
         nbt.putBoolean("DevPreview",preview && Boolean.getBoolean("royalespells.visualSmoke"));
@@ -245,7 +258,7 @@ public class SpellEntity extends Entity {
         NbtList ids=new NbtList();captured.forEach(id->ids.add(NbtString.of(id.toString())));nbt.put("Captured",ids);
     }
     @Override protected void readCustomDataFromNbt(NbtCompound nbt) {
-        quakeBroken=nbt.getInt("QuakeBroken");earthquake=null;
+        quakeBroken=nbt.getInt("QuakeBroken");earthquake=nbt.contains("QuakeWork")?EarthquakeDestruction.fromNbt(nbt.getCompound("QuakeWork")):null;
         dataTracker.set(DATA,nbt.getCompound("SpellData"));dataTracker.set(TIME,nbt.getInt("SpellTime"));
         ownerId=nbt.containsUuid("Owner")?nbt.getUuid("Owner"):null;rerollId=nbt.containsUuid("RerollId")?nbt.getUuid("RerollId"):null;
         preview=nbt.getBoolean("DevPreview") && Boolean.getBoolean("royalespells.visualSmoke");

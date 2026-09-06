@@ -72,7 +72,7 @@ public class SpellRenderer extends EntityRenderer<SpellEntity> {
             }
             case ARROWS -> {
                 for(int i=0;i<14;i++) {
-                    double a=i*2.4,r=.7+(i%4)*.7,h=5-((e.time()+delta+i*2)%8)*.6;
+                    double a=i*2.4,r=(.7+(i%4)*.9)*spell.radius/4,h=5-((e.time()+delta+i*2)%8)*.6;
                     box(m,v,light,Blocks.OAK_PLANKS,Math.cos(a)*r,h,Math.sin(a)*r,.045f,.75f,.045f);
                     box(m,v,light,Blocks.IRON_BLOCK,Math.cos(a)*r-.04,h-.08,Math.sin(a)*r-.04,.12f,.15f,.12f);
                 }

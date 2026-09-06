@@ -58,7 +58,7 @@ public class SpellCoverageTests implements FabricGameTest {
     public void evolvedZapExpandsOnlyOnSecondPulse(TestContext c) {
         var target=c.spawnMob(EntityType.IRON_GOLEM,2,2,2);target.setAiDisabled(true);target.setNoGravity(true);
         Vec3d center=target.getPos().add(-2.75,0,0);var effect=SpellEntity.create(c.getWorld(),Spell.ZAP_EVOLUTION,UUID.randomUUID(),center,center);
-        effect.tick();c.assertTrue(target.getHealth()==100,"First 2.5-block pulse must not reach 2.75 blocks");
+        effect.tick();c.assertTrue(target.getHealth()==100,"First 2.2-block pulse must not reach 2.75 blocks");
         for(int i=1;i<21;i++)effect.tick();c.assertTrue(target.getHealth()==96,"Second 3-block pulse must hit the expanded annulus");target.discard();c.complete();
     }
     @GameTest(templateName=EMPTY_STRUCTURE,batchId="visual-markers")
@@ -132,9 +132,16 @@ public class SpellCoverageTests implements FabricGameTest {
         world.setBlockState(stone,net.minecraft.block.Blocks.STONE.getDefaultState());world.setBlockState(outside,net.minecraft.block.Blocks.OAK_PLANKS.getDefaultState());
         world.setBlockState(high,net.minecraft.block.Blocks.OAK_LOG.getDefaultState());world.setBlockState(chest,net.minecraft.block.Blocks.CHEST.getDefaultState());
         ((net.minecraft.block.entity.ChestBlockEntity)world.getBlockEntity(chest)).setStack(0,new net.minecraft.item.ItemStack(Items.DIAMOND));
-        var effect=SpellEntity.create(world,Spell.EARTHQUAKE,UUID.randomUUID(),at,at);for(int i=0;i<60;i++)effect.tick();
+        var effect=SpellEntity.create(world,Spell.EARTHQUAKE,UUID.randomUUID(),at,at);for(int i=0;i<20;i++)effect.tick();
+        c.assertFalse(world.getBlockState(wood).isAir(),"First wave must crack wood rather than destroy it");
+        c.assertTrue(Math.abs(EarthquakeDestruction.progress(world,wood)-1d/3)<.001,"First wave contributes one third");
+        for(int i=20;i<40;i++)effect.tick();
+        c.assertFalse(world.getBlockState(wood).isAir(),"Second wave must keep wood intact");
+        c.assertTrue(Math.abs(EarthquakeDestruction.progress(world,wood)-2d/3)<.001,"Second wave contributes another third");
+        for(int i=40;i<60;i++)effect.tick();
         for(BlockPos p:List.of(wood,roof,trunk,leaves,chest))c.assertTrue(world.getBlockState(p).isAir(),"Earthquake must destroy wood and tree blocks: "+p);
         c.assertTrue(world.getBlockState(stone).isOf(net.minecraft.block.Blocks.STONE),"Stone must survive");
+        c.assertTrue(Math.abs(EarthquakeDestruction.progress(world,stone)-.9)<.001,"Stone retains 90 percent damage after all three waves");
         c.assertFalse(world.getBlockState(outside).isAir(),"Blocks outside the radius must survive");c.assertFalse(world.getBlockState(high).isAir(),"Blocks above height limit must survive");
         c.assertTrue(world.getEntitiesByClass(net.minecraft.entity.ItemEntity.class,new Box(chest).expand(2),e->e.getStack().isOf(Items.DIAMOND)).size()>0,"Destroyed chest must spill its contents");
         for(BlockPos p:List.of(wood,roof,trunk,leaves,chest,stone,outside,high))world.setBlockState(p,net.minecraft.block.Blocks.AIR.getDefaultState());c.complete();
@@ -146,11 +153,72 @@ public class SpellCoverageTests implements FabricGameTest {
             var p=base.add(x,y,z);world.setBlockState(p,net.minecraft.block.Blocks.OAK_PLANKS.getDefaultState());placed.add(p);
         }
         var effect=SpellEntity.create(world,Spell.EARTHQUAKE,UUID.randomUUID(),at,at);effect.tick();
-        c.assertTrue(placed.stream().filter(p->world.getBlockState(p).isAir()).count()==24,"Destruction must be spread over ticks");
+        c.assertTrue(placed.stream().noneMatch(p->world.getBlockState(p).isAir()),"First pulse never instantly destroys new wood");
+        c.assertTrue(placed.stream().filter(p->EarthquakeDestruction.progress(world,p)>0).count()<=EarthquakeDestruction.PER_TICK,"Crack updates must be bounded per tick");
         var nbt=new net.minecraft.nbt.NbtCompound();effect.writeNbt(nbt);var loaded=RoyaleSpells.SPELL.create(world);loaded.readNbt(nbt);
         for(int i=1;i<60;i++)loaded.tick();
-        c.assertTrue(placed.stream().filter(p->world.getBlockState(p).isAir()).count()==1024,"A reload must not reset the per-cast block cap");
+        c.assertTrue(placed.stream().allMatch(p->world.getBlockState(p).isAir()),"Entity reload preserves the pass cursor, so all in-range wood gets exactly three contributions");
         placed.forEach(p->world.setBlockState(p,net.minecraft.block.Blocks.AIR.getDefaultState()));c.complete();
+    }
+    @GameTest(templateName=EMPTY_STRUCTURE,batchId="quake-retention",tickLimit=210)
+    public void quakeCracksPersistBrieflyAndCanBeContinued(TestContext c){
+        var w=c.getWorld();var center=pos(c);var p=BlockPos.ofFloored(center).up();var other=p.east();
+        w.setBlockState(p,net.minecraft.block.Blocks.STONE.getDefaultState());w.setBlockState(other,net.minecraft.block.Blocks.STONE.getDefaultState());
+        var first=SpellEntity.create(w,Spell.EARTHQUAKE,UUID.randomUUID(),center,center);for(int i=0;i<60;i++)first.tick();
+        c.assertTrue(EarthquakeDestruction.progress(w,p)>.89,"Cracks remain after the spell entity finishes");
+        var second=SpellEntity.create(w,Spell.EARTHQUAKE,UUID.randomUUID(),center.add(-3.4,0,0),center.add(-3.4,0,0));second.tick();
+        c.assertTrue(w.getBlockState(p).isAir(),"Another quake can finish the weakened stone");
+        c.runAtTick(75,()->c.assertTrue(EarthquakeDestruction.progress(w,other)>.89,"Cracks must not disappear immediately"));
+        c.runAtTick(180,()->{c.assertTrue(EarthquakeDestruction.progress(w,other)==0,"Uncontinued cracks expire after the short grace period");w.setBlockState(other,net.minecraft.block.Blocks.AIR.getDefaultState());c.complete();});
+    }
+    @GameTest(templateName=EMPTY_STRUCTURE,batchId="tuned-radii")
+    public void changedRadiiMatchActualHits(TestContext c){
+        var w=c.getWorld();var mob=c.spawnMob(EntityType.IRON_GOLEM,2,2,2);mob.setAiDisabled(true);mob.setNoGravity(true);var at=mob.getPos();
+        for(Spell spell:List.of(Spell.ZAP,Spell.FIREBALL,Spell.ARROWS)){
+            double edge=spell==Spell.ZAP?2.2:spell==Spell.FIREBALL?2.8:4.5;
+            c.assertTrue(Math.abs(spell.radius-edge)<.001,"Displayed range matches tuning");
+            for(boolean inside:new boolean[]{false,true}){
+                mob.setHealth(100);mob.setPosition(at);mob.setVelocity(Vec3d.ZERO);
+                var center=at.add(-edge+(inside?.05:-.05),0,0);var fx=SpellEntity.create(w,spell,UUID.randomUUID(),center,center);
+                for(int t=0;t<spell.duration;t++)fx.tick();
+                c.assertTrue(inside?mob.getHealth()<100:mob.getHealth()==100,"Damage respects the new edge for "+spell+" inside="+inside);
+            }
+        }
+        mob.discard();c.complete();
+    }
+    @GameTest(templateName=EMPTY_STRUCTURE,batchId="recording-catalog")
+    public void recordingCatalogAndControlsAreIsolated(TestContext c){
+        var spells=ShowcaseMap.SCENES.stream().map(ShowcaseMap.Scene::spell).toList();
+        c.assertTrue(spells.size()==26&&new HashSet<>(spells).size()==26,"Exactly one scene per included spell");
+        for(var spell:Spell.values())c.assertTrue(spells.contains(spell)==(spell!=Spell.HEAL&&spell!=Spell.WARMTH),"Only Heal and Warmth are omitted");
+        var p=c.createMockCreativeServerPlayerInWorld();var location=p.getPos();var item=new net.minecraft.item.ItemStack(Items.DIAMOND);p.getInventory().setStack(0,item);
+        ShowcaseMap.switchScene(p,1);
+        c.assertTrue(p.getPos().equals(location)&&p.getInventory().getStack(0).isOf(Items.DIAMOND),"Scene controls leave an ordinary world's player and inventory alone");
+        p.discard();c.complete();
+    }
+    @GameTest(templateName=EMPTY_STRUCTURE,batchId="noai-snow",tickLimit=65)
+    public void normalSnowballActuallyMovesNoAiTargets(TestContext c){
+        var w=c.getWorld();var mob=c.spawnMob(EntityType.HUSK,2,15,2);mob.setAiDisabled(true);mob.setNoGravity(true);var before=mob.getPos();
+        var at=before.add(0,0,-.5);w.spawnEntity(SpellEntity.create(w,Spell.GIANT_SNOWBALL,UUID.randomUUID(),at.add(0,0,-6),at));
+        c.runAtTick(38,()->{c.assertTrue(mob.getZ()>before.z+1,"Normal Snowball must change position, not just velocity, on a NoAI target");c.assertTrue(mob.isAiDisabled(),"Do not permanently enable the target's AI");mob.discard();c.complete();});
+    }
+    @GameTest(templateName=EMPTY_STRUCTURE,batchId="noai-tornado",tickLimit=55)
+    public void tornadoActuallyPullsNoAiTargets(TestContext c){
+        var w=c.getWorld();var mob=c.spawnMob(EntityType.HUSK,2,15,2);mob.setAiDisabled(true);mob.setNoGravity(true);var before=mob.getPos();var at=before.add(3,0,0);
+        w.spawnEntity(SpellEntity.create(w,Spell.TORNADO,UUID.randomUUID(),at,at));
+        c.runAtTick(29,()->{c.assertTrue(mob.getPos().distanceTo(at)<1,"Tornado must draw the NoAI target into its center");c.assertTrue(mob.getX()>before.x+2,"Pull is visible over multiple world ticks");mob.discard();c.complete();});
+    }
+    @GameTest(templateName=EMPTY_STRUCTURE,batchId="force-collision",tickLimit=40)
+    public void spellImpulseRespectsSolidWallsAndStationaryHuts(TestContext c){
+        var w=c.getWorld();var mob=c.spawnMob(EntityType.HUSK,2,15,2);mob.setAiDisabled(true);mob.setNoGravity(true);var start=mob.getPos();var wall=BlockPos.ofFloored(start).south(1);
+        for(int x=-1;x<=1;x++)for(int y=-2;y<=4;y++)w.setBlockState(wall.add(x,y,0),net.minecraft.block.Blocks.STONE.getDefaultState());
+        SpellMotion.impulse(mob,new Vec3d(0,.2,1.1));
+        UUID owner=UUID.randomUUID();var hut=SpellEngine.summon(w,owner,start.add(6,0,0),"barbarian_hut",false);var hutStart=hut.getPos();SpellMotion.impulse(hut,new Vec3d(1,0,0));
+        c.runAtTick(22,()->{
+            c.assertTrue(mob.getZ()+mob.getWidth()/2<=wall.getZ()+.001,"Spell knockback must stop at the wall");
+            c.assertTrue(hut.getPos().distanceTo(hutStart)<.01,"Buildings remain anchored");
+            mob.discard();cleanup(c,owner);for(int x=-1;x<=1;x++)for(int y=-2;y<=4;y++)w.setBlockState(wall.add(x,y,0),net.minecraft.block.Blocks.AIR.getDefaultState());c.complete();
+        });
     }
     private static Vec3d pos(TestContext c){return Vec3d.ofBottomCenter(c.getAbsolutePos(new BlockPos(2,2,2)));}
     private static void cleanup(TestContext c,UUID owner){
