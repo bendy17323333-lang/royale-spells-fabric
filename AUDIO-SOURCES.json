@@ -1,0 +1,9 @@
+{
+  "sha256": "06A0A9C773A06BA35E9364244C02D3B3CC11F358E5D6DC75F86C83FFDDA5AB94",
+  "file": "assets/royalespells/sounds/graveyard_deploy.ogg",
+  "processing": "None; original OGG bytes preserved",
+  "sampleRate": 44100,
+  "channels": 1,
+  "crossReference": "https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Graveyard",
+  "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/sfx/cemetary_deploy_01.ogg"
+}

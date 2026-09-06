@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "royalespells",
+  "version": "${version}",
+  "name": "皇室法术 · Royale Spells",
+  "description": "Clash Royale spells, evolutions and special spells for Minecraft. Goblins become baby zombies.",
+  "authors": ["Royale Spells"],
+  "environment": "*",
+  "entrypoints": {
+    "main": ["dev.royalespells.RoyaleSpells"],
+    "client": ["dev.royalespells.client.RoyaleClient"],
+    "fabric-gametest": ["dev.royalespells.test.SpellGameTests", "dev.royalespells.test.SpellCoverageTests", "dev.royalespells.test.TroopTests"]
+  },
+  "mixins": ["royalespells.mixins.json"],
+  "depends": {"fabricloader": ">=0.16.14", "minecraft": "~1.20.1", "java": ">=17", "fabric-api": "*"}
+}
+

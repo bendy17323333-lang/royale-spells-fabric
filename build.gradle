@@ -1,0 +1,43 @@
+plugins { id 'fabric-loom' version '1.16.1' }
+version = project.mod_version
+group = 'dev.royalespells'
+base { archivesName = 'royale-spells-fabric-1.20.1' }
+repositories { mavenCentral() }
+dependencies {
+    minecraft 'com.mojang:minecraft:1.20.1'
+    mappings 'net.fabricmc:yarn:1.20.1+build.10:v2'
+    modImplementation 'net.fabricmc:fabric-loader:0.16.14'
+    modImplementation 'net.fabricmc.fabric-api:fabric-api:0.92.6+1.20.1'
+    // Optional local regression fixtures, never bundled in the published mod.
+    if (project.hasProperty('compatModsDir')) {
+        modRuntimeOnly fileTree(dir: project.property('compatModsDir'), include: '*.jar')
+    }
+}
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('fabric.mod.json') { expand 'version': project.version }
+}
+tasks.withType(JavaCompile).configureEach { options.release = 17; options.encoding = 'UTF-8' }
+java { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17; withSourcesJar() }
+loom {
+    runs {
+        server { runDir 'run-server' }
+        gametest {
+            server()
+            name 'Royale Spells Game Tests'
+            vmArg '-Dfabric-api.gametest'
+            vmArg '-Dfabric-api.gametest.report-file=build/gametest-results.xml'
+            runDir 'run-gametest'
+        }
+    }
+}
+loom.runs {
+    visualSmoke {
+        client()
+        name 'Royale visual smoke'
+        runDir 'run-visual'
+        vmArg '-Droyalespells.visualSmoke=true'
+        vmArg '-Xmx2G'
+        programArgs '--width', '1280', '--height', '800'
+    }
+}

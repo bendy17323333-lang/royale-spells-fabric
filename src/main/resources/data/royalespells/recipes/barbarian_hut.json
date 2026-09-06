@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "result": {
+    "item": "royalespells:barbarian_hut",
+    "count": 1
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "minecraft:oak_log"
+    },
+    {
+      "item": "minecraft:hay_block"
+    }
+  ]
+}

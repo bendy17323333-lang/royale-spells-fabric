@@ -1,0 +1,142 @@
+[
+  {
+    "event": "barbarian_deploy",
+    "file": "assets/royalespells/sounds/barbarian/deploy_barbarians_01.ogg",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/sfx/deploy_barbarians_01.ogg",
+    "sha256": "3C0E45C8F116DA6426FEBA8670B5C43E8F2DBB59EFA91D502432392BD80C628D",
+    "processing": "None; original OGG bytes preserved",
+    "crossReference": "https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarians",
+    "used": true
+  },
+  {
+    "event": "barbarian_attack",
+    "file": "assets/royalespells/sounds/barbarian/barbarian_attack_02.ogg",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/sfx/barbarian_attack_02.ogg",
+    "sha256": "26CADB451B60C87E81F9141B8683CB1281402CB09E5CF8926D78F929830A083B",
+    "processing": "None; original OGG bytes preserved",
+    "crossReference": "https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarians",
+    "used": true
+  },
+  {
+    "event": "barbarian_attack",
+    "file": "assets/royalespells/sounds/barbarian/barbarian_attack_03.ogg",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/sfx/barbarian_attack_03.ogg",
+    "sha256": "4317FB70EFA3D7D9E70F863E4967787FE579BE178EC896FE1516272C4E8A95FB",
+    "processing": "None; original OGG bytes preserved",
+    "crossReference": "https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarians",
+    "used": true
+  },
+  {
+    "event": "barbarian_attack",
+    "file": "assets/royalespells/sounds/barbarian/barbarian_attack_04.ogg",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/sfx/barbarian_attack_04.ogg",
+    "sha256": "8E882249A8D8F7C74E7C45E4D3F76934CCE1531E08318209C6C0F8C28B368C32",
+    "processing": "None; original OGG bytes preserved",
+    "crossReference": "https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarians",
+    "used": true
+  },
+  {
+    "event": "barbarian_attack",
+    "file": "assets/royalespells/sounds/barbarian/barbarian_attack_05.ogg",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/sfx/barbarian_attack_05.ogg",
+    "sha256": "5464F7F6D2553C11D45B1DD9552ADFCCB028DA5A2AA362A60D24198030CAB422",
+    "processing": "None; original OGG bytes preserved",
+    "crossReference": "https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarians",
+    "used": true
+  },
+  {
+    "event": "barbarian_attack",
+    "file": "assets/royalespells/sounds/barbarian/barbarian_attack_06.ogg",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/sfx/barbarian_attack_06.ogg",
+    "sha256": "F5121D3FAE67DF65E0B4739F64A15C9156169C246F23AE834F9102EEE226FC57",
+    "processing": "None; original OGG bytes preserved",
+    "crossReference": "https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarians",
+    "used": true
+  },
+  {
+    "event": "barbarian_attack",
+    "file": "assets/royalespells/sounds/barbarian/barbarian_attack_07.ogg",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/sfx/barbarian_attack_07.ogg",
+    "sha256": "CC7CC96627FF338317FE4A307CA747365BD311D8E320CDAD8FDBCDCBAE4B60B3",
+    "processing": "None; original OGG bytes preserved",
+    "crossReference": "https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarians",
+    "used": true
+  },
+  {
+    "event": "barbarian_attack",
+    "file": "assets/royalespells/sounds/barbarian/barbarian_attack_08.ogg",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/sfx/barbarian_attack_08.ogg",
+    "sha256": "196D8E4CB1F136F31685CBA77F4C330E1CCC507A02D52E3A8AE4EBAE65BF99C0",
+    "processing": "None; original OGG bytes preserved",
+    "crossReference": "https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarians",
+    "used": true
+  },
+  {
+    "event": "barbarian_step",
+    "file": "assets/royalespells/sounds/barbarian/barb_footstep_01.ogg",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/sfx/barb_footstep_01.ogg",
+    "sha256": "8219A0F0068D1504A98E175F6C29CC594B70F045F86A0930789249BD6523FB57",
+    "processing": "None; original OGG bytes preserved",
+    "crossReference": "https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarians",
+    "used": false,
+    "note": "Archived original; excluded from walking playback because the variant contains vocalization."
+  },
+  {
+    "event": "barbarian_step",
+    "file": "assets/royalespells/sounds/barbarian/barb_footstep_02.ogg",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/sfx/barb_footstep_02.ogg",
+    "sha256": "FC584DA90B62D73F803E588E6F6053F26608A0CBD0D50C76F1BFDA2D7074DDCC",
+    "processing": "None; original OGG bytes preserved",
+    "crossReference": "https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarians",
+    "used": false,
+    "note": "Archived original; excluded from walking playback because the variant contains vocalization."
+  },
+  {
+    "event": "barbarian_step",
+    "file": "assets/royalespells/sounds/barbarian/barb_footstep_03_no_vo.ogg",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/sfx/barb_footstep_03_no_vo.ogg",
+    "sha256": "3C566751A5C3507E9CD782D9BBB7562E5231B08204C12C43B46A1D2B84B44075",
+    "processing": "None; original OGG bytes preserved",
+    "crossReference": "https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarians",
+    "used": true
+  },
+  {
+    "event": "barbarian_step",
+    "file": "assets/royalespells/sounds/barbarian/barb_footstep_04.ogg",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/sfx/barb_footstep_04.ogg",
+    "sha256": "48C6A0E92EFC7354602384291A8C2ACD0530DC1CA3060C84AFD45CE65DD03373",
+    "processing": "None; original OGG bytes preserved",
+    "crossReference": "https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarians",
+    "used": false,
+    "note": "Archived original; excluded from walking playback because the variant contains vocalization."
+  },
+  {
+    "event": "barbarian_step",
+    "file": "assets/royalespells/sounds/barbarian/barb_footstep_05.ogg",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/sfx/barb_footstep_05.ogg",
+    "sha256": "A26964962D8F3B8D8A5E26F55BF84005488F72722FF19B4FB1FC5C1266919E56",
+    "processing": "None; original OGG bytes preserved",
+    "crossReference": "https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarians",
+    "used": false,
+    "note": "Archived original; excluded from walking playback because the variant contains vocalization."
+  },
+  {
+    "event": "barbarian_step",
+    "file": "assets/royalespells/sounds/barbarian/barb_footstep_06.ogg",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/sfx/barb_footstep_06.ogg",
+    "sha256": "0BEC6E11A559F1F88B8497BB70958A863F97C5A33A9B099393B2ED1A4A6B2AB7",
+    "processing": "None; original OGG bytes preserved",
+    "crossReference": "https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarians",
+    "used": false,
+    "note": "Archived original; excluded from walking playback because the variant contains vocalization."
+  },
+  {
+    "event": "barbarian_death",
+    "file": "assets/royalespells/sounds/barbarian/npc_die_02.ogg",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/sfx/npc_die_02.ogg",
+    "sha256": "CA1525F4D64A20D1963AEA03D937160277A30362BCC84D6E08328A5ACD11B167",
+    "processing": "None; original OGG bytes preserved",
+    "crossReference": "https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarians",
+    "used": true
+  }
+]

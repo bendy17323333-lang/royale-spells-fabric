@@ -1,0 +1,87 @@
+package dev.royalespells.client;
+import dev.royalespells.*;
+import dev.royalespells.entity.*;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.option.Perspective;
+import net.minecraft.client.util.ScreenshotRecorder;
+import net.minecraft.util.math.*;
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.mob.MobEntity;
+import java.util.UUID;
+
+public final class TroopVisualSmoke {
+    private static volatile UUID barbarianId;
+    private static boolean attackShot;
+    public static void tick(MinecraftClient client,int ready) {
+        if(ready==500)client.options.hudHidden=true;
+        if(ready==500)client.getServer().execute(()->{
+            var world=client.getServer().getOverworld();var player=client.getServer().getPlayerManager().getPlayerList().get(0);
+            for(int x=103;x<=171;x++)for(int z=-15;z<=12;z++){
+                world.setBlockState(new BlockPos(x,149,z),((x+z)%2==0?Blocks.SMOOTH_STONE:Blocks.STONE_BRICKS).getDefaultState());
+                for(int y=150;y<=162;y++)world.setBlockState(new BlockPos(x,y,z),Blocks.AIR.getDefaultState());
+            }
+            player.teleport(world,113,152,-8,0,9);
+        });
+        // Let the client sound listener reach the teleported camera before deployment.
+        if(ready==530)client.getServer().execute(()->{
+            var world=client.getServer().getOverworld();var player=client.getServer().getPlayerManager().getPlayerList().get(0);
+            String[] units={"barbarian","recruit","skeleton"};
+            for(int i=0;i<units.length;i++){
+                var mob=SpellEngine.summon(world,player.getUuid(),new Vec3d(110+i*3,150,0),units[i],false);
+                if(mob==null)throw new IllegalStateException("Showroom spawn failed: "+units[i]);
+                mob.setAiDisabled(true);mob.setNoGravity(true);mob.setYaw(180);mob.setHeadYaw(180);mob.setBodyYaw(180);
+                ((Summoned)mob).setup(player.getUuid(),1200,false);
+                if(i==0)barbarianId=mob.getUuid();
+            }
+            var hut=(RoyaleUnit)SpellEngine.summon(world,player.getUuid(),new Vec3d(142,150,0),"barbarian_hut",false);hut.lockFacing(180);
+        });
+        if(ready==540)client.getServer().execute(()->{
+            for(var entity:client.getServer().getOverworld().iterateEntities())if(entity instanceof MobEntity mob&&mob.getType()==RoyaleSpells.BARBARIAN&&mob.getX()>130)mob.setAiDisabled(true);
+        });
+        if(ready==570){
+            for(var entity:client.world.getEntities())if(entity.getType()==RoyaleSpells.SKELETON&&!net.minecraft.client.render.entity.SkeletonEntityRenderer.class.isInstance(client.getEntityRenderDispatcher().getRenderer(entity)))
+                throw new IllegalStateException("Skeleton must use the restored vanilla renderer");
+            shot(client,"royale-troops-lineup.png","ROYALE_TROOP_MODELS_COMPLETE");
+        }
+        if(ready==580)camera(client,113,151,-5,0,9);
+        if(ready==615)shot(client,"royale-remade-troops.png","ROYALE_REMADE_MODELS_COMPLETE");
+        if(ready==625)camera(client,106,151,-3.5,-49,11);
+        if(ready==650)shot(client,"royale-barbarian-side.png","ROYALE_WEAPON_IDLE_COMPLETE");
+        if(ready==660){
+            camera(client,114,151,-6,53,11);
+            client.getServer().execute(()->{
+                var world=client.getServer().getOverworld();var barbarian=(MobEntity)world.getEntity(barbarianId);
+                var target=EntityType.IRON_GOLEM.create(world);target.setPosition(barbarian.getPos().add(0,0,-4));target.setAiDisabled(true);world.spawnEntity(target);
+                barbarian.setNoGravity(false);barbarian.setAiDisabled(false);barbarian.setTarget(target);
+            });
+        }
+        if(ready>660&&ready<730&&!attackShot)for(var entity:client.world.getEntities())if(entity.getUuid().equals(barbarianId)&&entity instanceof MobEntity mob&&mob.getHandSwingProgress(0)>.4f){
+            attackShot=true;shot(client,"royale-barbarian-attack.png","ROYALE_WEAPON_ATTACK_COMPLETE");
+        }
+        if(ready==735){
+            if(!attackShot)throw new IllegalStateException("No real Barbarian attack animation captured");
+            client.getServer().execute(()->{
+                var world=client.getServer().getOverworld();var mob=world.getEntity(barbarianId);
+                mob.damage(world.getDamageSources().generic(),1000);
+            });
+        }
+        if(ready==745)camera(client,142,153,-9,0,9);
+        if(ready==780)shot(client,"royale-barbarian-hut.png","ROYALE_HUT_VISUAL_COMPLETE");
+        if(ready==795)client.getServer().execute(()->{
+            var world=client.getServer().getOverworld();var player=client.getServer().getPlayerManager().getPlayerList().get(0);
+            player.teleport(world,160,150,0,180,10);player.getInventory().clear();
+            for(int i=0;i<2;i++){
+                var at=new Vec3d(160,151.3+i*.18,0);var fx=SpellEntity.create(world,i==0?Spell.FREEZE:Spell.RAGE,player.getUuid(),at,at);fx.preview=true;fx.setPreviewTime(20);world.spawnEntity(fx);
+            }
+        });
+        if(ready==810)client.options.setPerspective(Perspective.THIRD_PERSON_FRONT);
+        if(ready==825)RangeDepthAudit.requested=true;
+        if(ready==845){if(!RangeDepthAudit.complete)throw new IllegalStateException("Depth audit never ran");shot(client,"royale-range-third-front.png","ROYALE_RANGE_FRONT_COMPLETE");}
+        if(ready==855)client.options.setPerspective(Perspective.THIRD_PERSON_BACK);
+        if(ready==880)shot(client,"royale-range-third-back.png","ROYALE_RANGE_BACK_COMPLETE");
+        if(ready>=900)RevisionVisualSmoke.tick(client,ready);
+    }
+    private static void camera(MinecraftClient client,double x,double y,double z,float yaw,float pitch){client.getServer().execute(()->client.getServer().getPlayerManager().getPlayerList().get(0).teleport(client.getServer().getOverworld(),x,y,z,yaw,pitch));}
+    private static void shot(MinecraftClient client,String name,String marker){ScreenshotRecorder.saveScreenshot(client.runDirectory,name,client.getFramebuffer(),message->System.out.println(marker));}
+}

@@ -1,0 +1,82 @@
+{
+  "graveyard_deploy": {
+    "subtitle": "subtitles.royalespells.graveyard_deploy",
+    "sounds": [
+      {
+        "name": "royalespells:graveyard_deploy",
+        "preload": true,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "barbarian_deploy": {
+    "subtitle": "subtitles.royalespells.barbarian_deploy",
+    "sounds": [
+      {
+        "name": "royalespells:barbarian/deploy_barbarians_01",
+        "preload": true,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "barbarian_attack": {
+    "subtitle": "subtitles.royalespells.barbarian_attack",
+    "sounds": [
+      {
+        "name": "royalespells:barbarian/barbarian_attack_02",
+        "preload": true,
+        "attenuation_distance": 16
+      },
+      {
+        "name": "royalespells:barbarian/barbarian_attack_03",
+        "preload": true,
+        "attenuation_distance": 16
+      },
+      {
+        "name": "royalespells:barbarian/barbarian_attack_04",
+        "preload": true,
+        "attenuation_distance": 16
+      },
+      {
+        "name": "royalespells:barbarian/barbarian_attack_05",
+        "preload": true,
+        "attenuation_distance": 16
+      },
+      {
+        "name": "royalespells:barbarian/barbarian_attack_06",
+        "preload": true,
+        "attenuation_distance": 16
+      },
+      {
+        "name": "royalespells:barbarian/barbarian_attack_07",
+        "preload": true,
+        "attenuation_distance": 16
+      },
+      {
+        "name": "royalespells:barbarian/barbarian_attack_08",
+        "preload": true,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "barbarian_step": {
+    "subtitle": "subtitles.royalespells.barbarian_step",
+    "sounds": [
+      {
+        "name": "royalespells:barbarian/barb_footstep_03_no_vo",
+        "preload": true,
+        "attenuation_distance": 8
+      }
+    ]
+  },
+  "barbarian_death": {
+    "subtitle": "subtitles.royalespells.barbarian_death",
+    "sounds": [
+      {
+        "name": "royalespells:barbarian/npc_die_02",
+        "preload": true,
+        "attenuation_distance": 16
+      }
+    ]
+  }
+}

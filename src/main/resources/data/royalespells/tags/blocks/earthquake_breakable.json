@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:logs", "#minecraft:planks", "#minecraft:leaves",
+    "#minecraft:wooden_stairs", "#minecraft:wooden_slabs", "#minecraft:wooden_fences",
+    "#minecraft:fence_gates", "#minecraft:wooden_doors", "#minecraft:wooden_trapdoors",
+    "#minecraft:wooden_buttons", "#minecraft:wooden_pressure_plates", "#minecraft:all_signs",
+    "minecraft:bamboo", "minecraft:bamboo_block", "minecraft:stripped_bamboo_block",
+    "minecraft:bamboo_mosaic", "minecraft:bamboo_mosaic_stairs", "minecraft:bamboo_mosaic_slab",
+    "minecraft:mangrove_roots", "minecraft:muddy_mangrove_roots", "minecraft:bookshelf",
+    "minecraft:chiseled_bookshelf", "minecraft:crafting_table", "minecraft:barrel",
+    "minecraft:chest", "minecraft:trapped_chest", "minecraft:ladder", "minecraft:scaffolding"
+  ]
+}

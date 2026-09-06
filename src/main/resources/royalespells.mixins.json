@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "dev.royalespells.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "LivingEntityMixin",
+    "MobEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "LivingVisualMixin"
+  ]
+}

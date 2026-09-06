@@ -1,0 +1,147 @@
+[
+  {
+    "item": "arrows",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/arrows.png",
+    "sha256": "3EDCAAAFE1D1955AD274896BB15EFB85172BB8D44AEA79083239B813BEBDDD99"
+  },
+  {
+    "item": "fireball",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/fireball.png",
+    "sha256": "6BBE17A15330F6C0B9020F149023F728A97BFFBD8A373D18A69EE09784AC571A"
+  },
+  {
+    "item": "zap",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/zap.png",
+    "sha256": "8D02F5743A858BA2A6DDEE722A297C515F23D0CBB5AC04FF2E7DB1058D686A24"
+  },
+  {
+    "item": "lightning",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/lightning.png",
+    "sha256": "47C994FC25232801EED483458395AD9D73D2AA692D736D8FCC7A119AE61F4587"
+  },
+  {
+    "item": "rocket",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/rocket.png",
+    "sha256": "4FC948E1CACE137E9EF2828EBDA5FDAFE9B17C02C9EF6F8074770A2C65629C07"
+  },
+  {
+    "item": "poison",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/poison.png",
+    "sha256": "4F28BC86F2B1A236BC02E7ABACE6E4904C1A51773CC666EAA10618E450A91D35"
+  },
+  {
+    "item": "freeze",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/freeze.png",
+    "sha256": "BCBCCF3289DC362EAA9E553B886D59E2255C82D62ABCFE8C2F8D83560B2EC58D"
+  },
+  {
+    "item": "rage",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/rage.png",
+    "sha256": "BFA631DD55D66FA19C585279ECC07EAD74F0DB65C1AA19566B98254A43F3880A"
+  },
+  {
+    "item": "the_log",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/the-log.png",
+    "sha256": "2D9202B67EBD1AE3FD9D0D343B0809C63922F81B3A2AFC45D7EF058AE5A1400A"
+  },
+  {
+    "item": "tornado",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/tornado.png",
+    "sha256": "1D7C4187B27B44FE16F4CB4664C128E02553961665D701B9C1295D5040C5F26D"
+  },
+  {
+    "item": "earthquake",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/earthquake.png",
+    "sha256": "8E69B4AD266B158DAAB08600279CC4E5C6AF94E60864A76CF179034F4630096E"
+  },
+  {
+    "item": "giant_snowball",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/giant-snowball.png",
+    "sha256": "A543A3229799214BB4C8F8EC9948496458BCEC445295E2CF143459D8049ACE13"
+  },
+  {
+    "item": "goblin_barrel",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/goblin-barrel.png",
+    "sha256": "6D34267AD6F5D42A8E88F840E36D6A11E25F16F3D111C716BEE2E31B03330C4C"
+  },
+  {
+    "item": "barbarian_barrel",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/barbarian-barrel.png",
+    "sha256": "84529D1A0E5C57A4F8E39F7844E0EC3DD9373FDCFE236DB04325C580C79694AC"
+  },
+  {
+    "item": "royal_delivery",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/royal-delivery.png",
+    "sha256": "8AA6C48EC9DA412E073D92EB7162F81CC1DE86961242BDF6EBE0AAD5851C5B5D"
+  },
+  {
+    "item": "graveyard",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/graveyard.png",
+    "sha256": "5478B3A4AF71D885046367F65614928F0B6F2A95B075B22EE9E83F58998647D4"
+  },
+  {
+    "item": "clone",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/clone.png",
+    "sha256": "F2F67FF3F60392CFCDFB419B8F495BE4F4BA08C51E3F9A4B455D5B675ACDF28C"
+  },
+  {
+    "item": "mirror",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/mirror.png",
+    "sha256": "7B3A3B042574EDE94CBCDF321E3F963657CD8497A3AAA6FE7C272D4A86E2EE6E"
+  },
+  {
+    "item": "goblin_curse",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/goblin-curse.png",
+    "sha256": "D8DF2AB4DECB29DC9A893D9F4B5765B7E10C65358C822D364EC24C3242F15379"
+  },
+  {
+    "item": "void",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/void.png",
+    "sha256": "851C5CC01906C4FDD51AFDA4CCED7D09109A4D351B54985D7705607D6298FA5D"
+  },
+  {
+    "item": "vines",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/vines.png",
+    "sha256": "D70904F654F19C226250F45A80AEED6C5F4D273BCA93B873B9DB6CF2CB581A91"
+  },
+  {
+    "item": "zap_evolution",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/zap-ev1.png",
+    "sha256": "FB6998A97889188293C48DCF3406B53852AEDC4019EF9D0A5EB56138FB19AD42"
+  },
+  {
+    "item": "giant_snowball_evolution",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/giant-snowball-ev1.png",
+    "sha256": "36576BD2AB91CEDA5E9676828C4A9FDAC78B6EAE88A1CDC5921F850300B9226B"
+  },
+  {
+    "item": "goblin_barrel_evolution",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/goblin-barrel-ev1.png",
+    "sha256": "EEBC3871686FA75718A6846A04022FC4713967561C4A31F6A69E9D1066A79BB8"
+  },
+  {
+    "item": "heal",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/heal.png",
+    "sha256": "541E023FE90289B4A24E5448BA76A8B7703257D2C4F5016C58A2D89C37D0DB40"
+  },
+  {
+    "item": "warmth",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/warmth.png",
+    "sha256": "E6401B3713459697DDBF0838401FEC0CB433A62CB96EF479C07C006777740EFD"
+  },
+  {
+    "item": "party_rocket",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/party-rocket.png",
+    "sha256": "042E64DD5B367E6DAC3A88AE3113C4BE3E2D292646D744DD6D4C7D4082D2BDD9"
+  },
+  {
+    "item": "barbarian_barrel_hero",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/barbarian-barrel-hero.png",
+    "sha256": "9F217795AE851EB489342B82ACE1C7BAE87B9CE0FF97C4DEB5C8A54320C766C6"
+  },
+  {
+    "item": "barbarian_hut",
+    "source": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/master/cards/barbarian-hut.png",
+    "sha256": "CBEE8EBF5514AF11551937DB69CC44365E1196AEF16628F6F37C8D58C8E88BBB"
+  }
+]
