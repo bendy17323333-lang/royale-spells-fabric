@@ -6,7 +6,7 @@ import java.nio.FloatBuffer;
 public final class RangeDepthAudit {
     public static boolean requested,complete;
     private static FloatBuffer before;
-    private static FloatBuffer depth(){var client=net.minecraft.client.MinecraftClient.getInstance();var data=BufferUtils.createFloatBuffer(64*64);GL11.glReadPixels(client.getFramebuffer().textureWidth/2-32,client.getFramebuffer().textureHeight/2-32,64,64,GL11.GL_DEPTH_COMPONENT,GL11.GL_FLOAT,data);return data;}
+    private static FloatBuffer depth(){var client=net.minecraft.client.Minecraft.getInstance();var data=BufferUtils.createFloatBuffer(64*64);GL11.glReadPixels(client.getMainRenderTarget().width/2-32,client.getMainRenderTarget().height/2-32,64,64,GL11.GL_DEPTH_COMPONENT,GL11.GL_FLOAT,data);return data;}
     public static void before(){if(requested&&!complete)before=depth();}
     public static void after(){
         if(before==null)return;var after=depth();

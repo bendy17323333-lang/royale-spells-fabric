@@ -1,0 +1,28 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="All Rights Reserved"
+[[mods]]
+modId="royalespells"
+version="${version}"
+displayName="皇室法术 · Royale Spells"
+description="Clash Royale spells and a Barbarian Hut for Minecraft 1.21.1 NeoForge."
+[[mixins]]
+config="royalespells.mixins.json"
+[[dependencies.royalespells]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.200,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.royalespells]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
+[[dependencies.royalespells]]
+modId="irons_spellbooks"
+type="optional"
+versionRange="[1.21.1-3.16.3,)"
+ordering="AFTER"
+side="BOTH"

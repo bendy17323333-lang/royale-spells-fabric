@@ -1,23 +1,27 @@
 package dev.royalespells;
-import net.minecraft.item.*;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.world.World;
-import net.minecraft.util.*;
-import net.minecraft.text.Text;
-import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import java.util.List;
 public final class TroopItem extends Item {
     public final TroopCard card;
-    public TroopItem(TroopCard card){super(new Settings().maxCount(1).rarity(Rarity.RARE));this.card=card;}
-    @Override public TypedActionResult<ItemStack> use(World world,PlayerEntity player,Hand hand) {
-        var stack=player.getStackInHand(hand);
-        if(player.hasStatusEffect(RoyaleSpells.STUN) || !world.isClient && !SpellEngine.deploy((ServerPlayerEntity)player,card))return TypedActionResult.fail(stack);
-        return TypedActionResult.success(stack,world.isClient);
+    public TroopItem(TroopCard card){super(new Properties().stacksTo(1).rarity(Rarity.RARE));this.card=card;}
+    @Override public InteractionResultHolder<ItemStack> use(Level world,Player player,InteractionHand hand) {
+        var stack=player.getItemInHand(hand);
+        if(player.hasEffect(RoyaleSpells.STUN) || !world.isClientSide && !SpellEngine.deploy((ServerPlayer)player,card))return InteractionResultHolder.fail(stack);
+        return InteractionResultHolder.sidedSuccess(stack,world.isClientSide);
     }
-    @Override public void appendTooltip(ItemStack stack,Item.TooltipContext context,List<Text> lines,TooltipType type) {
-        lines.add(Text.translatable("tooltip.royalespells.cost",card.cost).formatted(Formatting.LIGHT_PURPLE));
-        lines.add(Text.translatable("troop.royalespells."+card.id()).formatted(Formatting.GRAY));
-        lines.add(Text.translatable("tooltip.royalespells.use").formatted(Formatting.DARK_GRAY));
+    @Override public void appendHoverText(ItemStack stack,Item.TooltipContext context,List<Component> lines,TooltipFlag type) {
+        lines.add(Component.translatable("tooltip.royalespells.cost",card.cost).withStyle(ChatFormatting.LIGHT_PURPLE));
+        lines.add(Component.translatable("troop.royalespells."+card.id()).withStyle(ChatFormatting.GRAY));
+        lines.add(Component.translatable("tooltip.royalespells.use").withStyle(ChatFormatting.DARK_GRAY));
     }
 }

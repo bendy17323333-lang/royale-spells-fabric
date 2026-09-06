@@ -1,20 +1,19 @@
 package dev.royalespells.client;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import dev.royalespells.*;
 import dev.royalespells.entity.SpellEntity;
-import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.math.*;
-
+import net.minecraft.client.renderer.MultiBufferSource;
 public final class SpellFields {
-    private static void point(MatrixStack m,VertexConsumer v,double x,double y,double z,float r,float g,float b,float a){v.vertex(m.peek().getPositionMatrix(),(float)x,(float)y,(float)z).color(r,g,b,a);}
-    private static void ring(MatrixStack m,VertexConsumer v,double inner,double outer,float r,float g,float b,float alpha){
+    private static void point(PoseStack m,VertexConsumer v,double x,double y,double z,float r,float g,float b,float a){v.addVertex(m.last().pose(),(float)x,(float)y,(float)z).setColor(r,g,b,a);}
+    private static void ring(PoseStack m,VertexConsumer v,double inner,double outer,float r,float g,float b,float alpha){
         for(int i=0;i<80;i++){double a=i*Math.PI/40,c=(i+1)*Math.PI/40;
             point(m,v,Math.cos(a)*inner,.08,Math.sin(a)*inner,r,g,b,alpha);point(m,v,Math.cos(c)*inner,.08,Math.sin(c)*inner,r,g,b,alpha);
             point(m,v,Math.cos(c)*outer,.08,Math.sin(c)*outer,r,g,b,alpha);point(m,v,Math.cos(a)*outer,.08,Math.sin(a)*outer,r,g,b,alpha);
         }
     }
-    public static void render(SpellEntity e,float delta,MatrixStack m,VertexConsumerProvider buffers){
+    public static void render(SpellEntity e,float delta,PoseStack m,MultiBufferSource buffers){
         Spell spell=e.spell();float time=e.time()+delta;
         if(spell==Spell.ZAP || spell==Spell.ZAP_EVOLUTION){
             ZapRenderer.render(e,delta,m,buffers);return;

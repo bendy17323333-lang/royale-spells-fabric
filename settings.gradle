@@ -1,4 +1,2 @@
-pluginManagement {
-    repositories { maven { url = 'https://maven.fabricmc.net/' }; gradlePluginPortal(); mavenCentral() }
-}
-rootProject.name = 'royale-spells'
+pluginManagement { repositories { gradlePluginPortal() } }
+rootProject.name = 'royale-spells-neoforge'

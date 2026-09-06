@@ -1,5 +1,5 @@
 package dev.royalespells;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 /** Vanilla clients do not keep the full active-effect map for every remote mob. */
 public interface VisualState {
     byte royaleVisualFlags();

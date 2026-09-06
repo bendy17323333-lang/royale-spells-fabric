@@ -1,12 +1,12 @@
 # 皇室法术 · Royale Spells 1.2.0
 
-适用 **Minecraft Java 版 1.21.1 + Fabric**。包含 21 种常规法术、3 张觉醒法术卡、3 张历史／活动法术卡，以及英雄野蛮人滚桶，共 **28 张法术卡牌**，保留野蛮人小屋一张建筑卡，合计 **29 张卡牌**。
+适用 **Minecraft Java 版 1.21.1 + NeoForge**。包含 21 种常规法术、3 张觉醒法术卡、3 张历史／活动法术卡，以及英雄野蛮人滚桶，共 **28 张法术卡牌**，保留野蛮人小屋一张建筑卡，合计 **29 张卡牌**。
 
 ## 安装与使用
 
-1. 在启动器中选择 Minecraft 1.21.1，安装 Fabric Loader 0.19.3（本次验证版本）或兼容的新版本。
-2. 将 `royale-spells-fabric-1.21.1-1.2.0.jar` 放入该游戏实例的 `mods` 文件夹，并安装对应 1.21.1 的 Fabric API。本项目验证使用 Fabric API 0.116.17+1.21.1。安装包内已附带该依赖；若实例中已有兼容的 Fabric API，请保留一份，避免重复安装。
-3. Java 21 或以上；联机时服务端和每位玩家的客户端都需要本模组与 Fabric API。
+1. 在启动器中选择 Minecraft 1.21.1，安装 NeoForge 21.1.249（本次验证版本）。
+2. 将 `royale-spells-neoforge-1.21.1-1.2.0.jar` 放入实例的 `mods`。本体无需额外 API；与铁魔法同装时，请安装铁魔法 1.21.1-3.16.3 及其全部依赖，具体组合见 README.md。
+3. 使用 Java 21；联机时服务端和所有客户端都需安装本模组，分别选择与实例一致的加载器版本。
 4. 创造模式在“皇室卡牌”物品组取卡；生存模式使用下表的无序配方。
 5. 手持卡牌时显示瞄准圈，**右键施法**，瞄准距离最多 32 格。卡牌不消耗，可以重复使用。
 6. 圣水上限 10，每两秒恢复 1 点。每次施法有半秒公共间隔；创造模式免圣水消耗。手持卡牌时快捷栏上方显示圣水。
@@ -85,7 +85,7 @@
 
 ```powershell
 ./gradlew.bat build
-./gradlew.bat runGametest
+./gradlew.bat runGameTestServer
 ./gradlew.bat runVisualSmoke
 ```
 
@@ -93,9 +93,11 @@
 
 `build/libs` 中无 `sources` 后缀的 JAR 才是安装文件。源码 ZIP 包含完整 Gradle wrapper、Java 源码、原版卡图、生成粒子贴图和资源文件。
 
-素材来源和 imagegen 提示词见 `ASSETS.md`，每张原版卡图的下载地址及 SHA-256 见 `ASSET-SOURCES.json`。验证结果见随交付文件提供的 `验证报告.md`。
+素材来源和 imagegen 提示词见 `ASSETS.md`，每张原版卡图的下载地址及 SHA-256 见 `ASSET-SOURCES.json`。本次验证结果见 [NeoForge 验证记录](docs/validation-neoforge-1.21.1.md)。
 
 
+
+以下是原有 Fabric 分支的历史更新记录，旧版本数值与验证环境保留供追溯；NeoForge 当前安装和兼容范围以上文及本次验证记录为准。
 
 ## 1.0.1 墓园原版登场音效
 

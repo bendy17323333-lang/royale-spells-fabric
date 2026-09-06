@@ -1,6 +1,6 @@
 # 皇室法术 · 录制片场 1.2.0
 
-从 [1.2.0 发布页](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0-mc1.21.1) 下载 `royale-spells-1.2.0-mc1.21.1-recording-map.zip`。解压后，把包含 `level.dat` 的「皇室法术-录制片场-1.2.0-MC1.21.1」文件夹放入游戏实例的 `saves`。在 Minecraft 1.21.1 Fabric 安装 1.2.0 模组后，在单人游戏列表打开「皇室法术 · 录制片场 1.2.0 (MC 1.21.1)」。安装为独立地图，无需覆盖已有世界。
+从 [1.2.0 发布页](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0-neoforge-mc1.21.1) 下载 `royale-spells-1.2.0-neoforge-mc1.21.1-recording-map.zip`。解压后，把包含 `level.dat` 的「皇室法术-录制片场-1.2.0-MC1.21.1-NeoForge」文件夹放入游戏实例的 `saves`。在 Minecraft 1.21.1 NeoForge 安装 1.2.0 模组后，在单人游戏列表打开「皇室法术 · 录制片场 1.2.0 (MC 1.21.1 NeoForge)」。安装为独立地图，无需覆盖已有世界。
 
 ## 场景切换
 

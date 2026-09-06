@@ -4,7 +4,8 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "LivingEntityMixin",
-    "MobEntityMixin"
+    "MobEntityMixin",
+    "IronTargetMixin"
   ],
   "injectors": {
     "defaultRequire": 1

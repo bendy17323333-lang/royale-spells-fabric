@@ -1,22 +1,30 @@
 package dev.royalespells;
 
-import dev.royalespells.entity.*;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.network.packet.s2c.play.*;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.math.*;
 import net.minecraft.world.*;
+import dev.royalespells.entity.*;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundSetCarriedItemPacket;
+import net.minecraft.network.protocol.game.ClientboundSetSubtitleTextPacket;
+import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
+import net.minecraft.network.protocol.game.ClientboundSetTitlesAnimationPacket;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.GameType;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.saveddata.SavedData;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import java.util.*;
 
 /** Self-contained recording set. Its persistent marker prevents edits in ordinary worlds. */
@@ -56,101 +64,102 @@ public final class ShowcaseMap {
     private static final Map<UUID,Long> COOLDOWNS=new HashMap<>();
     private static final Set<UUID> ACTIVE=new HashSet<>();
     private static final Map<MinecraftServer,Integer> BUILDING=new HashMap<>();
-    public static final class State extends PersistentState {
+    public static final class State extends SavedData {
         public boolean enabled,ready;public int index;
-        @Override public NbtCompound writeNbt(NbtCompound n,net.minecraft.registry.RegistryWrapper.WrapperLookup registries){n.putBoolean("Enabled",enabled);n.putBoolean("Ready",ready);n.putInt("Index",index);return n;}
-        static State read(NbtCompound n){var s=new State();s.enabled=n.getBoolean("Enabled");s.ready=n.getBoolean("Ready");s.index=Math.floorMod(n.getInt("Index"),SCENES.size());return s;}
+        @Override public CompoundTag save(CompoundTag n,net.minecraft.core.HolderLookup.Provider registries){n.putBoolean("Enabled",enabled);n.putBoolean("Ready",ready);n.putInt("Index",index);return n;}
+        static State read(CompoundTag n){var s=new State();s.enabled=n.getBoolean("Enabled");s.ready=n.getBoolean("Ready");s.index=Math.floorMod(n.getInt("Index"),SCENES.size());return s;}
     }
-    private static State state(ServerWorld world){return world.getPersistentStateManager().getOrCreate(new PersistentState.Type<>(State::new,(nbt,registries)->State.read(nbt),null),KEY);}
-    public static boolean enabled(ServerWorld world){return state(world).enabled;}
-    public static boolean ready(ServerWorld world){return state(world).ready;}
-    public static int index(ServerWorld world){return state(world).index;}
+    private static State state(ServerLevel world){return world.getDataStorage().computeIfAbsent(new SavedData.Factory<>(State::new,(nbt,registries)->State.read(nbt),null),KEY);}
+    public static boolean enabled(ServerLevel world){return state(world).enabled;}
+    public static boolean ready(ServerLevel world){return state(world).ready;}
+    public static int index(ServerLevel world){return state(world).index;}
     public static BlockPos center(int index){return new BlockPos((index%6)*SPACING,Y,(index/6)*SPACING);}
-    private static Box bounds(int index){var c=center(index);return new Box(Vec3d.of(c.add(-25,-5,-25)),Vec3d.of(c.add(26,38,26)));}
+    private static AABB bounds(int index){var c=center(index);return new AABB(Vec3.atLowerCornerOf(c.offset(-25,-5,-25)),Vec3.atLowerCornerOf(c.offset(26,38,26)));}
     public static void install(){
-        ServerPlayConnectionEvents.JOIN.register((handler,sender,server)->{
-            var world=handler.player.getServerWorld();if(enabled(world)&&ready(world))enter(handler.player,index(world));
+        var events=net.neoforged.neoforge.common.NeoForge.EVENT_BUS;
+        events.addListener((net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerLoggedInEvent event)->{
+            if(event.getEntity() instanceof ServerPlayer player){var world=player.serverLevel();if(enabled(world)&&ready(world))enter(player,index(world));}
         });
-        ServerTickEvents.END_SERVER_TICK.register(ShowcaseMap::tick);
-        net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.SERVER_STOPPED.register(server->{BUILDING.remove(server);COOLDOWNS.clear();ACTIVE.clear();});
+        events.addListener((net.neoforged.neoforge.event.tick.ServerTickEvent.Post event)->tick(event.getServer()));
+        events.addListener((net.neoforged.neoforge.event.server.ServerStoppedEvent event)->{BUILDING.remove(event.getServer());COOLDOWNS.clear();ACTIVE.clear();});
     }
-    public static void beginBuild(ServerWorld world){
-        if(!Boolean.getBoolean("royalespells.buildShowcase")||!(world.getChunkManager().getChunkGenerator() instanceof net.minecraft.world.gen.chunk.FlatChunkGenerator))
+    public static void beginBuild(ServerLevel world){
+        if(!Boolean.getBoolean("royalespells.buildShowcase")||!(world.getChunkSource().getGenerator() instanceof net.minecraft.world.level.levelgen.FlatLevelSource))
             throw new IllegalStateException("Recording map generation requires the isolated flat-world builder");
-        var st=state(world);st.enabled=true;st.ready=false;st.markDirty();
+        var st=state(world);st.enabled=true;st.ready=false;st.setDirty();
         var server=world.getServer();
-        for(var rule:List.of(GameRules.DO_MOB_SPAWNING,GameRules.DO_DAYLIGHT_CYCLE,GameRules.DO_WEATHER_CYCLE,GameRules.DO_FIRE_TICK,GameRules.DO_MOB_GRIEFING,GameRules.DO_PATROL_SPAWNING,GameRules.DO_TRADER_SPAWNING))world.getGameRules().get(rule).set(false,server);
-        world.getGameRules().get(GameRules.KEEP_INVENTORY).set(true,server);world.getGameRules().get(GameRules.RANDOM_TICK_SPEED).set(0,server);
-        world.setTimeOfDay(6000);world.setWeather(0,0,false,false);world.setSpawnPos(center(0).add(0,2,-12),0);
+        for(var rule:List.of(GameRules.RULE_DOMOBSPAWNING,GameRules.RULE_DAYLIGHT,GameRules.RULE_WEATHER_CYCLE,GameRules.RULE_DOFIRETICK,GameRules.RULE_MOBGRIEFING,GameRules.RULE_DO_PATROL_SPAWNING,GameRules.RULE_DO_TRADER_SPAWNING))world.getGameRules().getRule(rule).set(false,server);
+        world.getGameRules().getRule(GameRules.RULE_KEEPINVENTORY).set(true,server);world.getGameRules().getRule(GameRules.RULE_RANDOMTICKING).set(0,server);
+        world.setDayTime(6000);world.setWeatherParameters(0,0,false,false);world.setDefaultSpawnPos(center(0).offset(0,2,-12),0);
         BUILDING.put(server,0);
     }
     private static void tick(MinecraftServer server){
         if(BUILDING.containsKey(server)){
-            int i=BUILDING.get(server);var w=server.getOverworld();buildArena(w,i);
+            int i=BUILDING.get(server);var w=server.overworld();buildArena(w,i);
             System.out.println("ROYALE_MAP_BUILD "+(i+1)+"/"+SCENES.size());
             if(i+1==SCENES.size()){
-                BUILDING.remove(server);var st=state(w);st.ready=true;st.markDirty();
-                for(var p:server.getPlayerManager().getPlayerList())enter(p,0);
+                BUILDING.remove(server);var st=state(w);st.ready=true;st.setDirty();
+                for(var p:server.getPlayerList().getPlayers())enter(p,0);
             }else BUILDING.put(server,i+1);
         }
-        for(var p:server.getPlayerManager().getPlayerList()){
-            var w=p.getServerWorld();if(!enabled(w)||!ready(w))continue;
-            for(var mob:w.getEntitiesByClass(MobEntity.class,bounds(index(w)),e->e.getCommandTags().contains(ACTOR)))mob.setFireTicks(0);
+        for(var p:server.getPlayerList().getPlayers()){
+            var w=p.serverLevel();if(!enabled(w)||!ready(w))continue;
+            for(var mob:w.getEntitiesOfClass(Mob.class,bounds(index(w)),e->e.getTags().contains(ACTOR)))mob.setRemainingFireTicks(0);
             if(p.getY()<Y-12){enter(p,index(w));continue;}
             // Staged friends wait for the first cast; actual spell and troop AI then run normally.
-            for(var fx:w.getEntitiesByClass(SpellEntity.class,bounds(index(w)),e->p.getUuid().equals(e.ownerId))){
-                if(!ACTIVE.add(fx.getUuid()))continue;
-                for(var mob:w.getEntitiesByClass(MobEntity.class,bounds(index(w)),e->e.getCommandTags().contains(FRIEND)))mob.setAiDisabled(false);
+            for(var fx:w.getEntitiesOfClass(SpellEntity.class,bounds(index(w)),e->p.getUUID().equals(e.ownerId))){
+                if(!ACTIVE.add(fx.getUUID()))continue;
+                for(var mob:w.getEntitiesOfClass(Mob.class,bounds(index(w)),e->e.getTags().contains(FRIEND)))mob.setNoAi(false);
             }
         }
-        if(server.getTicks()%200==0)ACTIVE.clear();
+        if(server.getTickCount()%200==0)ACTIVE.clear();
     }
-    public static void switchScene(ServerPlayerEntity player,int direction){
-        var world=player.getServerWorld();if(!enabled(world)||!ready(world)){player.sendMessage(Text.literal("请在「皇室法术 · 录制片场」存档中使用场景控制。"),true);return;}
-        long now=world.getTime();if(COOLDOWNS.getOrDefault(player.getUuid(),-100L)>now)return;
-        COOLDOWNS.put(player.getUuid(),now+12);enter(player,Math.floorMod(index(world)+direction,SCENES.size()));
+    public static void switchScene(ServerPlayer player,int direction){
+        var world=player.serverLevel();if(!enabled(world)||!ready(world)){player.displayClientMessage(Component.literal("请在「皇室法术 · 录制片场」存档中使用场景控制。"),true);return;}
+        long now=world.getGameTime();if(COOLDOWNS.getOrDefault(player.getUUID(),-100L)>now)return;
+        COOLDOWNS.put(player.getUUID(),now+12);enter(player,Math.floorMod(index(world)+direction,SCENES.size()));
     }
-    public static void enter(ServerPlayerEntity player,int index){
-        var world=player.getServerWorld();if(!enabled(world)||!ready(world))return;
+    public static void enter(ServerPlayer player,int index){
+        var world=player.serverLevel();if(!enabled(world)||!ready(world))return;
         cleanup(world,ShowcaseMap.index(world));
-        var st=state(world);st.index=Math.floorMod(index,SCENES.size());st.markDirty();index=st.index;
+        var st=state(world);st.index=Math.floorMod(index,SCENES.size());st.setDirty();index=st.index;
         cleanup(world,index);resetSet(world,index);setupActors(world,player,index);
         var scene=SCENES.get(index);var c=center(index);
-        player.changeGameMode(GameMode.CREATIVE);player.clearStatusEffects();player.setFireTicks(0);
+        player.setGameMode(GameType.CREATIVE);player.removeAllEffects();player.setRemainingFireTicks(0);
         double start=scene.spell().rolling()?(scene.spell()==Spell.THE_LOG?-8.5:-4.5):-12;
         double height=scene.spell().rolling()?Y:Y+2;
-        player.teleport(world,c.getX()+.5,height,c.getZ()+start,0,scene.spell().rolling()?5:16.15f);
-        player.getAbilities().flying=!scene.spell().rolling();player.sendAbilitiesUpdate();
-        player.setSpawnPoint(world.getRegistryKey(),c.add(0,2,-12),0,true,false);
-        var inv=player.getInventory();inv.clear();
-        if(scene.spell()==Spell.MIRROR){inv.setStack(0,new ItemStack(RoyaleSpells.ITEMS.get(Spell.FIREBALL)));inv.setStack(1,new ItemStack(RoyaleSpells.ITEMS.get(Spell.MIRROR)));}
-        else inv.setStack(0,new ItemStack(RoyaleSpells.ITEMS.get(scene.spell())));
-        inv.setStack(7,new ItemStack(RoyaleSpells.PREVIOUS_SCENE));inv.setStack(8,new ItemStack(RoyaleSpells.NEXT_SCENE));inv.selectedSlot=0;
-        player.currentScreenHandler.sendContentUpdates();player.networkHandler.sendPacket(new UpdateSelectedSlotS2CPacket(0));SpellEngine.resetForRecording(player);
-        player.networkHandler.sendPacket(new TitleFadeS2CPacket(5,35,10));
-        player.networkHandler.sendPacket(new TitleS2CPacket(Text.literal(String.format(Locale.ROOT,"%02d / %02d   ",index+1,SCENES.size())+scene.title()).formatted(Formatting.GOLD)));
-        player.networkHandler.sendPacket(new SubtitleS2CPacket(Text.literal(scene.hint()).formatted(Formatting.WHITE)));
+        player.teleportTo(world,c.getX()+.5,height,c.getZ()+start,0,scene.spell().rolling()?5:16.15f);
+        player.getAbilities().flying=!scene.spell().rolling();player.onUpdateAbilities();
+        player.setRespawnPosition(world.dimension(),c.offset(0,2,-12),0,true,false);
+        var inv=player.getInventory();inv.clearContent();
+        if(scene.spell()==Spell.MIRROR){inv.setItem(0,new ItemStack(RoyaleSpells.ITEMS.get(Spell.FIREBALL)));inv.setItem(1,new ItemStack(RoyaleSpells.ITEMS.get(Spell.MIRROR)));}
+        else inv.setItem(0,new ItemStack(RoyaleSpells.ITEMS.get(scene.spell())));
+        inv.setItem(7,new ItemStack(RoyaleSpells.PREVIOUS_SCENE));inv.setItem(8,new ItemStack(RoyaleSpells.NEXT_SCENE));inv.selected=0;
+        player.containerMenu.broadcastChanges();player.connection.send(new ClientboundSetCarriedItemPacket(0));SpellEngine.resetForRecording(player);
+        player.connection.send(new ClientboundSetTitlesAnimationPacket(5,35,10));
+        player.connection.send(new ClientboundSetTitleTextPacket(Component.literal(String.format(Locale.ROOT,"%02d / %02d   ",index+1,SCENES.size())+scene.title()).withStyle(ChatFormatting.GOLD)));
+        player.connection.send(new ClientboundSetSubtitleTextPacket(Component.literal(scene.hint()).withStyle(ChatFormatting.WHITE)));
     }
-    private static void cleanup(ServerWorld w,int i){
+    private static void cleanup(ServerLevel w,int i){
         var box=bounds(i);EarthquakeDestruction.clearRegion(w,box);
-        for(var e:w.getOtherEntities(null,box,e->!(e instanceof net.minecraft.entity.player.PlayerEntity)&&(e.getCommandTags().contains(ACTOR)||e instanceof Summoned||e instanceof SpellEntity||e instanceof net.minecraft.entity.ItemEntity||e instanceof net.minecraft.entity.projectile.ProjectileEntity)))e.discard();
+        for(var e:w.getEntities((net.minecraft.world.entity.Entity)null,box,e->!(e instanceof net.minecraft.world.entity.player.Player)&&(e.getTags().contains(ACTOR)||e instanceof Summoned||e instanceof SpellEntity||e instanceof net.minecraft.world.entity.item.ItemEntity||e instanceof net.minecraft.world.entity.projectile.Projectile)))e.discard();
     }
-    private static void put(ServerWorld w,BlockPos c,int x,int y,int z,Block b){w.setBlockState(c.add(x,y,z),b.getDefaultState(),2);}
-    private static void fill(ServerWorld w,BlockPos c,int x1,int y1,int z1,int x2,int y2,int z2,Block b){for(var p:BlockPos.iterate(c.add(x1,y1,z1),c.add(x2,y2,z2)))w.setBlockState(p,b.getDefaultState(),2);}
-    private static void text(ServerWorld w,Vec3d p,String message,float scale){
-        var e=EntityType.TEXT_DISPLAY.create(w);var n=new NbtCompound();e.writeNbt(n);
-        n.putString("text",Text.Serialization.toJsonString(Text.literal(message),w.getRegistryManager()));n.putString("billboard","center");n.putInt("line_width",360);n.putInt("background",0x90202b38);n.putByte("text_opacity",(byte)255);n.putBoolean("shadow",true);
-        var transform=new NbtList();for(int i=0;i<16;i++)transform.add(NbtFloat.of(i==15?1:i==0||i==5||i==10?scale:0));n.put("transformation",transform);
-        var brightness=new NbtCompound();brightness.putInt("block",15);brightness.putInt("sky",15);n.put("brightness",brightness);
-        e.readNbt(n);e.setPosition(p);w.spawnEntity(e);
+    private static void put(ServerLevel w,BlockPos c,int x,int y,int z,Block b){w.setBlock(c.offset(x,y,z),b.defaultBlockState(),2);}
+    private static void fill(ServerLevel w,BlockPos c,int x1,int y1,int z1,int x2,int y2,int z2,Block b){for(var p:BlockPos.betweenClosed(c.offset(x1,y1,z1),c.offset(x2,y2,z2)))w.setBlock(p,b.defaultBlockState(),2);}
+    private static void text(ServerLevel w,Vec3 p,String message,float scale){
+        var e=EntityType.TEXT_DISPLAY.create(w);var n=new CompoundTag();e.saveWithoutId(n);
+        n.putString("text",Component.Serializer.toJson(Component.literal(message),w.registryAccess()));n.putString("billboard","center");n.putInt("line_width",360);n.putInt("background",0x90202b38);n.putByte("text_opacity",(byte)255);n.putBoolean("shadow",true);
+        var transform=new ListTag();for(int i=0;i<16;i++)transform.add(FloatTag.valueOf(i==15?1:i==0||i==5||i==10?scale:0));n.put("transformation",transform);
+        var brightness=new CompoundTag();brightness.putInt("block",15);brightness.putInt("sky",15);n.put("brightness",brightness);
+        e.load(n);e.setPos(p);w.addFreshEntity(e);
     }
-    private static void tower(ServerWorld w,BlockPos c,int x,int z,Block accent){
+    private static void tower(ServerLevel w,BlockPos c,int x,int z,Block accent){
         fill(w,c,x-2,-1,z-2,x+2,8,z+2,Blocks.STONE_BRICKS);fill(w,c,x-2,8,z-2,x+2,9,z+2,accent);
         for(int dx=-2;dx<=2;dx+=2)for(int dz=-2;dz<=2;dz+=2)put(w,c,x+dx,10,z+dz,Blocks.STONE_BRICKS);
         fill(w,c,x,10,z,x,14,z,Blocks.OAK_FENCE);fill(w,c,x+1,12,z,x+4,14,z,accent);fill(w,c,x+1,12,z,x+1,14,z,Blocks.YELLOW_CONCRETE);
         put(w,c,x,6,z-3,Blocks.SEA_LANTERN);
     }
-    private static void buildArena(ServerWorld w,int i){
+    private static void buildArena(ServerLevel w,int i){
         var c=center(i);var s=SCENES.get(i);
         for(int x=-24;x<=24;x++)for(int z=-24;z<=24;z++){
             if(Math.abs(x)+Math.abs(z)>43)continue;
@@ -170,11 +179,11 @@ public final class ShowcaseMap {
         for(int x:new int[]{-3,3})fill(w,c,x,-1,-20,x,-1,-10,Blocks.YELLOW_CONCRETE);
         fill(w,c,-3,10,22,3,11,22,Blocks.GOLD_BLOCK);
         for(int x:new int[]{-3,0,3})fill(w,c,x,12,22,x,14-(x==0?0:1),22,Blocks.GOLD_BLOCK);
-        text(w,Vec3d.ofBottomCenter(c.add(0,7,20)),String.format(Locale.ROOT,"%02d  /  %02d\n",i+1,SCENES.size())+s.title(),3f);
-        text(w,Vec3d.ofBottomCenter(c.add(0,4,-21)),"录制片场\n第 8 格：上一场景  ·  第 9 格：下一场景\n潜行 + 使用控制物品：重置当前场景",.7f);
+        text(w,Vec3.atBottomCenterOf(c.offset(0,7,20)),String.format(Locale.ROOT,"%02d  /  %02d\n",i+1,SCENES.size())+s.title(),3f);
+        text(w,Vec3.atBottomCenterOf(c.offset(0,4,-21)),"录制片场\n第 8 格：上一场景  ·  第 9 格：下一场景\n潜行 + 使用控制物品：重置当前场景",.7f);
         resetSet(w,i);
     }
-    private static void resetSet(ServerWorld w,int i){
+    private static void resetSet(ServerLevel w,int i){
         var c=center(i);var scene=SCENES.get(i);var spell=scene.spell();
         fill(w,c,-10,0,-9,10,25,11,Blocks.AIR);
         fill(w,c,-10,-3,-9,10,-2,11,Blocks.DEEPSLATE_BRICKS);fill(w,c,-10,-1,-9,10,-1,11,scene.floor());
@@ -217,21 +226,21 @@ public final class ShowcaseMap {
             default -> {}
         }
     }
-    private static void tree(ServerWorld w,BlockPos c,int x,int z,boolean lush){
+    private static void tree(ServerLevel w,BlockPos c,int x,int z,boolean lush){
         fill(w,c,x,0,z,x,6,z,Blocks.OAK_LOG);
-        for(int dx=-2;dx<=2;dx++)for(int dz=-2;dz<=2;dz++)for(int y=4;y<=7;y++)if(Math.abs(dx)+Math.abs(dz)<=(y==7?1:3))w.setBlockState(c.add(x+dx,y,z+dz),(lush?Blocks.AZALEA_LEAVES:Blocks.OAK_LEAVES).getDefaultState().with(LeavesBlock.PERSISTENT,true),2);
+        for(int dx=-2;dx<=2;dx++)for(int dz=-2;dz<=2;dz++)for(int y=4;y<=7;y++)if(Math.abs(dx)+Math.abs(dz)<=(y==7?1:3))w.setBlock(c.offset(x+dx,y,z+dz),(lush?Blocks.AZALEA_LEAVES:Blocks.OAK_LEAVES).defaultBlockState().setValue(LeavesBlock.PERSISTENT,true),2);
     }
-    private static MobEntity target(ServerWorld w,BlockPos c,EntityType<? extends MobEntity> type,double x,double z,float hp){
-        var mob=type.create(w);mob.refreshPositionAndAngles(c.getX()+.5+x,Y,c.getZ()+.5+z,180,0);mob.setBodyYaw(180);mob.setHeadYaw(180);mob.setAiDisabled(true);mob.setPersistent();mob.setSilent(true);mob.setOnGround(true);mob.addCommandTag(ACTOR);
-        var max=mob.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);if(max!=null)max.setBaseValue(hp);mob.setHealth(hp);
-        w.spawnEntity(mob);return mob;
+    private static Mob target(ServerLevel w,BlockPos c,EntityType<? extends Mob> type,double x,double z,float hp){
+        var mob=type.create(w);mob.moveTo(c.getX()+.5+x,Y,c.getZ()+.5+z,180,0);mob.setYBodyRot(180);mob.setYHeadRot(180);mob.setNoAi(true);mob.setPersistenceRequired();mob.setSilent(true);mob.setOnGround(true);mob.addTag(ACTOR);
+        var max=mob.getAttribute(Attributes.MAX_HEALTH);if(max!=null)max.setBaseValue(hp);mob.setHealth(hp);
+        w.addFreshEntity(mob);return mob;
     }
-    private static void friend(ServerWorld w,ServerPlayerEntity p,BlockPos c,String kind,double x,double z){
-        var mob=SpellEngine.summon(w,p.getUuid(),new Vec3d(c.getX()+.5+x,Y,c.getZ()+.5+z),kind,false);
+    private static void friend(ServerLevel w,ServerPlayer p,BlockPos c,String kind,double x,double z){
+        var mob=SpellEngine.summon(w,p.getUUID(),new Vec3(c.getX()+.5+x,Y,c.getZ()+.5+z),kind,false);
         if(mob==null)throw new IllegalStateException("Recording friend spawn blocked");
-        ((Summoned)mob).setup(p.getUuid(),72000,false);mob.setAiDisabled(true);mob.setYaw(0);mob.setHeadYaw(0);mob.setBodyYaw(0);mob.addCommandTag(ACTOR);mob.addCommandTag(FRIEND);
+        ((Summoned)mob).setup(p.getUUID(),72000,false);mob.setNoAi(true);mob.setYRot(0);mob.setYHeadRot(0);mob.setYBodyRot(0);mob.addTag(ACTOR);mob.addTag(FRIEND);
     }
-    private static void setupActors(ServerWorld w,ServerPlayerEntity player,int i){
+    private static void setupActors(ServerLevel w,ServerPlayer player,int i){
         var c=center(i);var spell=SCENES.get(i).spell();
         switch(spell){
             case ZAP,ZAP_EVOLUTION -> {for(double[] p:new double[][]{{-1,0},{1,0},{0,1.4},{-2.65,.3},{2.65,.3}})target(w,c,EntityType.HUSK,p[0],p[1],16);}

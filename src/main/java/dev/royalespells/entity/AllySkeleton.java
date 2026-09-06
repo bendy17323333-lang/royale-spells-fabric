@@ -1,51 +1,54 @@
 package dev.royalespells.entity;
-import net.minecraft.entity.data.DataTracker;
-
 import dev.royalespells.SpellEngine;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.mob.SkeletonEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.world.World;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.monster.Skeleton;
+import net.minecraft.world.level.Level;
 import java.util.UUID;
 
-public class AllySkeleton extends SkeletonEntity implements Summoned {
+public class AllySkeleton extends Skeleton implements Summoned {
     private UUID owner;
     private int life=400;
-    private static final net.minecraft.entity.data.TrackedData<Boolean> CLONED=net.minecraft.entity.data.DataTracker.registerData(AllySkeleton.class,net.minecraft.entity.data.TrackedDataHandlerRegistry.BOOLEAN);
-    @Override protected void initDataTracker(DataTracker.Builder builder){super.initDataTracker(builder);builder.add(CLONED,false);}
-    public AllySkeleton(EntityType<? extends SkeletonEntity> type,World world){super(type,world);experiencePoints=0;}
-    @Override protected void initGoals() {
-        goalSelector.add(0,new SwimGoal(this));goalSelector.add(2,new RageMeleeGoal(this));
-        goalSelector.add(7,new WanderAroundFarGoal(this,0.65));goalSelector.add(8,new LookAroundGoal(this));
+    private static final net.minecraft.network.syncher.EntityDataAccessor<Boolean> CLONED=net.minecraft.network.syncher.SynchedEntityData.defineId(AllySkeleton.class,net.minecraft.network.syncher.EntityDataSerializers.BOOLEAN);
+    @Override protected void defineSynchedData(SynchedEntityData.Builder builder){super.defineSynchedData(builder);builder.define(CLONED,false);}
+    public AllySkeleton(EntityType<? extends Skeleton> type,Level world){super(type,world);xpReward=0;}
+    @Override protected void registerGoals() {
+        goalSelector.addGoal(0,new FloatGoal(this));goalSelector.addGoal(2,new RageMeleeGoal(this));
+        goalSelector.addGoal(7,new WaterAvoidingRandomStrollGoal(this,0.65));goalSelector.addGoal(8,new RandomLookAroundGoal(this));
     }
-    @Override public void updateAttackType(){}
-    @Override protected boolean isAffectedByDaylight(){return false;}
-    @Override protected boolean isDisallowedInPeaceful(){return false;}
+    @Override public void reassessWeaponGoal(){}
+    @Override protected boolean isSunBurnTick(){return false;}
+    @Override protected boolean shouldDespawnInPeaceful(){return false;}
     @Override protected boolean shouldDropLoot(){return false;}
-    @Override public boolean shouldDropXp(){return false;}
-    @Override public boolean tryAttack(Entity target) {
-        if(!(getWorld() instanceof net.minecraft.server.world.ServerWorld world) || !(target instanceof LivingEntity victim)
-            || hasStatusEffect(dev.royalespells.RoyaleSpells.STUN) || !SpellEngine.enemy(owner,victim))return false;
-        if(victim instanceof net.minecraft.entity.player.PlayerEntity && !world.getServer().isPvpEnabled())return false;
-        int previous=victim.timeUntilRegen;
-        victim.timeUntilRegen=0;
+    @Override public boolean shouldDropExperience(){return false;}
+    @Override public boolean doHurtTarget(Entity target) {
+        if(!(level() instanceof net.minecraft.server.level.ServerLevel world) || !(target instanceof LivingEntity victim)
+            || hasEffect(dev.royalespells.RoyaleSpells.STUN) || !SpellEngine.enemy(owner,victim))return false;
+        if(victim instanceof net.minecraft.world.entity.player.Player && !world.getServer().isPvpAllowed())return false;
+        int previous=victim.invulnerableTime;
+        victim.invulnerableTime=0;
         try {
             // The sword is visual equipment; explicit low damage avoids its vanilla attack bonus.
-            return victim.damage(world.getDamageSources().mobAttack(this),(float)getAttributeInstance(net.minecraft.entity.attribute.EntityAttributes.GENERIC_ATTACK_DAMAGE).getBaseValue());
-        } finally {victim.timeUntilRegen=Math.max(previous,victim.timeUntilRegen);}
+            return victim.hurt(world.damageSources().mobAttack(this),(float)getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE).getBaseValue());
+        } finally {victim.invulnerableTime=Math.max(previous,victim.invulnerableTime);}
     }
-    @Override public boolean damage(DamageSource source,float amount) {
-        if(!getWorld().isClient && source.getAttacker() instanceof LivingEntity attacker && SpellEngine.friendly(owner,attacker)) return false;
-        return super.damage(source,amount);
+    @Override public boolean hurt(DamageSource source,float amount) {
+        if(!level().isClientSide && source.getEntity() instanceof LivingEntity attacker && SpellEngine.friendly(owner,attacker)) return false;
+        return super.hurt(source,amount);
     }
-    @Override public void tick(){super.tick();if(!getWorld().isClient){if(--life<=0){discard();return;}SpellEngine.unitTick(this,owner);}}
+    @Override public void tick(){super.tick();if(!level().isClientSide){if(--life<=0){discard();return;}SpellEngine.unitTick(this,owner);}}
     public UUID ownerId(){return owner;}
-    public boolean isClone(){return dataTracker.get(CLONED);}
-    public void setup(UUID owner,int life,boolean clone){this.owner=owner;this.life=life;dataTracker.set(CLONED,clone);setPersistent();setCanPickUpLoot(false);}
-    @Override public void writeCustomDataToNbt(NbtCompound nbt){super.writeCustomDataToNbt(nbt);if(owner!=null)nbt.putUuid("SpellOwner",owner);nbt.putInt("SpellLife",life);nbt.putBoolean("SpellClone",isClone());}
-    @Override public void readCustomDataFromNbt(NbtCompound nbt){super.readCustomDataFromNbt(nbt);owner=nbt.containsUuid("SpellOwner")?nbt.getUuid("SpellOwner"):null;life=nbt.getInt("SpellLife");dataTracker.set(CLONED,nbt.getBoolean("SpellClone"));}
+    public boolean isClone(){return entityData.get(CLONED);}
+    public void setup(UUID owner,int life,boolean clone){this.owner=owner;this.life=life;entityData.set(CLONED,clone);setPersistenceRequired();setCanPickUpLoot(false);}
+    @Override public void addAdditionalSaveData(CompoundTag nbt){super.addAdditionalSaveData(nbt);if(owner!=null)nbt.putUUID("SpellOwner",owner);nbt.putInt("SpellLife",life);nbt.putBoolean("SpellClone",isClone());}
+    @Override public void readAdditionalSaveData(CompoundTag nbt){super.readAdditionalSaveData(nbt);owner=nbt.hasUUID("SpellOwner")?nbt.getUUID("SpellOwner"):null;life=nbt.getInt("SpellLife");entityData.set(CLONED,nbt.getBoolean("SpellClone"));}
 }
 
 

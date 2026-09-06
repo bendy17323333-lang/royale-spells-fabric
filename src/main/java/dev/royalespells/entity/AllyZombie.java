@@ -1,84 +1,87 @@
 package dev.royalespells.entity;
-import net.minecraft.entity.data.DataTracker;
-
 import dev.royalespells.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.mob.ZombieEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.block.BlockState;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import java.util.UUID;
 
-public class AllyZombie extends ZombieEntity implements Summoned {
+public class AllyZombie extends Zombie implements Summoned {
     private UUID owner;
     private int life=600;
     private boolean deploymentPlayed;
     private int lastFootstepAge=-8;
-    private static final net.minecraft.entity.data.TrackedData<Boolean> CLONED=net.minecraft.entity.data.DataTracker.registerData(AllyZombie.class,net.minecraft.entity.data.TrackedDataHandlerRegistry.BOOLEAN);
-    @Override protected void initDataTracker(DataTracker.Builder builder){super.initDataTracker(builder);builder.add(CLONED,false);}
+    private static final net.minecraft.network.syncher.EntityDataAccessor<Boolean> CLONED=net.minecraft.network.syncher.SynchedEntityData.defineId(AllyZombie.class,net.minecraft.network.syncher.EntityDataSerializers.BOOLEAN);
+    @Override protected void defineSynchedData(SynchedEntityData.Builder builder){super.defineSynchedData(builder);builder.define(CLONED,false);}
     public boolean hero;
     public long nextReroll;
-    public AllyZombie(EntityType<? extends ZombieEntity> type,World world) { super(type,world);experiencePoints=0; }
-    @Override protected void initGoals() {
-        goalSelector.add(0,new SwimGoal(this));
-        goalSelector.add(2,new RageMeleeGoal(this));
-        goalSelector.add(7,new WanderAroundFarGoal(this,0.65));
-        goalSelector.add(8,new LookAroundGoal(this));
+    public AllyZombie(EntityType<? extends Zombie> type,Level world) { super(type,world);xpReward=0; }
+    @Override protected void registerGoals() {
+        goalSelector.addGoal(0,new FloatGoal(this));
+        goalSelector.addGoal(2,new RageMeleeGoal(this));
+        goalSelector.addGoal(7,new WaterAvoidingRandomStrollGoal(this,0.65));
+        goalSelector.addGoal(8,new RandomLookAroundGoal(this));
     }
-    @Override protected boolean burnsInDaylight() { return false; }
-    @Override protected boolean canConvertInWater() { return false; }
-    @Override protected boolean isDisallowedInPeaceful(){return false;}
+    @Override protected boolean isSunSensitive() { return false; }
+    @Override protected boolean convertsInWater() { return false; }
+    @Override protected boolean shouldDespawnInPeaceful(){return false;}
     @Override protected boolean shouldDropLoot() { return false; }
-    @Override public boolean shouldDropXp() { return false; }
+    @Override public boolean shouldDropExperience() { return false; }
     private boolean barbarian(){return getType()==RoyaleSpells.BARBARIAN;}
     private boolean human(){return barbarian()||getType()==RoyaleSpells.RECRUIT;}
     @Override protected SoundEvent getAmbientSound(){return human()?null:super.getAmbientSound();}
-    @Override protected SoundEvent getHurtSound(DamageSource source){return barbarian()?null:human()?SoundEvents.ENTITY_PLAYER_HURT:super.getHurtSound(source);}
-    @Override protected SoundEvent getDeathSound(){return barbarian()?UnitSounds.BARBARIAN_DEATH:human()?SoundEvents.ENTITY_PLAYER_DEATH:super.getDeathSound();}
-    @Override public float getSoundPitch(){return human()?1:super.getSoundPitch();}
-    @Override public SoundCategory getSoundCategory(){return human()?SoundCategory.NEUTRAL:super.getSoundCategory();}
+    @Override protected SoundEvent getHurtSound(DamageSource source){return barbarian()?null:human()?SoundEvents.PLAYER_HURT:super.getHurtSound(source);}
+    @Override protected SoundEvent getDeathSound(){return barbarian()?UnitSounds.BARBARIAN_DEATH:human()?SoundEvents.PLAYER_DEATH:super.getDeathSound();}
+    @Override public float getVoicePitch(){return human()?1:super.getVoicePitch();}
+    @Override public SoundSource getSoundSource(){return human()?SoundSource.NEUTRAL:super.getSoundSource();}
     @Override protected void playStepSound(BlockPos pos,BlockState state){
         if(barbarian()){
-            if(!getWorld().isClient && age-lastFootstepAge>=8){
-                lastFootstepAge=age;playSound(UnitSounds.BARBARIAN_STEP,.12f,1);
+            if(!level().isClientSide && tickCount-lastFootstepAge>=8){
+                lastFootstepAge=tickCount;playSound(UnitSounds.BARBARIAN_STEP,.12f,1);
             }
         }
-        else if(human())playSound(state.getSoundGroup().getStepSound(),.15f,1);
+        else if(human())playSound(state.getSoundType().getStepSound(),.15f,1);
         else super.playStepSound(pos,state);
     }
-    @Override public boolean tryAttack(Entity target){
-        boolean hit=super.tryAttack(target);
+    @Override public boolean doHurtTarget(Entity target){
+        boolean hit=super.doHurtTarget(target);
         if(hit&&barbarian())playSound(UnitSounds.BARBARIAN_ATTACK,.8f,1);
         return hit;
     }
-    @Override public boolean damage(DamageSource source,float amount) {
-        if(!getWorld().isClient && source.getAttacker() instanceof LivingEntity attacker && SpellEngine.friendly(owner,attacker)) return false;
-        return super.damage(source,amount);
+    @Override public boolean hurt(DamageSource source,float amount) {
+        if(!level().isClientSide && source.getEntity() instanceof LivingEntity attacker && SpellEngine.friendly(owner,attacker)) return false;
+        return super.hurt(source,amount);
     }
     @Override public void tick() {
         super.tick();
-        if(!getWorld().isClient) {
+        if(!level().isClientSide) {
             if(!deploymentPlayed){deploymentPlayed=true;if(barbarian()&&!isClone())playSound(UnitSounds.BARBARIAN_DEPLOY,.8f,1);}
             if(--life<=0) {discard();return;} SpellEngine.unitTick(this,owner);
         }
     }
     public UUID ownerId(){return owner;}
-    public boolean isClone(){return dataTracker.get(CLONED);}
-    public void setup(UUID owner,int life,boolean clone){this.owner=owner;this.life=life;dataTracker.set(CLONED,clone);setPersistent();setCanPickUpLoot(false);}
-    @Override public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);if(owner!=null) nbt.putUuid("SpellOwner",owner);
+    public boolean isClone(){return entityData.get(CLONED);}
+    public void setup(UUID owner,int life,boolean clone){this.owner=owner;this.life=life;entityData.set(CLONED,clone);setPersistenceRequired();setCanPickUpLoot(false);}
+    @Override public void addAdditionalSaveData(CompoundTag nbt) {
+        super.addAdditionalSaveData(nbt);if(owner!=null) nbt.putUUID("SpellOwner",owner);
         nbt.putInt("SpellLife",life);nbt.putBoolean("SpellClone",isClone());nbt.putBoolean("Hero",hero);nbt.putLong("NextReroll",nextReroll);
         nbt.putBoolean("DeploymentPlayed",deploymentPlayed);
     }
-    @Override public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);owner=nbt.containsUuid("SpellOwner")?nbt.getUuid("SpellOwner"):null;
-        life=nbt.getInt("SpellLife");dataTracker.set(CLONED,nbt.getBoolean("SpellClone"));hero=nbt.getBoolean("Hero");nextReroll=nbt.getLong("NextReroll");
+    @Override public void readAdditionalSaveData(CompoundTag nbt) {
+        super.readAdditionalSaveData(nbt);owner=nbt.hasUUID("SpellOwner")?nbt.getUUID("SpellOwner"):null;
+        life=nbt.getInt("SpellLife");entityData.set(CLONED,nbt.getBoolean("SpellClone"));hero=nbt.getBoolean("Hero");nextReroll=nbt.getLong("NextReroll");
         deploymentPlayed=!nbt.contains("DeploymentPlayed")||nbt.getBoolean("DeploymentPlayed");
     }
 }
