@@ -1,23 +1,26 @@
 # 皇室法术 · Royale Spells
 
-把皇室战争的法术带进 **Minecraft Java 1.20.1 或 1.21.1 / Fabric**。
+把皇室战争的法术带进 **Minecraft Java 1.20.1 / Fabric，以及 1.21.1 / Fabric、NeoForge**。
 
 当前版本 **1.2.0**：28 张法术卡牌与野蛮人小屋，原版卡图、圣水、觉醒、召唤物和独立法术效果。
 
-Clash Royale inspired spells and a Barbarian Hut for Minecraft Java 1.20.1, built with Fabric.
+Clash Royale inspired spells and a Barbarian Hut for Minecraft Java 1.20.1 (Fabric) and 1.21.1 (Fabric / NeoForge), with optional Iron's Spells combat compatibility on NeoForge.
 
 ## 下载与安装
 
 到本仓库右侧的 **Releases** 下载最新版：
 
-请先选择 Minecraft 版本，两个版本的模组和录制地图分别提供：
+请先选择 Minecraft 版本和加载器，各版本的模组和录制地图分别提供：
 
 | Minecraft | 下载 | Java | 源码分支 |
 |---|---|---|---|
+| 1.21.1 NeoForge | [1.2.0 铁魔法同装适配版与地图](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0-neoforge-mc1.21.1) | 21 | [neoforge-1.21.1](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/neoforge-1.21.1) |
 | 1.21.1 Fabric | [1.2.0 适配版与新版地图](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0-mc1.21.1) | 21 | [mc-1.21.1](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/mc-1.21.1) |
 | 1.20.1 Fabric | [1.2.0 模组与地图](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0) | 17+ | main |
 
-以下安装文件和构建说明对应本分支的 **1.20.1** 版；**1.21.1** 版请使用上表对应的发布条目。不要在同一实例混装两个版本的模组。
+NeoForge 版已验证与 **Iron's Spells 'n Spellbooks 1.21.1-3.16.3** 同装，支持双方召唤物友军识别、相互战斗、冻结和位移。仍使用独立圣水体系，没有接入铁魔法的法术书或魔力。安装依赖和测试记录见 [NeoForge 分支说明](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/neoforge-1.21.1)。
+
+以下安装文件和构建说明对应本分支的 **1.20.1 Fabric** 版；**1.21.1** 版请使用上表对应的发布条目。同一实例只保留对应 Minecraft 版本和加载器的一份模组。
 
 - `royale-spells-fabric-1.20.1-1.2.0.jar`：模组本体。
 - `royale-spells-1.2.0-fabric-1.20.1.zip`：安装包，包含本体、Fabric API、说明与预览。
