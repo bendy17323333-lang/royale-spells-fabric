@@ -1,6 +1,6 @@
 # 皇室法术 · Royale Spells
 
-把皇室战争的法术带进 **Minecraft Java 1.20.1 / Fabric**。
+把皇室战争的法术带进 **Minecraft Java 1.20.1 或 1.21.1 / Fabric**。
 
 当前版本 **1.2.0**：28 张法术卡牌与野蛮人小屋，原版卡图、圣水、觉醒、召唤物和独立法术效果。
 
@@ -9,6 +9,15 @@ Clash Royale inspired spells and a Barbarian Hut for Minecraft Java 1.20.1, buil
 ## 下载与安装
 
 到本仓库右侧的 **Releases** 下载最新版：
+
+请先选择 Minecraft 版本，两个版本的模组和录制地图分别提供：
+
+| Minecraft | 下载 | Java | 源码分支 |
+|---|---|---|---|
+| 1.21.1 Fabric | [1.2.0 适配版与新版地图](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0-mc1.21.1) | 21 | [mc-1.21.1](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/mc-1.21.1) |
+| 1.20.1 Fabric | [1.2.0 模组与地图](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0) | 17+ | main |
+
+以下安装文件和构建说明对应本分支的 **1.20.1** 版；**1.21.1** 版请使用上表对应的发布条目。不要在同一实例混装两个版本的模组。
 
 - `royale-spells-fabric-1.20.1-1.2.0.jar`：模组本体。
 - `royale-spells-1.2.0-fabric-1.20.1.zip`：安装包，包含本体、Fabric API、说明与预览。
