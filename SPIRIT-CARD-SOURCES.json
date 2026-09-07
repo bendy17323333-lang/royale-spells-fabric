@@ -1,0 +1,46 @@
+[
+  {
+    "element": "fire",
+    "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/summon_fire_spirit.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/fire-spirit.png",
+    "sha256": "12fa2adbe28b57b8caa1d9bd7fa6d6c22e8e2f7196f1591fdbb00a8cdf0104b5",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes, no crop, resize or added border. Original artwork belongs to Supercell."
+  },
+  {
+    "element": "ice",
+    "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/summon_ice_spirit.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/ice-spirit.png",
+    "sha256": "634e23f7cfe7508f8833216a4c657abb90bd47916364eba4701dd7e622f028d5",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes, no crop, resize or added border. Original artwork belongs to Supercell."
+  },
+  {
+    "element": "electro",
+    "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/summon_electro_spirit.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/electro-spirit.png",
+    "sha256": "b3ad3838e1889fa60b4c94558834765de8b3b3fb5e26d86cda51827c6dd1d2c3",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes, no crop, resize or added border. Original artwork belongs to Supercell."
+  },
+  {
+    "element": "heal",
+    "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/summon_heal_spirit.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/heal-spirit.png",
+    "sha256": "fdcce46eee982d7cf67e68bf7e3c319363448af9527836fdced5421b03741b61",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes, no crop, resize or added border. Original artwork belongs to Supercell."
+  }
+]

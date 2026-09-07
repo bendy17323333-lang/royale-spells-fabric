@@ -1,0 +1,8 @@
+{
+  "sources": [
+    {"type": "minecraft:filter", "pattern": {"namespace": "royalespells", "path": "item/furnace_staff_atlas"}},
+    {"type": "royalespells:furnace_material", "resource": "royalespells:entity/spirit_materials"},
+    {"type": "royalespells:furnace_material", "resource": "royalespells:entity/spirit_flame", "animated": true},
+    {"type": "minecraft:single", "resource": "royalespells:entity/spirit_ice_mineclash"}
+  ]
+}

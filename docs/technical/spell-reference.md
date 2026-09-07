@@ -82,7 +82,7 @@
 | 26 | `party_rocket` | 派对火箭（活动） | 5 | 3 | 40 | `#82F280` |
 | 27 | `barbarian_barrel_hero` | 英雄野蛮人滚桶 | 2 | 1.5 | 22 | `#F5D075` |
 
-## 法术声音阶段（55）
+## 法术声音阶段（71）
 
 服务端事件固定传播半径声明为 64 格，cue 音量乘 0.9。客户端衰减距离单独从 sounds.json 读取；实际声音仍受玩家音量设置、距离和同屏混音影响。
 
@@ -145,44 +145,61 @@
 | `party_rocket` / party | `spell_party_rocket_party` | [original/gob_party_hut_deploy_01](../../src/main/resources/assets/royalespells/sounds/original/gob_party_hut_deploy_01.ogg) | 0.5 | 0.45 | 64 |
 | `barbarian_hut` / deploy | `spell_barbarian_hut_deploy` | [original/building_place_01](../../src/main/resources/assets/royalespells/sounds/original/building_place_01.ogg) | 0.65 | 0.585 | 64 |
 | `barbarian_hut` / end | `spell_barbarian_hut_end` | [original/boulder_impact_01](../../src/main/resources/assets/royalespells/sounds/original/boulder_impact_01.ogg) | 0.55 | 0.495 | 64 |
+| `spirit_fire` / deploy | `spirit_fire_deploy` | [spirits/fire/fire_spirit_deploy_01](../../src/main/resources/assets/royalespells/sounds/spirits/fire/fire_spirit_deploy_01.ogg)<br>[spirits/fire/fire_spirit_deploy_02](../../src/main/resources/assets/royalespells/sounds/spirits/fire/fire_spirit_deploy_02.ogg) | 0.46 | 0.414 | 64/64 |
+| `spirit_fire` / jump | `spirit_fire_jump` | [spirits/fire/fire_spirit_attack_01](../../src/main/resources/assets/royalespells/sounds/spirits/fire/fire_spirit_attack_01.ogg) | 0.38 | 0.342 | 64 |
+| `spirit_fire` / impact | `spirit_fire_impact` | [spirits/fire/sound_fireball_hit_01](../../src/main/resources/assets/royalespells/sounds/spirits/fire/sound_fireball_hit_01.ogg) | 0.48 | 0.432 | 64 |
+| `spirit_fire` / step | `spirit_fire_step` | [spirits/fire/fire_spirit_step_sfx_01](../../src/main/resources/assets/royalespells/sounds/spirits/fire/fire_spirit_step_sfx_01.ogg) | 0.075 | 0.0675 | 64 |
+| `spirit_ice` / deploy | `spirit_ice_deploy` | [spirits/ice/ice_sp_deploy_01](../../src/main/resources/assets/royalespells/sounds/spirits/ice/ice_sp_deploy_01.ogg)<br>[spirits/ice/ice_sp_deploy_02](../../src/main/resources/assets/royalespells/sounds/spirits/ice/ice_sp_deploy_02.ogg) | 0.46 | 0.414 | 64/64 |
+| `spirit_ice` / jump | `spirit_ice_jump` | [spirits/ice/fire_spirit_attack_01](../../src/main/resources/assets/royalespells/sounds/spirits/ice/fire_spirit_attack_01.ogg) | 0.38 | 0.342 | 64 |
+| `spirit_ice` / impact | `spirit_ice_impact` | [spirits/ice/ice_mage_impact_02](../../src/main/resources/assets/royalespells/sounds/spirits/ice/ice_mage_impact_02.ogg) | 0.48 | 0.432 | 64 |
+| `spirit_ice` / step | `spirit_ice_step` | [spirits/ice/fire_spirit_step_sfx_01](../../src/main/resources/assets/royalespells/sounds/spirits/ice/fire_spirit_step_sfx_01.ogg) | 0.075 | 0.0675 | 64 |
+| `spirit_electro` / deploy | `spirit_electro_deploy` | [spirits/electro/electro_spirit_dep_01](../../src/main/resources/assets/royalespells/sounds/spirits/electro/electro_spirit_dep_01.ogg) | 0.46 | 0.414 | 64 |
+| `spirit_electro` / jump | `spirit_electro_jump` | [spirits/electro/elec_spirit_atk_vo_01](../../src/main/resources/assets/royalespells/sounds/spirits/electro/elec_spirit_atk_vo_01.ogg)<br>[spirits/electro/elec_spirit_atk_vo_02](../../src/main/resources/assets/royalespells/sounds/spirits/electro/elec_spirit_atk_vo_02.ogg) | 0.38 | 0.342 | 64/64 |
+| `spirit_electro` / impact | `spirit_electro_impact` | [spirits/electro/tesla_zap_01](../../src/main/resources/assets/royalespells/sounds/spirits/electro/tesla_zap_01.ogg) | 0.28 | 0.252 | 64 |
+| `spirit_electro` / step | `spirit_electro_step` | [spirits/electro/elec_spirit_step_01](../../src/main/resources/assets/royalespells/sounds/spirits/electro/elec_spirit_step_01.ogg)<br>[spirits/electro/elec_spirit_step_02](../../src/main/resources/assets/royalespells/sounds/spirits/electro/elec_spirit_step_02.ogg) | 0.075 | 0.0675 | 64/64 |
+| `spirit_heal` / deploy | `spirit_heal_deploy` | [spirits/heal/heal_spirit_deploy_vo_01_dl](../../src/main/resources/assets/royalespells/sounds/spirits/heal/heal_spirit_deploy_vo_01_dl.ogg) | 0.46 | 0.414 | 64 |
+| `spirit_heal` / jump | `spirit_heal_jump` | [spirits/heal/fire_spirit_step_vo_01](../../src/main/resources/assets/royalespells/sounds/spirits/heal/fire_spirit_step_vo_01.ogg)<br>[spirits/heal/fire_spirit_step_vo_02](../../src/main/resources/assets/royalespells/sounds/spirits/heal/fire_spirit_step_vo_02.ogg)<br>[spirits/heal/fire_spirit_step_vo_03](../../src/main/resources/assets/royalespells/sounds/spirits/heal/fire_spirit_step_vo_03.ogg) | 0.38 | 0.342 | 64/64/64 |
+| `spirit_heal` / impact | `spirit_heal_impact` | [spirits/heal/heal_magic_03](../../src/main/resources/assets/royalespells/sounds/spirits/heal/heal_magic_03.ogg) | 0.48 | 0.432 | 64 |
+| `spirit_heal` / step | `spirit_heal_step` | [spirits/heal/fire_spirit_step_sfx_01](../../src/main/resources/assets/royalespells/sounds/spirits/heal/fire_spirit_step_sfx_01.ogg) | 0.075 | 0.0675 | 64 |
 
-## 数据包无序合成配方（34）
+## 数据包合成配方（35）
 
-全部为 `minecraft:crafting_shapeless`。旧卡配方只在未加载铁魔法时生效；原生卷轴锻造和铁砧升级通过 Java 接口接入，不是漏列的 JSON。浓缩顺序、天然重油仪式与等级映射见 [材料与结构](07-elixir-structures-rituals.md)。
+旧卡配方只在未加载铁魔法时生效；熔炉法杖是加载铁魔法后的有序配方。原生卷轴锻造和铁砧升级通过 Java 接口接入，不是漏列的 JSON。浓缩顺序、天然重油仪式与等级映射见 [材料与结构](07-elixir-structures-rituals.md)。四种法杖绑定法术单独见 [熔炉法杖与精灵](11-furnace-staff-and-spirits.md)，不计入旧有 30 种 IronSpellProfile 表。
 
 | 配方文件 | 输入 | 输出 | 生效条件 |
 | --- | --- | --- | --- |
-| [arrows](../../src/main/resources/data/royalespells/recipe/arrows.json) | 1×`minecraft:paper` + 1×`minecraft:arrow` | 1×`royalespells:arrows` | 未加载铁魔法 |
-| [barbarian_barrel](../../src/main/resources/data/royalespells/recipe/barbarian_barrel.json) | 1×`minecraft:paper` + 1×`minecraft:barrel` | 1×`royalespells:barbarian_barrel` | 未加载铁魔法 |
-| [barbarian_barrel_hero](../../src/main/resources/data/royalespells/recipe/barbarian_barrel_hero.json) | 1×`royalespells:barbarian_barrel` + 1×`minecraft:golden_apple` | 1×`royalespells:barbarian_barrel_hero` | 未加载铁魔法 |
-| [barbarian_hut](../../src/main/resources/data/royalespells/recipe/barbarian_hut.json) | 1×`minecraft:paper` + 1×`minecraft:oak_log` + 1×`minecraft:hay_block` | 1×`royalespells:barbarian_hut` | 未加载铁魔法 |
-| [clone](../../src/main/resources/data/royalespells/recipe/clone.json) | 1×`minecraft:paper` + 1×`minecraft:amethyst_shard` | 1×`royalespells:clone` | 未加载铁魔法 |
-| [dark_elixir_concentration](../../src/main/resources/data/royalespells/recipe/dark_elixir_concentration.json) | 3×`royalespells:dark_elixir_bottle` | 1×`royalespells:dark_elixir_concentrate` | 无模组条件 |
-| [earthquake](../../src/main/resources/data/royalespells/recipe/earthquake.json) | 1×`minecraft:paper` + 1×`minecraft:pointed_dripstone` | 1×`royalespells:earthquake` | 未加载铁魔法 |
-| [elixir_1_concentration](../../src/main/resources/data/royalespells/recipe/elixir_1_concentration.json) | 3×`royalespells:elixir_bottle` | 1×`royalespells:elixir_uncommon` | 无模组条件 |
-| [elixir_2_concentration](../../src/main/resources/data/royalespells/recipe/elixir_2_concentration.json) | 3×`royalespells:elixir_uncommon` | 1×`royalespells:elixir_rare` | 无模组条件 |
-| [elixir_3_concentration](../../src/main/resources/data/royalespells/recipe/elixir_3_concentration.json) | 3×`royalespells:elixir_rare` | 1×`royalespells:elixir_epic` | 无模组条件 |
-| [elixir_4_concentration](../../src/main/resources/data/royalespells/recipe/elixir_4_concentration.json) | 3×`royalespells:elixir_epic` | 1×`royalespells:elixir_legendary` | 无模组条件 |
-| [fireball](../../src/main/resources/data/royalespells/recipe/fireball.json) | 1×`minecraft:paper` + 1×`minecraft:fire_charge` | 1×`royalespells:fireball` | 未加载铁魔法 |
-| [freeze](../../src/main/resources/data/royalespells/recipe/freeze.json) | 1×`minecraft:paper` + 1×`minecraft:packed_ice` | 1×`royalespells:freeze` | 未加载铁魔法 |
-| [giant_snowball](../../src/main/resources/data/royalespells/recipe/giant_snowball.json) | 1×`minecraft:paper` + 1×`minecraft:snowball` | 1×`royalespells:giant_snowball` | 未加载铁魔法 |
-| [giant_snowball_evolution](../../src/main/resources/data/royalespells/recipe/giant_snowball_evolution.json) | 1×`royalespells:giant_snowball` + 1×`minecraft:nether_star` | 1×`royalespells:giant_snowball_evolution` | 未加载铁魔法 |
-| [goblin_barrel](../../src/main/resources/data/royalespells/recipe/goblin_barrel.json) | 1×`minecraft:paper` + 1×`minecraft:rotten_flesh` | 1×`royalespells:goblin_barrel` | 未加载铁魔法 |
-| [goblin_barrel_evolution](../../src/main/resources/data/royalespells/recipe/goblin_barrel_evolution.json) | 1×`royalespells:goblin_barrel` + 1×`minecraft:nether_star` | 1×`royalespells:goblin_barrel_evolution` | 未加载铁魔法 |
-| [goblin_curse](../../src/main/resources/data/royalespells/recipe/goblin_curse.json) | 1×`minecraft:paper` + 1×`minecraft:fermented_spider_eye` | 1×`royalespells:goblin_curse` | 未加载铁魔法 |
-| [graveyard](../../src/main/resources/data/royalespells/recipe/graveyard.json) | 1×`minecraft:paper` + 1×`minecraft:bone` | 1×`royalespells:graveyard` | 未加载铁魔法 |
-| [heal](../../src/main/resources/data/royalespells/recipe/heal.json) | 1×`minecraft:paper` + 1×`minecraft:glistering_melon_slice` | 1×`royalespells:heal` | 未加载铁魔法 |
-| [lightning](../../src/main/resources/data/royalespells/recipe/lightning.json) | 1×`minecraft:paper` + 1×`minecraft:lightning_rod` | 1×`royalespells:lightning` | 未加载铁魔法 |
-| [mirror](../../src/main/resources/data/royalespells/recipe/mirror.json) | 1×`minecraft:paper` + 1×`minecraft:glass_pane` | 1×`royalespells:mirror` | 未加载铁魔法 |
-| [party_rocket](../../src/main/resources/data/royalespells/recipe/party_rocket.json) | 1×`minecraft:paper` + 1×`minecraft:slime_ball` | 1×`royalespells:party_rocket` | 未加载铁魔法 |
-| [poison](../../src/main/resources/data/royalespells/recipe/poison.json) | 1×`minecraft:paper` + 1×`minecraft:spider_eye` | 1×`royalespells:poison` | 未加载铁魔法 |
-| [rage](../../src/main/resources/data/royalespells/recipe/rage.json) | 1×`minecraft:paper` + 1×`minecraft:blaze_powder` | 1×`royalespells:rage` | 未加载铁魔法 |
-| [rocket](../../src/main/resources/data/royalespells/recipe/rocket.json) | 1×`minecraft:paper` + 1×`minecraft:firework_rocket` | 1×`royalespells:rocket` | 未加载铁魔法 |
-| [royal_delivery](../../src/main/resources/data/royalespells/recipe/royal_delivery.json) | 1×`minecraft:paper` + 1×`minecraft:shield` | 1×`royalespells:royal_delivery` | 未加载铁魔法 |
-| [the_log](../../src/main/resources/data/royalespells/recipe/the_log.json) | 1×`minecraft:paper` + 1×`minecraft:oak_log` | 1×`royalespells:the_log` | 未加载铁魔法 |
-| [tornado](../../src/main/resources/data/royalespells/recipe/tornado.json) | 1×`minecraft:paper` + 1×`minecraft:feather` | 1×`royalespells:tornado` | 未加载铁魔法 |
-| [vines](../../src/main/resources/data/royalespells/recipe/vines.json) | 1×`minecraft:paper` + 1×`minecraft:vine` | 1×`royalespells:vines` | 未加载铁魔法 |
-| [void](../../src/main/resources/data/royalespells/recipe/void.json) | 1×`minecraft:paper` + 1×`minecraft:ender_pearl` | 1×`royalespells:void` | 未加载铁魔法 |
-| [warmth](../../src/main/resources/data/royalespells/recipe/warmth.json) | 1×`minecraft:paper` + 1×`minecraft:magma_cream` | 1×`royalespells:warmth` | 未加载铁魔法 |
-| [zap](../../src/main/resources/data/royalespells/recipe/zap.json) | 1×`minecraft:paper` + 1×`minecraft:copper_ingot` | 1×`royalespells:zap` | 未加载铁魔法 |
-| [zap_evolution](../../src/main/resources/data/royalespells/recipe/zap_evolution.json) | 1×`royalespells:zap` + 1×`minecraft:nether_star` | 1×`royalespells:zap_evolution` | 未加载铁魔法 |
+| [arrows](../../src/main/resources/data/royalespells/recipe/arrows.json) | 1×`minecraft:paper` + 1×`minecraft:arrow` | 1×`royalespells:arrows` | 未加载铁魔法；无序 |
+| [barbarian_barrel](../../src/main/resources/data/royalespells/recipe/barbarian_barrel.json) | 1×`minecraft:paper` + 1×`minecraft:barrel` | 1×`royalespells:barbarian_barrel` | 未加载铁魔法；无序 |
+| [barbarian_barrel_hero](../../src/main/resources/data/royalespells/recipe/barbarian_barrel_hero.json) | 1×`royalespells:barbarian_barrel` + 1×`minecraft:golden_apple` | 1×`royalespells:barbarian_barrel_hero` | 未加载铁魔法；无序 |
+| [barbarian_hut](../../src/main/resources/data/royalespells/recipe/barbarian_hut.json) | 1×`minecraft:paper` + 1×`minecraft:oak_log` + 1×`minecraft:hay_block` | 1×`royalespells:barbarian_hut` | 未加载铁魔法；无序 |
+| [clone](../../src/main/resources/data/royalespells/recipe/clone.json) | 1×`minecraft:paper` + 1×`minecraft:amethyst_shard` | 1×`royalespells:clone` | 未加载铁魔法；无序 |
+| [dark_elixir_concentration](../../src/main/resources/data/royalespells/recipe/dark_elixir_concentration.json) | 3×`royalespells:dark_elixir_bottle` | 1×`royalespells:dark_elixir_concentrate` | 无模组条件；无序 |
+| [earthquake](../../src/main/resources/data/royalespells/recipe/earthquake.json) | 1×`minecraft:paper` + 1×`minecraft:pointed_dripstone` | 1×`royalespells:earthquake` | 未加载铁魔法；无序 |
+| [elixir_1_concentration](../../src/main/resources/data/royalespells/recipe/elixir_1_concentration.json) | 3×`royalespells:elixir_bottle` | 1×`royalespells:elixir_uncommon` | 无模组条件；无序 |
+| [elixir_2_concentration](../../src/main/resources/data/royalespells/recipe/elixir_2_concentration.json) | 3×`royalespells:elixir_uncommon` | 1×`royalespells:elixir_rare` | 无模组条件；无序 |
+| [elixir_3_concentration](../../src/main/resources/data/royalespells/recipe/elixir_3_concentration.json) | 3×`royalespells:elixir_rare` | 1×`royalespells:elixir_epic` | 无模组条件；无序 |
+| [elixir_4_concentration](../../src/main/resources/data/royalespells/recipe/elixir_4_concentration.json) | 3×`royalespells:elixir_epic` | 1×`royalespells:elixir_legendary` | 无模组条件；无序 |
+| [fireball](../../src/main/resources/data/royalespells/recipe/fireball.json) | 1×`minecraft:paper` + 1×`minecraft:fire_charge` | 1×`royalespells:fireball` | 未加载铁魔法；无序 |
+| [freeze](../../src/main/resources/data/royalespells/recipe/freeze.json) | 1×`minecraft:paper` + 1×`minecraft:packed_ice` | 1×`royalespells:freeze` | 未加载铁魔法；无序 |
+| [furnace_staff](../../src/main/resources/data/royalespells/recipe/furnace_staff.json) | 1×`minecraft:cauldron` + 1×`minecraft:fire_charge` + 2×`minecraft:blaze_rod` + 1×`minecraft:iron_ingot` | 1×`royalespells:furnace_staff_fire` | 已加载铁魔法；有序摆放，见原文件 |
+| [giant_snowball](../../src/main/resources/data/royalespells/recipe/giant_snowball.json) | 1×`minecraft:paper` + 1×`minecraft:snowball` | 1×`royalespells:giant_snowball` | 未加载铁魔法；无序 |
+| [giant_snowball_evolution](../../src/main/resources/data/royalespells/recipe/giant_snowball_evolution.json) | 1×`royalespells:giant_snowball` + 1×`minecraft:nether_star` | 1×`royalespells:giant_snowball_evolution` | 未加载铁魔法；无序 |
+| [goblin_barrel](../../src/main/resources/data/royalespells/recipe/goblin_barrel.json) | 1×`minecraft:paper` + 1×`minecraft:rotten_flesh` | 1×`royalespells:goblin_barrel` | 未加载铁魔法；无序 |
+| [goblin_barrel_evolution](../../src/main/resources/data/royalespells/recipe/goblin_barrel_evolution.json) | 1×`royalespells:goblin_barrel` + 1×`minecraft:nether_star` | 1×`royalespells:goblin_barrel_evolution` | 未加载铁魔法；无序 |
+| [goblin_curse](../../src/main/resources/data/royalespells/recipe/goblin_curse.json) | 1×`minecraft:paper` + 1×`minecraft:fermented_spider_eye` | 1×`royalespells:goblin_curse` | 未加载铁魔法；无序 |
+| [graveyard](../../src/main/resources/data/royalespells/recipe/graveyard.json) | 1×`minecraft:paper` + 1×`minecraft:bone` | 1×`royalespells:graveyard` | 未加载铁魔法；无序 |
+| [heal](../../src/main/resources/data/royalespells/recipe/heal.json) | 1×`minecraft:paper` + 1×`minecraft:glistering_melon_slice` | 1×`royalespells:heal` | 未加载铁魔法；无序 |
+| [lightning](../../src/main/resources/data/royalespells/recipe/lightning.json) | 1×`minecraft:paper` + 1×`minecraft:lightning_rod` | 1×`royalespells:lightning` | 未加载铁魔法；无序 |
+| [mirror](../../src/main/resources/data/royalespells/recipe/mirror.json) | 1×`minecraft:paper` + 1×`minecraft:glass_pane` | 1×`royalespells:mirror` | 未加载铁魔法；无序 |
+| [party_rocket](../../src/main/resources/data/royalespells/recipe/party_rocket.json) | 1×`minecraft:paper` + 1×`minecraft:slime_ball` | 1×`royalespells:party_rocket` | 未加载铁魔法；无序 |
+| [poison](../../src/main/resources/data/royalespells/recipe/poison.json) | 1×`minecraft:paper` + 1×`minecraft:spider_eye` | 1×`royalespells:poison` | 未加载铁魔法；无序 |
+| [rage](../../src/main/resources/data/royalespells/recipe/rage.json) | 1×`minecraft:paper` + 1×`minecraft:blaze_powder` | 1×`royalespells:rage` | 未加载铁魔法；无序 |
+| [rocket](../../src/main/resources/data/royalespells/recipe/rocket.json) | 1×`minecraft:paper` + 1×`minecraft:firework_rocket` | 1×`royalespells:rocket` | 未加载铁魔法；无序 |
+| [royal_delivery](../../src/main/resources/data/royalespells/recipe/royal_delivery.json) | 1×`minecraft:paper` + 1×`minecraft:shield` | 1×`royalespells:royal_delivery` | 未加载铁魔法；无序 |
+| [the_log](../../src/main/resources/data/royalespells/recipe/the_log.json) | 1×`minecraft:paper` + 1×`minecraft:oak_log` | 1×`royalespells:the_log` | 未加载铁魔法；无序 |
+| [tornado](../../src/main/resources/data/royalespells/recipe/tornado.json) | 1×`minecraft:paper` + 1×`minecraft:feather` | 1×`royalespells:tornado` | 未加载铁魔法；无序 |
+| [vines](../../src/main/resources/data/royalespells/recipe/vines.json) | 1×`minecraft:paper` + 1×`minecraft:vine` | 1×`royalespells:vines` | 未加载铁魔法；无序 |
+| [void](../../src/main/resources/data/royalespells/recipe/void.json) | 1×`minecraft:paper` + 1×`minecraft:ender_pearl` | 1×`royalespells:void` | 未加载铁魔法；无序 |
+| [warmth](../../src/main/resources/data/royalespells/recipe/warmth.json) | 1×`minecraft:paper` + 1×`minecraft:magma_cream` | 1×`royalespells:warmth` | 未加载铁魔法；无序 |
+| [zap](../../src/main/resources/data/royalespells/recipe/zap.json) | 1×`minecraft:paper` + 1×`minecraft:copper_ingot` | 1×`royalespells:zap` | 未加载铁魔法；无序 |
+| [zap_evolution](../../src/main/resources/data/royalespells/recipe/zap_evolution.json) | 1×`royalespells:zap` + 1×`minecraft:nether_star` | 1×`royalespells:zap_evolution` | 未加载铁魔法；无序 |

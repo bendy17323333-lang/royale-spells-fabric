@@ -33,6 +33,7 @@ public final class IronIntegration {
         for(var profile:IronSpellProfile.values())REGISTERED.put(profile,SPELLS.register(profile.id(),()->profile==IronSpellProfile.MIRROR?new MirrorIronSpell():profile==IronSpellProfile.SKELETON_ARMY_EVOLUTION?new EvolvedArmySpell():new RoyaleIronSpell(profile)));
         TABS.register("iron_scrolls",()->CreativeModeTab.builder().title(Component.translatable("itemGroup.royalespells.iron_scrolls"))
             .icon(()->scroll(IronSpellProfile.ZAP,1)).displayItems((context,output)->{
+                SpiritSpells.creative(output);
                 for(var profile:IronSpellProfile.values()){
                     var spell=spell(profile);
                     if(spell.isEnabled())for(int level=spell.getMinLevel();level<=spell.getMaxLevel();level++)output.accept(scroll(profile,level));
@@ -50,7 +51,7 @@ public final class IronIntegration {
             dev.royalespells.mixin.IronLootCacheAccess.royaleLoot().clear();
             dev.royalespells.mixin.IronLootCacheAccess.royaleForcedLoot().clear();
         });
-        MirrorIronSpell.install();NativeClones.install();ArmyMagic.install();
+        MirrorIronSpell.install();NativeClones.install();ArmyMagic.install();SpiritSpells.install(bus);
     }
     public static net.minecraft.world.item.Item elixirInk(boolean dark,int grade){return new ElixirInkItem(dark,grade);}
     public static AbstractSpell spell(IronSpellProfile profile){return REGISTERED.get(profile).get();}

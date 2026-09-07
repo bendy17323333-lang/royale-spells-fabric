@@ -35,6 +35,8 @@ public final class RoyaleSpells {
     public static EntityType<AllyZombie> ZOMBIE,BARBARIAN,RECRUIT;
     public static EntityType<AllySkeleton> SKELETON;
     public static EntityType<ArmySkeleton> ARMY_SKELETON;
+    public static EntityType<ElementalSpirit> ELEMENTAL_SPIRIT;
+    public static EntityType<SpiritArc> SPIRIT_ARC;
     public static EntityType<RitualEntity> RITUAL;
     public static EntityType<EvolutionBurst> EVOLUTION_BURST;
     public static EntityType<RoyaleUnit> BARBARIAN_HUT;
@@ -49,7 +51,7 @@ public final class RoyaleSpells {
             if(net.neoforged.fml.ModList.get().isLoaded("irons_spellbooks")) {
                 event.register(dev.royalespells.test.IronCompatibilityTests.class);
                 event.register(dev.royalespells.test.Iron151Tests.class);
-                event.register(dev.royalespells.test.IronSpellSystemTests.class);event.register(dev.royalespells.test.ElixirTests.class);event.register(dev.royalespells.test.IronBalanceTests.class);event.register(dev.royalespells.test.ArmyTests.class);
+                event.register(dev.royalespells.test.IronSpellSystemTests.class);event.register(dev.royalespells.test.ElixirTests.class);event.register(dev.royalespells.test.IronBalanceTests.class);event.register(dev.royalespells.test.ArmyTests.class);event.register(dev.royalespells.test.SpiritIronTests.class);
             }
             String report=System.getProperty("royalespells.gametestReport");
             if(report!=null)try {net.minecraft.gametest.framework.GlobalTestReporter.replaceWith(new net.minecraft.gametest.framework.JUnitLikeTestReporter(new java.io.File(report)));}
@@ -81,6 +83,8 @@ public final class RoyaleSpells {
             RECRUIT=unit("royal_recruit",AllyZombie::new,.6f,1.95f);
             SKELETON=unit("graveyard_skeleton",AllySkeleton::new,.48f,1.4f);
             ARMY_SKELETON=unit("army_skeleton",ArmySkeleton::new,.48f,1.4f);
+            ELEMENTAL_SPIRIT=unit("elemental_spirit",ElementalSpirit::new,.6f,.8f);
+            SPIRIT_ARC=Registry.register(BuiltInRegistries.ENTITY_TYPE,id("spirit_chain_arc"),EntityType.Builder.<SpiritArc>of(SpiritArc::new,MobCategory.MISC).sized(.1f,.1f).clientTrackingRange(64).updateInterval(1).build(id("spirit_chain_arc").toString()));
             RITUAL=Registry.register(BuiltInRegistries.ENTITY_TYPE,id("dark_elixir_ritual"),EntityType.Builder.<RitualEntity>of(RitualEntity::new,MobCategory.MISC).sized(.2f,.2f).clientTrackingRange(64).updateInterval(1).build(id("dark_elixir_ritual").toString()));
             EVOLUTION_BURST=Registry.register(BuiltInRegistries.ENTITY_TYPE,id("evolution_deployment"),EntityType.Builder.<EvolutionBurst>of(EvolutionBurst::new,MobCategory.MISC).sized(.1f,.1f).clientTrackingRange(96).updateInterval(1).build(id("evolution_deployment").toString()));
             BARBARIAN_HUT=unit("barbarian_hut",RoyaleUnit::new,3.2f,3.4f);
@@ -108,6 +112,7 @@ public final class RoyaleSpells {
         event.put(RECRUIT,AllyZombie.createAttributes().build());event.put(SKELETON,AllySkeleton.createAttributes().add(Attributes.ATTACK_DAMAGE,3).build());
         event.put(BARBARIAN_HUT,RoyaleUnit.attributes().build());
         event.put(ARMY_SKELETON,AllySkeleton.createAttributes().add(Attributes.ATTACK_DAMAGE,1.8).add(Attributes.MAX_HEALTH,4).build());
+        event.put(ELEMENTAL_SPIRIT,ElementalSpirit.attributes().build());
     }
     private void commands(net.neoforged.neoforge.event.RegisterCommandsEvent event) {
         event.getDispatcher().register(

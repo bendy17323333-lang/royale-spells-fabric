@@ -695,5 +695,195 @@
         "attenuation_distance": 32
       }
     ]
+  },
+  "spirit_fire_deploy": {
+    "subtitle": "subtitle.royalespells.spirit_fire_deploy",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/fire/fire_spirit_deploy_01",
+        "attenuation_distance": 64,
+        "preload": true
+      },
+      {
+        "name": "royalespells:spirits/fire/fire_spirit_deploy_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_fire_jump": {
+    "subtitle": "subtitle.royalespells.spirit_fire_jump",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/fire/fire_spirit_attack_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_fire_impact": {
+    "subtitle": "subtitle.royalespells.spirit_fire_impact",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/fire/sound_fireball_hit_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_fire_step": {
+    "subtitle": "subtitle.royalespells.spirit_fire_step",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/fire/fire_spirit_step_sfx_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_ice_deploy": {
+    "subtitle": "subtitle.royalespells.spirit_ice_deploy",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/ice/ice_sp_deploy_01",
+        "attenuation_distance": 64,
+        "preload": true
+      },
+      {
+        "name": "royalespells:spirits/ice/ice_sp_deploy_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_ice_jump": {
+    "subtitle": "subtitle.royalespells.spirit_ice_jump",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/ice/fire_spirit_attack_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_ice_impact": {
+    "subtitle": "subtitle.royalespells.spirit_ice_impact",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/ice/ice_mage_impact_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_ice_step": {
+    "subtitle": "subtitle.royalespells.spirit_ice_step",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/ice/fire_spirit_step_sfx_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_electro_deploy": {
+    "subtitle": "subtitle.royalespells.spirit_electro_deploy",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/electro/electro_spirit_dep_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_electro_jump": {
+    "subtitle": "subtitle.royalespells.spirit_electro_jump",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/electro/elec_spirit_atk_vo_01",
+        "attenuation_distance": 64,
+        "preload": true
+      },
+      {
+        "name": "royalespells:spirits/electro/elec_spirit_atk_vo_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_electro_impact": {
+    "subtitle": "subtitle.royalespells.spirit_electro_impact",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/electro/tesla_zap_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_electro_step": {
+    "subtitle": "subtitle.royalespells.spirit_electro_step",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/electro/elec_spirit_step_01",
+        "attenuation_distance": 64,
+        "preload": true
+      },
+      {
+        "name": "royalespells:spirits/electro/elec_spirit_step_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_heal_deploy": {
+    "subtitle": "subtitle.royalespells.spirit_heal_deploy",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/heal/heal_spirit_deploy_vo_01_dl",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_heal_jump": {
+    "subtitle": "subtitle.royalespells.spirit_heal_jump",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/heal/fire_spirit_step_vo_01",
+        "attenuation_distance": 64,
+        "preload": true
+      },
+      {
+        "name": "royalespells:spirits/heal/fire_spirit_step_vo_02",
+        "attenuation_distance": 64,
+        "preload": true
+      },
+      {
+        "name": "royalespells:spirits/heal/fire_spirit_step_vo_03",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_heal_impact": {
+    "subtitle": "subtitle.royalespells.spirit_heal_impact",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/heal/heal_magic_03",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_heal_step": {
+    "subtitle": "subtitle.royalespells.spirit_heal_step",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/heal/fire_spirit_step_sfx_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
   }
 }

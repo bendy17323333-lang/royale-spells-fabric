@@ -12,6 +12,12 @@ public abstract class IronElixirAnvilMixin {
     @Inject(method="createResult",at=@At("TAIL"))
     private void royaleInkAndEvolution(CallbackInfo ci) {
         var menu=(ArcaneAnvilMenu)(Object)this;var input=menu.getSlot(0).getItem();var reagent=menu.getSlot(1).getItem();
+        if(input.getItem() instanceof FurnaceStaffItem){
+            var result=SpiritSpells.attune(input,reagent);
+            if(!result.isEmpty())menu.getSlot(2).set(result);
+            // Other materials retain the upstream unique-item/upgrade behavior.
+            return;
+        }
         if(!(reagent.getItem() instanceof ElixirInkItem))return;
         if(!(input.getItem() instanceof io.redspace.ironsspellbooks.item.Scroll) || !ISpellContainer.isSpellContainer(input)
             || !ElixirCrafting.accepts(ISpellContainer.get(input).getSpellAtIndex(0).getSpell())) {

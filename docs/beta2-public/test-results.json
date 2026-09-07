@@ -1,0 +1,765 @@
+{
+  "version": "1.6.1-beta.2",
+  "jar": {
+    "path": "build/libs/royale-spells-neoforge-1.21.1-1.6.1-beta.2.jar",
+    "sha256": "b0900e32ece622fae8cb3193e0b386c94a32a01f861ad1d7bbd0d448305e447f",
+    "bytes": 18508629
+  },
+  "sources_jar": {
+    "path": "build/libs/royale-spells-neoforge-1.21.1-1.6.1-beta.2-sources.jar",
+    "sha256": "c25fd9872c20896c9af7535d175e33ec4c3607263f250cbb73359b65f9196fe4",
+    "bytes": 18127262
+  },
+  "tests": {
+    "standalone": {
+      "passed": 73,
+      "failed": 0,
+      "report": {
+        "path": "docs/beta2-public/standalone-gametests.xml",
+        "sha256": "e9a791c87b4de7b27029d055e776e724f60219256a0a67896fd79391287985ae",
+        "bytes": 7911
+      }
+    },
+    "iron": {
+      "passed": 132,
+      "failed": 0,
+      "report": {
+        "path": "docs/beta2-public/iron-gametests.xml",
+        "sha256": "5c06719260c1ef508dd943eddf152d75516196c7ab1923fdf64bf3bd2b6155fa",
+        "bytes": 14501
+      }
+    }
+  },
+  "runtime": {
+    "minecraft": "1.21.1",
+    "neoforge": "21.1.249",
+    "java": "21.0.12",
+    "exit_code": 0,
+    "run_directory": "run-production-spirit-beta2-verified",
+    "shader_pack": false
+  },
+  "mods": [
+    {
+      "path": "run-production-spirit-beta2-verified/mods/curios-neoforge-9.5.1+1.21.1.jar",
+      "sha256": "a45df2125c26219974aba7507ffc9afe7b83acc941a386af3faacb1cc0056fde",
+      "bytes": 410690
+    },
+    {
+      "path": "run-production-spirit-beta2-verified/mods/geckolib-neoforge-1.21.1-4.9.2.jar",
+      "sha256": "5e548466af9ab6aca7a91a7c7d4dc0dc8bc385e22958aed5da0e7bebd0fa3fba",
+      "bytes": 630584
+    },
+    {
+      "path": "run-production-spirit-beta2-verified/mods/irons_lib-1.21.1-2.1.0.jar",
+      "sha256": "3d0ad1003d6edeaad2500b9922267b4192d2c603cdd846fda339b168f4deff72",
+      "bytes": 406284
+    },
+    {
+      "path": "run-production-spirit-beta2-verified/mods/irons_spellbooks-1.21.1-3.16.3.jar",
+      "sha256": "55a290db9b966e0c5d2f5c051d50775f3db6375cdb52730c4da528bcf5d5daa0",
+      "bytes": 13890045
+    },
+    {
+      "path": "run-production-spirit-beta2-verified/mods/player-animation-lib-forge-2.0.4+1.21.1.jar",
+      "sha256": "dbe5de45f5cd60c0e5e47af14e6d564534a98456e973cf670cb881f6938eee92",
+      "bytes": 203149
+    },
+    {
+      "path": "run-production-spirit-beta2-verified/mods/royale-spells-neoforge-1.21.1-1.6.1-beta.2.jar",
+      "sha256": "b0900e32ece622fae8cb3193e0b386c94a32a01f861ad1d7bbd0d448305e447f",
+      "bytes": 18508629
+    }
+  ],
+  "audio": {
+    "actual_source_events": [
+      "spirit_electro_deploy",
+      "spirit_electro_impact",
+      "spirit_electro_jump",
+      "spirit_electro_step",
+      "spirit_fire_deploy",
+      "spirit_fire_impact",
+      "spirit_fire_jump",
+      "spirit_fire_step",
+      "spirit_heal_deploy",
+      "spirit_heal_impact",
+      "spirit_heal_jump",
+      "spirit_heal_step",
+      "spirit_ice_deploy",
+      "spirit_ice_impact",
+      "spirit_ice_jump",
+      "spirit_ice_step"
+    ],
+    "original_tracks": 22,
+    "attenuation_distance": 64
+  },
+  "markers": [
+    "ROYALE_SPIRIT_FRAME all-four-front size=1600x1000",
+    "ROYALE_SPIRIT_FRAME all-four-angle size=1600x1000",
+    "ROYALE_SPIRIT_FRAME close-fire size=1600x1000",
+    "ROYALE_SPIRIT_FRAME close-ice size=1600x1000",
+    "ROYALE_SPIRIT_FRAME close-electro size=1600x1000",
+    "ROYALE_SPIRIT_FRAME close-heal size=1600x1000",
+    "ROYALE_SPIRIT_FRAME staff-in-hand size=1600x1000",
+    "ROYALE_SPIRIT_FRAME staff-third-person size=1600x1000",
+    "ROYALE_SPIRIT_FRAME staff-inventory size=1600x1000",
+    "ROYALE_SPIRIT_FRAME live-jump-2 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME live-jump-5 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME after-live-burst size=1600x1000",
+    "ROYALE_SPIRIT_NATIVE_LIVE_HIT health=89.0",
+    "ROYALE_SPIRIT_FRAME staff-ice-in-hand size=1600x1000",
+    "ROYALE_SPIRIT_FRAME staff-electro-in-hand size=1600x1000",
+    "ROYALE_SPIRIT_FRAME staff-heal-in-hand size=1600x1000",
+    "ROYALE_SPIRIT_FRAME ice-glow-night size=1600x1000",
+    "ROYALE_SPIRIT_NIGHT_POSITION entity=(0.0, 150.0, 0.0) player=(0.0, 149.37999999523163, -1.9)",
+    "ROYALE_SPIRIT_ORIGINAL_CARDS portraits=4 native=1 ratio=302/363",
+    "ROYALE_SPIRIT_FRAME original-card-bar size=1600x1000",
+    "ROYALE_SPIRIT_FRAME original-card-wheel size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-000 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-001 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-002 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-003 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-004 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-005 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-006 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-link-1 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-007 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-008 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-009 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-010 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-011 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-link-3 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-012 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-013 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-014 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-015 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-016 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-017 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-018 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-link-6 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-019 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-020 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-021 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-022 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-023 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-024 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-025 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-026 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-link-9 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-027 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-028 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-029 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-030 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-031 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-032 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-033 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-034 size=1600x1000",
+    "ROYALE_SPIRIT_FRAME chain-motion-035 size=1600x1000",
+    "ROYALE_SPIRIT_LIVE_CHAIN victims=9 arcs=9",
+    "ROYALE_SPIRIT_FRAME army-guards-approach size=1600x1000",
+    "ROYALE_SPIRIT_FRAME army-general-protected size=1600x1000",
+    "ROYALE_SPIRIT_FRAME army-ghosts-returning size=1600x1000",
+    "ROYALE_SPIRIT_FRAME army-ghosts-flanking size=1600x1000",
+    "ROYALE_SPIRIT_FRAME army-mixed-melee size=1600x1000",
+    "ROYALE_SPIRIT_LIVE_ARMY damageAfterConversion=161.99896",
+    "ROYALE_SPIRIT_FRAME army-living-survivors size=1600x1000",
+    "ROYALE_BETA2_SURVIVORS living=7 ghosts=0",
+    "ROYALE_SPIRIT_FRAME four-spirit-charge size=1600x1000",
+    "ROYALE_BETA2_FOUR_LIVE_HITS count=4",
+    "ROYALE_BETA2_AUDIO_PLAYED events=[spirit_electro_deploy, spirit_electro_impact, spirit_electro_jump, spirit_electro_step, spirit_fire_deploy, spirit_fire_impact, spirit_fire_jump, spirit_fire_step, spirit_heal_deploy, spirit_heal_impact, spirit_heal_jump, spirit_heal_step, spirit_ice_deploy, spirit_ice_impact, spirit_ice_jump, spirit_ice_step]",
+    "ROYALE_SPIRIT_CLIENT_COMPLETE models=4 leapFrames=5 arcs=9"
+  ],
+  "screenshots": [
+    {
+      "path": "docs/beta2-public/screenshots/spirit-after-live-burst.png",
+      "sha256": "2058114fea99575176da436343ff354e332b1aeb714c300eed877739fadbdf50",
+      "bytes": 173010,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-all-four-angle.png",
+      "sha256": "d42469edca9f5022d23a8ea84595af0cf13ec5ef84c181b310a058e921d3d65f",
+      "bytes": 315006,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-all-four-front.png",
+      "sha256": "dc64a2fd8ee5572e02901b1826c0e639522f91ebb42fdb43494caa225e1642dc",
+      "bytes": 233418,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-army-general-protected.png",
+      "sha256": "51d000803787efca202b4e30a9e8421f091247838fc425216e169c9eeb61f417",
+      "bytes": 448540,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-army-ghosts-flanking.png",
+      "sha256": "0e53ba47567611eed54f10ff4b9d6f24356c17c750996919f3ad2051a61f37c3",
+      "bytes": 462868,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-army-ghosts-returning.png",
+      "sha256": "0724a34fca0288c9dd43b31155f1aae8119b65acdb6f1760916f186babe1190e",
+      "bytes": 500292,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-army-guards-approach.png",
+      "sha256": "0e1c5bbeb0a4dc09ba038a23e64336aaa21c6aab9af114e106aaf08a671626b3",
+      "bytes": 500227,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-army-living-survivors.png",
+      "sha256": "a0e7d2a87190b7622dc205f020baab3e039ab890fc10f8d12ca0e5095a270588",
+      "bytes": 431516,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-army-mixed-melee.png",
+      "sha256": "101e3743b8171a58806baccea9ad3ac6165fab9a2bfdf09f6b696716615c7001",
+      "bytes": 461906,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-chain-link-1.png",
+      "sha256": "c7b739aedf1d7e454052cbeefebc458622b8905dabf8d0becc3e58b7c75d9faa",
+      "bytes": 470732,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-chain-link-3.png",
+      "sha256": "05ef171c2746c2aef5c1d03fde50bf82d1354a2df507ae4461ebdb9035beea51",
+      "bytes": 470012,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-chain-link-6.png",
+      "sha256": "82b3af3f0010ac95917afac32c868538ba91e1222323319875d922176c70ec96",
+      "bytes": 470632,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-chain-link-9.png",
+      "sha256": "7f965c336b9de0bb20d094c17bda2e0135738fa01b2a02012f0f090f3d7c02b4",
+      "bytes": 470597,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-close-electro.png",
+      "sha256": "633b250618a49297438c3e79f09efc30f08ca11f6893fa0eb31c4fb3ded2289c",
+      "bytes": 223168,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-close-fire.png",
+      "sha256": "b04bdab18e47525fa9b00cac04f0df667357789fc914643e381541d85032c9b8",
+      "bytes": 198508,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-close-heal.png",
+      "sha256": "e757c186dcfc82a29212f9031047ad65e793ad6898c63c1e9ca4c0133cdb86da",
+      "bytes": 217808,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-close-ice.png",
+      "sha256": "aa4fcffc42f0150fd1f4b1eefdceb8e6693cf9ba75e1c66f5537a73232a23031",
+      "bytes": 318446,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-four-spirit-charge.png",
+      "sha256": "64b118018255ec574a6f10c5987b4d96d15f72e49a85e2df0a269cf35b385c9d",
+      "bytes": 482518,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-ice-glow-night.png",
+      "sha256": "3f9ff16224242e7b33339a8fa23af729378a1a7763d348efdaac43e842b1ef86",
+      "bytes": 160260,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-live-jump-2.png",
+      "sha256": "9f4e07d9741948d479223deb1f62cfe2bf5cf51656dcdc81481107db504aaf2b",
+      "bytes": 224621,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-live-jump-5.png",
+      "sha256": "4266991f857241e7d58c5813e3633be2c18833f146506b6699e84c6dc7552b8d",
+      "bytes": 240769,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-original-card-bar.png",
+      "sha256": "b3b36a577c742518e3196987f7117461ba4c153577a0fe869bf235be1740255d",
+      "bytes": 297358,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-original-card-wheel.png",
+      "sha256": "d7bd53480ead5c93c36936f9724f0fb5ff624db209f11cb5698fe73ed7fde2d2",
+      "bytes": 576647,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-staff-electro-in-hand.png",
+      "sha256": "a173e678bf930751e956a30f4101372b40a34b4e5d8e378527c78a7b5e7306a3",
+      "bytes": 234244,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-staff-heal-in-hand.png",
+      "sha256": "06b43a0867123fb3d2e43ec199934d09f0354f9662416df514d913b0717496af",
+      "bytes": 230958,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-staff-ice-in-hand.png",
+      "sha256": "e77cbbd7753f1e94189ee2aed3158c3d510579441ce7dec74ce4ac309debf9cf",
+      "bytes": 223245,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-staff-in-hand.png",
+      "sha256": "2148669fe8e66b889649e8ca045840d073e35fcb61f11adc7c75d4efd37a897e",
+      "bytes": 313648,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-staff-inventory.png",
+      "sha256": "c93583c2ba07b0532e66f1de88144d6da02a0236a17790df8e5315405cf635f3",
+      "bytes": 272174,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/screenshots/spirit-staff-third-person.png",
+      "sha256": "8135fb8c8fafadf2b33ad85951aba4d57089d2d57da20104da15a092d927e7e1",
+      "bytes": 221160,
+      "size": [
+        1600,
+        1000
+      ]
+    }
+  ],
+  "chain_frames": [
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-000.png",
+      "sha256": "351b6696b5e56a97623e66f2771211bf230f1f8e1c9b10878a8947743c269a23",
+      "bytes": 469900,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-001.png",
+      "sha256": "3f235858368cf9746773098443b3b5a7edf3e960ce2c4d74743507c54fd22144",
+      "bytes": 469675,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-002.png",
+      "sha256": "1cab527a4b9df3ede4d3dcff55ff86171862c7dfa4b4fa17fce00a12206223af",
+      "bytes": 469847,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-003.png",
+      "sha256": "6e26caf11d235d9ae532d893f7a79ad19ee449d0ae10538ed21f55ac29509e54",
+      "bytes": 469975,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-004.png",
+      "sha256": "6a7d04fbcbefc8db2794727e00e9403c2aa1a832a9575fde65208061179534af",
+      "bytes": 469853,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-005.png",
+      "sha256": "aaf71f38cc5e5f844f2fceb9fc5f92b75e6b3e101e6140066dc07fb3ed83b6ee",
+      "bytes": 469886,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-006.png",
+      "sha256": "b0d63ab6a5de979ab6f8e85140001664438f599a0890472ef079e2694cb72b97",
+      "bytes": 468747,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-007.png",
+      "sha256": "29868829a53e14f940e6e25efb0253038acedeb75f71564ad8785d4f98f65746",
+      "bytes": 471050,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-008.png",
+      "sha256": "2c717bcfdcd0e6e06af15ec10a56c9b69b3b23abcfbab04ebd75ed7e13eb9b8b",
+      "bytes": 470792,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-009.png",
+      "sha256": "bfaf7b515ff3015fe0ca2b5d4e6c2941885a46d366ad0e4b7cf713bf0e19f857",
+      "bytes": 470945,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-010.png",
+      "sha256": "b19e40b70ab9adb2b35e94cf6683b2b4de04561066bb78279b0cf0a58d8e2cbb",
+      "bytes": 468906,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-011.png",
+      "sha256": "a0b54b68959c69516a006de5284e1d6d2356f26df6b95050d97571cc6d037506",
+      "bytes": 471517,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-012.png",
+      "sha256": "932a3fb82347416e3563a452e869a04bc6f33f8007345146099dabb247966dcd",
+      "bytes": 470406,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-013.png",
+      "sha256": "0883a15b5d5944d455b23831b60a61c6ba7f6a9f0f97ba5d325faa22ae5d463c",
+      "bytes": 469669,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-014.png",
+      "sha256": "2b8ab776c79e2c47b13e3ab2a45959a433c57ee5b29cfb5c3814f46b0134fc8f",
+      "bytes": 469325,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-015.png",
+      "sha256": "68aff47c1b9ac1320221373f88b932a859056e81cc38a7f9f1425d9021d0c0ab",
+      "bytes": 469533,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-016.png",
+      "sha256": "39eadbdc91813964700eb789710d71b3e2447da6a4edc1949927af22daf06626",
+      "bytes": 467218,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-017.png",
+      "sha256": "afb4121786c88bdcaed85f271527079dc03d8134f629d12701c12bdbcb1aa87d",
+      "bytes": 469773,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-018.png",
+      "sha256": "cabfc6da73e040656c5c5df8877d49e26570556c06b2b935268303d93a3a09ae",
+      "bytes": 470382,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-019.png",
+      "sha256": "82b3af3f0010ac95917afac32c868538ba91e1222323319875d922176c70ec96",
+      "bytes": 470632,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-020.png",
+      "sha256": "8b2d7900e6d75d0fbeb312d64b886d419b69b49a43ef2b7ca74bd44143e1e7e6",
+      "bytes": 471510,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-021.png",
+      "sha256": "cbae46f38d8743bdbade9e030d28594cc6530d449a3d138aa6579b2bb8577624",
+      "bytes": 472016,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-022.png",
+      "sha256": "25653e231bea2b8661f790a0090cc5decd668dab323a610d77fa77173894b35f",
+      "bytes": 470819,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-023.png",
+      "sha256": "331750becb4981c2f21d7c7608b2f23b5d184a7662da3155dc2e8656ca0231dc",
+      "bytes": 474287,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-024.png",
+      "sha256": "1c8d215a8b3ae3d3c6ca11cd84c9811690a15a7a4a73660978a6acf960c0657f",
+      "bytes": 473788,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-025.png",
+      "sha256": "c90edee1a25f5833012f2cd5b0347dfacaa33a69e847fa0ac282779eec69c7b4",
+      "bytes": 473387,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-026.png",
+      "sha256": "3352500d3fcdfd6b2e3c86b7c96a9df2129264016711010c5e15cf5464050ab9",
+      "bytes": 471938,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-027.png",
+      "sha256": "7eda950cd162d6a66406a4b05fc04aede050f8686226263ef6760f017d30b42e",
+      "bytes": 470443,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-028.png",
+      "sha256": "902b35d3b039b46e13bee07dbd91ccb6c39513b33703cc966a8da43ca7f7f6dd",
+      "bytes": 469833,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-029.png",
+      "sha256": "253992994943afbb82372376003cc3c0ac50d961c52c7c6c8040b82a3c6aa4ac",
+      "bytes": 469853,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-030.png",
+      "sha256": "cacd4657cf6d83a1f61ff896ebfd3aa5546a94db8b5c0c5b1b56bb9c25a4011b",
+      "bytes": 469731,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-031.png",
+      "sha256": "161af93053aa23754672be548cf6768d0967e33c8b5f46f6fa79cfc735e892bd",
+      "bytes": 469728,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-032.png",
+      "sha256": "5396573b84fe26cf95eb35a9d825d12525c42144957a76e06b4fb41a56df06de",
+      "bytes": 469799,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-033.png",
+      "sha256": "aa76f04d92f7f1a5061621c075c21e10c3f86dd2fbbe7d13b6b2c0145d1c637f",
+      "bytes": 469736,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-034.png",
+      "sha256": "7827f872146447cfd7d99bf94a6765c5767595f5e8b7c40f676b31bdd56c7f94",
+      "bytes": 469848,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "docs/beta2-public/chain-frames/spirit-chain-motion-035.png",
+      "sha256": "9ec57393e0c8ae262d268215f665a0423f988a4e250d443281cd7b3bbf30a956",
+      "bytes": 469771,
+      "size": [
+        1600,
+        1000
+      ]
+    }
+  ],
+  "limits": [
+    "No user-instance installation or user-world access",
+    "No full modpack/shader/multiplayer-latency coverage",
+    "Audio channel playback confirms runtime loading, not subjective loudness approval"
+  ]
+}

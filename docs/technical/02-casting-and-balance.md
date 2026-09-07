@@ -113,7 +113,7 @@ E = clamp(P / (1 + growth × (level - 1) / 100) - 1, 0, 2)
 
 - 有铁魔法来源 ID：走 `IronIntegration.damage`、原生法术伤害源和 `DamageSources.applyDamage`。虚空在这里额外乘 0.6，因此单目标三次基础预算为 `20 × 3 × 0.6 = 36`。
 - 无铁魔法来源 ID：走 `SpellEngine.hit`，使用间接魔法伤害，并清除原版受伤间隔。这与铁魔法路径的普通伤害不同。
-- 墓园 `AllySkeleton` 的低伤近战单独临时清除目标 `invulnerableTime`，调用结束后恢复不低于原先的值。军团 `ArmySkeleton` 重写了近战方法，不沿用这个清除逻辑。
+- 墓园 `AllySkeleton` 的低伤近战单独临时清除目标 `invulnerableTime`，调用结束后恢复不低于原先的值。Beta 2 在重写近战方法的 `ArmySkeleton` 小兵分支补上同样处理；将军仍保留原生间隔。
 - 无附带击退的伤害使用 `CombatImpact` 抑制原版受伤冲量，显式 `SpellMotion.impulse/pull` 仍有效。当前代码中火球、火箭、派对火箭、滚木、雪球、飓风等有显式位移；这是当前实现清单，不是对原作所有击退规则的额外考证。
 - 玩家目标还受服务端 PVP 设置限制。攻击预算仍会受到护甲、学派抗性、取消事件和受伤间隔影响。
 

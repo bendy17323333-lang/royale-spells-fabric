@@ -331,5 +331,77 @@
       "volume": 0.55,
       "event": "spell_barbarian_hut_end"
     }
+  },
+  "spirit_fire": {
+    "deploy": {
+      "event": "spirit_fire_deploy",
+      "volume": 0.46
+    },
+    "jump": {
+      "event": "spirit_fire_jump",
+      "volume": 0.38
+    },
+    "impact": {
+      "event": "spirit_fire_impact",
+      "volume": 0.48
+    },
+    "step": {
+      "event": "spirit_fire_step",
+      "volume": 0.075
+    }
+  },
+  "spirit_ice": {
+    "deploy": {
+      "event": "spirit_ice_deploy",
+      "volume": 0.46
+    },
+    "jump": {
+      "event": "spirit_ice_jump",
+      "volume": 0.38
+    },
+    "impact": {
+      "event": "spirit_ice_impact",
+      "volume": 0.48
+    },
+    "step": {
+      "event": "spirit_ice_step",
+      "volume": 0.075
+    }
+  },
+  "spirit_electro": {
+    "deploy": {
+      "event": "spirit_electro_deploy",
+      "volume": 0.46
+    },
+    "jump": {
+      "event": "spirit_electro_jump",
+      "volume": 0.38
+    },
+    "impact": {
+      "event": "spirit_electro_impact",
+      "volume": 0.28
+    },
+    "step": {
+      "event": "spirit_electro_step",
+      "volume": 0.075
+    }
+  },
+  "spirit_heal": {
+    "deploy": {
+      "event": "spirit_heal_deploy",
+      "volume": 0.46
+    },
+    "jump": {
+      "event": "spirit_heal_jump",
+      "volume": 0.38
+    },
+    "impact": {
+      "event": "spirit_heal_impact",
+      "volume": 0.48
+    },
+    "step": {
+      "event": "spirit_heal_step",
+      "volume": 0.075
+    }
   }
 }

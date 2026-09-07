@@ -20,7 +20,7 @@ public final class ArmySkeleton extends AllySkeleton {
     private static final EntityDataAccessor<Float> SHIELD=SynchedEntityData.defineId(ArmySkeleton.class,EntityDataSerializers.FLOAT);
     private static final EntityDataAccessor<Integer> AGE=SynchedEntityData.defineId(ArmySkeleton.class,EntityDataSerializers.INT),DISSOLVE=SynchedEntityData.defineId(ArmySkeleton.class,EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> STRIKE=SynchedEntityData.defineId(ArmySkeleton.class,EntityDataSerializers.INT);
-    private UUID army,strikeTarget;private int ghostFlash,nextAttack;private boolean neutralArmy;
+    private UUID army,strikeTarget;private int ghostFlash,nextAttack,formationSlot=-1;private boolean neutralArmy;
     public boolean neutralArmy(){return neutralArmy;}
     public void setNeutralArmy(){neutralArmy=true;}
     public boolean blocksConversionKnockback(){return ghost()||!general()&&getHealth()<=0&&supported();}
@@ -28,18 +28,16 @@ public final class ArmySkeleton extends AllySkeleton {
     @Override protected void defineSynchedData(SynchedEntityData.Builder b){super.defineSynchedData(b);b.define(GENERAL,false);b.define(GHOST,false);b.define(SHIELD,0f);b.define(AGE,0);b.define(DISSOLVE,0);b.define(STRIKE,0);}
     @Override protected void registerGoals(){
         goalSelector.addGoal(0,new FloatGoal(this));
-        goalSelector.addGoal(2,new MeleeAttackGoal(this,1,true){
-            @Override protected void checkAndPerformAttack(LivingEntity target){if(age()>=nextAttack&&entityData.get(STRIKE)==0&&isWithinMeleeAttackRange(target)&&getSensing().hasLineOfSight(target))beginStrike(target);}
-            @Override public boolean canUse(){return age()>18&&dissolve()==0&&super.canUse();}
-            @Override public boolean canContinueToUse(){return dissolve()==0&&super.canContinueToUse();}
-        });
+        goalSelector.addGoal(2,new ArmyCombatGoal(this));
         goalSelector.addGoal(8,new RandomLookAroundGoal(this));
     }
     public boolean general(){return entityData.get(GENERAL);}public boolean ghost(){return entityData.get(GHOST);}public float shield(){return entityData.get(SHIELD);}public int age(){return entityData.get(AGE);}public int dissolve(){return entityData.get(DISSOLVE);}public UUID armyId(){return army;}
+    public int formationSlot(){return general()?0:formationSlot>0?formationSlot:1+Math.floorMod(getUUID().hashCode(),15);}
+    public void formationSlot(int slot){formationSlot=Math.max(0,Math.min(15,slot));}
     public void enlist(UUID owner,UUID army,boolean general,float health,float attack,int life){
         setup(owner,life,false);this.army=army;entityData.set(GENERAL,general);entityData.set(SHIELD,general?health:0f);
         getAttribute(Attributes.MAX_HEALTH).setBaseValue(health);setHealth(health);getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(attack);
-        getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(.26);for(var slot:EquipmentSlot.values())setDropChance(slot,0);
+        getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(general?.25:.28);for(var slot:EquipmentSlot.values())setDropChance(slot,0);
         if(!general){var sword=new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.STONE_SWORD);sword.set(net.minecraft.core.component.DataComponents.ATTRIBUTE_MODIFIERS,net.minecraft.world.item.component.ItemAttributeModifiers.EMPTY);setItemSlot(EquipmentSlot.MAINHAND,sword);}
     }
     public boolean supported(){return level() instanceof ServerLevel world&&ownerId()!=null&&ArmyLedger.get(world.getServer()).valid(ownerId(),army,ArmyLedger.now(world.getServer()));}
@@ -62,7 +60,10 @@ public final class ArmySkeleton extends AllySkeleton {
     @Override public void die(DamageSource source){
         if(!level().isClientSide&&!general()&&!ghost()&&supported()&&!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
             setHealth(getMaxHealth());entityData.set(GHOST,true);setItemSlot(EquipmentSlot.HEAD,net.minecraft.world.item.ItemStack.EMPTY);ghostFlash=18;
-            playSound(ArmySounds.CHANGE,.32f,1.05f);getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(.22);
+            playSound(ArmySounds.CHANGE,.32f,1.05f);getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(.30);
+            // Conversion is a new live combat state, not a half-finished death
+            // or an old windup waiting for a target that has already moved away.
+            deathTime=0;entityData.set(STRIKE,0);strikeTarget=null;nextAttack=age()+4;getNavigation().stop();
             if(level() instanceof ServerLevel world)for(var mob:world.getEntitiesOfClass(Mob.class,getBoundingBox().inflate(32)))if(mob.getTarget()==this)mob.setTarget(null);
             return;
         }
@@ -71,13 +72,47 @@ public final class ArmySkeleton extends AllySkeleton {
     private void finish(){if(general()&&ownerId()!=null&&level() instanceof ServerLevel world)ArmyLedger.get(world.getServer()).finish(ownerId(),army);}
     @Override public void remove(RemovalReason reason){if(reason.shouldDestroy())finish();super.remove(reason);}
     @Override public boolean doHurtTarget(Entity target){
-        if(!(target instanceof LivingEntity victim)||age()<18||dissolve()>0||hasEffect(RoyaleSpells.STUN)||hasEffect(RoyaleSpells.FROZEN)||!SpellEngine.enemy(ownerId(),victim))return false;
+        if(!(level() instanceof ServerLevel)||!(target instanceof LivingEntity victim)||age()<18||dissolve()>0||hasEffect(RoyaleSpells.STUN)||hasEffect(RoyaleSpells.FROZEN)||!SpellEngine.enemy(ownerId(),victim))return false;
         if(victim instanceof net.minecraft.world.entity.player.Player&&level() instanceof ServerLevel w&&!w.getServer().isPvpAllowed())return false;
-        return victim.hurt(damageSources().mobAttack(this),(float)getAttributeValue(Attributes.ATTACK_DAMAGE));
+        // Each small skeleton's weak hit must land, including simultaneous thrusts
+        // and spectral hits. Preserve the victim's timer for unrelated attackers.
+        int previous=victim.invulnerableTime;
+        if(!general())victim.invulnerableTime=0;
+        try{return CombatImpact.withoutKnockback(victim,()->victim.hurt(damageSources().mobAttack(this),(float)getAttributeValue(Attributes.ATTACK_DAMAGE)));}
+        finally{if(!general())victim.invulnerableTime=Math.max(previous,victim.invulnerableTime);}
     }
     @Override public boolean isAttackable(){return !ghost()&&dissolve()==0&&super.isAttackable();}
     @Override public boolean canBeSeenAsEnemy(){return !ghost()&&dissolve()==0&&super.canBeSeenAsEnemy();}
     @Override public boolean isPushable(){return !ghost()&&super.isPushable();}
+    /** Friendly personal space is steering, not incoming knockback or noclip. */
+    private void separateGhosts(){
+        if(!ghost()||age()<18||dissolve()>0||hasEffect(RoyaleSpells.STUN)||hasEffect(RoyaleSpells.FROZEN))return;
+        double x=0,z=0;int count=0;
+        for(var other:level().getEntitiesOfClass(ArmySkeleton.class,getBoundingBox().inflate(.65,.15,.65),e->e!=this&&e.isAlive()&&e.dissolve()==0&&java.util.Objects.equals(army,e.armyId()))){
+            double dx=getX()-other.getX(),dz=getZ()-other.getZ(),distance=Math.hypot(dx,dz);
+            if(distance>=.56)continue;
+            if(distance<.0001){
+                // Opposite directions for the same pair, even at identical coordinates.
+                var low=getUUID().compareTo(other.getUUID())<0?getUUID():other.getUUID();
+                double angle=(low.hashCode()&65535)*Math.PI*2/65536,sign=getUUID().equals(low)?1:-1;
+                dx=Math.cos(angle)*sign;dz=Math.sin(angle)*sign;distance=1;
+                x+=dx*.09;z+=dz*.09;
+            }else{double force=(.56-distance)*.3;x+=dx/distance*force;z+=dz/distance*force;}
+            count++;
+        }
+        if(count==0)return;
+        var target=getTarget();
+        if(target!=null&&target.isAlive()){
+            var toward=target.position().subtract(position()).multiply(1,0,1).normalize();
+            double backward=x*toward.x+z*toward.z;
+            // Let an attacking ghost slide sideways; crowd pressure must not
+            // repeatedly eject it behind the living front row.
+            if(backward<0){x-=toward.x*backward*.9;z-=toward.z*backward*.9;}
+        }
+        double length=Math.hypot(x,z),cap=.075;
+        if(length>cap){x*=cap/length;z*=cap/length;}
+        move(MoverType.SELF,new net.minecraft.world.phys.Vec3(x,0,z));
+    }
     @Override public void tick(){
         super.tick();if(level().isClientSide)return;
         if(hasEffect(RoyaleSpells.FROZEN)&&supported())return;
@@ -92,15 +127,19 @@ public final class ArmySkeleton extends AllySkeleton {
                 entityData.set(STRIKE,strike>=strikeDuration()?0:strike+1);
             }
         }
-        if(!supported()){
+        // Only spectral soldiers depend on the general to stay alive. Living
+        // survivors retain their owner, remaining lifetime and melee AI; without
+        // support their next lethal hit is an ordinary death, never conversion.
+        if(!supported()&&(general()||ghost())){
             setTarget(null);getNavigation().stop();entityData.set(DISSOLVE,dissolve()+1);if(dissolve()>=20)discard();
         }
         if(age()<18||dissolve()>0){getNavigation().stop();setDeltaMovement(0,getDeltaMovement().y,0);}
+        else separateGhosts();
     }
     @Override protected SoundEvent getAmbientSound(){return null;}
     @Override protected SoundEvent getDeathSound(){return general()?ArmySounds.DEATH:ArmySounds.SKELETON_DEATH;}
     @Override protected SoundEvent getHurtSound(DamageSource s){return null;}
     @Override protected void playStepSound(net.minecraft.core.BlockPos p,net.minecraft.world.level.block.state.BlockState s){if(!ghost()&&random.nextInt(3)==0)playSound(ArmySounds.STEP,.08f,1.05f);}
-    @Override public void addAdditionalSaveData(CompoundTag n){super.addAdditionalSaveData(n);if(army!=null)n.putUUID("Army",army);n.putBoolean("NeutralArmy",neutralArmy);n.putBoolean("General",general());n.putBoolean("Ghost",ghost());n.putFloat("ArmyShield",shield());n.putInt("ArmyAge",age());n.putInt("ArmyDissolve",dissolve());}
-    @Override public void readAdditionalSaveData(CompoundTag n){super.readAdditionalSaveData(n);army=n.hasUUID("Army")?n.getUUID("Army"):null;neutralArmy=n.getBoolean("NeutralArmy");entityData.set(GENERAL,n.getBoolean("General"));entityData.set(GHOST,n.getBoolean("Ghost"));entityData.set(SHIELD,n.getFloat("ArmyShield"));entityData.set(AGE,n.getInt("ArmyAge"));entityData.set(DISSOLVE,n.getInt("ArmyDissolve"));}
+    @Override public void addAdditionalSaveData(CompoundTag n){super.addAdditionalSaveData(n);if(army!=null)n.putUUID("Army",army);n.putBoolean("NeutralArmy",neutralArmy);n.putBoolean("General",general());n.putBoolean("Ghost",ghost());n.putFloat("ArmyShield",shield());n.putInt("ArmyAge",age());n.putInt("ArmyDissolve",dissolve());n.putInt("ArmySlot",formationSlot());}
+    @Override public void readAdditionalSaveData(CompoundTag n){super.readAdditionalSaveData(n);army=n.hasUUID("Army")?n.getUUID("Army"):null;neutralArmy=n.getBoolean("NeutralArmy");entityData.set(GENERAL,n.getBoolean("General"));entityData.set(GHOST,n.getBoolean("Ghost"));entityData.set(SHIELD,n.getFloat("ArmyShield"));entityData.set(AGE,n.getInt("ArmyAge"));entityData.set(DISSOLVE,n.getInt("ArmyDissolve"));formationSlot=n.contains("ArmySlot")?Math.max(0,Math.min(15,n.getInt("ArmySlot"))):-1;}
 }

@@ -29,6 +29,13 @@ neoForge {
             systemProperty 'neoforge.enabledGameTestNamespaces','royalespells'
             systemProperty 'royalespells.gametestReport','gametest-results.xml'
         }
+        spiritVisual {
+            client();gameDirectory=project.file('run-spirit-visual')
+            systemProperty 'royalespells.visualSmoke','true'
+            systemProperty 'royalespells.spiritSmoke','true'
+            jvmArgument '-Xmx4G'
+            programArguments.addAll('--username','RoyaleSpiritQA','--width','1600','--height','1000')
+        }
         compatVisual {
             client();gameDirectory=project.file('run-compat-visual')
             systemProperty 'royalespells.visualSmoke','true'
@@ -67,10 +74,10 @@ processResources {
 tasks.withType(JavaCompile).configureEach { options.release = 21; options.encoding = 'UTF-8' }
 
 // All opt-in graphical checks get their own first-run options and save directories.
-for (taskName in ['runVisualSmoke','runShowcase','runCompatVisual']) {
+for (taskName in ['runVisualSmoke','runShowcase','runCompatVisual','runSpiritVisual']) {
     tasks.named(taskName).configure {
         doFirst {
-            def dirName=[runVisualSmoke:'run-visual',runShowcase:'run-showcase',runCompatVisual:'run-compat-visual'][taskName]
+            def dirName=[runVisualSmoke:'run-visual',runShowcase:'run-showcase',runCompatVisual:'run-compat-visual',runSpiritVisual:'run-spirit-visual'][taskName]
             def options=file("${dirName}/options.txt")
             if(!options.exists()) {
                 options.parentFile.mkdirs()

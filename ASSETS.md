@@ -104,3 +104,27 @@ General shield loss reuses the original Clash Royale Guards cue `shield_skele_lo
 ## 1.5.2-beta.1 部署与头盔
 
 将军头盔按当前用户要求改为连通 T 字开口及轻微上窄下宽的桶形。觉醒部队部署特效由 `EvolutionBurstRenderer` 的紫色渐变几何实时绘制，参考原作实机片段 https://www.youtube.com/watch?v=cXGNteyi6Yc 的短促展开与消散节奏；未导入视频或新增贴图。
+
+
+## 本地 Beta 2：精灵与熔炉法杖
+
+此段记录 Beta 2 历史实现。四精灵的原作参考与新建几何见 [SPIRIT-ASSET-SOURCES.json](SPIRIT-ASSET-SOURCES.json)。法杖使用内置 image_gen 生成的专属纹理图，旧提示词见 [FURNACE-IMAGEGEN-PROMPT.md](art/FURNACE-IMAGEGEN-PROMPT.md)。旧几何生成程序归档在 `art/legacy-beta2`；原脚本入口现转调 Beta 3 的 Blockbench 导出器。
+
+## 本地 Beta 3–4：Blockbench 重做与 MineClash 冰精灵
+
+当前八份模型在实际 Blockbench 中经 MCP 创建、导入、检查并导出，工作源见 [Blockbench 说明](art/blockbench-v3/README.md)。火、电、治疗精灵以方块主体、短方肢和贴面像素五官替代圆润设计，四种法杖同步改为切角方锅和相应精灵头。
+
+`spirit_materials.png` 和 `spirit_flame.png` 由内置 ImageGen 生成，原始 PNG 不改动；最终提示词见 [PIXEL-FINAL-PROMPTS.md](art/blockbench-v3/PIXEL-FINAL-PROMPTS.md)。后者为四帧透明像素火焰。物品图集仅在内存上传时生成合适尺寸的最近邻副本，以避免奇数帧尺寸影响全局 mipmap。Beta 4 火焰包围整个主体，电精灵改为短紫色冠簇。
+
+Beta 3 的模型渲染图标已被替换。四张精灵法术图标采用原作卡牌 PNG，从固定 RoyaleAPI 提交复制原字节，保持 302×363 原比例、自带边框，逐文件来源见 [SPIRIT-CARD-SOURCES.json](SPIRIT-CARD-SOURCES.json)。原作图片归 Supercell；仅图标打入 JAR，参考图不打包。
+
+冰精灵的几何、皮肤与发光遮罩来自用户提供并明确允许使用的 `mineclash-0.7.5-1.21.1.jar`；皮肤和遮罩保持原始字节，几何等比缩放并适配本模组骨骼。原作者为 LiziYowo、YangXuKun、4y4u、AX_ZHANG、LieNiaoBiBai，原模组声明 All Rights Reserved。资源保留原作者归属，说明随运行 JAR 的 `assets/royalespells/model_credits.txt` 提供。没有运行或合并该 JAR 的代码，也没有完整移植其 GeckoLib/Molang 动画。
+
+其它 MineClash 模型仅用于三维轮廓和材质研究，见 [模型研究记录](art/mineclash-reference/MODEL-STUDY.md)。Supercell/RoyaleAPI 参考图与整个 MineClash JAR 不打入本模组；本版未公开发布。逐文件来源、用途与哈希见 [SPIRIT-ASSET-SOURCES.json](SPIRIT-ASSET-SOURCES.json)。
+
+
+## 公开铁魔法 Beta 2（1.6.1-beta.2）
+
+冰精灵模型、原贴图和发光遮罩改编自 **[MineClash](https://www.curseforge.com/minecraft/mc-mods/mineclash)**，作者 **LiziYowo / MineClash 团队**，源版本 0.7.5；冰法杖使用同一头部。未捆绑 MineClash 代码，不需要安装 MineClash。
+
+四精灵音效通过原作分类音轨导入，共 22 个 OGG、16 个事件；出处、原文件与单声道转换后哈希和共享片段说明见 [SPIRIT-AUDIO-SOURCES.json](SPIRIT-AUDIO-SOURCES.json)。模型、原卡图和声音的原始归属保留；本版不把第三方素材声明为本项目原创。

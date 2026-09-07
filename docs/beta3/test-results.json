@@ -1,0 +1,175 @@
+{
+  "version": "1.6.0-beta.3",
+  "scope": "Local packaged client; no CurseForge install or GitHub publication.",
+  "jar": {
+    "path": "build/libs/royale-spells-neoforge-1.21.1-1.6.0-beta.3.jar",
+    "sha256": "c5fec2a7d74ee91a58963426601104b498f327aa43537789fba5cb78823a0dcd",
+    "bytes": 17779047
+  },
+  "sources_jar": {
+    "path": "build/libs/royale-spells-neoforge-1.21.1-1.6.0-beta.3-sources.jar",
+    "sha256": "d151273ceb67383404fdfa7bc069ed94dc1a3d0ad4ab02ff391c118bc20ccad3",
+    "bytes": 17416108
+  },
+  "runtime": {
+    "minecraft": "1.21.1",
+    "neoforge": "21.1.249",
+    "java": "21.0.12",
+    "exit_code": 0,
+    "graphics": "no shader pack",
+    "run_directory": "run-production-spirit-beta3-voxel"
+  },
+  "mods": [
+    {
+      "path": "run-production-spirit-beta3-voxel/mods/curios-neoforge-9.5.1+1.21.1.jar",
+      "sha256": "a45df2125c26219974aba7507ffc9afe7b83acc941a386af3faacb1cc0056fde",
+      "bytes": 410690
+    },
+    {
+      "path": "run-production-spirit-beta3-voxel/mods/geckolib-neoforge-1.21.1-4.9.2.jar",
+      "sha256": "5e548466af9ab6aca7a91a7c7d4dc0dc8bc385e22958aed5da0e7bebd0fa3fba",
+      "bytes": 630584
+    },
+    {
+      "path": "run-production-spirit-beta3-voxel/mods/irons_lib-1.21.1-2.1.0.jar",
+      "sha256": "3d0ad1003d6edeaad2500b9922267b4192d2c603cdd846fda339b168f4deff72",
+      "bytes": 406284
+    },
+    {
+      "path": "run-production-spirit-beta3-voxel/mods/irons_spellbooks-1.21.1-3.16.3.jar",
+      "sha256": "55a290db9b966e0c5d2f5c051d50775f3db6375cdb52730c4da528bcf5d5daa0",
+      "bytes": 13890045
+    },
+    {
+      "path": "run-production-spirit-beta3-voxel/mods/player-animation-lib-forge-2.0.4+1.21.1.jar",
+      "sha256": "dbe5de45f5cd60c0e5e47af14e6d564534a98456e973cf670cb881f6938eee92",
+      "bytes": 203149
+    },
+    {
+      "path": "run-production-spirit-beta3-voxel/mods/royale-spells-neoforge-1.21.1-1.6.0-beta.3.jar",
+      "sha256": "c5fec2a7d74ee91a58963426601104b498f327aa43537789fba5cb78823a0dcd",
+      "bytes": 17779047
+    }
+  ],
+  "markers": [
+    "ROYALE_SPIRIT_FRAME all-four-front",
+    "ROYALE_SPIRIT_FRAME all-four-angle",
+    "ROYALE_SPIRIT_FRAME close-fire",
+    "ROYALE_SPIRIT_FRAME close-ice",
+    "ROYALE_SPIRIT_FRAME close-electro",
+    "ROYALE_SPIRIT_FRAME close-heal",
+    "ROYALE_SPIRIT_FRAME staff-in-hand",
+    "ROYALE_SPIRIT_FRAME staff-third-person",
+    "ROYALE_SPIRIT_FRAME staff-inventory",
+    "ROYALE_SPIRIT_FRAME live-jump-2",
+    "ROYALE_SPIRIT_FRAME live-jump-5",
+    "ROYALE_SPIRIT_FRAME after-live-burst",
+    "ROYALE_SPIRIT_NATIVE_LIVE_HIT health=92.3",
+    "ROYALE_SPIRIT_FRAME staff-ice-in-hand",
+    "ROYALE_SPIRIT_FRAME staff-electro-in-hand",
+    "ROYALE_SPIRIT_FRAME staff-heal-in-hand",
+    "ROYALE_SPIRIT_FRAME ice-glow-night",
+    "ROYALE_SPIRIT_NIGHT_POSITION entity=(0.0, 150.0, 0.0) player=(0.0, 149.37999999523163, -1.9)",
+    "ROYALE_SPIRIT_CLIENT_COMPLETE models=4 leapFrames=10"
+  ],
+  "screenshots": [
+    {
+      "path": "docs/beta3/screenshots/spirit-after-live-burst.png",
+      "sha256": "b8f402f85367611718d6b2cf8cf1229a42ab6c172229f3925a5b8e4964be7540",
+      "bytes": 173075
+    },
+    {
+      "path": "docs/beta3/screenshots/spirit-all-four-angle.png",
+      "sha256": "b5b359fd5bd8e96fbd33b8f991f46c1c80d084aa6c16e1a1122db4080b9ac233",
+      "bytes": 288345
+    },
+    {
+      "path": "docs/beta3/screenshots/spirit-all-four-front.png",
+      "sha256": "4f2239df2a9abfaace97480340588d92ded11c887915b3cecfcd13d99bddd3d5",
+      "bytes": 109216
+    },
+    {
+      "path": "docs/beta3/screenshots/spirit-close-electro.png",
+      "sha256": "c02d69cae1be7a317a9526521cd3ac6fdcd7ab57cc2c262e3aca6587e47697cb",
+      "bytes": 216652
+    },
+    {
+      "path": "docs/beta3/screenshots/spirit-close-fire.png",
+      "sha256": "c65a0270b4c10a12a6435675a2821c80c192e27ee40933c3aba87d6efe604074",
+      "bytes": 204116
+    },
+    {
+      "path": "docs/beta3/screenshots/spirit-close-heal.png",
+      "sha256": "025dbfa65ef490d01b5ba4fa344ecab9f0d076583cdf499c7402da07305e5f7c",
+      "bytes": 207709
+    },
+    {
+      "path": "docs/beta3/screenshots/spirit-close-ice.png",
+      "sha256": "ac70680077a83a00ccc48fc36a9717e3eab7a41bf9e3fcf0194dbbc133e66026",
+      "bytes": 256984
+    },
+    {
+      "path": "docs/beta3/screenshots/spirit-ice-glow-night.png",
+      "sha256": "1cf7b439a5f7abf3f6f68679b1351a155502462f9181909c09de311fecac2f9c",
+      "bytes": 160604
+    },
+    {
+      "path": "docs/beta3/screenshots/spirit-live-jump-2.png",
+      "sha256": "59f0b1247120db6facc4e698c451b933310f48b735f28b941339c49c65e15342",
+      "bytes": 211360
+    },
+    {
+      "path": "docs/beta3/screenshots/spirit-live-jump-5.png",
+      "sha256": "f0e8bb89f266e3da03d2af445a62052d37750217e834579a1a72434f57f12868",
+      "bytes": 218039
+    },
+    {
+      "path": "docs/beta3/screenshots/spirit-staff-electro-in-hand.png",
+      "sha256": "d170bfed9b637edb2b5ddfe9b1db7a9010666baa4f0d95dbf1adf60b7d52907f",
+      "bytes": 227164
+    },
+    {
+      "path": "docs/beta3/screenshots/spirit-staff-heal-in-hand.png",
+      "sha256": "0c4e760b085c0106f51ecc7fcb4ce4b6d706f4a335db73ab539816f260d6065f",
+      "bytes": 227550
+    },
+    {
+      "path": "docs/beta3/screenshots/spirit-staff-ice-in-hand.png",
+      "sha256": "63a4942fbe111da1e5f07ca7b4c6a4b5c305cfb25eb2b1fbf59b17e2129f1e0a",
+      "bytes": 219773
+    },
+    {
+      "path": "docs/beta3/screenshots/spirit-staff-in-hand.png",
+      "sha256": "26f7f987f26924a51f0e690ee99935ac8b0196794276728417b822f65299717c",
+      "bytes": 294557
+    },
+    {
+      "path": "docs/beta3/screenshots/spirit-staff-inventory.png",
+      "sha256": "c38323dd14a330547a3da84a468df0d55c550c7dd4f78a2d313e5ee799360dff",
+      "bytes": 262896
+    },
+    {
+      "path": "docs/beta3/screenshots/spirit-staff-third-person.png",
+      "sha256": "26f1283fde84f936ba9f05d88fd85e02f27c2d2499a056ee37b7e0d53d981c1a",
+      "bytes": 213633
+    }
+  ],
+  "manual_visual_review": [
+    "four cube silhouettes and flat faces",
+    "four staff textures",
+    "fire alpha",
+    "third-person grip",
+    "inventory",
+    "live jump",
+    "ice night mask"
+  ],
+  "prior_tests_not_rerun": {
+    "standalone": 59,
+    "iron": 118,
+    "source": "VALIDATION-1.6.0-beta.2.md"
+  },
+  "limits": [
+    "No user aesthetic acceptance claimed",
+    "No full user modpack or multiplayer/shader validation"
+  ]
+}

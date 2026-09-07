@@ -110,7 +110,7 @@ public class ArmyTests {
         var p=player(c);ArmyMagic.spell().onCast(p.level(),1,p,CastSource.NONE,MagicData.getPlayerMagicData(p));var list=army(p);c.assertTrue(list.size()==16,"Formation spawned");var g=list.stream().filter(ArmySkeleton::general).findFirst().orElseThrow();var s=list.stream().filter(e->!e.general()).findFirst().orElseThrow();
         list.forEach(e->{e.setNoAi(true);e.setNoGravity(true);});s.hurt(p.damageSources().generic(),100);c.assertTrue(s.isAlive()&&s.ghost()&&!s.isAttackable(),"Lethal attack transforms a supported skeleton into an untargetable ghost");c.assertFalse(s.hurt(p.damageSources().generic(),1000),"Ghost is indestructible");
         float hp=g.getHealth();g.hurt(p.damageSources().generic(),100);c.assertTrue(g.isAlive()&&g.getHealth()==hp&&g.shield()==0,"Shield absorbs its entire breaking hit without overflow");g.hurt(p.damageSources().generic(),100);c.assertFalse(ArmyLedger.get(p.server).active(p.getUUID(),ArmyLedger.now(p.server)),"General death releases the army lease");
-        c.succeedWhen(()->{c.assertTrue(list.stream().allMatch(Entity::isRemoved),"All surviving army members dissipate after the general falls: ages="+list.stream().map(e->e.age()+"/"+e.dissolve()).toList());cleanup(p);});
+        c.succeedWhen(()->{c.assertTrue(g.isRemoved()&&s.isRemoved(),"General and spectral soldier finish their death/dissolve");c.assertTrue(list.stream().filter(e->e!=g&&e!=s).allMatch(e->e.isAlive()&&e.dissolve()==0&&!e.supported()),"All fourteen living soldiers survive without ghost support");cleanup(p);});
     }
     @GameTest(template="empty",templateNamespace="royalespells",batch="army-ledger")
     public void armyLeaseAndCooldownSurviveSerializationAndEntityUnloading(GameTestHelper c){

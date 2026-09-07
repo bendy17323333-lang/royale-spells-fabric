@@ -1,0 +1,19 @@
+newmtl steel
+Ka 0 0 0
+Kd 1 1 1
+map_Kd royalespells:entity/spirit_materials
+
+newmtl glow
+Ka 1 1 1
+Kd 1 1 1
+map_Kd royalespells:entity/spirit_materials
+
+newmtl flame
+Ka 1 1 1
+Kd 1 1 1
+map_Kd royalespells:entity/spirit_flame
+
+newmtl ice
+Ka 0 0 0
+Kd 1 1 1
+map_Kd royalespells:entity/spirit_ice_mineclash

@@ -2,11 +2,13 @@
 
 本档案面向接手维护、排查问题和添加内容的开发者。它解释代码实际怎样运行、关键设计为什么这样实现，以及修改时需要一起检查哪些位置。
 
-**对应版本：`1.5.2-beta.1`，Minecraft 1.21.1 / NeoForge，铁魔法 1.21.1-3.16.3。**
+**当前公开 Beta 2：`1.6.1-beta.2`，Minecraft 1.21.1 / NeoForge，铁魔法 1.21.1-3.16.3。**
 
-代码基线：[d033310](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/d03331030f40f2f46f505f07abf021ad188f4713)。文档整理日期：2026-09-07。本文档更新没有修改玩法、重建 JAR 或重新执行游戏测试；测试结论引用对应发布版的原始记录。
+公开 Beta 1 的代码基线：[d033310](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/d03331030f40f2f46f505f07abf021ad188f4713)。本地 Beta 2 增加熔炉法杖、四种精灵并修复军团攻击和拥挤；[Beta 2 机制验证](../../VALIDATION-1.6.0-beta.2.md) 保留为历史证据。Beta 3 重做模型和材质；Beta 4 增加按原作时序的连锁电击、全身火焰、原卡图 UI 及军团后排/侧翼 AI，见 [第 11 章](11-furnace-staff-and-spirits.md) 和 [历史验证](../../VALIDATION-1.6.0-beta.4.md)。公开 Beta 2 再修复跳扑漏判、将军逃跑、普通小兵随将军消失，提高精灵伤害并接入原作音效；见 [本版验证](../../VALIDATION-1.6.1-beta.2.md)。
 
 ## 阅读导航
+
+新增：[11 熔炉法杖与精灵](11-furnace-staff-and-spirits.md)，包括工作台配方、奥术铁砧转换、原生施法链、共享冷却、AI、模型与军团修复。
 
 | 章节 | 内容 | 适合解决的问题 |
 | --- | --- | --- |

@@ -1,0 +1,27 @@
+{
+  "standalone": {
+    "tests": 59,
+    "failures": 0
+  },
+  "iron": {
+    "tests": 118,
+    "failures": 0
+  },
+  "version": "1.6.0-beta.2",
+  "sha256": "fb9d6d2425ad4ebd73a6cc6b81cb16eaf62e99fd951ebb951ea3a0ffe452632e",
+  "publication": "local only; do not upload",
+  "textures": "built-in image_gen, unchanged 1254x1254 atlas",
+  "validation_boundary": "Isolated development GameTests and packaged-JAR client. User modpack multiplayer and all shaders not verified.",
+  "packaged_client": {
+    "result": "passed",
+    "resolution": [
+      1600,
+      1000
+    ],
+    "markers": [
+      "ROYALE_SPIRIT_NATIVE_LIVE_HIT health=92.3",
+      "ROYALE_SPIRIT_CLIENT_COMPLETE models=4 leapFrames=10"
+    ],
+    "sha256": "fb9d6d2425ad4ebd73a6cc6b81cb16eaf62e99fd951ebb951ea3a0ffe452632e"
+  }
+}

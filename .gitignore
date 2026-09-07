@@ -1,5 +1,6 @@
 .gradle/
 build/
+dist/
 run*/
 *.log
 .idea/
@@ -13,3 +14,6 @@ __pycache__/
 Thumbs.db
 
 remappedSrc/
+
+# Local study copies of unrelated MineClash models are not release sources.
+art/mineclash-reference/assets/

@@ -19,6 +19,7 @@ import org.joml.Vector3f;
 public class RoyaleClient {
     public RoyaleClient(net.neoforged.bus.api.IEventBus bus) {
         ElixirClient.install(bus);bus.addListener(this::renderers);bus.addListener(this::layers);
+        bus.addListener((net.neoforged.neoforge.client.event.RegisterSpriteSourceTypesEvent event)->event.register(RoyaleSpells.id("furnace_material"),FurnaceSpriteSource.TYPE));
         bus.addListener((net.neoforged.neoforge.client.event.RegisterColorHandlersEvent.Item event)->event.register((stack,tint)->tint==0?0xFFE3D9BF:0xFF842BDC,RoyaleSpells.NEUTRAL_ARMY_EGG));
         bus.addListener((net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent event)->event.registerSpriteSet(RoyaleSpells.SPARK,MagicParticle.Factory::new));
         bus.addListener((net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent event)->event.registerSpriteSet(RoyaleSpells.GRAVE_MOTE,GraveMoteParticle.Factory::new));
@@ -35,6 +36,8 @@ public class RoyaleClient {
         event.registerEntityRenderer(RoyaleSpells.ZOMBIE,ZombieRenderer::new);
         event.registerEntityRenderer(RoyaleSpells.SKELETON,RoyaleSkeletonRenderer::new);
         event.registerEntityRenderer(RoyaleSpells.ARMY_SKELETON,RoyaleSkeletonRenderer::new);
+        event.registerEntityRenderer(RoyaleSpells.ELEMENTAL_SPIRIT,SpiritRenderer::new);
+        event.registerEntityRenderer(RoyaleSpells.SPIRIT_ARC,SpiritArcRenderer::new);
         event.registerEntityRenderer(RoyaleSpells.RITUAL,RitualRenderer::new);
         event.registerEntityRenderer(RoyaleSpells.EVOLUTION_BURST,EvolutionBurstRenderer::new);
         if(IronSpellSystem.loaded)IronSkeletonClient.register(event);
@@ -52,9 +55,10 @@ public class RoyaleClient {
             var client=Minecraft.getInstance();if(client.level==null || context.getPoseStack()==null)return;
             var buffers=client.renderBuffers().bufferSource();var matrices=TargetPreview.matrices(context);var camera=context.getCamera().getPosition();
             float partial=context.getPartialTick().getGameTimeDeltaPartialTick(false);
-            for(var entity:client.level.entitiesForRendering())if(entity.distanceToSqr(camera)<96*96 && (entity instanceof SpellEntity || entity instanceof dev.royalespells.entity.EvolutionBurst)) {
+            for(var entity:client.level.entitiesForRendering())if(entity.distanceToSqr(camera)<96*96 && (entity instanceof SpellEntity || entity instanceof dev.royalespells.entity.EvolutionBurst || entity instanceof dev.royalespells.entity.SpiritArc)) {
                 Vec3 at=entity instanceof SpellEntity effect?effect.visualPosition(partial):entity.position();matrices.pushPose();matrices.translate(at.x-camera.x,at.y-camera.y,at.z-camera.z);
                 if(entity instanceof SpellEntity effect)SpellFields.render(effect,partial,matrices,buffers);
+                else if(entity instanceof dev.royalespells.entity.SpiritArc arc)SpiritArcRenderer.draw(arc,partial,matrices,buffers);
                 else EvolutionBurstRenderer.draw((dev.royalespells.entity.EvolutionBurst)entity,partial,matrices,buffers);
                 matrices.popPose();
             }

@@ -50,6 +50,7 @@ public final class EvolvedArmySpell extends RoyaleIronSpell {
         for(int i=0;i<16;i++){
             var unit=RoyaleSpells.ARMY_SKELETON.create(world);if(unit==null)return;
             unit.enlist(caster.getUUID(),army,i==0,4*power,1.8f*power,LIFETIME);
+            unit.formationSlot(i);
             unit.moveTo(locations.get(i),caster.getYRot(),0);unit.setYBodyRot(caster.getYRot());units.add(unit);
         }
         long now=ArmyLedger.now(world.getServer());int cooldown=caster instanceof ServerPlayer player?io.redspace.ironsspellbooks.capabilities.magic.MagicManager.getEffectiveSpellCooldown(this,player,CastSource.SPELLBOOK):getSpellCooldown();

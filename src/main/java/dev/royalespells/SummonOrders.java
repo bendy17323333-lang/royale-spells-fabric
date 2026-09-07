@@ -40,11 +40,11 @@ public final class SummonOrders {
     public static LivingEntity priority(Mob mob,ServerPlayer player){
         var tag=player.getPersistentData();var world=(ServerLevel)mob.level();
         if(tag.hasUUID(ORDER)&&tag.getLong(UNTIL)>=world.getGameTime()&&world.getEntity(tag.getUUID(ORDER)) instanceof LivingEntity target
-            &&SpellEngine.enemy(player.getUUID(),target)&&mob.distanceToSqr(target)<=32*32)return target;
+            &&target.isAttackable()&&SpellEngine.enemy(player.getUUID(),target)&&mob.distanceToSqr(target)<=32*32)return target;
         return null;
     }
     public static boolean allowed(Mob mob,ServerPlayer player,LivingEntity target){
-        if(!SpellEngine.enemy(player.getUUID(),target))return false;
+        if(!target.isAttackable()||!SpellEngine.enemy(player.getUUID(),target))return false;
         if(target==priority(mob,player))return true;
         if(player.getLastHurtByMob()==target&&player.tickCount-player.getLastHurtByMobTimestamp()<=ORDER_TICKS)return true;
         if(target instanceof Mob enemy&&enemy.getTarget()!=null&&SpellEngine.friendly(player.getUUID(),enemy.getTarget()))return true;
@@ -66,7 +66,7 @@ public final class SummonOrders {
                 else selected=SpellEngine.targets(world,owner,mob.position(),16,false).stream().filter(e->allowed(mob,player,e)&&mob.hasLineOfSight(e)).min(Comparator.comparingDouble(mob::distanceToSqr)).orElse(null);
             }
         }else if(owner==null||master!=null||mob instanceof ArmySkeleton army&&army.neutralArmy()){
-            selected=SpellEngine.targets(world,owner,mob.position(),16,false).stream().filter(e->e!=mob&&mob.hasLineOfSight(e)).min(Comparator.comparingDouble(mob::distanceToSqr)).orElse(null);
+            selected=SpellEngine.targets(world,owner,mob.position(),16,false).stream().filter(e->e!=mob&&e.isAttackable()&&mob.hasLineOfSight(e)).min(Comparator.comparingDouble(mob::distanceToSqr)).orElse(null);
         }
         // Unloaded or disconnected owners do not turn their troops into feral animal hunters.
         if(mob.getTarget()!=selected)mob.setTarget(selected);
