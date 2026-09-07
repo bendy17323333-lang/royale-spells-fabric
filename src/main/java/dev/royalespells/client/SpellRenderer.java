@@ -80,10 +80,11 @@ public class SpellRenderer extends EntityRenderer<SpellEntity> {
                 box(m,v,light,Blocks.GOLD_BLOCK,-.25,1.3,-.25,.5f,.18f,.5f);
             }
             case ARROWS -> {
-                for(int i=0;i<14;i++) {
-                    double a=i*2.4,r=(.7+(i%4)*.9)*spell.radius/4,h=5-((e.time()+delta+i*2)%8)*.6;
-                    box(m,v,light,Blocks.OAK_PLANKS,Math.cos(a)*r,h,Math.sin(a)*r,.045f,.75f,.045f);
-                    box(m,v,light,Blocks.IRON_BLOCK,Math.cos(a)*r-.04,h-.08,Math.sin(a)*r-.04,.12f,.15f,.12f);
+                float time=e.time()+delta,interval=e.ironSpellId().isEmpty()?8:10,phase=time%interval;int wave=Math.min(2,(int)(time/interval));
+                if(phase<6)for(int i=0;i<dev.royalespells.ArrowPattern.COUNT;i++) {
+                    var at=dev.royalespells.ArrowPattern.point(i,wave);double h=Math.max(.06,(4-phase)*1.65);
+                    box(m,v,light,Blocks.OAK_PLANKS,at.x-.0225,h,at.z-.0225,.045f,.75f,.045f);
+                    box(m,v,light,Blocks.IRON_BLOCK,at.x-.06,h-.08,at.z-.06,.12f,.15f,.12f);
                 }
             }
             case VOID -> VoidRenderer.render(e,delta,m,v);
@@ -92,4 +93,3 @@ public class SpellRenderer extends EntityRenderer<SpellEntity> {
         m.popPose();super.render(e,yaw,delta,m,v,light);
     }
 }
-

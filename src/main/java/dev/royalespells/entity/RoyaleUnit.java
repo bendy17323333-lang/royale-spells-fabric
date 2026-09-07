@@ -38,6 +38,7 @@ public class RoyaleUnit extends PathfinderMob implements Summoned {
     @Override public void tick(){
         super.tick();float yaw=entityData.get(FACING);setYRot(yaw);setYHeadRot(yaw);setYBodyRot(yaw);yBodyRotO=yaw;
         if(level().isClientSide||!isAlive())return;
+        if(tickCount==1)SpellSounds.play(level(),position(),"barbarian_hut","deploy");
         if(--life<=0){die(damageSources().generic());discard();return;}
         setDeltaMovement(Vec3.ZERO);getNavigation().stop();setTarget(null);
         if(!hasEffect(RoyaleSpells.STUN)&&spawnClock++%300==0)spawnWave(3);
@@ -48,11 +49,12 @@ public class RoyaleUnit extends PathfinderMob implements Summoned {
         for(int i=0;i<count;i++){
             double side=(i-(count-1)*.5)*.8;
             Vec3 at=SpellEngine.ground(world,position().add(forward.scale(2.7)).add(forward.z*side,0,-forward.x*side));
-            SpellEngine.empower(SpellEngine.summon(world,owner,at,"barbarian",false),power);
+            var unit=SpellEngine.summon(world,owner,at,"barbarian",false);SpellEngine.empower(unit,power);
+            IronSpellSystem.summon(unit,owner,getPersistentData().getString("RoyaleIronSpell"),getPersistentData().getInt("RoyaleIronLevel"));
         }
-        playSound(SoundEvents.WOODEN_DOOR_OPEN,.6f,.9f);
+
     }
-    @Override public void die(DamageSource source){if(!level().isClientSide&&!deathSpawned){deathSpawned=true;spawnWave(1);}super.die(source);}
+    @Override public void die(DamageSource source){if(!level().isClientSide&&!deathSpawned){deathSpawned=true;SpellSounds.play(level(),position(),"barbarian_hut","end");spawnWave(1);}super.die(source);}
     public UUID ownerId(){return owner;}public boolean isClone(){return false;}
     public void setPower(float power){this.power=power;}public float power(){return power;}public int remainingLife(){return life;}
     public void setup(UUID owner,int life,boolean clone){this.owner=owner;this.life=life;setPersistenceRequired();setCanPickUpLoot(false);}

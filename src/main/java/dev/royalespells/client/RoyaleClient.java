@@ -18,11 +18,13 @@ import org.joml.Vector3f;
 @net.neoforged.fml.common.Mod(value=RoyaleSpells.MOD_ID,dist=net.neoforged.api.distmarker.Dist.CLIENT)
 public class RoyaleClient {
     public RoyaleClient(net.neoforged.bus.api.IEventBus bus) {
-        bus.addListener(this::renderers);bus.addListener(this::layers);
+        ElixirClient.install(bus);bus.addListener(this::renderers);bus.addListener(this::layers);
+        bus.addListener((net.neoforged.neoforge.client.event.RegisterColorHandlersEvent.Item event)->event.register((stack,tint)->tint==0?0xFFE3D9BF:0xFF842BDC,RoyaleSpells.NEUTRAL_ARMY_EGG));
         bus.addListener((net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent event)->event.registerSpriteSet(RoyaleSpells.SPARK,MagicParticle.Factory::new));
+        bus.addListener((net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent event)->event.registerSpriteSet(RoyaleSpells.GRAVE_MOTE,GraveMoteParticle.Factory::new));
         bus.addListener(CardRenderer::register);
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(this::fields);
-        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(this::aim);
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(TargetPreview::render);
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(this::customEntityOverlays);
         SpellEntity.visualTick=RoyaleClient::particles;
         if(Boolean.getBoolean("royalespells.buildShowcase"))ShowcaseCapture.install();
@@ -31,7 +33,11 @@ public class RoyaleClient {
     private void renderers(net.neoforged.neoforge.client.event.EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(RoyaleSpells.SPELL,SpellRenderer::new);
         event.registerEntityRenderer(RoyaleSpells.ZOMBIE,ZombieRenderer::new);
-        event.registerEntityRenderer(RoyaleSpells.SKELETON,SkeletonRenderer::new);
+        event.registerEntityRenderer(RoyaleSpells.SKELETON,RoyaleSkeletonRenderer::new);
+        event.registerEntityRenderer(RoyaleSpells.ARMY_SKELETON,RoyaleSkeletonRenderer::new);
+        event.registerEntityRenderer(RoyaleSpells.RITUAL,RitualRenderer::new);
+        event.registerEntityRenderer(RoyaleSpells.EVOLUTION_BURST,EvolutionBurstRenderer::new);
+        if(IronSpellSystem.loaded)IronSkeletonClient.register(event);
         event.registerEntityRenderer(RoyaleSpells.BARBARIAN,c->new TroopRenderer<>(c,"barbarian",.45f));
         event.registerEntityRenderer(RoyaleSpells.RECRUIT,c->new TroopRenderer<>(c,"royal_recruit",.5f));
         event.registerEntityRenderer(RoyaleSpells.BARBARIAN_HUT,c->new TroopRenderer<>(c,"barbarian_hut",1.7f));
@@ -42,39 +48,19 @@ public class RoyaleClient {
         for(var skin:event.getSkins()){net.minecraft.client.renderer.entity.LivingEntityRenderer renderer=event.getSkin(skin);renderer.addLayer(new SpellTint.ColorFeature(renderer));}
     }
     private void fields(net.neoforged.neoforge.client.event.RenderLevelStageEvent context) {
-            if(context.getStage()!=net.neoforged.neoforge.client.event.RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS)return;
+            if(context.getStage()!=net.neoforged.neoforge.client.event.RenderLevelStageEvent.Stage.AFTER_PARTICLES)return;
             var client=Minecraft.getInstance();if(client.level==null || context.getPoseStack()==null)return;
-            var buffers=client.renderBuffers().bufferSource();var matrices=context.getPoseStack();var camera=context.getCamera().getPosition();
-            for(var entity:client.level.entitiesForRendering())if(entity instanceof SpellEntity effect && effect.distanceToSqr(camera)<96*96) {
-                Vec3 at=effect.visualPosition(context.getPartialTick().getGameTimeDeltaPartialTick(false));matrices.pushPose();matrices.translate(at.x-camera.x,at.y-camera.y,at.z-camera.z);
-                SpellFields.render(effect,context.getPartialTick().getGameTimeDeltaPartialTick(false),matrices,buffers);matrices.popPose();
+            var buffers=client.renderBuffers().bufferSource();var matrices=TargetPreview.matrices(context);var camera=context.getCamera().getPosition();
+            float partial=context.getPartialTick().getGameTimeDeltaPartialTick(false);
+            for(var entity:client.level.entitiesForRendering())if(entity.distanceToSqr(camera)<96*96 && (entity instanceof SpellEntity || entity instanceof dev.royalespells.entity.EvolutionBurst)) {
+                Vec3 at=entity instanceof SpellEntity effect?effect.visualPosition(partial):entity.position();matrices.pushPose();matrices.translate(at.x-camera.x,at.y-camera.y,at.z-camera.z);
+                if(entity instanceof SpellEntity effect)SpellFields.render(effect,partial,matrices,buffers);
+                else EvolutionBurstRenderer.draw((dev.royalespells.entity.EvolutionBurst)entity,partial,matrices,buffers);
+                matrices.popPose();
             }
             if(Boolean.getBoolean("royalespells.visualSmoke"))RangeDepthAudit.before();
             buffers.endBatch(SpellLayers.EFFECT);
             if(Boolean.getBoolean("royalespells.visualSmoke"))RangeDepthAudit.after();
-    }
-    private void aim(net.neoforged.neoforge.client.event.RenderLevelStageEvent context) {
-            if(context.getStage()!=net.neoforged.neoforge.client.event.RenderLevelStageEvent.Stage.AFTER_LEVEL)return;
-            var client=Minecraft.getInstance();
-            if(client.player==null || client.options.hideGui || context.getPoseStack()==null)return;
-            var item=client.player.getMainHandItem().getItem();
-            if(!SpellEngine.isCard(item))item=client.player.getOffhandItem().getItem();
-            if(!SpellEngine.isCard(item))return;
-            double radius=item instanceof SpellItem card?card.spell.radius:1.6;
-            Vec3 center=SpellEngine.aim(client.player,32),camera=context.getCamera().getPosition();
-            PoseStack matrices=context.getPoseStack();matrices.pushPose();matrices.translate(-camera.x,-camera.y,-camera.z);
-            var consumers=client.renderBuffers().bufferSource();
-            VertexConsumer vertices=consumers.getBuffer(RenderType.lines());
-            int rgb=item instanceof SpellItem card?card.spell.color:0x79AEFF;float r=(rgb>>16&255)/255f,g=(rgb>>8&255)/255f,b=(rgb&255)/255f;
-            for(int i=0;i<64;i++) {
-                double a=i*Math.PI/32,c=(i+1)*Math.PI/32;
-                Vec3 from=center.add(Math.cos(a)*radius,0.1,Math.sin(a)*radius);
-                Vec3 to=center.add(Math.cos(c)*radius,0.1,Math.sin(c)*radius);
-                line(matrices,vertices,from,to,r,g,b,0.9f);
-            }
-            line(matrices,vertices,center.add(-0.3,0.1,0),center.add(0.3,0.1,0),r,g,b,1);
-            line(matrices,vertices,center.add(0,0.1,-0.3),center.add(0,0.1,0.3),r,g,b,1);
-            consumers.endBatch(RenderType.lines());matrices.popPose();
     }
     private void customEntityOverlays(net.neoforged.neoforge.client.event.RenderLevelStageEvent context) {
         if(context.getStage()!=net.neoforged.neoforge.client.event.RenderLevelStageEvent.Stage.AFTER_ENTITIES)return;
@@ -85,7 +71,7 @@ public class RoyaleClient {
             && (VisualState.frozen(living)||VisualState.rooted(living)) && living.distanceToSqr(camera)<96*96
             && !(dispatcher.getRenderer(living) instanceof net.minecraft.client.renderer.entity.LivingEntityRenderer)) {
             // GeckoLib and other custom renderers do not pass through vanilla's living-renderer mixin.
-            Vec3 at=living.getPosition(delta);var matrices=context.getPoseStack();matrices.pushPose();
+            Vec3 at=living.getPosition(delta);var matrices=TargetPreview.matrices(context);matrices.pushPose();
             matrices.translate(at.x-camera.x,at.y-camera.y,at.z-camera.z);
             SpellOverlays.render(living,delta,matrices,buffers,dispatcher.getPackedLightCoords(living,delta));matrices.popPose();
         }
@@ -97,6 +83,12 @@ public class RoyaleClient {
     }
     private static void particles(SpellEntity e) {
         Spell spell=e.spell();var world=e.level();int t=e.time();Vec3 p=e.visualPosition(0);
+        if(spell==Spell.GRAVEYARD && e.tickCount%2==0 && world.random.nextFloat()<FieldAnimation.opacity(spell,t,e.duration())) {
+            for(int i=0;i<2;i++) {
+                double angle=world.random.nextDouble()*Math.PI*2,radius=Math.sqrt(world.random.nextDouble())*spell.radius*FieldAnimation.opening(spell,t);
+                world.addParticle(RoyaleSpells.GRAVE_MOTE,p.x+Math.cos(angle)*radius,p.y+.12+world.random.nextDouble()*.25,p.z+Math.sin(angle)*radius,Math.cos(angle)*.006,.015,Math.sin(angle)*.006);
+            }
+        }
         if(spell==Spell.ROCKET || spell==Spell.PARTY_ROCKET) {
             double progress=(double)t/spell.duration;
             Vec3 tail=RocketMotion.exhaust(e.start(),e.target(),progress);

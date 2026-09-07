@@ -16,12 +16,13 @@ public final class TroopItem extends Item {
     public TroopItem(TroopCard card){super(new Properties().stacksTo(1).rarity(Rarity.RARE));this.card=card;}
     @Override public InteractionResultHolder<ItemStack> use(Level world,Player player,InteractionHand hand) {
         var stack=player.getItemInHand(hand);
-        if(player.hasEffect(RoyaleSpells.STUN) || !world.isClientSide && !SpellEngine.deploy((ServerPlayer)player,card))return InteractionResultHolder.fail(stack);
+        if(player.hasEffect(RoyaleSpells.STUN) || !IronSpellSystem.allowCard(player) || !world.isClientSide && !SpellEngine.deploy((ServerPlayer)player,card))return InteractionResultHolder.fail(stack);
         return InteractionResultHolder.sidedSuccess(stack,world.isClientSide);
     }
     @Override public void appendHoverText(ItemStack stack,Item.TooltipContext context,List<Component> lines,TooltipFlag type) {
         lines.add(Component.translatable("tooltip.royalespells.cost",card.cost).withStyle(ChatFormatting.LIGHT_PURPLE));
         lines.add(Component.translatable("troop.royalespells."+card.id()).withStyle(ChatFormatting.GRAY));
         lines.add(Component.translatable("tooltip.royalespells.use").withStyle(ChatFormatting.DARK_GRAY));
+        if(IronSpellSystem.loaded)lines.add(Component.translatable("message.royalespells.use_iron_scroll").withStyle(ChatFormatting.GOLD));
     }
 }

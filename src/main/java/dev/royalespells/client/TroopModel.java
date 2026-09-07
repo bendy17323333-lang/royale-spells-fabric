@@ -17,10 +17,11 @@ import java.util.*;
 public final class TroopModel<T extends LivingEntity> extends EntityModel<T> implements ArmedModel {
     private final Map<String,Part> parts=new LinkedHashMap<>();
     private final String kind;
+    private float opacity=1,tintRed=1,tintGreen=1,tintBlue=1;
     private static class Part {
-        String name,parent;float[] pivot,rotation;float pitch,yaw,roll;List<Mesh> boxes=new ArrayList<>();List<Part> children=new ArrayList<>();
+        String name,parent;float[] pivot,rotation;float pitch,yaw,roll;boolean visible=true;List<Mesh> boxes=new ArrayList<>();List<Part> children=new ArrayList<>();
     }
-    private record Mesh(float[][] faces,float[][] normals,int material,float[] color,boolean flat){}
+    private record Mesh(float[][] faces,float[][] normals,int material,float[] color,boolean flat,boolean emissive){}
     private static final int[][] NORMALS={{0,0,-1},{0,0,1},{-1,0,0},{1,0,0},{0,-1,0},{0,1,0}};
     public TroopModel(String kind) {
         this.kind=kind;
@@ -35,7 +36,7 @@ public final class TroopModel<T extends LivingEntity> extends EntityModel<T> imp
     private static float[] array(JsonArray array){return new float[]{array.get(0).getAsFloat(),array.get(1).getAsFloat(),array.get(2).getAsFloat()};}
     private void pose(String name,float pitch,float yaw,float roll){Part p=parts.get(name);if(p!=null){p.pitch=pitch;p.yaw=yaw;p.roll=roll;}}
     @Override public void setupAnim(T entity,float limbAngle,float limbDistance,float age,float headYaw,float headPitch) {
-        parts.values().forEach(p->{p.pitch=0;p.yaw=0;p.roll=0;});
+        parts.values().forEach(p->{p.pitch=0;p.yaw=0;p.roll=0;p.visible=true;});opacity=tintRed=tintGreen=tintBlue=1;
         float walk=Mth.cos(limbAngle*.65f)*limbDistance;float breathe=Mth.sin(age*.07f)*.025f;
         pose("head",headPitch*Mth.DEG_TO_RAD,headYaw*Mth.DEG_TO_RAD,0);
         pose("right_leg",walk,0,0);pose("left_leg",-walk,0,0);
@@ -45,7 +46,7 @@ public final class TroopModel<T extends LivingEntity> extends EntityModel<T> imp
         pose("jaw",Math.abs(walk)*.12f,0,0);
         if(attackTime>0){float strike=Mth.sin(attackTime*Mth.PI);pose("right_arm",-strike*1.9f-.2f,0,-strike*.12f);pose("body",0,-strike*.1f,0);}
         if(kind.equals("royal_recruit")){pose("left_arm",-.32f,0,-.05f);pose("right_arm",-.18f-walk*.25f,0,.025f);}
-        if(dev.royalespells.VisualState.frozen(entity))parts.values().forEach(p->{p.pitch=0;p.yaw=0;p.roll=0;});
+        for(var p:parts.values()){var held=FrozenRender.pose(p,p.pitch,p.yaw,p.roll);p.pitch=held[0];p.yaw=held[1];p.roll=held[2];}
     }
     @Override public void translateToHand(HumanoidArm arm,PoseStack matrices){
         Part part=parts.get(arm==HumanoidArm.RIGHT?"right_arm":"left_arm");
@@ -66,14 +67,15 @@ public final class TroopModel<T extends LivingEntity> extends EntityModel<T> imp
         m.mulPose(Axis.XP.rotation(p.rotation[0]*Mth.DEG_TO_RAD+p.pitch));
     }
     @Override public void renderToBuffer(PoseStack matrices,VertexConsumer vertices,int light,int overlay,int color) {
-        float red=(color>>16&255)/255f,green=(color>>8&255)/255f,blue=(color&255)/255f,alpha=(color>>>24)/255f;
+        float red=(color>>16&255)/255f*tintRed,green=(color>>8&255)/255f*tintGreen,blue=(color&255)/255f*tintBlue,alpha=(color>>>24)/255f*opacity;
         matrices.pushPose();matrices.scale(1/16f,1/16f,1/16f);
         for(Part p:parts.values())if(p.parent.isEmpty())renderPart(p,matrices,vertices,light,overlay,red,green,blue,alpha);
         matrices.popPose();
     }
     private void renderPart(Part p,PoseStack m,VertexConsumer v,int light,int overlay,float r,float g,float b,float a) {
+        if(!p.visible)return;
         m.pushPose();transform(p,m,1);
-        for(var box:p.boxes)for(int i=0;i<box.faces.length;i++)face(m,v,box.faces[i],box.normals[i],box.material,box.flat,light,overlay,r*box.color[0],g*box.color[1],b*box.color[2],a);
+        for(var box:p.boxes)for(int i=0;i<box.faces.length;i++)face(m,v,box.faces[i],box.normals[i],box.material,box.flat,box.emissive?15728880:light,overlay,r*box.color[0],g*box.color[1],b*box.color[2],a);
         for(Part child:p.children)renderPart(child,m,v,light,overlay,r,g,b,a);
         m.popPose();
     }
@@ -93,7 +95,7 @@ public final class TroopModel<T extends LivingEntity> extends EntityModel<T> imp
             var f=faces[i];var n=new org.joml.Vector3f(f[3]-f[0],f[4]-f[1],f[5]-f[2]).cross(f[6]-f[0],f[7]-f[1],f[8]-f[2]).normalize();
             normals[i]=new float[]{n.x,n.y,n.z};
         }
-        return new Mesh(faces,normals,material,json.has("color")?array(json.getAsJsonArray("color")):new float[]{1,1,1},json.has("flat")&&json.get("flat").getAsBoolean());
+        return new Mesh(faces,normals,material,json.has("color")?array(json.getAsJsonArray("color")):new float[]{1,1,1},json.has("flat")&&json.get("flat").getAsBoolean(),json.has("emissive")&&json.get("emissive").getAsBoolean());
     }
     private void face(PoseStack m,VertexConsumer v,float[] xyz,float[] normal,int material,boolean flat,int light,int overlay,float r,float g,float b,float a) {
         float u=(material%4)*.25f+.012f,w=(material/4)*.25f+.012f;

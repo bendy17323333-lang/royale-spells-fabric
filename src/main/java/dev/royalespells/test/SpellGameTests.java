@@ -95,11 +95,17 @@ public class SpellGameTests {
         original.discard();SpellEngine.cloneAllies(c.getLevel(),owner,clones.get(0).position(),4);
         c.assertTrue(c.getLevel().getEntitiesOfClass(AllySkeleton.class,clones.get(0).getBoundingBox().inflate(5),e->owner.equals(e.ownerId())).size()==1,"Cannot recursively clone clones");finish(c,owner);
     }
-    @GameTest(template=EMPTY_STRUCTURE,timeoutTicks=80)
+    @GameTest(template=EMPTY_STRUCTURE,timeoutTicks=240)
     public void evolvedSnowballCarriesAndReleases(GameTestHelper c) {
         UUID owner=UUID.randomUUID();var target=c.spawnWithNoFreeWill(EntityType.IRON_GOLEM,2,3,2);target.setNoAi(true);target.setNoGravity(true);
-        Vec3 before=target.position();cast(c,Spell.GIANT_SNOWBALL_EVOLUTION,owner,before);
-        c.runAfterDelay(46,()->{c.assertTrue(target.getZ()>before.z+2.5,"Snowball carries target forward");c.assertFalse(target.hasEffect(RoyaleSpells.STUN),"Snowball releases target");finish(c,owner,target);});
+        var forced=new ArrayList<net.minecraft.world.level.ChunkPos>();var origin=new net.minecraft.world.level.ChunkPos(target.blockPosition());
+        for(int x=-1;x<=1;x++)for(int z=-1;z<=1;z++){var chunk=new net.minecraft.world.level.ChunkPos(origin.x+x,origin.z+z);if(c.getLevel().setChunkForced(chunk.x,chunk.z,true))forced.add(chunk);}
+        Vec3 before=target.position();var effect=cast(c,Spell.GIANT_SNOWBALL_EVOLUTION,owner,before);
+        c.succeedWhen(()->{
+            c.assertTrue(effect.time()>=effect.duration(),"Wait for actual snowball release");
+            c.assertTrue(target.getZ()>before.z+2.5,"Snowball carries target forward");c.assertFalse(target.hasEffect(RoyaleSpells.STUN),"Snowball releases target");
+            for(var chunk:forced)c.getLevel().setChunkForced(chunk.x,chunk.z,false);finish(c,owner,target);
+        });
     }
     @GameTest(template=EMPTY_STRUCTURE,timeoutTicks=240)
     public void graveyardSpawnsOverTimeAndCleansEffect(GameTestHelper c) {

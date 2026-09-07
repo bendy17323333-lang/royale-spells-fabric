@@ -23,7 +23,7 @@ final class ZapRenderer {
         float pulse=(.7f+.3f*Mth.cos(age*8))*fade;
         var v=buffers.getBuffer(SpellLayers.EFFECT);
         // Warm white cores with an icy blue corona; the evolved second stroke has a violet fringe.
-        float[] halo=second?new float[]{.52f,.45f,1}:new float[]{.2f,.6f,1};
+        float[] halo=second?new float[]{.76f,.12f,1}:new float[]{.2f,.6f,1};
         Vec3 top=new Vec3(.25,5.8,0),impact=new Vec3(0,.14,0);
         Vec3[] trunk=path(top,impact,13,.27,seed+frame*37);
         float reach=Mth.clamp((age+.18f)/.85f,0,1);
@@ -88,8 +88,9 @@ final class ZapRenderer {
     private static void arc(PoseStack m,VertexConsumer v,Vec3 a,Vec3 b,float width,float alpha,float[] halo){
         if(alpha<=0||a.distanceToSqr(b)<1e-8)return;
         beam(m,v,a,b,width*3.4f,halo[0],halo[1],halo[2],alpha*.12f);
-        beam(m,v,a,b,width*1.8f,.52f,.8f,1,alpha*.35f);
-        beam(m,v,a,b,width,.91f,.98f,1,alpha);
+        boolean violet=halo[0]>.6f;
+        beam(m,v,a,b,width*1.8f,violet?.84f:.52f,violet?.32f:.8f,1,alpha*.55f);
+        beam(m,v,a,b,width,violet?.96f:.91f,violet?.70f:.98f,1,alpha);
     }
     private static void beam(PoseStack m,VertexConsumer v,Vec3 a,Vec3 b,float width,float r,float g,float blue,float alpha){
         Vec3 direction=b.subtract(a).normalize();

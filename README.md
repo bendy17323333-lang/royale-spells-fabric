@@ -1,117 +1,67 @@
-# 皇室法术 · Royale Spells
+# 皇室法术 · 铁魔法适配 Beta 1
 
-把皇室战争的法术带进 **Minecraft Java 1.21.1 / NeoForge**。
+**Royale Spells `1.5.2-beta.1` · Minecraft Java 1.21.1 · NeoForge**
 
-当前版本 **1.2.0**：28 张法术卡牌与野蛮人小屋，原版卡图、圣水、觉醒、召唤物和独立法术效果。
+把皇室战争法术融入 Iron’s Spells ’n Spellbooks 的法术系统：学派、稀有度、等级、魔力、卷轴制作、抄写、提取、奥术铁砧升级、法术书和武器施法。包括原有 28 种法术、野蛮人小屋，以及新的觉醒骷髅军团，共 **30 种铁魔法原生法术**。
 
-Clash Royale inspired spells and a Barbarian Hut for Minecraft Java 1.21.1, built with NeoForge, with optional Iron's Spells combat compatibility.
+这是铁魔法完整适配的**首个公开 Beta**，发布为 GitHub 预发布版。独立卡牌玩法仍可在没有铁魔法时运行；军团卷轴、号角和墨水替代流程需要铁魔法。
 
-## 下载与安装
+## 下载和安装
 
-本分支是 **Minecraft 1.21.1 NeoForge 版**，保留 1.2.0 的 29 张卡牌、模型、原版音效和 26 场录制地图。
+[下载 Beta 1](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.5.2-beta.1-neoforge-mc1.21.1)。安装 `royale-spells-neoforge-1.21.1-1.5.2-beta.1.jar` 到 NeoForge 实例的 `mods`；同一实例只保留一个皇室法术 JAR。更新前退出游戏并备份存档。本版不能放进 Fabric 实例。
 
-| Minecraft | 加载器 | 下载 |
-| --- | --- | --- |
-| 1.20.1 | Fabric | [1.2.0 发布页](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0) |
-| 1.21.1 | Fabric | [1.2.0 发布页](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0-mc1.21.1) |
-| 1.21.1 | NeoForge | [本版本发布页](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0-neoforge-mc1.21.1) |
+| 组件 | 本次验证版本 |
+| --- | --- |
+| Minecraft / Java | 1.21.1 / 21 |
+| NeoForge | 21.1.249（最低声明 21.1.200） |
+| Iron’s Spells ’n Spellbooks | 1.21.1-3.16.3 |
+| GeckoLib | 4.9.2 |
+| playerAnimator | 2.0.4+1.21.1 |
+| Curios | 9.5.1+1.21.1 |
+| Iron’s Lib | 1.21.1-2.1.0 |
 
-本版本需要 **Java 21** 和 **NeoForge 21.1.200 或更新的 21.1.x**，实际验证使用 **21.1.249**。从 [发布页](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0-neoforge-mc1.21.1) 下载：
+第三方模组没有包含在下载包里；通过各模组的官方发布渠道安装。多人模式客户端、服务端使用相同模组版本。源码 ZIP 用于开发，不要放入 `mods`。
 
-- `royale-spells-neoforge-1.21.1-1.2.0.jar`：模组本体，放入 NeoForge 实例的 `mods`。
-- `royale-spells-1.2.0-neoforge-1.21.1.zip`：本体、说明、预览和录制地图合集。
-- `royale-spells-1.2.0-neoforge-mc1.21.1-recording-map.zip`：独立录制／测试地图。
-- `royale-spells-1.2.0-neoforge-mc1.21.1-source.zip`：完整源码、资源和可编辑模型。
+## 生存获取
 
-本体可独立安装，不需要 Fabric API 或铁魔法。升级时退出游戏，替换旧 JAR；同一实例只保留一个加载器版本。联机时服务端和每位玩家均需安装本模组。
+- 普通皇室法术进入铁魔法对应学派的卷轴候选池，也可通过卷轴锻造台制作，再抄写到法术书或附到可施法武器。学习与启用条件遵循铁魔法配置。
+- 新生成的火术师塔附近有概率出现圣水池；原地下室更深处有概率出现暗黑重油密室。用玻璃瓶打捞，用桶搬运；材料可代替对应稀有度的墨水制作和升级皇室法术。圣水池尝试概率 65%，重油密室概率 35%，不会回填已探索的塔。
+- 普通小电、巨大雪球、小僵尸飞桶卷轴加浓缩暗黑重油，可在奥术铁砧变成对应觉醒卷轴。
+- 将任意等级的铁魔法亡者召唤或皇室墓园卷轴扔进**天然重油源方块**，完成仪式后得到觉醒骷髅军团卷轴。再把该卷轴与山羊角一起投入天然池，消耗卷轴并赋予号角召唤能力。
+- 军团为 15 只小骷髅和 1 名将军；卷轴、法术书、号角共享每人一支军团的限制和基础 15 秒冷却。号角不耗魔力，将军仍存活时不能召唤下一支。
 
-## 与铁魔法同装
+详细流程见 [铁魔法系统](IRON-INTEGRATION.md)、[材料与数值](BALANCE-AND-ELIXIR-1.4.0.md) 和 [重油仪式、卷轴与号角](ARMY-AND-AUDIO-1.5.0.md)。旧文档开头已注明后续规则修订。
 
-已验证 [Iron's Spells 'n Spellbooks 1.21.1-3.16.3](https://www.curseforge.com/minecraft/mc-mods/irons-spells-n-spellbooks) 及其依赖：GeckoLib 4.9.2、playerAnimator 2.0.4、Curios 9.5.1、Iron's Lib 1.21.1-2.1.0。使用 CurseForge／Modrinth 安装铁魔法时一并安装它声明的依赖。
+## Beta 1 的表现与战斗规则
 
-- 同一主人和同队的双方召唤物会识别为友军；皇室攻击法术排除己方铁魔法召唤物，辅助法术识别它们。
-- 敌方召唤物能相互选敌、近战，双方法术能正常造成伤害；保留铁魔法的伤害事件及命中后效果。
-- 冻结会暂停铁魔法生物的 AI 和正在进行的施法计时，解除后恢复；冰壳、藤蔓支持其 GeckoLib 模型。
-- 飓风和雪球能移动铁魔法测试对象；地震尊重 NeoForge 方块保护事件，死亡取消不会提前触发诅咒召唤。
-- 皇室卡牌继续使用自己的圣水体系；本版没有加入铁魔法的法术书、卷轴或魔力体系。
+- 镜像复制上一种成功施放的皇室或铁魔法法术并提高一级，保留原法术前置条件与取消机制。
+- 冰冻固定持续 5 秒，生物动画同步冻结；冰冻与藤蔓共享 15 秒控制冷却。藤蔓时长沿用现有数值。
+- 召唤部队优先攻击玩家指定的目标，其次攻击附近敌对单位；不会主动猎杀无敌意的和平或中立生物。小骷髅移动加快，去掉小骷髅攻击和无明确击退法术的额外击退。
+- 小骷髅以 Minecraft 原版骨架为基础。将军头盔保留两侧护颊，眼睛至嘴部是连通的 T 字开口，盔身上窄下宽、轻微外扩；保留发光眼睛、旗帜、盾牌及蓄力前刺动作。
+- 觉醒军团部署和觉醒小僵尸飞桶的两个落点有短促紫色闪光、地面扩散和渐隐碎晶。每组只触发一次，约 1.2 秒消散，不增加伤害或碰撞。
+- 使用原作卡图和音效素材，补全虚空三次劈击、大闪逐目标霹击及将军破盾声音。法术音效传播至 64 格，近处音量略降，随距离衰减。部分阶段复用原作其它音轨，具体来源见素材清单。
+- 恢复原生十字准星和稳定范围预览；长条滚动轨迹、双飞桶落点、铁魔法卡图原比例与去重复边框均保留。
 
-![铁魔法生物的冰冻与藤蔓，以及同主人的双方召唤物](docs/images/irons-compatibility.png)
+独立军团实验蛋：`/give @s royalespells:neutral_skeleton_army_spawn_egg`。该实验军团不属于玩家，行为与玩家召唤军团不同。
 
-## 怎么玩
+## 验证与反馈
 
-创造模式在 **皇室卡牌** 物品组取卡，手持卡牌瞄准后右键施放。生存模式使用无序配方制作卡牌，卡牌可以反复使用。
+发布前通过 51 项独立 GameTest、107 项铁魔法同装 GameTest，并使用最终打包 JAR 运行独立 Minecraft 客户端检查。验证范围和实际截图见 [Beta 1 验证记录](VALIDATION-1.5.2-beta.1.md)。这不代表已覆盖所有整合包、多人服务器或光影组合。
 
-圣水上限 10，每两秒恢复 1 点；创造模式免圣水消耗。镜像复制上一张卡，保留觉醒效果，并将伤害、治疗及召唤物属性提高约 10%。
+反馈时请附模组版本、加载器版本、铁魔法版本、复现步骤与 `latest.log`。完整变化见 [Beta 1 更新说明](CHANGELOG-1.5.2.md)。
 
-管理员或开启作弊后可以使用：
+## 开发与旧版
 
-```mcfunction
-/royalespells give
-/royalespells give barbarian_hut
-/royalespells refill
-/royalespells clear
-```
-
-全部卡牌、配方和适配数值见 [中文使用说明](README-zh_CN.md)。
-
-## 法术与召唤物
-
-- 包含火球、火箭、Zap、雷电、滚木、墓园、毒药、狂暴、冰冻、克隆、镜像、虚空、地震、藤蔓等 28 张法术卡，包含觉醒与历史／活动变体。
-- 卡牌图标使用皇室战争原版卡图；哥布林召唤物改为小僵尸。
-- 墓园使用经典原版登场音效，召唤持石剑、6 点生命的原版骷髅；每击基础伤害 1.5，多只骷髅的攻击可分别命中。
-- 野蛮人使用定制金发、长胡子模型及原版角色音效；野蛮人小屋定时出兵。
-- 克隆体为青色半透明，狂暴呈紫色染色，冰冻有冰壳，藤蔓有立体缠绕模型。
-- 地震的三次震荡累积方块裂纹，第三次破坏木材、让石材保留 90% 进度约 5 秒；可在此期间继续施法破坏石材。
-
-![原版卡牌在游戏中的展示](docs/images/cards.png)
-
-## 1.2.0 更新
-
-- 重做小电动态：下降先导、分叉电弧、闪烁和消散，电弧连接实际命中的目标。
-- 普通小电／觉醒首击半径 2.2 格，觉醒第二击 3 格；万箭齐发 4.5 格，火球 2.8 格。
-- 修正野蛮人握剑位置；皇家卫队换为原作风格的木桶头盔、蓝色羽毛、钢甲、木盾与凉鞋。
-- 地震改为三次累积破坏，短暂保留裂纹；飓风、雪球等推拉能实际移动关闭 AI 的目标，并保留墙体碰撞。
-- 新增 26 个演示场景，排除治疗和温暖。快捷栏羽毛切上一场、烈焰棒切下一场，潜行使用重置当前场景。详见 [录制地图说明](docs/recording-map.md)。
-
-下载地图 ZIP，解压后把包含 `level.dat` 的「皇室法术-录制片场-1.2.0-MC1.21.1-NeoForge」文件夹放进实例的 `saves`。安装 1.2.0 模组后，在单人游戏中打开「皇室法术 · 录制片场 1.2.0 (MC 1.21.1 NeoForge)」。第 8 格羽毛右键上一场，第 9 格烈焰棒右键下一场；潜行右键任一控制物品可重置场景。
-
-![法术演示地图的电击试场](docs/images/recording-map.png)
-
-![木桶头皇家卫队与修正持剑位置的野蛮人](docs/images/recruit-bucket.png)
-
-## 1.1.2 更新
-
-- 火箭头部沿实际弹道转动，上升抬头、顶点转平、下落俯冲；尾焰和烟从尾部喷出。
-- 重做野蛮人脸型、眉眼、金发和长马蹄形胡子，调整身体轮廓与服饰，铁剑跟随真实手部动作。
-- 脚步只播放原作无喊声版本，降低音量并限制频率；攻击语音仍由实际攻击触发。
-
-![野蛮人游戏内近景](docs/images/barbarian.png)
-
-![火箭三个飞行阶段，画面中从右向左飞行](docs/images/rocket-arc.png)
-
-![野蛮人小屋](docs/images/barbarian-hut.png)
-
-## 从源码构建
-
-构建和游戏运行均使用 **JDK / Java 21**：
+使用 Java 21：
 
 ```powershell
-./gradlew.bat build
-./gradlew.bat runGameTestServer
-./gradlew.bat runVisualSmoke
-./gradlew.bat runShowcase
+.\gradlew.bat build --console=plain
+.\gradlew.bat runGameTestServer --console=plain
+.\gradlew.bat runCompatGameTest -PcompatModsDir=/path/to/compat-mods --console=plain
 ```
 
-Linux / macOS 使用 `./gradlew`。无 `sources` 后缀的安装 JAR 位于 `build/libs`。
+最后一条命令需要自行准备上表中的铁魔法及依赖 JAR。源码分支为 `iron-integration-1.21.1`。
 
-可选同装测试：把上述铁魔法及依赖 JAR 放入一个独立目录，运行 `./gradlew.bat runCompatGameTest runCompatVisual -PcompatModsDir=目录路径`。这些依赖不会打入发布 JAR。独立安装有 38 项 GameTest；同装后有 46 项，包含 8 项专门的铁魔法交互测试。
+旧版下载：[Fabric 1.20.1](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0)、[Fabric 1.21.1](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0-mc1.21.1)、[NeoForge 1.2.0](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0-neoforge-mc1.21.1)。旧版 26 场录制地图仍可从对应版本发布页单独下载。
 
-`runVisualSmoke` 会启动开发客户端，在工程自己的目录创建新测试世界并截图，完成后自动关闭。需要可用的图形环境；普通游戏不会启用该流程。游戏不会通过这个任务打开已有正式存档。
-
-`art/make-troop-models.py` 是几何生成器，`art/blockbench` 包含可编辑的模型工程。野蛮人网格的顶点配色由游戏渲染器应用，导出工程保留对应元数据。
-
-## 验证与素材
-
-NeoForge 适配与验证记录见 [验证说明](docs/validation-neoforge-1.21.1.md)。其他验证文档保留为对应 Fabric 版本的历史记录。
-
-本项目为玩家制作的非官方模组。皇室战争卡图与音效属于原权利人，素材来源、原始哈希和生成提示词见 [ASSETS.md](ASSETS.md)、各项 `*-SOURCES.json` 及 [TROOP-ASSETS.json](TROOP-ASSETS.json)。本仓库尚未为项目代码另行指定开源许可证。
+本项目为非官方粉丝作品，与 Supercell、Mojang 及 Iron’s Spells 作者没有隶属关系。原作卡图、声音等第三方素材归其权利人所有；来源及使用说明见 [ASSETS.md](ASSETS.md)。

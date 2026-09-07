@@ -1,0 +1,292 @@
+[
+  {
+    "id": "arrows",
+    "maxLevel": 10,
+    "mana": 35,
+    "manaPerLevel": 4,
+    "cooldown": 10,
+    "castSeconds": 0.6,
+    "powerGrowthPercent": 22,
+    "baseFullHit": 9
+  },
+  {
+    "id": "fireball",
+    "maxLevel": 6,
+    "mana": 55,
+    "manaPerLevel": 12,
+    "cooldown": 18,
+    "castSeconds": 1.2,
+    "powerGrowthPercent": 30,
+    "baseFullHit": 12
+  },
+  {
+    "id": "zap",
+    "maxLevel": 10,
+    "mana": 20,
+    "manaPerLevel": 2,
+    "cooldown": 4,
+    "castSeconds": 0.0,
+    "powerGrowthPercent": 14,
+    "baseFullHit": 4
+  },
+  {
+    "id": "lightning",
+    "maxLevel": 5,
+    "mana": 95,
+    "manaPerLevel": 15,
+    "cooldown": 28,
+    "castSeconds": 1.4,
+    "powerGrowthPercent": 25,
+    "baseFullHit": 22
+  },
+  {
+    "id": "rocket",
+    "maxLevel": 6,
+    "mana": 110,
+    "manaPerLevel": 18,
+    "cooldown": 30,
+    "castSeconds": 2.0,
+    "powerGrowthPercent": 25,
+    "baseFullHit": 30
+  },
+  {
+    "id": "poison",
+    "maxLevel": 5,
+    "mana": 65,
+    "manaPerLevel": 10,
+    "cooldown": 20,
+    "castSeconds": 1.0,
+    "powerGrowthPercent": 25,
+    "baseFullHit": 16
+  },
+  {
+    "id": "freeze",
+    "maxLevel": 5,
+    "mana": 75,
+    "manaPerLevel": 10,
+    "cooldown": 28,
+    "castSeconds": 1.0,
+    "powerGrowthPercent": 20,
+    "baseFullHit": null
+  },
+  {
+    "id": "rage",
+    "maxLevel": 5,
+    "mana": 40,
+    "manaPerLevel": 6,
+    "cooldown": 20,
+    "castSeconds": 0.6,
+    "powerGrowthPercent": 20,
+    "baseFullHit": null
+  },
+  {
+    "id": "the_log",
+    "maxLevel": 3,
+    "mana": 30,
+    "manaPerLevel": 8,
+    "cooldown": 8,
+    "castSeconds": 0.4,
+    "powerGrowthPercent": 20,
+    "baseFullHit": 8
+  },
+  {
+    "id": "tornado",
+    "maxLevel": 5,
+    "mana": 55,
+    "manaPerLevel": 8,
+    "cooldown": 18,
+    "castSeconds": 0.8,
+    "powerGrowthPercent": 20,
+    "baseFullHit": 4
+  },
+  {
+    "id": "earthquake",
+    "maxLevel": 6,
+    "mana": 55,
+    "manaPerLevel": 8,
+    "cooldown": 18,
+    "castSeconds": 1.0,
+    "powerGrowthPercent": 20,
+    "baseFullHit": 9
+  },
+  {
+    "id": "giant_snowball",
+    "maxLevel": 10,
+    "mana": 25,
+    "manaPerLevel": 3,
+    "cooldown": 7,
+    "castSeconds": 0.5,
+    "powerGrowthPercent": 14,
+    "baseFullHit": 4
+  },
+  {
+    "id": "goblin_barrel",
+    "maxLevel": 5,
+    "mana": 65,
+    "manaPerLevel": 10,
+    "cooldown": 30,
+    "castSeconds": 1.1,
+    "powerGrowthPercent": 18,
+    "baseFullHit": null
+  },
+  {
+    "id": "barbarian_barrel",
+    "maxLevel": 5,
+    "mana": 50,
+    "manaPerLevel": 8,
+    "cooldown": 24,
+    "castSeconds": 0.8,
+    "powerGrowthPercent": 18,
+    "baseFullHit": 6
+  },
+  {
+    "id": "royal_delivery",
+    "maxLevel": 10,
+    "mana": 65,
+    "manaPerLevel": 7,
+    "cooldown": 28,
+    "castSeconds": 1.1,
+    "powerGrowthPercent": 20,
+    "baseFullHit": 10
+  },
+  {
+    "id": "graveyard",
+    "maxLevel": 3,
+    "mana": 110,
+    "manaPerLevel": 15,
+    "cooldown": 50,
+    "castSeconds": 1.75,
+    "powerGrowthPercent": 18,
+    "baseFullHit": null
+  },
+  {
+    "id": "clone",
+    "maxLevel": 5,
+    "mana": 70,
+    "manaPerLevel": 12,
+    "cooldown": 35,
+    "castSeconds": 1.2,
+    "powerGrowthPercent": 10,
+    "baseFullHit": null
+  },
+  {
+    "id": "mirror",
+    "maxLevel": 3,
+    "mana": 30,
+    "manaPerLevel": -10,
+    "cooldown": 16,
+    "castSeconds": 0.0,
+    "powerGrowthPercent": 0,
+    "baseFullHit": null
+  },
+  {
+    "id": "goblin_curse",
+    "maxLevel": 5,
+    "mana": 60,
+    "manaPerLevel": 10,
+    "cooldown": 24,
+    "castSeconds": 1.0,
+    "powerGrowthPercent": 20,
+    "baseFullHit": 6
+  },
+  {
+    "id": "void",
+    "maxLevel": 5,
+    "mana": 110,
+    "manaPerLevel": 15,
+    "cooldown": 28,
+    "castSeconds": 1.6,
+    "powerGrowthPercent": 20,
+    "baseFullHit": 36
+  },
+  {
+    "id": "vines",
+    "maxLevel": 5,
+    "mana": 65,
+    "manaPerLevel": 10,
+    "cooldown": 24,
+    "castSeconds": 1.1,
+    "powerGrowthPercent": 20,
+    "baseFullHit": null
+  },
+  {
+    "id": "zap_evolution",
+    "maxLevel": 5,
+    "mana": 48,
+    "manaPerLevel": 8,
+    "cooldown": 10,
+    "castSeconds": 0.4,
+    "powerGrowthPercent": 25,
+    "baseFullHit": 8
+  },
+  {
+    "id": "giant_snowball_evolution",
+    "maxLevel": 5,
+    "mana": 50,
+    "manaPerLevel": 8,
+    "cooldown": 14,
+    "castSeconds": 0.7,
+    "powerGrowthPercent": 25,
+    "baseFullHit": 4
+  },
+  {
+    "id": "goblin_barrel_evolution",
+    "maxLevel": 5,
+    "mana": 95,
+    "manaPerLevel": 12,
+    "cooldown": 35,
+    "castSeconds": 1.4,
+    "powerGrowthPercent": 18,
+    "baseFullHit": null
+  },
+  {
+    "id": "heal",
+    "maxLevel": 6,
+    "mana": 40,
+    "manaPerLevel": 10,
+    "cooldown": 22,
+    "castSeconds": 0.9,
+    "powerGrowthPercent": 35,
+    "baseFullHit": 6
+  },
+  {
+    "id": "warmth",
+    "maxLevel": 8,
+    "mana": 25,
+    "manaPerLevel": 4,
+    "cooldown": 16,
+    "castSeconds": 0.6,
+    "powerGrowthPercent": 0,
+    "baseFullHit": null
+  },
+  {
+    "id": "party_rocket",
+    "maxLevel": 5,
+    "mana": 125,
+    "manaPerLevel": 18,
+    "cooldown": 35,
+    "castSeconds": 2.0,
+    "powerGrowthPercent": 25,
+    "baseFullHit": 30
+  },
+  {
+    "id": "barbarian_barrel_hero",
+    "maxLevel": 3,
+    "mana": 90,
+    "manaPerLevel": 15,
+    "cooldown": 35,
+    "castSeconds": 1.2,
+    "powerGrowthPercent": 18,
+    "baseFullHit": 6
+  },
+  {
+    "id": "barbarian_hut",
+    "maxLevel": 6,
+    "mana": 120,
+    "manaPerLevel": 15,
+    "cooldown": 60,
+    "castSeconds": 1.75,
+    "powerGrowthPercent": 18,
+    "baseFullHit": null
+  }
+]

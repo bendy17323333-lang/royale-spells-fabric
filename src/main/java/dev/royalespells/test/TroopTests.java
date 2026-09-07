@@ -28,11 +28,11 @@ public class TroopTests {
         return Vec3.atBottomCenterOf(floor.above());
     }
     private List<Mob> units(GameTestHelper c,UUID owner){return c.getLevel().getEntitiesOfClass(Mob.class,new AABB(at(c).add(-40,-10,-40),at(c).add(40,20,40)),e->e instanceof Summoned s&&owner.equals(s.ownerId())&&e.isAlive());}
-    private void cleanup(GameTestHelper c,UUID owner){for(var e:c.getLevel().getAllEntities())if(e instanceof Summoned s&&owner.equals(s.ownerId()))e.discard();}
+    private void cleanup(GameTestHelper c,UUID owner){for(var e:com.google.common.collect.ImmutableList.copyOf(c.getLevel().getAllEntities()))if(e instanceof Summoned s&&owner.equals(s.ownerId()))e.discard();}
     @GameTest(template=EMPTY_STRUCTURE,batch="retained-cards")
     public void retainedCardsAndOriginalSkeleton(GameTestHelper c){
         c.assertTrue(RoyaleSpells.TROOP_ITEMS.size()==1,"Only the requested Hut card remains");
-        c.assertTrue(c.getLevel().getRecipeManager().byKey(RoyaleSpells.id("barbarian_hut")).isPresent(),"Hut remains craftable");
+        c.assertTrue(c.getLevel().getRecipeManager().byKey(RoyaleSpells.id("barbarian_hut")).isPresent()!=IronSpellSystem.loaded,"Hut uses native scroll progression when Iron's is installed");
         for(String name:List.of("golem","night_witch","golemite","royale_bat","bat")){
             c.assertTrue(!BuiltInRegistries.ENTITY_TYPE.containsKey(RoyaleSpells.id(name)),"Removed troop entity: "+name);
             c.assertTrue(!BuiltInRegistries.ITEM.containsKey(RoyaleSpells.id(name)),"Removed troop card: "+name);
@@ -40,7 +40,7 @@ public class TroopTests {
         }
         UUID owner=UUID.randomUUID();var skeleton=SpellEngine.summon(c.getLevel(),owner,at(c),"skeleton",false);
         c.assertTrue(skeleton.getMainHandItem().is(Items.STONE_SWORD),"Skeleton still uses a real stone sword");
-        c.assertTrue(Math.abs(skeleton.getBbHeight()-1.99)<.001&&skeleton.getMaxHealth()==6,"Original skeleton proportions and low health");
+        c.assertTrue(Math.abs(skeleton.getBbHeight()-1.4)<.001&&skeleton.getMaxHealth()==6,"Smaller vanilla skeleton hitbox with the existing low health");
         c.assertTrue(skeleton.getAttributeValue(Attributes.ATTACK_DAMAGE)==1.5,"Keep weakened damage after model rollback");
         var barbarian=(AllyZombie)SpellEngine.summon(c.getLevel(),owner,at(c).add(3,0,0),"barbarian",false);
         c.assertTrue(barbarian.getMainHandItem().is(Items.IRON_SWORD),"Barbarian has real equipment for the held-item renderer");

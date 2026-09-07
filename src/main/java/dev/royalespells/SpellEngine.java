@@ -32,7 +32,7 @@ public final class SpellEngine {
     private static final Map<UUID,Curse> CURSES=new HashMap<>();
     private static long clock;
     private static class State { double elixir=10; Spell last; TroopCard lastTroop; int cooldown; }
-    private record Curse(UUID owner,long until,float power){}
+    private record Curse(UUID owner,long until,float power,String ironSpell,int ironLevel){}
     public static void clear(){PLAYERS.clear();CURSES.clear();clock=0;}
     public static void refill(ServerPlayer player){PLAYERS.computeIfAbsent(player.getUUID(),id->new State()).elixir=10;}
     public static void resetForRecording(ServerPlayer player){if(ShowcaseMap.enabled(player.serverLevel()))PLAYERS.remove(player.getUUID());}
@@ -74,11 +74,12 @@ public final class SpellEngine {
         Spell spell=requested;
         int cost=spell.cost;
         if(spell==Spell.MIRROR) {
-            if(state.lastTroop!=null)return deploy(player,state.lastTroop,true);
+            if(state.lastTroop!=null){boolean cast=deploy(player,state.lastTroop,true);if(cast)SpellSounds.play(player.level(),player.position(),Spell.MIRROR,"deploy");return cast;}
             if(state.last==null) {player.displayClientMessage(Component.translatable("message.royalespells.no_mirror"),true);return false;}
             spell=state.last;cost=spell.cost+1;
         }
         ServerLevel world=player.serverLevel();
+        if(ControlCooldown.controls(spell)&&ControlCooldown.remaining(player)>0){player.displayClientMessage(Component.translatable("message.royalespells.control_cooldown"),true);return false;}
         if(requested==Spell.BARBARIAN_BARREL_HERO && player.isShiftKeyDown()) {
             AllyZombie hero=world.getEntitiesOfClass(AllyZombie.class,player.getBoundingBox().inflate(40),
                 e->e.hero && player.getUUID().equals(e.ownerId()) && e.isAlive()).stream().findFirst().orElse(null);
@@ -103,6 +104,8 @@ public final class SpellEngine {
         SpellEntity effect=SpellEntity.create(world,spell,player.getUUID(),start,target);
         if(requested==Spell.MIRROR)effect.setPower(1.1f);
         if(!world.addFreshEntity(effect))return false;
+        if(ControlCooldown.controls(spell))ControlCooldown.start(player);
+        if(requested==Spell.MIRROR)SpellSounds.play(world,player.position(),Spell.MIRROR,"deploy");
         if(spell==Spell.GOBLIN_BARREL_EVOLUTION) {
             Vec3 side=horizontal(player.getViewVector(1)).cross(new Vec3(0,1,0)).scale(5);
             Vec3 decoyTarget=ground(world,target.add(side));
@@ -114,9 +117,12 @@ public final class SpellEngine {
         return true;
     }
     private static boolean insufficient(ServerPlayer p){p.displayClientMessage(Component.translatable("message.royalespells.no_elixir"),true);return false;}
-    public static Vec3 aim(Player p,double range) {
-        Vec3 eye=p.getEyePosition(),end=eye.add(p.getViewVector(1).scale(range));
-        HitResult block=p.pick(range,1,false);
+    public static Vec3 aim(LivingEntity p,double range) {
+        return aim(p,range,1);
+    }
+    public static Vec3 aim(LivingEntity p,double range,float delta) {
+        Vec3 eye=p.getEyePosition(delta),end=eye.add(p.getViewVector(delta).scale(range));
+        HitResult block=p.pick(range,delta,false);
         Vec3 hit=block.getType()==HitResult.Type.MISS?end:block.getLocation();
         double distance=eye.distanceToSqr(hit);
         var entityHit=net.minecraft.world.entity.projectile.ProjectileUtil.getEntityHitResult(p,eye,end,p.getBoundingBox().expandTowards(end.subtract(eye)).inflate(1),
@@ -163,21 +169,26 @@ public final class SpellEngine {
         if(!enemy(owner,target))return;
         Entity caster=owner==null?null:world.getEntity(owner);
         if(target instanceof Player && !world.getServer().isPvpAllowed())return;
-        target.invulnerableTime=0; target.hurt(world.damageSources().indirectMagic(caster,caster),damage);
+        target.invulnerableTime=0; CombatImpact.withoutKnockback(target,()->target.hurt(world.damageSources().indirectMagic(caster,caster),damage));
     }
     public static void stun(LivingEntity target,int ticks) {
         SpellMotion.cancel(target);
+        IronSpellSystem.interrupt(target);
         target.addEffect(new MobEffectInstance(RoyaleSpells.STUN,ticks,0,false,false,true));
         target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,ticks,9,false,false));
         target.setDeltaMovement(Vec3.ZERO);target.hurtMarked=true;
         if(target instanceof Mob mob)mob.getNavigation().stop();
     }
     public static void curse(UUID owner,LivingEntity target){curse(owner,target,1);}
-    public static void curse(UUID owner,LivingEntity target,float power){CURSES.put(target.getUUID(),new Curse(owner,clock+24,power));}
+    public static void curse(UUID owner,LivingEntity target,float power){curse(owner,target,power,"",1);}
+    public static void curse(UUID owner,LivingEntity target,float power,String ironSpell,int ironLevel){CURSES.put(target.getUUID(),new Curse(owner,clock+24,power,ironSpell,ironLevel));}
     public static void onDeath(LivingEntity entity) {
         Curse curse=CURSES.remove(entity.getUUID());
-        if(curse!=null && curse.until>=clock && entity.level() instanceof ServerLevel world)
-            empower(summon(world,curse.owner,entity.position(),"zombie",false),curse.power);
+        if(curse!=null && curse.until>=clock && entity.level() instanceof ServerLevel world) {
+            var summoned=summon(world,curse.owner,entity.position(),"zombie",false);empower(summoned,curse.power);
+            if(summoned!=null)SpellSounds.play(world,entity.position(),Spell.GOBLIN_CURSE,"transform");
+            IronSpellSystem.summon(summoned,curse.owner,curse.ironSpell,curse.ironLevel);
+        }
     }
     public static Mob summon(ServerLevel world,UUID owner,Vec3 pos,String kind,boolean decoy) {
         int owned=0,total=0;
@@ -223,15 +234,7 @@ public final class SpellEngine {
         return world.addFreshEntity(mob)?mob:null;
     }
     public static void unitTick(Mob mob,UUID owner) {
-        if(!(mob.level() instanceof ServerLevel world) || mob.tickCount%10!=0)return;
-        LivingEntity target=mob.getTarget();
-        if(target==null || !enemy(owner,target) || mob.distanceToSqr(target)>24*24) {
-            target=targets(world,owner,mob.position(),16,false).stream()
-                .filter(e->mob.hasLineOfSight(e)).min(Comparator.comparingDouble(mob::distanceToSqr)).orElse(null);
-            mob.setTarget(target);
-        }
-        if(target==null && owner!=null && world.getEntity(owner) instanceof LivingEntity master && mob.distanceToSqr(master)>36)
-            mob.getNavigation().moveTo(master,1.1);
+        SummonOrders.tick(mob,owner);
     }
     public static void cloneAllies(ServerLevel world,UUID owner,Vec3 pos,double radius) {
         cloneAllies(world,owner,pos,radius,1);
@@ -245,7 +248,11 @@ public final class SpellEngine {
         else attack.addPermanentModifier(new net.minecraft.world.entity.ai.attributes.AttributeModifier(MIRROR_ATTACK,power-1,net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
     }
     public static void cloneAllies(ServerLevel world,UUID owner,Vec3 pos,double radius,float power) {
+        cloneAllies(world,owner,pos,radius,power,"",1);
+    }
+    public static void cloneAllies(ServerLevel world,UUID owner,Vec3 pos,double radius,float power,String spell,int level) {
         for(LivingEntity original:targets(world,owner,pos,radius,true)) {
+            if(!(original instanceof Summoned)){IronSpellSystem.cloneNative(original,owner,power,spell,level);continue;}
             if(!(original instanceof Summoned summoned) || summoned.isClone() || original instanceof RoyaleUnit unit && unit.building())continue;
             String kind=original instanceof RoyaleUnit unit?unit.kind():original instanceof AllySkeleton?"skeleton":original.getType()==RoyaleSpells.ZOMBIE?"zombie":
                 original.getType()==RoyaleSpells.RECRUIT?"recruit":"barbarian";
@@ -261,9 +268,8 @@ public final class SpellEngine {
                 }
                 clone.removeEffect(MobEffects.ABSORPTION);
                 if(original instanceof RoyaleUnit sourceUnit && clone instanceof RoyaleUnit cloneUnit)cloneUnit.setPower(sourceUnit.power()*power);
+                IronSpellSystem.summon(clone,owner,spell,level);
             }
         }
     }
 }
-
-

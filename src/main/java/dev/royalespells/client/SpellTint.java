@@ -25,7 +25,7 @@ public final class SpellTint {
     }
     private static final RenderType COLOR=RenderType.entityTranslucent(ResourceLocation.fromNamespaceAndPath("minecraft","textures/block/white_concrete.png"));
     public static MultiBufferSource wrap(MultiBufferSource original,LivingEntity entity) {
-        boolean clone=entity instanceof Summoned s && s.isClone();
+        boolean clone=VisualState.cloned(entity);
         if(clone)return new Buffers(original,.08f,.8f,1,.32f);
         if(VisualState.frozen(entity))return new Buffers(original,.48f,.83f,1,1);
         if(VisualState.raged(entity))return new Buffers(original,.86f,.25f,1,1);
@@ -56,7 +56,7 @@ public final class SpellTint {
         public ColorFeature(RenderLayerParent<T,M> context){super(context);}
         public void render(PoseStack matrices,MultiBufferSource buffers,int light,T entity,float limbAngle,float limbDistance,float delta,float animationProgress,float headYaw,float headPitch) {
             if(entity.isInvisible())return;
-            boolean clone=entity instanceof Summoned s && s.isClone();
+            boolean clone=VisualState.cloned(entity);
             if(!clone && !VisualState.raged(entity))return;
             getParentModel().renderToBuffer(matrices,unwrap(buffers).getBuffer(COLOR),light,OverlayTexture.NO_OVERLAY,
                 clone?0x5905CCFF:0x5BA514FF);

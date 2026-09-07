@@ -248,7 +248,7 @@ public class SpellCoverageTests {
             for(int i=0;i<spell.duration;i++)fx.tick();
             c.assertTrue(fx.isRemoved(),"Effect must complete: "+spell);
             cleanup(c,owner);
-            c.assertTrue(c.getLevel().getRecipeManager().byKey(RoyaleSpells.id(spell.id())).isPresent(),"Crafting recipe missing: "+spell);
+            c.assertTrue(c.getLevel().getRecipeManager().byKey(RoyaleSpells.id(spell.id())).isPresent()!=IronSpellSystem.loaded,"Legacy card recipes must follow standalone/scroll progression: "+spell);
         }
         c.assertTrue(c.getLevel().getBlockState(BlockPos.containing(at).below()).equals(floor),"Spells must preserve terrain");c.succeed();
     }
@@ -273,15 +273,13 @@ public class SpellCoverageTests {
     }
     @GameTest(template=EMPTY_STRUCTURE,batch="summon-combat",timeoutTicks=100)
     public void skeletonActuallyFightsWithSword(GameTestHelper c) {
-        UUID owner=UUID.randomUUID();var target=c.spawnWithNoFreeWill(EntityType.IRON_GOLEM,2,2,2);target.setNoAi(true);target.setPos(SpellEngine.ground(c.getLevel(),target.position()));
+        var player=TestPlayers.create(c);UUID owner=player.getUUID();var target=c.spawnWithNoFreeWill(EntityType.IRON_GOLEM,2,2,2);target.setNoAi(true);target.setPos(SpellEngine.ground(c.getLevel(),target.position()));player.setPos(target.position().add(3,0,0));SummonOrders.order(player,target);
         var skeleton=SpellEngine.summon(c.getLevel(),owner,target.position().add(1,0,0),"skeleton",false);
         float before=target.getHealth();
         c.runAfterDelay(60,()->{
             c.assertTrue(target.getHealth()<before,"Summoned skeleton must use real melee AI");
             c.assertTrue(skeleton.getMainHandItem().is(Items.STONE_SWORD),"Stone sword remains equipped");
-            cleanup(c,owner);target.discard();c.succeed();
+            cleanup(c,owner);target.discard();player.server.getPlayerList().remove(player);player.discard();c.succeed();
         });
     }
 }
-
-

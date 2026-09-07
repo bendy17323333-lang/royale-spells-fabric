@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import dev.royalespells.entity.SpellEntity;
+import dev.royalespells.FieldAnimation;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
@@ -37,16 +38,34 @@ public final class VoidRenderer {
             }
         }
     }
+    private static void gradient(PoseStack m,VertexConsumer v,double inner,double outer,double y,float[] a,float[] b,float opacity,float time) {
+        for(int i=0;i<96;i++) {
+            double t0=i*Math.PI/48,t1=(i+1)*Math.PI/48;
+            double wave0=1+.012*Math.sin(t0*7+time*.09),wave1=1+.012*Math.sin(t1*7+time*.09);
+            float light=.94f+.06f*(float)Math.sin(t0*4-time*.12);
+            vertex(m,v,Math.cos(t0)*inner*wave0,y,Math.sin(t0)*inner*wave0,a[0]*light,a[1]*light,a[2]*light,a[3]*opacity);
+            vertex(m,v,Math.cos(t1)*inner*wave1,y,Math.sin(t1)*inner*wave1,a[0]*light,a[1]*light,a[2]*light,a[3]*opacity);
+            vertex(m,v,Math.cos(t1)*outer*wave1,y,Math.sin(t1)*outer*wave1,b[0]*light,b[1]*light,b[2]*light,b[3]*opacity);
+            vertex(m,v,Math.cos(t0)*outer*wave0,y,Math.sin(t0)*outer*wave0,b[0]*light,b[1]*light,b[2]*light,b[3]*opacity);
+        }
+    }
     public static void render(SpellEntity e,float delta,PoseStack m,MultiBufferSource consumers) {
-        float time=e.time()+delta;double radius=e.spell().radius;
-        ring(m,consumers.getBuffer(SpellLayers.EFFECT),0,.07,0,0,radius,.05f,.009f,.003f,.8f);
+        float time=e.time()+delta,opacity=FieldAnimation.opacity(e.spell(),time,e.duration());
+        double radius=e.spell().radius*FieldAnimation.radius(e.spell(),time,e.duration());
         VertexConsumer glow=consumers.getBuffer(SpellLayers.EFFECT);
-        float pulse=.65f+.2f*(float)Math.sin(time*.25);
-        ring(m,glow,0,.085,0,radius-.09,radius+.06,1,.12f,.015f,pulse);
-        ring(m,glow,0,.09,0,radius+.06,radius+.22,1,.07f,.005f,.2f);
+        // Broad wine-dark interior, crimson transition, ember rim and diffuse orange falloff.
+        // Interpolated vertex colours avoid opaque concentric bands and retain the terrain underneath.
+        gradient(m,glow,0,radius*.66,.075,new float[]{.065f,.006f,.035f,.58f},new float[]{.19f,.007f,.04f,.55f},opacity,time);
+        gradient(m,glow,radius*.66,radius*.91,.077,new float[]{.19f,.007f,.04f,.55f},new float[]{.5f,.025f,.055f,.54f},opacity,time);
+        gradient(m,glow,radius*.91,radius,.08,new float[]{.5f,.025f,.055f,.54f},new float[]{1,.25f,.065f,.86f},opacity,time);
+        gradient(m,glow,radius,radius*1.055,.082,new float[]{1,.25f,.065f,.86f},new float[]{.96f,.07f,.025f,0},opacity,time);
+        float opening=FieldAnimation.opening(e.spell(),time);
+        if(time<14)ring(m,glow,0,.1,0,Math.max(0,radius-.07),radius+.1,1,.46f,.14f,opacity*(1-opening)*.85f);
+        float breath=.12f+.05f*(float)Math.sin(time*.19);
+        gradient(m,glow,radius*.76,radius*.97,.09,new float[]{.8f,.028f,.12f,0},new float[]{.93f,.08f,.075f,breath},opacity,time+10);
         float age=time-e.voidStrikeTick();
         if(e.voidStrikeTick()==0 || age<0 || age>9)return;
-        float fade=Mth.clamp((9-age)/5,0,1),width=.13f+.12f*e.voidStrength();
+        float fade=Mth.clamp((9-age)/5,0,1)*opacity,width=.13f+.12f*e.voidStrength();
         for(Vec3 worldPoint:e.voidStrikePoints()) {
             Vec3 point=worldPoint.subtract(e.target());
             // Draw the hot core first so transparent outer faces cannot depth-occlude it.
@@ -62,7 +81,6 @@ public final class VoidRenderer {
         }
     }
 }
-
 
 
 

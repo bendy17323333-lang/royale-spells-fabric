@@ -14,6 +14,10 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(LivingEntityRenderer.class)
 public abstract class LivingVisualMixin {
+    @com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod(method="render(Lnet/minecraft/world/entity/LivingEntity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V")
+    private void frozenRender(LivingEntity entity,float yaw,float delta,PoseStack matrices,MultiBufferSource vertices,int light,com.llamalad7.mixinextras.injector.wrapoperation.Operation<Void> original){
+        try(var scope=dev.royalespells.client.FrozenRender.begin(entity,delta)){original.call(entity,scope.yaw(yaw),scope.delta(),matrices,vertices,light);}
+    }
     // Decorate the argument instead of exclusively redirecting EntityModel.render.
     // Other material renderers can keep their own model invocation.
     @ModifyVariable(method="render(Lnet/minecraft/world/entity/LivingEntity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V",
@@ -23,7 +27,7 @@ public abstract class LivingVisualMixin {
     }
     @Inject(method="getRenderType",at=@At("HEAD"),cancellable=true)
     private void translucentClone(LivingEntity entity,boolean body,boolean translucent,boolean outline,CallbackInfoReturnable<RenderType> cir) {
-        if(entity instanceof Summoned s && s.isClone() && (body||translucent))
+        if(dev.royalespells.VisualState.cloned(entity) && (body||translucent))
             cir.setReturnValue(RenderType.entityTranslucent(((LivingEntityRenderer)(Object)this).getTextureLocation(entity)));
     }
     @Inject(method="render(Lnet/minecraft/world/entity/LivingEntity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V",at=@At("TAIL"))

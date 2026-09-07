@@ -1,0 +1,55 @@
+[
+  {
+    "event": "army_deploy",
+    "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Skeleton%20Army/card_evolution_skeleton_army_deploy.ogg",
+    "source_sha256": "73fffe87f1a257371950b9e97aac07f98878c87b21cf3897efa567f6519f7be9",
+    "mono_sha256": "149faa06eb6369700ffcaa9bde554d12d92fdfa2af528aa52f0d0bfe20032ec0"
+  },
+  {
+    "event": "army_horn",
+    "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Skeleton%20Army/card_evolution_skeleton_army_change_horn.ogg",
+    "source_sha256": "be07d85c40f1f76d1e04c02c000b248ac2b42faf60f66b9b5a7506ed8646b2a3",
+    "mono_sha256": "2934b984fe69048cf766d263a55910b6101cf5e4126f14127884e2460b9c27e7"
+  },
+  {
+    "event": "army_change",
+    "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Skeleton%20Army/card_evolution_skeleton_army_change.ogg",
+    "source_sha256": "0f95480aae982ffc5ba023e2b2efcd0aa55bf418bf4dc33802651e98da1bc787",
+    "mono_sha256": "1d1cecdf278dd6b32770f33d1e10600810fd24d4d0f58d63c2853ebcb4edab00"
+  },
+  {
+    "event": "army_death",
+    "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Skeleton%20Army/card_evolution_skeleton_army_death_vo.ogg",
+    "source_sha256": "05259c75dade7edbdc58cb2fec240e35fd70ebdab02268bef040ab711b030b94",
+    "mono_sha256": "bdb8caa91c702ad7ea71b55fdee232a1094d97089072cb19bda88ce47e7a247d"
+  },
+  {
+    "event": "skeleton_step",
+    "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Skeletons/skeleton_step_02.ogg",
+    "source_sha256": "3da791a8616dcf93874d816c38de89d8959a11d1b8fa17be69f2b694fb94a00b",
+    "mono_sha256": "d303a709978d99f297f187dc48843bdb6817eb32016e2e7f16d535396a3c7612"
+  },
+  {
+    "event": "skeleton_attack",
+    "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Skeletons/skeleton_atk_03.ogg",
+    "source_sha256": "13ee4c16f5dd8a39864d59e2b389ef37414fa4d58e2c2e3f46e4eb2cddd63e47",
+    "mono_sha256": "fd6a3c7c8827a2e6c15552dee8f470c86a2a208804ca134324611a7b544e573e"
+  },
+  {
+    "event": "skeleton_death",
+    "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Zappies/npc_die_02.ogg",
+    "source_sha256": "7bbbe10854d59f091c98126ff14ac9c58c02d8f6e0b0cfdd5c96f853f70ff1ff",
+    "mono_sha256": "0dfc19be34e720659a632efb3e38d65669443ba7d1dd8523f742ee572b87c972"
+  },
+  {
+    "card_url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/skeleton-army-ev1.png",
+    "sha256": "cbaf4a2cb7b2c24015f83a3e0b45ef8cc2d9c75bff294dcc33fe90703aee2a6a"
+  },
+  {
+    "event": "army_shield_break",
+    "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Guards/shield_skele_lost_02.ogg",
+    "note": "Original Clash Royale skeletal shield-loss cue (Guards archive). No separate General shield-break filename is present in the pinned archive.",
+    "source_sha256": "33b9a903e1d2abdcde3fdf2508a9d1ea1356674499ecf79113b2ddc3b8282f17",
+    "mono_sha256": "7cb06f219226ca5809f841afb38306c26d7825003dbb616da6661be3b272117a"
+  }
+]

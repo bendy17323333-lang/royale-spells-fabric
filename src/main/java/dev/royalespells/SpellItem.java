@@ -19,7 +19,7 @@ public class SpellItem extends Item {
     public SpellItem(Spell spell) { super(new Item.Properties().stacksTo(1).rarity(spell.evolved()?Rarity.EPIC:Rarity.RARE));this.spell=spell; }
     @Override public InteractionResultHolder<ItemStack> use(Level world,Player user,InteractionHand hand) {
         ItemStack stack=user.getItemInHand(hand);
-        if(user.hasEffect(RoyaleSpells.STUN)) return InteractionResultHolder.fail(stack);
+        if(user.hasEffect(RoyaleSpells.STUN) || !IronSpellSystem.allowCard(user)) return InteractionResultHolder.fail(stack);
         if(!world.isClientSide && !SpellEngine.cast((ServerPlayer)user,spell)) return InteractionResultHolder.fail(stack);
         return InteractionResultHolder.sidedSuccess(stack,world.isClientSide);
     }
@@ -28,6 +28,7 @@ public class SpellItem extends Item {
         tooltip.add(Component.translatable("tooltip.royalespells.cost",spell.cost).withStyle(ChatFormatting.LIGHT_PURPLE));
         tooltip.add(Component.translatable("spell.royalespells."+spell.id()).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("tooltip.royalespells.use").withStyle(ChatFormatting.DARK_GRAY));
+        if(IronSpellSystem.loaded)tooltip.add(Component.translatable("message.royalespells.use_iron_scroll").withStyle(ChatFormatting.GOLD));
         if(spell.evolved()) tooltip.add(Component.translatable("tooltip.royalespells.evolved").withStyle(ChatFormatting.LIGHT_PURPLE));
     }
 }

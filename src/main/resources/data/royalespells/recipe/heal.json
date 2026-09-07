@@ -11,5 +11,14 @@
     {
       "item": "minecraft:glistering_melon_slice"
     }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "irons_spellbooks"
+      }
+    }
   ]
 }

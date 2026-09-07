@@ -32,7 +32,7 @@ Minecraft 尺度下的具体伤害、半径、存活时间为本项目适配值�
 - 滚木、尖刺、飞桶、皇家速递箱、火箭外壳和尾翼、雪球形体：在 `SpellRenderer` 中以 Minecraft 方块材质组合几何模型，并按飞行轨迹和滚动进度动态变换。
 - 野蛮人和皇家卫兵：`TroopModel` 加载关节几何与已生成的材质图集；野蛮人的剑使用 Minecraft 实际装备的手持物品渲染。
 - 小僵尸和持剑骷髅复用 Minecraft 原版模型及贴图。
-- 雷电复用原版闪电实体外观；其它效果使用原版音效、可着色粒子、生成魔法粒子及专用运动模型。
+- 雷电复用 Minecraft 闪电实体外观；音效当前以文末 1.3.2 素材清单为准。其它效果使用可着色粒子、生成魔法粒子及专用运动模型。
 
 ## 墓园登场音效（1.0.1）
 
@@ -70,3 +70,37 @@ SHA-256：06A0A9C773A06BA35E9364244C02D3B3CC11F358E5D6DC75F86C83FFDDA5AB94。单
 野蛮人头部与胡子轮廓参考 [RoyaleAPI 保存的原版部队渲染图](https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/chr/barbarians.png)，网格由 `art/make-troop-models.py` 编写。复用现有材质图集，野蛮人使用白色材质局部采样与顶点配色，避免脸部出现拉伸的发丝与皮肤纹理；没有新增或编辑位图。Blockbench 的网格导出保存顶点配色元数据，最终着色以游戏渲染器为准。
 
 脚步随机池只保留原始 `barb_footstep_03_no_vo.ogg`，五个含人声变体停用，原始字节与哈希档案仍保留；`BARBARIAN-AUDIO-SOURCES.json` 的 `used` 字段标明是否参与播放。脚步播放音量为 0.12、衰减距离 8 格、每个单位最短间隔 8 tick。原版音频未重编码或变调。
+
+## 1.3.0 墓园飘散粒子
+
+使用内置 image_gen.imagegen 生成专用紫色幽光粒子，未重绘或后处理；原始 PNG 保留透明 alpha。完整提示词、路径及哈希见 [GRAVEYARD-PARTICLE-SOURCE.json](GRAVEYARD-PARTICLE-SOURCE.json)。虚空、狂暴与落点预览继续使用代码几何。原卡图原样复制到铁魔法图标路径，不重新绘制。
+
+## 1.3.2 法术原作音频与程序特效
+
+28 种法术与野蛮人小屋共 29 个音效配置，引用 46 个公开原作音频资源，组成 54 个施放／命中等阶段事件。完整分类路径、固定版本 URL、原始和安装后 SHA-256 见 [SPELL-AUDIO-SOURCES.json](SPELL-AUDIO-SOURCES.json)。主要取自 [Henrylq 原作音效分类固定版本](https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards)，并参考 RoyaleAPI 的原作素材分类。导入脚本为 `tools/import-spell-audio.py`；需要 Python 3 与 FFmpeg（可用 `--ffmpeg` 指定）。
+
+原始单声道文件按字节保留；立体声音频经 FFmpeg 转为单声道，以支持 Minecraft 距离衰减，未变速或变调。墓园保留旧版经典 `graveyard_deploy` 事件。温暖暂复用 `heal_magic_03`（目前归类于治疗精灵），派对火箭使用原作火箭音及派对小屋庆祝音；这两项不声称已找到单独确认的专属音轨。野蛮人小屋使用原作通用建筑放置音及既有野蛮人声音。下载探索时保留的 `card_epic_vines_hit.ogg` 为同版本 Vines 分类素材，当前未注册或播放。
+
+毒雾、气泡、诅咒雾气、恢复光点和地震脉冲由 `AmbientSpellRenderer` 绘制；电击由 `ZapRenderer` 绘制。此次没有生成或重绘卡图，也没有用末影粒子代替墓园专用粒子。铁魔法 GUI 直接读取原卡图宽高比绘制，不改变图片文件。
+
+## 1.4.0 圣水与暗黑重油
+
+新液体通过 NeoForge 原生流体渲染复用 Minecraft 动态水纹，并在运行时着色；瓶子复用原生药水瓶分层模型，桶使用 NeoForge 流体容器模型。未生成或捆绑新的第三方贴图，也未用 image-gen 改写原版卡牌美术。
+
+## 1.5.0 骷髅军团与声音
+
+按用户最后反馈，删除最初的圆润骷髅几何资源，使用运行时 Minecraft `SkeletonModel`、`ModelLayers.SKELETON` 和原生 `textures/entity/skeleton/skeleton.png`；没有把 Minecraft 骷髅贴图复制进模组。`GeneralEquipment` 以 Minecraft 方块几何制作头盔、木盾、旗杆、分段旗帜与披风，复用既有 `troop_materials.png` 材质图集的白色区域着色，本次没有新增 AI 位图。装备轮廓参考本轮原作将军图片，身体造型以用户指定的 Minecraft 原版骨架为准。
+
+觉醒骷髅军团图标来自 RoyaleAPI/cr-api-assets 固定版本 `b4530a1043b213ee2baf9c50a3d0d7fae22c2313` 的 `cards/skeleton-army-ev1.png`。7 个声音取自 Henrylq/Clash-Royale-SFX 固定版本 `c2d7d67271113cb9fe3ad896d9d03dd7f49eed52`：军团与骷髅专属声音来自 Skeleton Army／Skeletons 分类，通用死亡 `npc_die_02` 来自 Zappies 分类；原始 URL 和转换前后哈希见 `ARMY-ASSET-SOURCES.json`。单声道转换不变速、不变调，骷髅单位播放时的轻微音高参数属于运行时配置。
+
+虚空三次劈击复用已导入的原作 `zap_02.ogg` 电击声，不重复播放 6 秒领域音轨。素材档案没有单独的虚空劈击文件；来源清单明确记录复用。`tools/update-audio-1.5.py` 在既有导入器之后统一应用 64 格衰减和三次劈击配置。
+
+仪式的环阵、光束、物品轨道、闪光、将军攻击与旗帜摆动均由代码实时绘制。飘散粒子复用已记录来源的墓园紫色粒子，不使用末影粒子。
+
+## 1.5.1 additions
+
+General shield loss reuses the original Clash Royale Guards cue `shield_skele_lost_02.ogg`, pinned upstream and converted to mono without pitch/time changes. This archive does not identify a General-specific shield cue. See ARMY-ASSET-SOURCES.json. The general helmet geometry now ends above the vanilla skeleton jaw, referenced against the original Supercell render shown in the RoyaleAPI Skeleton Army Evolution gallery (evo-skarmy-a-288-6.jpg). No new generated textures are used.
+
+## 1.5.2-beta.1 部署与头盔
+
+将军头盔按当前用户要求改为连通 T 字开口及轻微上窄下宽的桶形。觉醒部队部署特效由 `EvolutionBurstRenderer` 的紫色渐变几何实时绘制，参考原作实机片段 https://www.youtube.com/watch?v=cXGNteyi6Yc 的短促展开与消散节奏；未导入视频或新增贴图。

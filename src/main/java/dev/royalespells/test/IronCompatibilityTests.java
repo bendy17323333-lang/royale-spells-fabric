@@ -139,13 +139,16 @@ public class IronCompatibilityTests {
             cleanup(caster,barb,owner);c.succeed();
         });
     }
-    @GameTest(template="empty",templateNamespace="royalespells",batch="iron-tornado",timeoutTicks=55)
+    @GameTest(template="empty",templateNamespace="royalespells",batch="iron-tornado",timeoutTicks=140)
     public void tornadoMovesAnIronCaster(GameTestHelper c) {
         var at=arena(c);var caster=iron(c,"cryomancer",at,null);var center=at.add(3,0,0);
+        var forced=new ArrayList<net.minecraft.world.level.ChunkPos>();var origin=new net.minecraft.world.level.ChunkPos(caster.blockPosition());
+        for(int x=-1;x<=1;x++)for(int z=-1;z<=1;z++){var cp=new net.minecraft.world.level.ChunkPos(origin.x+x,origin.z+z);if(c.getLevel().setChunkForced(cp.x,cp.z,true))forced.add(cp);}
         var fx=SpellEntity.create(c.getLevel(),Spell.TORNADO,UUID.randomUUID(),center,center);c.getLevel().addFreshEntity(fx);
-        c.runAtTickTime(29,()->{
+        c.succeedWhen(()->{
+            c.assertTrue(fx.time()>=29,"Wait for actual Tornado entity ticks");
             c.assertTrue(caster.getX()>at.x+2&&caster.position().distanceTo(center)<1,"Actual Tornado pulls the Iron's caster into its center");
-            cleanup(caster,fx);c.succeed();
+            cleanup(caster,fx);for(var cp:forced)c.getLevel().setChunkForced(cp.x,cp.z,false);
         });
     }
     @GameTest(template="empty",templateNamespace="royalespells",batch="iron-death")

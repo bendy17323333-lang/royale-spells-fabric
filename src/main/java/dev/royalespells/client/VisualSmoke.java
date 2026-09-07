@@ -76,6 +76,7 @@ public final class VisualSmoke {
                     player.getAbilities().flying=true;player.onUpdateAbilities();
                     player.getInventory().clearContent();for(var item:RoyaleSpells.ITEMS.values())player.addItem(new ItemStack(item));
                     player.getInventory().selected=2;
+                    if(Boolean.getBoolean("royalespells.armySmoke")||Boolean.getBoolean("royalespells.combatSmoke"))return;
                     Spell[] spells={Spell.FIREBALL,Spell.ROCKET,Spell.THE_LOG,Spell.GOBLIN_BARREL_EVOLUTION,Spell.GIANT_SNOWBALL_EVOLUTION,Spell.ROYAL_DELIVERY};
                     Vec3[] locations={new Vec3(-7,151,1),new Vec3(-2.5,151,1),new Vec3(2.5,150,1),new Vec3(7,151,1),new Vec3(-7,150,7),new Vec3(-2.5,150,7)};
                     for(int i=0;i<spells.length;i++) {
@@ -93,6 +94,12 @@ public final class VisualSmoke {
                     for(int i=0;i<16;i++)voidSpell.tick();voidSpell.setPreviewTime(18);voidSpell.preview=true;world.addFreshEntity(voidSpell);
                 });
             } else if(stage==3 && client.level!=null) {
+                if(Boolean.getBoolean("royalespells.combatSmoke")){CombatClientSmoke.tick(client);return;}
+                if(Boolean.getBoolean("royalespells.armySmoke")){ArmyClientSmoke.tick(client);return;}
+                if(Boolean.getBoolean("royalespells.elixirSmoke")){ElixirClientSmoke.tick(client);return;}
+                if(Boolean.getBoolean("royalespells.polishSmoke")){PolishClientSmoke.tick(client);return;}
+                if(Boolean.getBoolean("royalespells.targetPreviewSmoke")){TargetPreviewSmoke.tick(client);return;}
+                if(Boolean.getBoolean("royalespells.ironSystemSmoke")){IronSystemClientSmoke.tick(client,ready++);return;}
                 ready++;
                 if(ready==20)client.getSingleplayerServer().execute(()->{
                     var world=client.getSingleplayerServer().overworld();var player=client.getSingleplayerServer().getPlayerList().getPlayers().get(0);
@@ -171,8 +178,5 @@ public final class VisualSmoke {
         });
     }
 }
-
-
-
 
 

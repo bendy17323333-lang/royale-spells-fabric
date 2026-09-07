@@ -37,8 +37,18 @@ public class SpellEntity extends Entity {
     private EarthquakeDestruction earthquake;
     private int quakeBroken;
     public float power(){return entityData.get(DATA).contains("Power")?entityData.get(DATA).getFloat("Power"):1;}
-    public void setPower(float power){var data=entityData.get(DATA).copy();data.putFloat("Power",Mth.clamp(power,1,1.1f));entityData.set(DATA,data);}
-    private Mob summon(ServerLevel world,Vec3 pos,String kind,boolean decoy){var mob=SpellEngine.summon(world,ownerId,pos,kind,decoy);SpellEngine.empower(mob,power());return mob;}
+    public void setPower(float power){var data=entityData.get(DATA).copy();data.putFloat("Power",Mth.clamp(power,.05f,64));entityData.set(DATA,data);}
+    public String ironSpellId(){return entityData.get(DATA).getString("IronSpell");}
+    public int ironLevel(){return Math.max(1,entityData.get(DATA).getInt("IronLevel"));}
+    public int duration(){var data=entityData.get(DATA);return Math.round(spell().duration*(data.contains("DurationScale")?data.getFloat("DurationScale"):1));}
+    public void setIronSpell(String id,int level,float durationScale) {
+        var data=entityData.get(DATA).copy();data.putString("IronSpell",id);data.putInt("IronLevel",level);
+        data.putFloat("DurationScale",Mth.clamp(durationScale,.5f,1.75f));entityData.set(DATA,data);
+    }
+    private Mob summon(ServerLevel world,Vec3 pos,String kind,boolean decoy){
+        var mob=SpellEngine.summon(world,ownerId,pos,kind,decoy);SpellEngine.empower(mob,power());
+        IronSpellSystem.summon(mob,ownerId,ironSpellId(),ironLevel());return mob;
+    }
     public static float zapRadius(int tick){return (float)(tick<21?Spell.ZAP.radius:Spell.ZAP_EVOLUTION.radius);}
     public List<Vec3> zapPoints(){
         List<Vec3> points=new ArrayList<>();
@@ -98,8 +108,7 @@ public class SpellEntity extends Entity {
         if(preview && Boolean.getBoolean("royalespells.visualSmoke"))return;
         int t=time()+1;entityData.set(TIME,t);
         if(t==1) {
-            if(spell()==Spell.GRAVEYARD) sound(RoyaleSpells.GRAVEYARD_DEPLOY,2.0f,1.0f);
-            else sound(SoundEvents.ENCHANTMENT_TABLE_USE,0.6f,spell().evolved()?1.4f:1.0f);
+            if(!decoy){if(spell()!=Spell.LIGHTNING)SpellSounds.play(world,spell().projectile()||spell().rolling()?start():target(),spell(),reroll?"reroll":"deploy");SpellSounds.play(world,start(),spell(),"travel");}
         }
         Vec3 pos=visualPosition(0);
         if(spell().rolling())pos=SpellEngine.ground(world,pos);
@@ -110,14 +119,15 @@ public class SpellEntity extends Entity {
         if(spell().rolling())roll(world);
         else if(spell().projectile())projectile(world,t);
         else field(world,t);
-        if(t>=spell().duration) {
+        if(t>=duration()) {
+            SpellSounds.play(world,target(),spell(),"end");
             if(reroll && rerollId!=null && world.getEntity(rerollId) instanceof AllyZombie hero)hero.heal((hero.getMaxHealth()-hero.getHealth())*0.5f);
             if(spell()==Spell.GIANT_SNOWBALL_EVOLUTION) for(UUID id:captured)if(world.getEntity(id) instanceof LivingEntity e){e.removeEffect(RoyaleSpells.STUN);slow(e,60);}
             discard();
         }
     }
     private List<LivingEntity> enemies(ServerLevel world,Vec3 center,double radius){return SpellEngine.targets(world,ownerId,center,radius,false);}
-    private void damage(ServerLevel world,LivingEntity e,float amount){SpellEngine.hit(world,ownerId,e,amount*power());}
+    private void damage(ServerLevel world,LivingEntity e,float amount){IronSpellSystem.damage(this,e,amount*power());}
     private void area(ServerLevel world,Vec3 center,double radius,float amount,int stun,double knock) {
         for(LivingEntity e:enemies(world,center,radius)) {
             damage(world,e,amount);
@@ -129,19 +139,20 @@ public class SpellEntity extends Entity {
         for(LivingEntity e:enemies(world,position(),spell().radius)) {
             if(e.getY()>getY()+1.8 || !hit.add(e.getUUID()))continue;
             damage(world,e,spell()==Spell.THE_LOG?8:6);
+            if(hit.size()==1 || time()%4==0)SpellSounds.play(world,position(),spell(),"hit");
             Vec3 direction=SpellEngine.horizontal(target().subtract(start()));
-            SpellMotion.impulse(e,new Vec3(direction.x*.85,.15,direction.z*.85));
+            if(spell()==Spell.THE_LOG)SpellMotion.impulse(e,new Vec3(direction.x*.85,.15,direction.z*.85));
         }
         if(time()==spell().duration && spell()!=Spell.THE_LOG && !reroll) {
             summon(world,position(),spell()==Spell.BARBARIAN_BARREL_HERO?"hero":"barbarian",false);
-            sound(SoundEvents.WOOD_BREAK,1,0.8f);
+            SpellSounds.play(world,position(),spell(),"impact");
         }
     }
     private void projectile(ServerLevel world,int t) {
         if(spell()==Spell.GIANT_SNOWBALL_EVOLUTION && t>=24) {
             if(t==24) {
                 for(LivingEntity e:enemies(world,target(),spell().radius)) {damage(world,e,4);captured.add(e.getUUID());}
-                sound(SoundEvents.SNOW_BREAK,1,0.6f);
+                SpellSounds.play(world,target(),spell(),"impact");if(!captured.isEmpty())SpellSounds.play(world,target(),spell(),"capture");
             }
             for(UUID id:captured) if(world.getEntity(id) instanceof LivingEntity e && e.isAlive()) {
                 SpellEngine.stun(e,4);
@@ -155,27 +166,29 @@ public class SpellEntity extends Entity {
         }
         if(t!=spell().duration)return;
         switch(spell()) {
-            case FIREBALL -> {area(world,target(),spell().radius,12,0,0.9);burst(world,ParticleTypes.FLAME,45);sound(SoundEvents.GENERIC_EXPLODE.value(),1,1.1f);}
-            case ROCKET -> {area(world,target(),2.5,30,0,1.2);burst(world,ParticleTypes.EXPLOSION,12);sound(SoundEvents.GENERIC_EXPLODE.value(),1.5f,0.7f);}
+            case FIREBALL -> {area(world,target(),spell().radius,12,0,0.9);burst(world,ParticleTypes.FLAME,45);SpellSounds.play(world,target(),spell(),"impact");}
+            case ROCKET -> {area(world,target(),2.5,30,0,1.2);burst(world,ParticleTypes.EXPLOSION,12);SpellSounds.play(world,target(),spell(),"impact");}
             case PARTY_ROCKET -> {
-                var victims=enemies(world,target(),3);for(LivingEntity e:victims)SpellEngine.curse(ownerId,e,power());
-                area(world,target(),3,30,0,0.8);burst(world,ParticleTypes.HAPPY_VILLAGER,40);sound(SoundEvents.FIREWORK_ROCKET_BLAST,1,1);
+                var victims=enemies(world,target(),3);for(LivingEntity e:victims)SpellEngine.curse(ownerId,e,power(),ironSpellId(),ironLevel());
+                area(world,target(),3,30,0,0.8);burst(world,ParticleTypes.HAPPY_VILLAGER,40);SpellSounds.play(world,target(),spell(),"impact");SpellSounds.play(world,target(),spell(),"party");
             }
-            case GIANT_SNOWBALL -> {area(world,target(),2.5,4,0,1.1);for(LivingEntity e:enemies(world,target(),2.5))slow(e,60);burst(world,ParticleTypes.SNOWFLAKE,40);sound(SoundEvents.SNOW_BREAK,1,0.7f);}
+            case GIANT_SNOWBALL -> {area(world,target(),2.5,4,0,1.1);for(LivingEntity e:enemies(world,target(),2.5))slow(e,60);burst(world,ParticleTypes.SNOWFLAKE,40);SpellSounds.play(world,target(),spell(),"impact");}
             case GOBLIN_BARREL, GOBLIN_BARREL_EVOLUTION -> {
-                for(int i=0;i<3;i++){double a=i*Math.PI*2/3;summon(world,SpellEngine.ground(world,target().add(Math.cos(a),0,Math.sin(a))),"zombie",decoy);}
-                sound(SoundEvents.WOOD_BREAK,1,0.7f);burst(world,ParticleTypes.HAPPY_VILLAGER,18);
+                boolean deployed=false;
+                for(int i=0;i<3;i++){double a=i*Math.PI*2/3;deployed|=summon(world,SpellEngine.ground(world,target().add(Math.cos(a),0,Math.sin(a))),"zombie",decoy)!=null;}
+                if(deployed&&spell()==Spell.GOBLIN_BARREL_EVOLUTION)EvolutionBurst.deploy(world,SpellEngine.ground(world,target()),1.5f);
+                SpellSounds.play(world,target(),spell(),"impact");burst(world,ParticleTypes.HAPPY_VILLAGER,18);
             }
-            case ROYAL_DELIVERY -> {area(world,target(),3,10,0,0.5);summon(world,target(),"recruit",false);sound(SoundEvents.ANVIL_LAND,0.7f,1.2f);}
+            case ROYAL_DELIVERY -> {area(world,target(),3,10,0,0);summon(world,target(),"recruit",false);SpellSounds.play(world,target(),spell(),"impact");SpellSounds.play(world,target(),spell(),"summon");}
             default -> {}
         }
     }
     private void field(ServerLevel world,int t) {
         switch(spell()) {
-            case ARROWS -> {if(t==4||t==12||t==20){area(world,target(),spell().radius,3,0,0);sound(SoundEvents.ARROW_HIT,0.8f,0.85f);}}
+            case ARROWS -> {if(t==4||t==(ironSpellId().isEmpty()?12:14)||t==(ironSpellId().isEmpty()?20:24)){area(world,target(),spell().radius,3,0,0);SpellSounds.play(world,target(),spell(),"strike");}}
             case ZAP, ZAP_EVOLUTION -> {
                 if(t==1 || spell()==Spell.ZAP_EVOLUTION && t==21) {
-                    recordZapStrike(world,t);area(world,target(),zapRadius(t),4,10,0);sound(SoundEvents.LIGHTNING_BOLT_IMPACT,0.4f,1.9f);
+                    recordZapStrike(world,t);area(world,target(),zapRadius(t),4,10,0);if(t==21)SpellSounds.play(world,target(),spell(),"strike");
                 }
             }
             case LIGHTNING -> {
@@ -184,14 +197,14 @@ public class SpellEntity extends Entity {
                     int i=(t-2)/6;
                     if(i<captured.size() && world.getEntity(captured.get(i)) instanceof LivingEntity e && e.isAlive()) {
                         LightningBolt bolt=EntityType.LIGHTNING_BOLT.create(world);
-                        if(bolt!=null){bolt.moveTo(e.position());bolt.setVisualOnly(true);world.addFreshEntity(bolt);}
-                        damage(world,e,22);SpellEngine.stun(e,10);
+                        if(bolt!=null){bolt.moveTo(e.position());bolt.setVisualOnly(true);bolt.setSilent(true);world.addFreshEntity(bolt);}
+                        damage(world,e,22);SpellEngine.stun(e,10);SpellSounds.play(world,e.position(),spell(),"deploy");
                     }
                 }
             }
             case POISON -> {if(t%20==1)for(LivingEntity e:enemies(world,target(),3.5)){damage(world,e,2);slow(e,25);}}
             case FREEZE -> {
-                if(t==1){area(world,target(),3,2,0,0);sound(SoundEvents.GLASS_BREAK,0.8f,0.65f);}
+                if(t==1){area(world,target(),3,2,0,0);}
                 for(LivingEntity e:enemies(world,target(),3)){SpellEngine.stun(e,3);e.addEffect(new MobEffectInstance(RoyaleSpells.FROZEN,3,0,false,false,false));}
             }
             case RAGE -> {
@@ -213,39 +226,39 @@ public class SpellEntity extends Entity {
                 if(earthquake==null)earthquake=new EarthquakeDestruction(world,target());
                 quakeBroken+=earthquake.tick(world,ownerId,t);
                 if(t%20==1){for(LivingEntity e:enemies(world,target(),3.5))if(e.onGround() || e.getY()<=target().y+0.5){damage(world,e,3);slow(e,25);}
-                    sound(SoundEvents.POINTED_DRIPSTONE_BREAK,0.8f,0.5f);}
+                    SpellSounds.play(world,target(),spell(),"strike");}
             }
             case GRAVEYARD -> {
                 if(t>=20 && t%12==8) {
                     double a=world.random.nextDouble()*Math.PI*2,r=1.5+world.random.nextDouble()*2;
                     summon(world,SpellEngine.ground(world,target().add(Math.cos(a)*r,0,Math.sin(a)*r)),"skeleton",false);
-                    sound(SoundEvents.SKELETON_AMBIENT,0.25f,1.5f);
                 }
             }
-            case CLONE -> {if(t==1){SpellEngine.cloneAllies(world,ownerId,target(),3,power());burst(world,ParticleTypes.END_ROD,32);}}
+            case CLONE -> {if(t==1){SpellEngine.cloneAllies(world,ownerId,target(),3,power(),ironSpellId(),ironLevel());burst(world,ParticleTypes.END_ROD,32);}}
             case GOBLIN_CURSE -> {
                 for(LivingEntity e:enemies(world,target(),3)) {
-                    SpellEngine.curse(ownerId,e,power());slow(e,24);if(t%20==1)damage(world,e,1);
+                    SpellEngine.curse(ownerId,e,power(),ironSpellId(),ironLevel());slow(e,24);if(t%20==1)damage(world,e,1);
                 }
             }
             case VOID -> {
                 if(t==16||t==40||t==64) {
+                    SpellSounds.play(world,target(),spell(),"strike");
                     var list=enemies(world,target(),3);float dmg=list.size()==1?20:list.size()<=4?9:4;
                     recordVoidStrike(list,t);
                     for(LivingEntity e:list)damage(world,e,dmg);
-                    sound(SoundEvents.WARDEN_SONIC_BOOM,0.5f,1.5f);
                 }
             }
             case VINES -> {
                 if(t==1)enemies(world,target(),3).stream().sorted(Comparator.comparingDouble(LivingEntity::getHealth).reversed()).limit(3).forEach(e->captured.add(e.getUUID()));
                 for(UUID id:captured)if(world.getEntity(id) instanceof LivingEntity e && e.isAlive()) {
+                    if(t==1)SpellSounds.play(world,e.position(),spell(),"hit");
                     SpellEngine.stun(e,3);
                     e.addEffect(new MobEffectInstance(RoyaleSpells.ROOTED,3,0,false,false,false));
                     if(t%20==1)damage(world,e,2);
                     if(!e.onGround()){Vec3 next=e.position().add(0,-0.15,0);if(world.noCollision(e,e.getBoundingBox().move(0,-0.15,0)))e.teleportTo(next.x,next.y,next.z);}
                 }
             }
-            case HEAL -> {if(t%20==1)for(LivingEntity e:SpellEngine.targets(world,ownerId,target(),3,true))e.heal(2*power());}
+            case HEAL -> {if(t%20==1)for(LivingEntity e:SpellEngine.targets(world,ownerId,target(),3,true))IronSpellSystem.heal(this,e,2*power());}
             case WARMTH -> {for(LivingEntity e:SpellEngine.targets(world,ownerId,target(),3,true)) {
                 e.removeEffect(RoyaleSpells.STUN);e.removeEffect(RoyaleSpells.FROZEN);e.removeEffect(RoyaleSpells.ROOTED);e.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);e.setTicksFrozen(0);
                 e.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE,25,0,false,false));
@@ -254,7 +267,6 @@ public class SpellEntity extends Entity {
         }
     }
     private void slow(LivingEntity e,int ticks){e.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,ticks,0,false,true));}
-    private void sound(SoundEvent sound,float volume,float pitch){level().playSound(null,getX(),getY(),getZ(),sound,SoundSource.PLAYERS,volume,pitch);}
     private void burst(ServerLevel world,net.minecraft.core.particles.ParticleOptions effect,int count){world.sendParticles(effect,target().x,target().y+0.4,target().z,count,1,0.5,1,0.05);}
     @Override protected void addAdditionalSaveData(CompoundTag nbt) {
         nbt.putInt("QuakeBroken",quakeBroken);
@@ -279,8 +291,6 @@ public class SpellEntity extends Entity {
     @Override public Packet<ClientGamePacketListener> getAddEntityPacket(net.minecraft.server.level.ServerEntity entry){return new ClientboundAddEntityPacket(this,entry);}
     @Override public boolean shouldRenderAtSqrDistance(double distance){return distance<128*128;}
 }
-
-
 
 
 

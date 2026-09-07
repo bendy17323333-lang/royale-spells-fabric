@@ -1,16 +1,33 @@
 {
   "required": true,
   "package": "dev.royalespells.mixin",
+  "plugin": "dev.royalespells.mixin.RoyaleMixinPlugin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "LivingEntityMixin",
+    "SkeletonArrowImpactMixin",
     "MobEntityMixin",
-    "IronTargetMixin"
+    "IronTargetMixin",
+    "IronDispelMixin",
+    "IronSchoolCacheAccess",
+    "IronLootCacheAccess",
+    "PoolTemplateAccess",
+    "TowerPoolsMixin",
+    "ItemCombinerPlayerAccess",
+    "IronElixirForgeMixin",
+    "IronElixirAnvilMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
-    "LivingVisualMixin"
+    "LivingVisualMixin",
+    "FrozenModelPartMixin",
+    "IronFrozenBoneMixin",
+    "IronGeoVisualMixin",
+    "IronSpellBarUiMixin",
+    "IronSpellWheelUiMixin",
+    "SilentLightningMixin",
+    "IronElixirForgeScreenMixin"
   ]
 }

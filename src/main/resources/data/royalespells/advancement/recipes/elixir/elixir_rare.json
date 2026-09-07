@@ -1,0 +1,1 @@
+{"parent": "minecraft:recipes/root", "criteria": {"has_bottle": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "royalespells:elixir_uncommon"}]}}}, "requirements": [["has_bottle"]], "rewards": {"recipes": ["royalespells:elixir_2_concentration"]}}

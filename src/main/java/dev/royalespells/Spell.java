@@ -5,7 +5,7 @@ import java.util.Locale;
 public enum Spell {
     ARROWS(3,4.5,24,0xDED3AE), FIREBALL(4,2.8,25,0xFF7628), ZAP(2,2.2,12,0x9FEFFF),
     LIGHTNING(6,3.5,24,0x86BFFF), ROCKET(6,2.5,40,0xFFB44F), POISON(4,3.5,160,0xEDAC32),
-    FREEZE(4,3,80,0x9AE8FF), RAGE(2,3.5,120,0xE458FA), THE_LOG(2,2,30,0xAB793F),
+    FREEZE(4,3,100,0x9AE8FF), RAGE(2,3.5,120,0xE458FA), THE_LOG(2,2,30,0xAB793F),
     TORNADO(3,5.5,30,0xB9E0DC), EARTHQUAKE(3,3.5,60,0xC9A36C), GIANT_SNOWBALL(2,2.5,24,0xDBF8FF),
     GOBLIN_BARREL(3,2.5,30,0x69C66E), BARBARIAN_BARREL(2,1.5,22,0xE4B94C),
     ROYAL_DELIVERY(3,3,60,0x6FB4F1), GRAVEYARD(5,4,200,0xAA7FE7),
@@ -41,4 +41,3 @@ public enum Spell {
     public boolean rolling() { return this==THE_LOG || this==BARBARIAN_BARREL || this==BARBARIAN_BARREL_HERO; }
     public static Spell byId(int id) { return values()[Math.max(0,Math.min(values().length-1,id))]; }
 }
-

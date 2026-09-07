@@ -24,6 +24,8 @@ public final class CombatCompatibility {
         if(entity instanceof OwnableEntity ownable)return ownable.getOwnerUUID();
         return ironLoaded?IronBridge.ownerOf(entity):null;
     }
+    public static boolean magicSummon(Entity entity){return ironLoaded&&IronBridge.magicSummon(entity);}
+    public static boolean nativeSkeleton(Entity entity){return ironLoaded&&IronBridge.nativeSkeleton(entity);}
 
     public static Entity resolve(ServerLevel level,UUID uuid) {
         if(uuid==null)return null;
@@ -34,6 +36,12 @@ public final class CombatCompatibility {
     private static void targetChanged(LivingChangeTargetEvent event) {
         LivingEntity attacker=event.getEntity(),target=event.getNewAboutToBeSetTarget();
         if(target==null)return;
+        if(attacker instanceof net.minecraft.world.entity.Mob mob&&(attacker instanceof Summoned||magicSummon(attacker))&&attacker.level() instanceof ServerLevel world
+            &&resolve(world,ownerOf(attacker)) instanceof net.minecraft.server.level.ServerPlayer player){
+            var priority=SummonOrders.priority(mob,player);
+            if(priority!=null){event.setNewAboutToBeSetTarget(priority);return;}
+            if(!SummonOrders.allowed(mob,player,target)){event.setNewAboutToBeSetTarget(null);return;}
+        }
         // Restrict this hook to our units; unrelated Iron's combat keeps its own rules.
         if(attacker instanceof Summoned ours && SpellEngine.friendly(ours.ownerId(),target)
             || target instanceof Summoned theirs && SpellEngine.friendly(theirs.ownerId(),attacker))
@@ -42,6 +50,8 @@ public final class CombatCompatibility {
 
     /** Loaded only after ModList confirms the optional mod is present. */
     private static final class IronBridge {
+        static boolean magicSummon(Entity e){return e instanceof io.redspace.ironsspellbooks.entity.mobs.IMagicSummon;}
+        static boolean nativeSkeleton(Entity e){return e instanceof io.redspace.ironsspellbooks.entity.mobs.SummonedSkeleton;}
         static UUID ownerOf(Entity entity) {
             if(entity instanceof io.redspace.ironsspellbooks.entity.mobs.IMagicSummon summon) {
                 Entity owner=summon.getSummoner();return owner==null?null:owner.getUUID();
