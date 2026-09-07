@@ -8,6 +8,12 @@ Fabric 1.20.1、Fabric 1.21.1 和旧版 NeoForge 同装适配分支目前仍为 
 
 Clash Royale inspired spells for Minecraft Java 1.20.1 (Fabric) and 1.21.1 (Fabric / NeoForge). The latest NeoForge Iron's Spells integration is **1.5.2-beta.1**, with native spellbook, mana, scroll crafting and progression support; the Fabric releases remain at **1.2.0**.
 
+## 开发技术档案
+
+[完整中文技术档案 · 铁魔法 Beta 1](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/iron-integration-1.21.1/docs/technical/README.md) 已按 `1.5.2-beta.1` 源码整理，覆盖架构、施法数值、铁魔法系统、召唤 AI、圣水与重油、结构与仪式、同步存档、特效模型、音频、构建测试和扩展流程。
+
+可直接阅读 [准星渲染原理与故障修复](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/iron-integration-1.21.1/docs/technical/03-target-preview.md)、[源码索引](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/iron-integration-1.21.1/docs/technical/source-index.md) 和 [法术、音效与配方表](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/iron-integration-1.21.1/docs/technical/spell-reference.md)。技术档案对应 NeoForge 铁魔法分支，旧 Fabric 分支的接口和数值应以各自源码为准。
+
 ## 下载与安装
 
 **想体验铁魔法完整适配，请下载下表第一行的 Beta 1。** 它在 GitHub Releases 中标为 **Pre-release（预发布）**。
