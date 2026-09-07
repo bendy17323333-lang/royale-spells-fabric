@@ -1,3 +1,5 @@
+> **历史档案**：本页保留该开发阶段的数值、计划和发布状态；其中“未发布／不要发布”等文字记录当时状态。当前实现与维护方法请读 [1.5.2-beta.1 技术档案](docs/technical/README.md)，当前发布信息见 [README](README.md)。
+
 # 1.5.1 local changes requested 2026-09-06
 
 Do not publish to GitHub or replace the player instance. Preserve 1.5.0 outputs. No subagents.

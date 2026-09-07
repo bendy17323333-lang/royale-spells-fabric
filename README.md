@@ -50,6 +50,16 @@
 
 反馈时请附模组版本、加载器版本、铁魔法版本、复现步骤与 `latest.log`。完整变化见 [Beta 1 更新说明](CHANGELOG-1.5.2.md)。
 
+## 开发技术档案
+
+[完整中文技术档案](docs/technical/README.md) 对照当前 Beta 源码，包含架构、施法数值、铁魔法接口、召唤 AI、军团、圣水与重油仪式、结构生成、存档同步、模型、特效、音频、构建与测试。
+
+- [准星如何渲染](docs/technical/03-target-preview.md)：相机矩阵、固定平面圆/长条、双落点、透明深度与历史变形故障。
+- [全部源码索引](docs/technical/source-index.md) 与 [法术、音效、配方参数表](docs/technical/spell-reference.md)。
+- [新增法术与故障排查](docs/technical/10-extension-and-troubleshooting.md)；表格可用 `python tools/technical_docs.py --generate` 重新生成，`--check` 检查是否过期及本地链接。
+
+文档以 `1.5.2-beta.1` 为基线；根目录的早期技术说明保留为历史记录。公开源码不代表每行都有注释，当前也未新增开源许可证；许可与素材说明见技术档案首页。
+
 ## 开发与旧版
 
 使用 Java 21：
