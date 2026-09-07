@@ -2,34 +2,36 @@
 
 把皇室战争的法术带进 **Minecraft Java 1.20.1 / Fabric，以及 1.21.1 / Fabric、NeoForge**。
 
-最新铁魔法适配版为 **1.5.2-beta.1（Beta 1）**，适用于 **Minecraft 1.21.1 / NeoForge**，已接入铁魔法的学派、稀有度、等级、魔力、卷轴制作、抄写、法术书与武器施法，并加入圣水、暗黑重油和觉醒骷髅军团。这是铁魔法完整适配的首个公开预发布版。
+最新铁魔法适配版为 **1.6.1-beta.2（Beta 2）**，适用于 **Minecraft 1.21.1 / NeoForge**，已接入铁魔法的学派、稀有度、等级、魔力、卷轴制作、抄写、法术书与武器施法，并加入圣水、暗黑重油和觉醒骷髅军团。本次第二个公开 Beta 新增四元素熔炉法杖、原作精灵音效，并修正骷髅军团输出、站位与将军阵亡后的普通小兵存活。
 
 Fabric 1.20.1、Fabric 1.21.1 和旧版 NeoForge 同装适配分支目前仍为 **1.2.0**，包含 28 张法术卡牌与野蛮人小屋。各版本的下载入口见下表。
 
-Clash Royale inspired spells for Minecraft Java 1.20.1 (Fabric) and 1.21.1 (Fabric / NeoForge). The latest NeoForge Iron's Spells integration is **1.5.2-beta.1**, with native spellbook, mana, scroll crafting and progression support; the Fabric releases remain at **1.2.0**.
+Clash Royale inspired spells for Minecraft Java 1.20.1 (Fabric) and 1.21.1 (Fabric / NeoForge). The latest NeoForge Iron's Spells integration is **1.6.1-beta.2**, with native spellbook, mana, scroll crafting and progression support; the Fabric releases remain at **1.2.0**.
 
 ## 开发技术档案
 
-[完整中文技术档案 · 铁魔法 Beta 1](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/iron-integration-1.21.1/docs/technical/README.md) 已按 `1.5.2-beta.1` 源码整理，覆盖架构、施法数值、铁魔法系统、召唤 AI、圣水与重油、结构与仪式、同步存档、特效模型、音频、构建测试和扩展流程。
+[完整中文技术档案 · 铁魔法 Beta 2](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/iron-integration-1.21.1/docs/technical/README.md) 已按 `1.6.1-beta.2` 源码整理，覆盖架构、施法数值、铁魔法系统、召唤 AI、圣水与重油、结构与仪式、同步存档、特效模型、音频、构建测试和扩展流程；新增四元素法杖、真实跳扑、连锁电击与模型导出章节。
 
 可直接阅读 [准星渲染原理与故障修复](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/iron-integration-1.21.1/docs/technical/03-target-preview.md)、[源码索引](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/iron-integration-1.21.1/docs/technical/source-index.md) 和 [法术、音效与配方表](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/iron-integration-1.21.1/docs/technical/spell-reference.md)。技术档案对应 NeoForge 铁魔法分支，旧 Fabric 分支的接口和数值应以各自源码为准。
 
 ## 下载与安装
 
-**想体验铁魔法完整适配，请下载下表第一行的 Beta 1。** 它在 GitHub Releases 中标为 **Pre-release（预发布）**。
+**想体验铁魔法完整适配，请下载下表第一行的 Beta 2。** 它在 GitHub Releases 中标为 **Pre-release（预发布）**。
 
 请按 Minecraft 版本、加载器和玩法选择，下载同一行对应的发布包：
 
 | Minecraft | 下载 | Java | 源码分支 |
 |---|---|---|---|
-| **1.21.1 NeoForge** | **[1.5.2-beta.1 铁魔法完整适配 · Beta 1](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.5.2-beta.1-neoforge-mc1.21.1)** | **21** | [iron-integration-1.21.1](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/iron-integration-1.21.1) |
+| **1.21.1 NeoForge** | **[1.6.1-beta.2 铁魔法完整适配 · Beta 2](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.6.1-beta.2-neoforge-mc1.21.1)** | **21** | [iron-integration-1.21.1](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/iron-integration-1.21.1) |
 | 1.21.1 NeoForge | [1.2.0 旧版同装适配与地图](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0-neoforge-mc1.21.1) | 21 | [neoforge-1.21.1](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/neoforge-1.21.1) |
 | 1.21.1 Fabric | [1.2.0 适配版与新版地图](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0-mc1.21.1) | 21 | [mc-1.21.1](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/mc-1.21.1) |
 | 1.20.1 Fabric | [1.2.0 模组与地图](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0) | 17+ | main |
 
-**Beta 1** 已验证与 **Iron's Spells 'n Spellbooks 1.21.1-3.16.3** 配合使用，共有 **30 种皇室法术（含召唤法术）**。支持卷轴制作、抄写、提取、奥术铁砧升级、镜像复制皇室及铁魔法法术，以及圣水和暗黑重油获取、卡牌觉醒、骷髅军团与号角仪式。安装依赖、玩法和测试记录见 [铁魔法 Beta 分支说明](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/iron-integration-1.21.1)。
+**Beta 2** 已验证与 **Iron's Spells 'n Spellbooks 1.21.1-3.16.3** 配合使用，保留 **30 种皇室法术（含召唤法术）**，并新增四种绑定在熔炉法杖上的精灵法术。支持卷轴制作、抄写、提取、奥术铁砧升级、镜像复制皇室及铁魔法法术，以及圣水和暗黑重油获取、卡牌觉醒、骷髅军团与号角仪式。安装依赖、玩法和测试记录见 [铁魔法 Beta 分支说明](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/iron-integration-1.21.1)。
 
-Beta 的安装文件是 `royale-spells-neoforge-1.21.1-1.5.2-beta.1.jar`。发布包还提供说明、源码、验证记录与校验文件；录制地图目前仍放在各个 **1.2.0** 发布条目中。
+Beta 的安装文件是 `royale-spells-neoforge-1.21.1-1.6.1-beta.2.jar`。发布包还提供说明、源码、验证记录与校验文件；录制地图目前仍放在各个 **1.2.0** 发布条目中。
+
+**Beta 2 冰精灵模型、皮肤与发光遮罩改编自 [MineClash](https://www.curseforge.com/minecraft/mc-mods/mineclash)，作者 LiziYowo / MineClash 团队。** 原作角色、卡图和声音归 Supercell；完整来源见铁魔法分支素材清单。
 
 旧版 **NeoForge 1.2.0** 提供铁魔法同装与战斗兼容，使用独立圣水体系；该版本的说明见 [旧版 NeoForge 分支](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/neoforge-1.21.1)。
 
