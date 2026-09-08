@@ -1,5 +1,11 @@
 # 皇室法术 · Royale Spells 1.2.0
 
+## 开源许可证
+
+本项目自编代码、工具和文档采用 **[MIT 许可证](LICENSE)**，允许修改、再分发及商业使用，须保留许可声明。《皇室战争》原版卡图、音频、MineClash 原始／改编模型等第三方资产 **明确排除**；它们保留原作者权利，不因随源码或 JAR 发布而变为 MIT。完整范围见 [LICENSE-NOTICE.md](LICENSE-NOTICE.md) 和 [ASSETS.md](ASSETS.md)。
+
+Original code is MIT licensed. Third-party artwork, audio, MineClash-derived assets and other third-party content are excluded and retain their respective terms.
+
 适用 **Minecraft Java 版 1.21.1 + Fabric**。包含 21 种常规法术、3 张觉醒法术卡、3 张历史／活动法术卡，以及英雄野蛮人滚桶，共 **28 张法术卡牌**，保留野蛮人小屋一张建筑卡，合计 **29 张卡牌**。
 
 ## 安装与使用

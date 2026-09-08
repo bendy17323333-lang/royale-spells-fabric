@@ -1,5 +1,6 @@
 {
   "schemaVersion": 1,
+  "license": "MIT",
   "id": "royalespells",
   "version": "${version}",
   "name": "皇室法术 · Royale Spells",

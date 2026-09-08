@@ -1,5 +1,11 @@
 # 皇室法术 · Royale Spells
 
+## 开源许可证
+
+本项目自编代码、工具和文档采用 **[MIT 许可证](LICENSE)**，允许修改、再分发及商业使用，须保留许可声明。《皇室战争》原版卡图、音频、MineClash 原始／改编模型等第三方资产 **明确排除**；它们保留原作者权利，不因随源码或 JAR 发布而变为 MIT。完整范围见 [LICENSE-NOTICE.md](LICENSE-NOTICE.md) 和 [ASSETS.md](ASSETS.md)。
+
+Original code is MIT licensed. Third-party artwork, audio, MineClash-derived assets and other third-party content are excluded and retain their respective terms.
+
 把皇室战争的法术带进 **Minecraft Java 1.21.1 / Fabric**。
 
 当前版本 **1.2.0**：28 张法术卡牌与野蛮人小屋，原版卡图、圣水、觉醒、召唤物和独立法术效果。
@@ -98,4 +104,4 @@ Linux / macOS 使用 `./gradlew`。无 `sources` 后缀的安装 JAR 位于 `bui
 
 1.21.1 适配与验证记录见 [验证说明](docs/validation-1.2.0-mc1.21.1.md)。旧的 `validation-1.2.0.md` 记录的是 1.20.1 版测试。
 
-本项目为玩家制作的非官方模组。皇室战争卡图与音效属于原权利人，素材来源、原始哈希和生成提示词见 [ASSETS.md](ASSETS.md)、各项 `*-SOURCES.json` 及 [TROOP-ASSETS.json](TROOP-ASSETS.json)。本仓库尚未为项目代码另行指定开源许可证。
+本项目为玩家制作的非官方模组。皇室战争卡图与音效属于原权利人，素材来源、原始哈希和生成提示词见 [ASSETS.md](ASSETS.md)、各项 `*-SOURCES.json` 及 [TROOP-ASSETS.json](TROOP-ASSETS.json)。本项目自编代码现已采用 MIT；第三方资产排除范围见 LICENSE-NOTICE.md。
