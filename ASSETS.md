@@ -1,5 +1,21 @@
 # 素材记录
 
+## 代码许可与第三方资产排除
+
+**本项目自编代码、构建／工具脚本、配置与技术文档采用 [MIT 许可证](LICENSE)。第三方资产不在该许可范围内。** 完整的中英文范围说明见 [LICENSE-NOTICE.md](LICENSE-NOTICE.md)。下文明确记录为本项目独立制作或 ImageGen 生成、未混入第三方内容的新素材，其可由本项目授予的原创贡献同样采用 MIT；这不包含原作角色设计、商标或第三方改编素材的权利。
+
+| 内容 | 适用说明 |
+| --- | --- |
+| 自编 Java、渲染／动画算法、法术／AI 机制、兼容层、测试和工具 | MIT，允许修改、再分发与商业使用，保留许可声明 |
+| 《皇室战争》卡图、原作参考图、角色图、音频及转换版本 | **排除**；Supercell 等原权利人保留权利 |
+| MineClash 冰精灵及冰法杖同源头部的模型、贴图、发光遮罩、工程和导出物 | **排除**；LiziYowo / MineClash 团队保留权利，源项目为 [MineClash](https://www.curseforge.com/minecraft/mc-mods/mineclash) |
+| Minecraft 运行时原版模型、纹理、声音 | **排除**；Mojang/Microsoft 的资源条款不变 |
+| Gradle Wrapper 与其它第三方软件 | 保留各自上游许可证；不被本项目重新许可 |
+
+卡图通常位于 `src/main/resources/assets/royalespells/textures/card/` 与 `textures/gui/spell_icons/`，原作声音位于同一资源命名空间的 `sounds/`。MineClash 相关路径包括 `textures/entity/spirit_ice_mineclash*.png`、`models/troop/spirit_ice.json`、`models/item/furnace_staff_ice.obj` 和 `art/blockbench-v3/` 中对应冰精灵／冰法杖工程；各版本存在的文件以其来源清单为准。
+
+这些排除同样适用于复制、改编、转换及嵌入代码或模型工程的资产数据。出处和已有使用授权不能替代原权利人的再许可；**含第三方资产的完整 JAR 不能被整体描述为“全部素材均为 MIT”。** 下文和 `*-SOURCES.json` 保留原始来源记录。
+
 28 张法术卡图直接取自 RoyaleAPI 维护的皇室战争原版素材仓库：
 
 https://github.com/RoyaleAPI/cr-api-assets

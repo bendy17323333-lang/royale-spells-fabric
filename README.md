@@ -1,5 +1,11 @@
 # 皇室法术 · 铁魔法适配 Beta 2
 
+## 开源许可证
+
+本项目自编代码、工具和文档采用 **[MIT 许可证](LICENSE)**，允许修改、再分发及商业使用，须保留许可声明。《皇室战争》原版卡图、音频、MineClash 原始／改编模型等第三方资产 **明确排除**；它们保留原作者权利，不因随源码或 JAR 发布而变为 MIT。完整范围见 [LICENSE-NOTICE.md](LICENSE-NOTICE.md) 和 [ASSETS.md](ASSETS.md)。
+
+Original code is MIT licensed. Third-party artwork, audio, MineClash-derived assets and other third-party content are excluded and retain their respective terms.
+
 **Royale Spells `1.6.1-beta.2` · Minecraft 1.21.1 · NeoForge · Java 21**
 
 将皇室战争法术接入 Iron’s Spells ’n Spellbooks 的魔力、学派、稀有度、卷轴、抄写、法术书和奥术铁砧系统。Beta 2 新增四元素熔炉法杖，并改进觉醒骷髅军团的实际战斗。

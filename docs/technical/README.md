@@ -61,4 +61,4 @@ python tools/technical_docs.py --check
 
 ## 公开源码与素材
 
-本仓库可公开阅读、下载源码，但当前模组元数据声明为 `All Rights Reserved`，未新增代码开源许可证。本次补文档不改变许可。皇室战争原卡图、声音等第三方素材的来源与权利说明见 [ASSETS.md](../../ASSETS.md) 和对应来源清单；不要把公开下载、代码生成模型和第三方素材许可混为一谈。
+本项目自编代码、构建／工具脚本、配置与技术文档采用 [MIT 许可证](../../LICENSE)。第三方卡图、音频、MineClash 原始与改编素材等明确排除，保留原权利人与适用条款；详见 [LICENSE-NOTICE.md](../../LICENSE-NOTICE.md) 和 [ASSETS.md](../../ASSETS.md)。公开素材或项目内使用授权不等于本项目可以把第三方资产重新许可为 MIT。
