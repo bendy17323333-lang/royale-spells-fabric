@@ -64,7 +64,7 @@ Original code is MIT licensed. Third-party artwork, audio, MineClash-derived ass
 
 [模型与贴图来源](SPIRIT-ASSET-SOURCES.json) · [精灵原作音效出处](SPIRIT-AUDIO-SOURCES.json) · [原卡图出处](SPIRIT-CARD-SOURCES.json) · [完整素材说明](ASSETS.md) · [可编辑 Blockbench 工程](art/blockbench-v3/README.md)
 
-源码公开不等于重新授予第三方素材许可；各素材保留原归属及许可。本项目目前未提供额外的开源许可证。
+源码公开不等于重新授予第三方素材许可；各素材保留原归属及许可。本项目自编代码采用 MIT；第三方资产的排除范围见 LICENSE-NOTICE.md。
 
 ## 验证与反馈
 
