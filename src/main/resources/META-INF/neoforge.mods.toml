@@ -1,6 +1,7 @@
 modLoader="javafml"
 loaderVersion="[4,)"
-license="All Rights Reserved"
+# MIT covers original code and documentation; asset exclusions are in LICENSE-NOTICE.md.
+license="MIT"
 [[mods]]
 modId="royalespells"
 version="${version}"

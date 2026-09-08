@@ -60,6 +60,8 @@ dependencies {
     }
 }
 processResources {
+    // Ship the code license and the separate third-party asset scope together.
+    from('LICENSE', 'LICENSE-NOTICE.md', 'ASSETS.md')
     inputs.property 'version', project.version
     filesMatching('META-INF/neoforge.mods.toml') { expand 'version': project.version }
 }
