@@ -1,5 +1,11 @@
 # 皇室法术 · Royale Spells
 
+## 开源许可证
+
+本项目自编代码、工具和文档采用 **[MIT 许可证](LICENSE)**，允许修改、再分发及商业使用，须保留许可声明。《皇室战争》原版卡图、音频、MineClash 原始／改编模型等第三方资产 **明确排除**；它们保留原作者权利，不因随源码或 JAR 发布而变为 MIT。完整范围见 [LICENSE-NOTICE.md](LICENSE-NOTICE.md) 和 [ASSETS.md](ASSETS.md)。
+
+Original code is MIT licensed. Third-party artwork, audio, MineClash-derived assets and other third-party content are excluded and retain their respective terms.
+
 把皇室战争的法术带进 **Minecraft Java 1.20.1 / Fabric，以及 1.21.1 / Fabric、NeoForge**。
 
 最新铁魔法适配版为 **1.6.1-beta.2（Beta 2）**，适用于 **Minecraft 1.21.1 / NeoForge**，已接入铁魔法的学派、稀有度、等级、魔力、卷轴制作、抄写、法术书与武器施法，并加入圣水、暗黑重油和觉醒骷髅军团。本次第二个公开 Beta 新增四元素熔炉法杖、原作精灵音效，并修正骷髅军团输出、站位与将军阵亡后的普通小兵存活。
@@ -119,4 +125,4 @@ Linux / macOS 使用 `./gradlew`。无 `sources` 后缀的安装 JAR 位于 `bui
 
 1.2.0 已通过 36 项 Minecraft GameTest、开发客户端与整合包副本中的 26 场地图检查，以及范围深度、模型、音效和火箭飞行回归。详见 [验证记录](docs/validation-1.2.0.md)。
 
-本项目为玩家制作的非官方模组。皇室战争卡图与音效属于原权利人，素材来源、原始哈希和生成提示词见 [ASSETS.md](ASSETS.md)、各项 `*-SOURCES.json` 及 [TROOP-ASSETS.json](TROOP-ASSETS.json)。本仓库尚未为项目代码另行指定开源许可证。
+本项目为玩家制作的非官方模组。皇室战争卡图与音效属于原权利人，素材来源、原始哈希和生成提示词见 [ASSETS.md](ASSETS.md)、各项 `*-SOURCES.json` 及 [TROOP-ASSETS.json](TROOP-ASSETS.json)。本项目自编代码现已采用 MIT；第三方资产排除范围见 LICENSE-NOTICE.md。

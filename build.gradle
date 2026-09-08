@@ -14,6 +14,8 @@ dependencies {
     }
 }
 processResources {
+    // Ship the code license and the separate third-party asset scope together.
+    from('LICENSE', 'LICENSE-NOTICE.md', 'ASSETS.md')
     inputs.property 'version', project.version
     filesMatching('fabric.mod.json') { expand 'version': project.version }
 }
