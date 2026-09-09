@@ -1,5 +1,7 @@
 # 皇室法术 · Royale Spells 1.2.0
 
+本页介绍 **1.20.1 Fabric 1.2.0**。Minecraft **1.21.1 NeoForge** 的最新铁魔法适配版为 **[1.7.1-beta.3 / Beta 3](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.7.1-beta.3-neoforge-mc1.21.1)**；其新卡牌数值、依赖与玩法请看 [NeoForge 分支说明](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/iron-integration-1.21.1)，各版本入口见 [主页](README.md)。
+
 ## 开源许可证
 
 本项目自编代码、工具和文档采用 **[MIT 许可证](LICENSE)**，允许修改、再分发及商业使用，须保留许可声明。《皇室战争》原版卡图、音频、MineClash 原始／改编模型等第三方资产 **明确排除**；它们保留原作者权利，不因随源码或 JAR 发布而变为 MIT。完整范围见 [LICENSE-NOTICE.md](LICENSE-NOTICE.md) 和 [ASSETS.md](ASSETS.md)。
