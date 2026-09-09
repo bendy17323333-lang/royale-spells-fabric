@@ -17,7 +17,9 @@ public final class FrozenRender {
     }
     public static final class Scope implements AutoCloseable {
         private final LivingEntity entity;private final State state;private final Frame actual;private final boolean frozen;private int signature=1,parts;
-        private Scope(LivingEntity e,float delta){entity=e;state=STATES.computeIfAbsent(e,k->new State());actual=Frame.of(e,delta);frozen=VisualState.frozen(e);if(!frozen||state.frame==null)state.frame=actual;if(frozen)state.frame.apply(e);SCOPES.push(this);}
+        // Electric pause holds poses but leaves the real entity age available to
+        // PauseClock. Hard ice retains its existing full-frame capture.
+        private Scope(LivingEntity e,float delta){entity=e;state=STATES.computeIfAbsent(e,k->new State());actual=Frame.of(e,delta);frozen=VisualState.frozen(e)||dev.royalespells.pause.ElectricPause.active(e);if(!frozen||state.frame==null)state.frame=actual;if(VisualState.frozen(e))state.frame.apply(e);SCOPES.push(this);}
         public float delta(){return frozen?state.frame.delta:actual.delta;}
         public float yaw(float current){return frozen?state.frame.body:current;}
         @Override public void close(){SCOPES.pop();actual.apply(entity);state.signature=signature;state.parts=parts;state.wasFrozen=frozen;}

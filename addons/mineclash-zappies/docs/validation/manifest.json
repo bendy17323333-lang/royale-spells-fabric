@@ -1,0 +1,51 @@
+{
+  "versions": {
+    "zappies": "0.1.0",
+    "royale": "1.7.0-dev.4"
+  },
+  "jars": {
+    "mineclash-zappies-neoforge-1.21.1-0.1.0.jar": "e1b749da450a5b05931f6d1c93543ef27d219c19a4db2cd5341d3a885e24d361",
+    "royale-spells-neoforge-1.21.1-1.7.0-dev.4.jar": "f442c4f7ca9fb71a85d20c66d5da9c521c5347f5d2f94733679d1d0ca80f5143"
+  },
+  "tests": {
+    "joint-149-tests.xml": 149,
+    "royale-83-tests.xml": 83,
+    "zappies-12-tests.xml": 12
+  },
+  "client_qa_afterwards_changed_only_opt_in_recording": [
+    "dev/mineclash/zappies/client/BattleAudioRecorder.class",
+    "dev/mineclash/zappies/client/BattleRecorder.class",
+    "dev/mineclash/zappies/client/BattleShowcase.class",
+    "dev/mineclash/zappies/client/ClientSetup.class"
+  ],
+  "videos": {
+    "pekka": {
+      "file": "01-Zappies-vs-MineClash-PEKKA.mp4",
+      "frame_count": 361,
+      "duration_seconds": 21.916999999999998,
+      "sound_events": 40,
+      "audible_events": 36,
+      "mix_peak_before_ceiling": 0.5017557144165039,
+      "audio_method": "actual game sound event samples, pitch, distance, timing, loop stops; no desktop or microphone audio",
+      "winner": "pekka",
+      "combat_ticks": 441,
+      "opponent_base_health": 150.0
+    },
+    "dragon": {
+      "file": "02-Zappies-vs-RoyaleSpells-InfernoDragon.mp4",
+      "frame_count": 378,
+      "duration_seconds": 23.546,
+      "sound_events": 83,
+      "audible_events": 67,
+      "mix_peak_before_ceiling": 0.18356463313102722,
+      "audio_method": "actual game sound event samples, pitch, distance, timing, loop stops; no desktop or microphone audio",
+      "winner": "zappies",
+      "combat_ticks": 473,
+      "opponent_base_health": 48.0,
+      "paused_dragon_samples": 41,
+      "all_paused_heat_and_lock_zero": true
+    }
+  },
+  "installed_in_user_instance": false,
+  "published_to_github": false
+}

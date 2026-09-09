@@ -1,0 +1,185 @@
+{
+  "solo4": {
+    "jar_sha256": "0ced5b972a1dea2beece04c9237b266a5ae26c944cae3b08f326205a4122c3f0",
+    "cases": [
+      {
+        "renderer": "gecko",
+        "entity": 125,
+        "affected": true,
+        "samples": 218,
+        "measurements": {
+          "normal": {
+            "count": 157,
+            "min": 1.0,
+            "median": 1.0,
+            "max": 1.0
+          },
+          "slow": {
+            "count": 48,
+            "min": 0.6499999761581421,
+            "median": 0.6499999761581421,
+            "max": 0.6499999761581421
+          },
+          "paused": {
+            "count": 8,
+            "min": 0.0,
+            "median": 0.0,
+            "max": 0.0
+          }
+        }
+      },
+      {
+        "renderer": "gecko",
+        "entity": 127,
+        "affected": false,
+        "samples": 218,
+        "measurements": {
+          "normal": {
+            "count": 217,
+            "min": 1.0,
+            "median": 1.0,
+            "max": 1.0
+          }
+        }
+      },
+      {
+        "renderer": "vanilla",
+        "entity": 124,
+        "affected": true,
+        "samples": 218,
+        "measurements": {
+          "normal": {
+            "count": 157,
+            "min": 1.0,
+            "median": 1.0,
+            "max": 1.0
+          },
+          "slow": {
+            "count": 48,
+            "min": 0.649993896484375,
+            "median": 0.6500015258789062,
+            "max": 0.6500067317905067
+          },
+          "paused": {
+            "count": 8,
+            "min": 0.0,
+            "median": 0.0,
+            "max": 0.0
+          }
+        }
+      },
+      {
+        "renderer": "vanilla",
+        "entity": 126,
+        "affected": false,
+        "samples": 218,
+        "measurements": {
+          "normal": {
+            "count": 217,
+            "min": 1.0,
+            "median": 1.0,
+            "max": 1.0
+          }
+        }
+      }
+    ],
+    "evolved_blue_after_release_two_directions": "PASS",
+    "data_sha256": "dc04257a7166e145b33cc64951f59f7ed2c0e469959c4d05a2a9a6d76cefc7d3"
+  },
+  "joint3": {
+    "jar_sha256": "487efbc4a763381d0ec6d8f754792d67852ff1e255fc9fccf85f7b3f7d0e95ad",
+    "cases": [
+      {
+        "renderer": "gecko",
+        "entity": 156,
+        "affected": true,
+        "samples": 222,
+        "measurements": {
+          "normal": {
+            "count": 160,
+            "min": 1.0,
+            "median": 1.0,
+            "max": 1.0
+          },
+          "slow": {
+            "count": 49,
+            "min": 0.6499999761581421,
+            "median": 0.6499999761581421,
+            "max": 0.6499999761581421
+          },
+          "paused": {
+            "count": 8,
+            "min": 0.0,
+            "median": 0.0,
+            "max": 0.0
+          }
+        }
+      },
+      {
+        "renderer": "gecko",
+        "entity": 158,
+        "affected": false,
+        "samples": 222,
+        "measurements": {
+          "normal": {
+            "count": 221,
+            "min": 1.0,
+            "median": 1.0,
+            "max": 1.0
+          }
+        }
+      },
+      {
+        "renderer": "vanilla",
+        "entity": 155,
+        "affected": true,
+        "samples": 222,
+        "measurements": {
+          "normal": {
+            "count": 160,
+            "min": 1.0,
+            "median": 1.0,
+            "max": 1.0
+          },
+          "slow": {
+            "count": 49,
+            "min": 0.649993896484375,
+            "median": 0.6500015258789062,
+            "max": 0.6500067317905067
+          },
+          "paused": {
+            "count": 8,
+            "min": 0.0,
+            "median": 0.0,
+            "max": 0.0
+          }
+        }
+      },
+      {
+        "renderer": "vanilla",
+        "entity": 157,
+        "affected": false,
+        "samples": 222,
+        "measurements": {
+          "normal": {
+            "count": 221,
+            "min": 1.0,
+            "median": 1.0,
+            "max": 1.0
+          }
+        }
+      }
+    ],
+    "evolved_blue_after_release_two_directions": "PASS",
+    "data_sha256": "b528a35193efcc7d62113c50fb0939d809add188469199ccc19123b7ca84a7d1"
+  },
+  "final_jar": {
+    "sha256": "09d4dc841e9932e47b34e102d98c6b3d8d13bdfab1ecc199d79420df387160f3",
+    "changes_since_recording": [
+      "data/royalespells/structure/empty.nbt",
+      "dev/royalespells/test/IronCompatibilityTests.class",
+      "dev/royalespells/test/SnowballVisualTests.class"
+    ],
+    "gameplay_and_client_code_identical": true
+  }
+}

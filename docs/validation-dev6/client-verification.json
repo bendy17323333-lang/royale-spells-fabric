@@ -1,0 +1,193 @@
+{
+  "version": "1.7.0-dev.6",
+  "final_jar_sha256": "69687924f1f5e35d537d1a7f460e630cc6de3a63bb9735fa9bfb0504feb16d78",
+  "runs": [
+    {
+      "directory": "run-production-visualfireball6d",
+      "jar_sha256": "1b5f110cb757f0b58196432c7cc818c40ee4811c43d453d5efb030e0739474fb",
+      "differences_from_final_jar": [
+        "ASSETS.md"
+      ],
+      "impacts": 3,
+      "target_health_before": 300,
+      "target_health_after": 264,
+      "screenshots": [
+        {
+          "name": "fireball-dev6-110.png",
+          "sha256": "2af16d7efe9c1aebe9f5d977cda7b6de3d7082ec3e315b07d5c26324b1162fac"
+        },
+        {
+          "name": "fireball-dev6-143.png",
+          "sha256": "a5600e6d3d4a789e2240a6fbb9e0d3692f38113f52920db323a991e312e1cad5"
+        },
+        {
+          "name": "fireball-dev6-149.png",
+          "sha256": "192e6d2791ad8656a38eaac97a3c07a804207e50ce4b26fefea58783b907294d"
+        },
+        {
+          "name": "fireball-dev6-157.png",
+          "sha256": "5f11b4cf594fad6fc051f1e7d13ce11221f8d45aa967b24ff16dd67676707e53"
+        },
+        {
+          "name": "fireball-dev6-170.png",
+          "sha256": "165f7e4baf60a065c04fab2005295ea0ddaa99e88aaf6e6c3cf5695ca9a6843b"
+        },
+        {
+          "name": "fireball-dev6-233.png",
+          "sha256": "f20eba0c069470a809483fa7d09f2bc5371c8001873b618860dccf38abb23f29"
+        },
+        {
+          "name": "fireball-dev6-239.png",
+          "sha256": "8cc252505bbe1ae8cc9ff981e1152df96f2a6e44e0fab4419f674f64ee46bf4b"
+        },
+        {
+          "name": "fireball-dev6-247.png",
+          "sha256": "6e0f2e795929f2656060bbee240bbf159035f5b8f64636a3199055f9d10eb8b8"
+        },
+        {
+          "name": "fireball-dev6-260.png",
+          "sha256": "5e736c5f0a4f945fb0c2977594bd62a274f13a56eebc751e5d481307da192430"
+        },
+        {
+          "name": "fireball-dev6-43.png",
+          "sha256": "4f1b93a0c7bfe52fcfbc0bc0f63caf054bb086275ef704c2914d67463a6a6900"
+        },
+        {
+          "name": "fireball-dev6-49.png",
+          "sha256": "2115c7868b62eec31e12b4ab7a5a3720f6299d8054bd354bec76eb126fff690d"
+        },
+        {
+          "name": "fireball-dev6-54.png",
+          "sha256": "b6d87eba67b10a1e44208a2db34bd322eaf84868cf4afa11dcb1adefce3a920e"
+        },
+        {
+          "name": "fireball-dev6-55.png",
+          "sha256": "d6962b32090c8f1c660e656a6c951db367dd9e66b2543060a095f4f9219e0e68"
+        },
+        {
+          "name": "fireball-dev6-56.png",
+          "sha256": "7e4dd35b4ee1d19a5554b9888dc82bc8b35b87075fc4844f662ca67f0eb2393c"
+        },
+        {
+          "name": "fireball-dev6-57.png",
+          "sha256": "4449bdf1239eb89dd91888cf9a67e8dc084130a8165fe436f05db4ffdb69362e"
+        },
+        {
+          "name": "fireball-dev6-59.png",
+          "sha256": "224e5dc600b47cb76a58ef5a5225270f4b5fd738775c3efe271ccb4191528db4"
+        },
+        {
+          "name": "fireball-dev6-61.png",
+          "sha256": "adecb9ddf458243ae3ec89514fc88321dc42c60586eb5ac3b75c8ebb28208fce"
+        },
+        {
+          "name": "fireball-dev6-63.png",
+          "sha256": "a19c4787b424d94b767519ff50d9189328c3d22c5f54449d33c638687498adfb"
+        },
+        {
+          "name": "fireball-dev6-77.png",
+          "sha256": "f3cbcee4333216adcbee612954bde9402c3f57fb46a4bcddcee41e341a655269"
+        }
+      ],
+      "graphics_configuration": "default",
+      "console_sha256": "8da7af689dd89aa9a198a322ab2b2f9c16f25fda684cf477025c450d96936aca"
+    },
+    {
+      "directory": "run-production-visualfireball6fabulous",
+      "jar_sha256": "69687924f1f5e35d537d1a7f460e630cc6de3a63bb9735fa9bfb0504feb16d78",
+      "differences_from_final_jar": [],
+      "impacts": 3,
+      "target_health_before": 300,
+      "target_health_after": 264,
+      "screenshots": [
+        {
+          "name": "fireball-dev6-110.png",
+          "sha256": "3eb9e581a3a839ab61a156377170ba20f4f48632dc350186c779ca88011fcf49"
+        },
+        {
+          "name": "fireball-dev6-143.png",
+          "sha256": "4d2425cb64ffe8af0ce38b6c63032b7dfb1289d6abd1c0142ef37aaab194ce9f"
+        },
+        {
+          "name": "fireball-dev6-149.png",
+          "sha256": "838c8013090217a895afbb8adea9023776560b53f493ca1e30f6b2d40d3533b9"
+        },
+        {
+          "name": "fireball-dev6-157.png",
+          "sha256": "6d19d36f189995c4b74b1612b5b8838460c49fc4401ca56cb17da75a6f4182d4"
+        },
+        {
+          "name": "fireball-dev6-170.png",
+          "sha256": "dec7834514f3dc9d64e3a75e712675b6d82a12b17210142b9e065b1301c35121"
+        },
+        {
+          "name": "fireball-dev6-233.png",
+          "sha256": "923e45ffe0c5367e9b6c390e38a1a47cfaf2d00abf079f5e1bc84db6c5257243"
+        },
+        {
+          "name": "fireball-dev6-239.png",
+          "sha256": "6ba828d19c249155d1dbcc7385a60ef03c631d6862a298ab86f2b43f08b55def"
+        },
+        {
+          "name": "fireball-dev6-247.png",
+          "sha256": "0dc9c179f0744e022031bb250da762ebefcee7a4bf7ca0e0ac9dbed480de5682"
+        },
+        {
+          "name": "fireball-dev6-260.png",
+          "sha256": "2f0923715444a0f683b061257759e03b22bfee35475221217e40fce87a27e7cb"
+        },
+        {
+          "name": "fireball-dev6-43.png",
+          "sha256": "39935421409ce8cee5bf258a58c069e041eddb80569a88ff97aa57c4a371c342"
+        },
+        {
+          "name": "fireball-dev6-49.png",
+          "sha256": "8c370ee61493c17c74d8d153b7bba0e7b1d519ce8e579b7beb41b02285b3110f"
+        },
+        {
+          "name": "fireball-dev6-54.png",
+          "sha256": "abf549125d2471e2de823201d45dfa10b73a17d0a0212fa93d40742badf23390"
+        },
+        {
+          "name": "fireball-dev6-55.png",
+          "sha256": "a71ee9e084fdff03c1532a9cc883c138356ae61dd59ca9dd6b0d4cf9afa8203b"
+        },
+        {
+          "name": "fireball-dev6-56.png",
+          "sha256": "bc49c8282b6d94c99556bf83013d16d33aca413e110b8ab67fe14b40dd6abbb0"
+        },
+        {
+          "name": "fireball-dev6-57.png",
+          "sha256": "9993e922e4570fb027fbd97c35bb7025226ad65e20a0c9d30224f948861b5d6b"
+        },
+        {
+          "name": "fireball-dev6-59.png",
+          "sha256": "436903617ae1cb6f45f660464b1f9f90c2867b3187f03a5c3a9a46be9e603ba5"
+        },
+        {
+          "name": "fireball-dev6-61.png",
+          "sha256": "7a6e613dcdf3e57b0ee538a40798e0b8a602d6f68e1f8eb711e05b971e2ae198"
+        },
+        {
+          "name": "fireball-dev6-63.png",
+          "sha256": "3aeb210ad5d963ac5c06ba2e22698a582cf31e9f772763b7b922e6bf958bbff5"
+        },
+        {
+          "name": "fireball-dev6-77.png",
+          "sha256": "db0c7cb6d38566d4cc19dd3ac561291ecb327f463abf7fbaf110eaf985ca5918"
+        }
+      ],
+      "graphics_configuration": "fabulous",
+      "console_sha256": "1c90101cec547ef14a864cb6f0c3ec6e8306dce9d2488fa54ccf88dac87036ab"
+    }
+  ],
+  "visual_review": {
+    "reviewer": "Codex screenshot inspection",
+    "observations": [
+      "Filled curved plume in both horizontal directions and vertical descent",
+      "Brief irregular combustion followed by sparks and ascending charcoal smoke",
+      "No orange ground ring, no hollow ribbons, no rectangular texture background"
+    ],
+    "limits": "Isolated world with installed-pack dependencies; no external shader-pack or user-world acceptance claim."
+  }
+}

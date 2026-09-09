@@ -16,7 +16,7 @@ final class ZapRenderer {
         boolean second=e.spell()==Spell.ZAP_EVOLUTION&&time>=21;
         float age=time-(second?21:1);
         if(age<0||age>7)return;
-        double radius=SpellEntity.zapRadius(second?21:1);
+        double radius=e.strikeRadius(second?21:1);
         long seed=e.getId()*7919L+(second?613:0);
         int frame=(int)(age*2.2f);
         float fade=Mth.clamp(1-age/6.5f,0,1);

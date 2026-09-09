@@ -29,7 +29,7 @@ public abstract class LivingEntityMixin implements dev.royalespells.VisualState 
     @Inject(method="tick",at=@At("TAIL"))
     private void syncVisualData(CallbackInfo ci){
         LivingEntity self=(LivingEntity)(Object)this;if(self.level().isClientSide)return;
-        byte bits=(byte)((self.hasEffect(RoyaleSpells.RAGED)?1:0)|(self.hasEffect(RoyaleSpells.FROZEN)?2:0)|(self.hasEffect(RoyaleSpells.ROOTED)?4:0)|(self.hasEffect(RoyaleSpells.CLONED)?8:0));
+        byte bits=(byte)((self.hasEffect(RoyaleSpells.RAGED)?1:0)|(self.hasEffect(RoyaleSpells.FROZEN)?2:0)|(self.hasEffect(RoyaleSpells.ROOTED)?4:0)|(self.hasEffect(RoyaleSpells.CLONED)?8:0)|(self.hasEffect(RoyaleSpells.SNOWBOUND)?16:0));
         self.getEntityData().set(ROYALE_VISUAL,bits);
     }
     @Inject(method="travel",at=@At("HEAD"),cancellable=true)

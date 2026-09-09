@@ -1,0 +1,42 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT (original code); third-party assets excluded, see ASSETS.md"
+[[mods]]
+modId="zappiesaddon"
+version="${version}"
+displayName="MineClash · 电击车小队"
+description="Three-unit Zappies squads, original MineClash assets, connected electric attacks and resumable stun."
+[[mixins]]
+config="zappiesaddon.mixins.json"
+[[mixins]]
+config="zappiesaddon-electrical.mixins.json"
+[[dependencies.zappiesaddon]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
+[[dependencies.zappiesaddon]]
+modId="royalespells"
+type="optional"
+versionRange="[1.7.0-dev.4,)"
+ordering="AFTER"
+side="BOTH"
+[[dependencies.zappiesaddon]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.219,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.zappiesaddon]]
+modId="mineclash"
+type="required"
+versionRange="[0.7.5-1.21.1]"
+ordering="AFTER"
+side="BOTH"
+[[dependencies.zappiesaddon]]
+modId="geckolib"
+type="required"
+versionRange="[4.9.2,5)"
+ordering="AFTER"
+side="BOTH"

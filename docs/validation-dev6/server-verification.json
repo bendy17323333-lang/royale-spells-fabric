@@ -1,0 +1,8 @@
+{
+  "version": "1.7.0-dev.6",
+  "passed": 88,
+  "failed": 0,
+  "report_sha256": "0080b8fb08da90bab6a28e959cc58b61ae89466ffedc2f1513dda7f92653bfbf",
+  "jar_sha256": "69687924f1f5e35d537d1a7f460e630cc6de3a63bb9735fa9bfb0504feb16d78",
+  "scope": "Standalone GameTests rerun on dev.6. Prior dev.5 joint tests are not claimed as a new run."
+}

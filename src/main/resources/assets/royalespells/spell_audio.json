@@ -403,5 +403,19 @@
       "event": "spirit_heal_step",
       "volume": 0.075
     }
+  },
+  "inferno_dragon": {
+    "deploy": {
+      "event": "inferno_dragon_deploy",
+      "volume": 0.43
+    },
+    "wing": {
+      "event": "inferno_dragon_wing",
+      "volume": 0.085
+    },
+    "beam": {
+      "event": "inferno_dragon_beam",
+      "volume": 0.34
+    }
   }
 }

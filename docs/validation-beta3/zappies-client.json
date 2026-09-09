@@ -1,0 +1,56 @@
+{
+  "run": "run-production-combatbeta3pack",
+  "checks": {
+    "Z1": {
+      "held_samples": 9,
+      "held_time": 125.52001190185547,
+      "resume_delta": 0.32000732421875,
+      "neighbour_continues": true
+    },
+    "S1": {
+      "held_samples": 9,
+      "held_time": 125.52001190185547,
+      "resume_delta": 0.32000732421875,
+      "neighbour_continues": true
+    },
+    "one_death_does_not_contaminate_survivors": true,
+    "car_0": {
+      "shots": 7,
+      "intervals_ticks": [
+        46,
+        46,
+        46,
+        46,
+        46,
+        46
+      ]
+    },
+    "car_1": {
+      "shots": 5,
+      "intervals_ticks": [
+        46,
+        46,
+        46,
+        46
+      ]
+    },
+    "car_2": {
+      "shots": 6,
+      "intervals_ticks": [
+        46,
+        46,
+        46,
+        46,
+        46
+      ]
+    },
+    "actual_windup_pause": {
+      "samples": 10,
+      "windup": 6
+    }
+  },
+  "jars": {
+    "mineclash-zappies-neoforge-1.21.1-0.1.1.jar": "9306f064c6a8df913f12fee6bc810b74652a3e5277f3d8cc351e910a7d0202a5",
+    "royale-spells-neoforge-1.21.1-1.7.1-beta.3.jar": "f15c2661904ea347d73fec329785e8ee4d2f961a66c6c6fd33f6ac6981ff7c4a"
+  }
+}

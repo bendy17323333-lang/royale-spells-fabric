@@ -59,7 +59,7 @@ public final class ElementalSpirit extends PathfinderMob implements Summoned {
         return getTarget()!=null&&visible(getTarget())?getTarget():null;
     }
     public boolean beginLeap(LivingEntity target){
-        if(level().isClientSide||spent||leapTicks()>0||!visible(target)||distanceToSqr(target)>12.25||hasEffect(RoyaleSpells.STUN)||hasEffect(RoyaleSpells.FROZEN))return false;
+        if(level().isClientSide||spent||leapTicks()>0||!visible(target)||distanceToSqr(target)>12.25||(hasEffect(RoyaleSpells.STUN)||dev.royalespells.pause.ElectricPause.active(this))||hasEffect(RoyaleSpells.FROZEN))return false;
         leapTarget=target.getUUID();entityData.set(LEAP,1);getNavigation().stop();
         var delta=target.position().subtract(position());var flat=new Vec3(delta.x,0,delta.z);double horizontal=flat.length();
         // Commit the takeoff before vanilla travel chooses its friction. Leaving
@@ -78,12 +78,13 @@ public final class ElementalSpirit extends PathfinderMob implements Summoned {
         super.tick();
         if(level().isClientSide){if(!chaining()&&tickCount%3==0&&!VisualState.frozen(this))trail();return;}
         var world=(ServerLevel)level();
+        if(dev.royalespells.pause.ElectricPause.active(this)&&!chaining())return;
         // The spirit has already discharged. Keep only its bounded, saved chain
         // state until all links finish; no AI, collision pushing or second burst.
         if(chaining()){tickChain(world);return;}
         if(--life<=0||spent){discard();return;}
         if(!deployed){deployed=true;sound("deploy");}
-        if(hasEffect(RoyaleSpells.STUN)||hasEffect(RoyaleSpells.FROZEN)){getNavigation().stop();return;}
+        if((hasEffect(RoyaleSpells.STUN)||dev.royalespells.pause.ElectricPause.active(this))||hasEffect(RoyaleSpells.FROZEN)){getNavigation().stop();return;}
         if(leapTicks()>0){
             int t=leapTicks()+1;entityData.set(LEAP,t);
             // Sweep the actual travelled body, including the first airborne tick.
@@ -151,7 +152,7 @@ public final class ElementalSpirit extends PathfinderMob implements Summoned {
     private void chainHit(ServerLevel world,LivingEntity victim){
         chainVisited.add(victim.getUUID());chainLast=victim.getUUID();
         Vec3 end=victim.getBoundingBox().getCenter();
-        hit(victim,SpiritElement.ELECTRO.damage*power);SpellEngine.stun(victim,10);
+        hit(victim,SpiritElement.ELECTRO.damage*power);SpellEngine.electricStun(victim,10);
         SpiritArc.link(world,chainFrom,end);
         world.sendParticles(ParticleTypes.ELECTRIC_SPARK,end.x,end.y,end.z,5,.14,.2,.14,.025);
         SpellSounds.play(world,end,"spirit_electro","impact");

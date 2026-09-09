@@ -21,6 +21,9 @@
     "defaultRequire": 1
   },
   "client": [
+    "ChillVanillaAnimationMixin",
+    "ChillGeoAnimationMixin",
+    "ChillSwingMixin",
     "LivingVisualMixin",
     "FrozenModelPartMixin",
     "IronFrozenBoneMixin",

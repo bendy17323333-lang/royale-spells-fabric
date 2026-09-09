@@ -1,0 +1,9 @@
+{
+  "path": "src/main/resources/assets/royalespells/textures/entity/fireball_core.png",
+  "sha256": "2ffda30fefca95d68105a707adf10d56808523d7339dcdabb2520d022a8697eb",
+  "width": 1254,
+  "height": 1254,
+  "tool": "image_gen.imagegen",
+  "post_processing": "none; original PNG bytes copied unchanged",
+  "prompt": "art/FIREBALL-IMAGEGEN-PROMPT.md"
+}

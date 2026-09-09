@@ -26,13 +26,47 @@ CHAPTERS = (
     "03-target-preview.md", "04-rendering-and-audio.md", "05-iron-integration.md",
     "06-summons-and-combat.md", "07-elixir-structures-rituals.md",
     "08-data-and-mixins.md", "09-development-and-validation.md",
-    "10-extension-and-troubleshooting.md", "11-furnace-staff-and-spirits.md", *GENERATED,
+    "10-extension-and-troubleshooting.md", "11-furnace-staff-and-spirits.md", "12-inferno-dragon.md", "13-electrical-pause.md", "14-snowball-and-projectile-visuals.md", "15-card-balance.md", *GENERATED,
 )
 
 # Curated descriptions complement the mechanically extracted path/line counts.
 # A new source file must receive a description instead of silently appearing as
 # an undocumented runtime feature. Presence does not imply active registration.
 ROLES_TEXT = """
+CardBalance|2026-09-08 卡牌独立数值配置；11/12 级、每次伤害、召唤物武器与盾
+test/CardBalanceTests|完整卡牌伤害、配置隔离、转换继承、盾牌与军团存档回归
+AnimationTimeline|积分局部动画时钟，支持降速、暂停输入和连续恢复
+SnowballChill|雪球专用状态、60 tick 缓慢和 65% 动画速率
+client/ChillAnimation|弱引用实体键，分开维护年龄与步态时钟
+client/ProjectileVisuals|火球切面网格、沿轨迹火焰团、短促爆燃与独立雪球余效
+client/FireballParticles|运行时引用原版粒子，生成上升黑烟和带重力的细小火星
+client/FireballClientSmoke|只做截图的隔离火球客户端检查，不启用录像器
+client/VisualFrameRecorder|显式启用的隔离世界帧缓冲导出器
+client/VisualAudioRecorder|按实际游戏音效事件导出原始样本与混音参数
+client/VisualUpdateRecording|独立录制场景、原版与 Gecko 动画输入观测
+mixin/ChillGeoAnimationMixin|局部调整 Gecko TICK 与 partial 并在 finally 恢复
+mixin/ChillVanillaAnimationMixin|仅降速原版模型年龄与步态输入，不改变死亡计时
+mixin/ChillSwingMixin|仅客户端降低挥手进度，服务器攻击频率保持不变
+test/SnowballVisualTests|朝向存档、普通觉醒雪球、状态过期、温暖解除与时钟回归
+pause/ElectricPause|共享电击标签、服务器效果检测和另一暂停驱动的客户端标志桥接
+pause/PauseClock|逐实体局部动画时间，暂停与解除不跳帧
+pause/PauseMixinPlugin|可选依赖检测，两模组同装只启用一份电击驱动
+pause/PauseState|同步暂停状态的实体接口
+pause/mixin/PauseGeoMixin|临时替换 GeckoLib TICK ticket 和局部帧时间并恢复
+pause/mixin/PauseIronClientMixin|暂停本地铁魔法施法条
+pause/mixin/PauseIronManagerMixin|保留原施法数据，只暂停玩家施法计时分支
+pause/mixin/PauseIronStartMixin|电击期间阻止开始新施法
+pause/mixin/PauseLivingMixin|同步电击状态，暂停挥手、物品使用、移动与主动近战
+pause/mixin/PauseMobMixin|暂停 Mob AI 推进，保留 Goal 与 Brain 状态
+pause/mixin/PauseVanillaRendererMixin|原版生物渲染采用每实体局部动画时间
+test/ZappiesIntegrationTests|真实电车与皇室、铁魔法召唤物友军互认和飞龙重置测试
+entity/InfernoDragon|飞行寻路、单体三档升温、打断重置、无击退伤害和存档
+iron/InfernoDragonSpell|传奇火系召唤、生成空间、原生施法和召唤伤害属性桥接
+client/InfernoDragonRenderer|地狱飞龙网格、口部定位、三层升温光束与命中闪光
+client/InfernoDragonAudio|单实例原作喷射循环、低音量振翅、冻结与卸载停止
+client/InfernoClientSmoke|隔离成品客户端中的模型、原生卷轴、三档光束和音频验证
+test/InfernoDragonTests|三档实际伤害、打断、对空寻路、友军、克隆和存档测试
+test/InfernoIronTests|原生施法、魔力冷却、镜像、召唤属性和伤害取消测试
 spirit/SpiritElement|四种精灵的稳定名称、学派、媒介、费用与基础伤害
 entity/ElementalSpirit|精灵寻敌、治疗寻友、提交跳跃、单次爆发、链击与存档
 entity/SpiritArc|七 tick 电弧端点和年龄同步，不产生伤害或碰撞
@@ -318,7 +352,7 @@ def spell_reference() -> str:
                  [f"`{p['id']}`", label(p['id']), p['school'], rarity_names[p['rarity']], p['maximum'], f"{p['mana']} / {p['per_level']:+d}", p['cooldown'], p['ticks'], p['growth']] for p in profiles]), "",
              "镜像的魔力列只描述自身附加成本；实际施法还处理被复制法术的成本。冰冻/藤蔓另有共享 300 tick 控制冷却；军团与号角另有持久化共享限制，基础 15 秒可经过原生有效冷却计算。虚空伤害另乘 0.6。详见人工章节，不由本表单独推导完整平衡。", "",
              f"## 独立旧卡声明（{len(cards)}）", "",
-             "来源：" + link(JAVA / "Spell.java") + "。`duration` 是效果实体的基础生命周期，不等于吟唱时长，也不保证等于控制时长。部分实际半径在效果逻辑中另有常量；基色同样不等于每一层特效颜色。序号是存档/同步使用的 ordinal，已有项不能随意重排。", "",
+             "铁魔法／旧工具基础字段（不是新版卡牌最终值）：" + link(JAVA / "Spell.java") + "。新版卡牌见 [卡牌换算表](../../CARD-BALANCE.md)。`duration` 是效果实体的基础生命周期，不等于吟唱时长，也不保证等于控制时长。部分实际半径在效果逻辑中另有常量；基色同样不等于每一层特效颜色。序号是存档/同步使用的 ordinal，已有项不能随意重排。", "",
              table(["ordinal", "ID", "名称", "圣水费用", "radius 格", "duration tick", "基色 RGB"], [
                  [index, f"`{name.lower()}`", label(name.lower()), cost, radius, ticks, f"`#{color.upper()}`"] for index, (name, cost, radius, ticks, color) in enumerate(cards)]), ""]
     cues = data(ASSETS / "spell_audio.json")

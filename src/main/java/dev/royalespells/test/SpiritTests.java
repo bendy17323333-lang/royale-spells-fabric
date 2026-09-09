@@ -25,21 +25,23 @@ public class SpiritTests {
     public void fifteenSimultaneousNormalAndGhostHitsBypassOnlyTheirOwnImmunity(GameTestHelper c){
         var at=floor(c);var list=army(c,at);var victim=target(c,at.add(0,0,2));victim.setDeltaMovement(Vec3.ZERO);victim.invulnerableTime=17;
         for(var e:list)if(!e.general())c.assertTrue(e.doHurtTarget(victim),"Every real small-skeleton hit succeeds in the same tick");
-        c.assertTrue(Math.abs(victim.getHealth()-473)<.02,"15 independent hits deal 27 damage, not one 1.8 hit");
+        c.assertTrue(Math.abs(victim.getHealth()-455)<.02,"15 independent hits deal 45 damage, not one 3 HP hit");
         c.assertTrue(victim.invulnerableTime>=17&&victim.getDeltaMovement().lengthSqr()<1e-10,"Preserves existing immunity and has no hit knockback");
         c.assertFalse(victim.hurt(c.getLevel().damageSources().generic(),1),"Unrelated weak hits still respect vanilla immunity");
         for(var e:list)if(!e.general()){e.hurt(c.getLevel().damageSources().generic(),100);c.assertTrue(e.ghost(),"Converted soldier");e.doHurtTarget(victim);}
-        c.assertTrue(Math.abs(victim.getHealth()-446)<.03,"Ghosts retain the same independent-hit behavior");
+        c.assertTrue(Math.abs(victim.getHealth()-410)<.03,"Ghosts retain the same independent-hit behavior");
         list.forEach(Entity::discard);victim.discard();c.succeed();
     }
     @GameTest(template="empty",batch="160-ghost-spacing",timeoutTicks=140)
     public void identicalPositionGhostsSeparateWithoutIncomingKnockback(GameTestHelper c){
-        var at=floor(c);var list=army(c,at);var soldiers=list.stream().filter(e->!e.general()).toList();
+        var at=floor(c);var forced=force(c,at);var list=army(c,at);var soldiers=list.stream().filter(e->!e.general()).toList();
         for(var e:soldiers){e.hurt(c.getLevel().damageSources().generic(),100);e.setPos(at);e.setDeltaMovement(Vec3.ZERO);e.knockback(4,1,0);c.assertTrue(e.getDeltaMovement().lengthSqr()<1e-10,"Incoming impulses remain blocked");}
         c.runAfterDelay(90,()->{
+            try{
             double nearest=100;for(int i=0;i<soldiers.size();i++)for(int j=i+1;j<soldiers.size();j++)nearest=Math.min(nearest,soldiers.get(i).distanceTo(soldiers.get(j)));
             c.assertTrue(nearest>.25,"Exact stacked ghosts disperse into distinct bodies; minimum separation="+nearest);
-            c.assertTrue(soldiers.stream().allMatch(e->e.ghost()&&e.isAlive()&&!e.isPushable()),"Separation does not remove immunity or turn on external pushing");list.forEach(Entity::discard);c.succeed();
+            c.assertTrue(soldiers.stream().allMatch(e->e.ghost()&&e.isAlive()&&!e.isPushable()),"Separation does not remove immunity or turn on external pushing");c.succeed();
+            }finally{list.forEach(Entity::discard);forced.forEach(pos->c.getLevel().setChunkForced(pos.x,pos.z,false));}
         });
     }
     @GameTest(template="empty",batch="160-spirit-bursts")

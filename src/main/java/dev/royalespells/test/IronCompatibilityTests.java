@@ -23,7 +23,9 @@ import java.util.*;
 @PrefixGameTestTemplate(false)
 public class IronCompatibilityTests {
     private static Vec3 arena(GameTestHelper c) {
-        var p=c.absolutePos(new BlockPos(2,12,2));
+        // Keep the complete floor and both combatants inside the test structure's
+        // loaded bounds, independently of the randomized grid/chunk origin.
+        var p=c.absolutePos(new BlockPos(8,12,8));
         for(int x=-5;x<=5;x++)for(int z=-5;z<=5;z++) {
             c.getLevel().setBlockAndUpdate(p.offset(x,-1,z),Blocks.STONE.defaultBlockState());
             for(int y=0;y<8;y++)c.getLevel().setBlockAndUpdate(p.offset(x,y,z),Blocks.AIR.defaultBlockState());
@@ -139,15 +141,29 @@ public class IronCompatibilityTests {
             cleanup(caster,barb,owner);c.succeed();
         });
     }
+    @GameTest(template="empty",templateNamespace="royalespells",batch="iron-electric-mob",timeoutTicks=60)
+    public void shockPreservesAnActualIronMobCastAndTarget(GameTestHelper c) throws Exception {
+        var at=arena(c);var owner=owner(c,at.add(4,0,4));var barb=ours(c,at.add(3,0,0),owner);var caster=iron(c,"pyromancer",at,null);
+        caster.setNoAi(false);caster.setTarget(barb);
+        caster.getClass().getMethod("initiateCastSpell",AbstractSpell.class,int.class).invoke(caster,SpellRegistry.FIREBALL_SPELL.get(),1);
+        var data=(MagicData)caster.getClass().getMethod("getMagicData").invoke(caster);int remaining=data.getCastDurationRemaining();
+        c.assertTrue(data.isCasting()&&remaining>0,"A real pyromancer has started fireball");
+        SpellEngine.electricStun(caster,10);
+        c.runAtTickTime(5,()->{c.assertTrue(data.getCastDurationRemaining()==remaining&&data.isCasting(),"Casting progress is held");
+            c.assertTrue(caster.getTarget()==barb,"Electrical pause keeps the original target");});
+        c.runAtTickTime(18,()->{c.assertTrue(data.getCastDurationRemaining()<remaining&&data.isCasting(),"Native AI resumes its original cast");
+            cleanup(caster,barb,owner);c.succeed();});
+    }
     @GameTest(template="empty",templateNamespace="royalespells",batch="iron-tornado",timeoutTicks=140)
     public void tornadoMovesAnIronCaster(GameTestHelper c) {
         var at=arena(c);var caster=iron(c,"cryomancer",at,null);var center=at.add(3,0,0);
         var forced=new ArrayList<net.minecraft.world.level.ChunkPos>();var origin=new net.minecraft.world.level.ChunkPos(caster.blockPosition());
         for(int x=-1;x<=1;x++)for(int z=-1;z<=1;z++){var cp=new net.minecraft.world.level.ChunkPos(origin.x+x,origin.z+z);if(c.getLevel().setChunkForced(cp.x,cp.z,true))forced.add(cp);}
         var fx=SpellEntity.create(c.getLevel(),Spell.TORNADO,UUID.randomUUID(),center,center);c.getLevel().addFreshEntity(fx);
+        c.runAtTickTime(18,()->System.out.println("TORNADO_QA time="+fx.time()+", origin="+at+", actual="+caster.position()+", target="+fx.target()+", queried="+SpellEngine.targets(c.getLevel(),fx.ownerId,fx.target(),5.5,false).contains(caster)+", alive="+caster.isAlive()+", noAi="+caster.isNoAi()+", paused="+dev.royalespells.pause.ElectricPause.active(caster)));
         c.succeedWhen(()->{
-            c.assertTrue(fx.time()>=29,"Wait for actual Tornado entity ticks");
-            c.assertTrue(caster.getX()>at.x+2&&caster.position().distanceTo(center)<1,"Actual Tornado pulls the Iron's caster into its center");
+            c.assertTrue(fx.time()>=fx.duration(),"Wait for the card Tornado's complete actual lifetime");
+            c.assertTrue(caster.getX()>at.x+2&&caster.position().distanceTo(center)<1,"Actual Tornado pulls caster: displacement="+caster.position().subtract(at)+", center distance="+caster.position().distanceTo(center));
             cleanup(caster,fx);for(var cp:forced)c.getLevel().setChunkForced(cp.x,cp.z,false);
         });
     }

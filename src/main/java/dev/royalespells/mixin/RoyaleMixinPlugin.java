@@ -11,7 +11,9 @@ public final class RoyaleMixinPlugin implements IMixinConfigPlugin {
     public void onLoad(String mixinPackage){}
     public String getRefMapperConfig(){return null;}
     public boolean shouldApplyMixin(String target,String mixin) {
-        if(mixin.endsWith("IronDispelMixin") || mixin.endsWith("IronGeoVisualMixin") || mixin.endsWith("IronFrozenBoneMixin"))
+        if(mixin.endsWith("IronGeoVisualMixin") || mixin.endsWith("IronFrozenBoneMixin") || mixin.endsWith("ChillGeoAnimationMixin"))
+            return net.neoforged.fml.loading.LoadingModList.get().getMods().stream().anyMatch(mod->mod.getModId().equals("geckolib"));
+        if(mixin.endsWith("IronDispelMixin"))
             return net.neoforged.fml.loading.LoadingModList.get().getMods().stream().anyMatch(mod->mod.getModId().equals("irons_spellbooks"));
         return true;
     }

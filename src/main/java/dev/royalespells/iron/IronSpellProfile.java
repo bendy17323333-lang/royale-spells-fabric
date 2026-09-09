@@ -37,7 +37,8 @@ public enum IronSpellProfile {
     PARTY_ROCKET("fire",EPIC,125,18,35,40),
     BARBARIAN_BARREL_HERO("evocation",LEGENDARY,90,15,35,24),
     BARBARIAN_HUT("evocation",RARE,120,15,60,35),
-    SKELETON_ARMY_EVOLUTION("blood",LEGENDARY,125,0,15,40);
+    SKELETON_ARMY_EVOLUTION("blood",LEGENDARY,125,0,15,40),
+    INFERNO_DRAGON("fire",LEGENDARY,100,15,40,20);
 
     public final String school;
     public final SpellRarity rarity;
@@ -48,7 +49,7 @@ public enum IronSpellProfile {
     public String id(){return name().toLowerCase(Locale.ROOT);}
     public ResourceLocation schoolId(){return ResourceLocation.fromNamespaceAndPath("irons_spellbooks",school);}
     public int maxLevel(){return this==SKELETON_ARMY_EVOLUTION?1:switch(rarity){case COMMON->10;case UNCOMMON->8;case RARE->6;case EPIC->5;case LEGENDARY->3;};}
-    public Spell card(){return this==BARBARIAN_HUT||this==SKELETON_ARMY_EVOLUTION?null:Spell.valueOf(name());}
+    public Spell card(){return this==BARBARIAN_HUT||this==SKELETON_ARMY_EVOLUTION||this==INFERNO_DRAGON?null:Spell.valueOf(name());}
     /** Growth follows role and available levels, rather than a uniform 12 percent. */
     public int powerPerLevel() { return switch(this) {
         case FIREBALL -> 30;

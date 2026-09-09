@@ -5,6 +5,11 @@ import java.util.*;
 
 /** Shared mathematical shapes: the rolling preview is the actual swept damage circle. */
 public final class TargetGeometry {
+    /** Card ranges measure the complete footprint; no extra round end caps. */
+    public static List<Vec3> rectangle(Vec3 start,Vec3 forward,double length,double halfWidth){
+        forward=SpellEngine.horizontal(forward);Vec3 side=new Vec3(forward.z,0,-forward.x).scale(halfWidth),end=start.add(forward.scale(length));
+        return List.of(start.add(side),end.add(side),end.subtract(side),start.subtract(side),start.add(side));
+    }
     public static List<Vec3> circle(Vec3 center,double radius) {
         var points=new ArrayList<Vec3>();
         for(int i=0;i<=64;i++){double a=i*Math.PI/32;points.add(center.add(Math.cos(a)*radius,0,Math.sin(a)*radius));}

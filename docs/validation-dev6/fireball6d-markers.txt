@@ -1,0 +1,6 @@
+[16:29:53] [Render thread/INFO] [mojang/Window]: OpenGL Renderer: Intel(R) RaptorLake-S Mobile Graphics Controller
+FIREBALL_IMPACT_PARTICLES smoke=18 embers=48 at=(0.0, 150.0, 1.0)
+FIREBALL_IMPACT_PARTICLES smoke=18 embers=48 at=(0.0, 150.0, 1.0)
+FIREBALL_IMPACT_PARTICLES smoke=18 embers=48 at=(0.0, 150.0, 1.0)
+FIREBALL_SERVER_DAMAGE hp=264.0
+ROYALE_FIREBALL_SMOKE_COMPLETE screenshots_only=true

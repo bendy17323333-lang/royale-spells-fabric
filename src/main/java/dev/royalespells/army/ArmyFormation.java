@@ -15,7 +15,7 @@ public final class ArmyFormation {
             var at=SpellEngine.ground(world,center.add(offset(i,forward)));var pos=net.minecraft.core.BlockPos.containing(at);
             if(!world.hasChunkAt(pos)||!world.getWorldBorder().isWithinBounds(pos)||!world.noCollision(AABB.ofSize(at.add(0,.7,0),.48,1.4,.48)))return List.of();
             var unit=RoyaleSpells.ARMY_SKELETON.create(world);if(unit==null)return List.of();
-            unit.enlist(faction,army,i==0,4,1.8f,12000);unit.formationSlot(i);unit.setNeutralArmy();unit.moveTo(at,yaw,0);unit.setYBodyRot(yaw);units.add(unit);
+            unit.enlist(faction,army,i==0,3,3,12000);unit.formationSlot(i);unit.setNeutralArmy();unit.moveTo(at,yaw,0);unit.setYBodyRot(yaw);units.add(unit);
         }
         var ledger=ArmyLedger.get(world.getServer());ledger.start(faction,army,units.getFirst().getUUID(),ArmyLedger.now(world.getServer())+12000,0);
         for(var unit:units)if(!world.addFreshEntity(unit)){ledger.finish(faction,army);units.forEach(Entity::discard);return List.of();}

@@ -51,7 +51,7 @@ public final class VoidRenderer {
     }
     public static void render(SpellEntity e,float delta,PoseStack m,MultiBufferSource consumers) {
         float time=e.time()+delta,opacity=FieldAnimation.opacity(e.spell(),time,e.duration());
-        double radius=e.spell().radius*FieldAnimation.radius(e.spell(),time,e.duration());
+        double radius=e.radius()*FieldAnimation.radius(e.spell(),time,e.duration());
         VertexConsumer glow=consumers.getBuffer(SpellLayers.EFFECT);
         // Broad wine-dark interior, crimson transition, ember rim and diffuse orange falloff.
         // Interpolated vertex colours avoid opaque concentric bands and retain the terrain underneath.

@@ -28,7 +28,7 @@ public final class SpiritSpell extends AbstractSpell {
     @Override public Optional<SoundEvent> getCastFinishSound(){return Optional.empty();}
     private Vec3 placement(LivingEntity caster){return SpellEngine.ground(caster.level(),caster.position().add(SpellEngine.horizontal(caster.getViewVector(1)).scale(1.2)));}
     @Override public boolean checkPreCastConditions(Level level,int spellLevel,LivingEntity caster,MagicData data){
-        if(!(level instanceof ServerLevel world)||!isEnabled()||caster.hasEffect(RoyaleSpells.STUN)||caster.hasEffect(RoyaleSpells.FROZEN))return false;
+        if(!(level instanceof ServerLevel world)||!isEnabled()||(caster.hasEffect(RoyaleSpells.STUN)||dev.royalespells.pause.ElectricPause.active(caster))||caster.hasEffect(RoyaleSpells.FROZEN))return false;
         if(caster instanceof ServerPlayer p&&SpiritSpells.remaining(p)>0)return false;
         Vec3 at=placement(caster);var pos=BlockPos.containing(at);
         if(!world.hasChunkAt(pos)||!world.getWorldBorder().isWithinBounds(pos)||caster instanceof net.minecraft.world.entity.player.Player p&&!p.mayInteract(world,pos)||!world.noCollision(AABB.ofSize(at.add(0,.4,0),.6,.8,.6)))return false;

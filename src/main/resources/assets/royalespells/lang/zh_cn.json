@@ -231,5 +231,20 @@
   "subtitle.royalespells.spirit_heal_deploy": "治疗精灵：登场",
   "subtitle.royalespells.spirit_heal_jump": "治疗精灵：跳扑",
   "subtitle.royalespells.spirit_heal_impact": "治疗精灵：命中",
-  "subtitle.royalespells.spirit_heal_step": "治疗精灵：脚步"
+  "subtitle.royalespells.spirit_heal_step": "治疗精灵：脚步",
+  "item.royalespells.inferno_dragon": "地狱飞龙",
+  "entity.royalespells.inferno_dragon": "地狱飞龙",
+  "ironspell.royalespells.inferno_dragon": "皇室 · 地狱飞龙",
+  "ui.royalespells.inferno_health": "召唤生命值：%s",
+  "ui.royalespells.inferno_damage": "每 0.4 秒伤害：%s → %s → %s",
+  "ui.royalespells.inferno_rules": "对空对地；锁定满 2 / 4 秒升温，打断归零。离地悬停 3.5 格；水平射程 4 格，上下射程 6 格；存在 45 秒。",
+  "subtitles.royalespells.inferno_dragon_deploy": "地狱飞龙：部署",
+  "subtitles.royalespells.inferno_dragon_wing": "地狱飞龙：振翅",
+  "subtitles.royalespells.inferno_dragon_beam": "地狱飞龙：持续喷射",
+  "death.attack.royalespells.inferno_dragon": "%1$s 被 %2$s 的地狱飞龙熔化了",
+  "troop.royalespells.inferno_dragon": "部署飞行幼龙，以逐步升温的光束攻击单个敌人，可对空对地。",
+  "effect.royalespells.electrical_stun": "电击眩晕",
+  "effect.royalespells.snowbound": "雪球寒冷",
+  "effect.royalespells.card_slow": "卡牌减速",
+  "effect.royalespells.card_speed": "卡牌狂暴加速"
 }

@@ -133,7 +133,7 @@ public class ArmyTests {
             c.assertTrue(general.age()>=20,"Wait for the actual entity's deployment animation");
             if(start[0]<0){c.assertTrue(general.beginStrike(victim),"Staff attack begins");start[0]=general.age();}
             int elapsed=general.age()-start[0];if(elapsed<5)c.assertTrue(victim.getHealth()==100,"Windup cannot damage early");
-            c.assertTrue(elapsed>=20,"Wait for the complete attack");c.assertTrue(Math.abs(victim.getHealth()-98.2)<.02,"One thrust inflicts its configured 1.8 damage exactly once");
+            c.assertTrue(elapsed>=20,"Wait for the complete attack");c.assertTrue(Math.abs(victim.getHealth()-97)<.02,"One thrust inflicts its converted 3 damage exactly once");
             victim.discard();cleanup(p);
         });
     }

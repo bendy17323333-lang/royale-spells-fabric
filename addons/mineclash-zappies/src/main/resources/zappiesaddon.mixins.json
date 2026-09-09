@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.mineclash.zappies.mixin",
+  "plugin": "dev.mineclash.zappies.mixin.ZappyMixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ZappiesMixin",
+    "ZappyEggMixin",
+    "ZappyImpactMixin",
+    "MobGoalAccess"
+  ],
+  "client": [
+    "AnimationProbeMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

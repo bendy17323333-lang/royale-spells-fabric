@@ -48,7 +48,9 @@ public final class TroopModel<T extends LivingEntity> extends EntityModel<T> imp
         pose("banner",0,Mth.sin(age*.07f)*.08f,Mth.sin(age*.09f)*.04f);
         pose("jaw",Math.abs(walk)*.12f,0,0);
         if(attackTime>0){float strike=Mth.sin(attackTime*Mth.PI);pose("right_arm",-strike*1.9f-.2f,0,-strike*.12f);pose("body",0,-strike*.1f,0);}
-        if(kind.equals("royal_recruit")){pose("left_arm",-.32f,0,-.05f);pose("right_arm",-.18f-walk*.25f,0,.025f);}
+        if(kind.equals("royal_recruit")){pose("left_arm",-.32f,0,-.05f);pose("right_arm",-.18f-walk*.25f,0,.025f);
+            if(entity instanceof dev.royalespells.entity.AllyZombie recruit&&recruit.cardShield()==0&&parts.containsKey("shield"))parts.get("shield").visible=false;
+        }
         if(entity instanceof dev.royalespells.entity.ElementalSpirit spirit){
             // No human gait: the elemental body waddles, its little limbs flap,
             // then tuck into the committed jump. Preserve per-entity frozen poses.
@@ -59,7 +61,20 @@ public final class TroopModel<T extends LivingEntity> extends EntityModel<T> imp
             pose("right_leg",walk*.7f+leap*.65f,0,0);pose("left_leg",-walk*.7f+leap*.65f,0,0);
             pose("crown",wiggle*.25f,0,wiggle*.25f);pose("tongue",wiggle*.6f,0,0);
         }
+        if(entity instanceof dev.royalespells.entity.InfernoDragon dragon){
+            // Keep the approved 35-degree flight pose. Mirrored Z rotation flaps
+            // body-mounted wings vertically; the static mounts cancel body pitch.
+            float angle=infernoWing(age/20f)*Mth.DEG_TO_RAD;
+            pose("body",0,0,0);pose("head",0,0,0);
+            pose("wing_left",0,0,-angle);pose("wing_right",0,0,angle);
+            pose("jaw",dragon.heatTicks()>0?Mth.clamp(dragon.heatTicks()/8f,0,1)*.42f:.04f+Mth.sin(age*.09f)*.015f,0,0);
+            pose("tail_1",0,Mth.cos(age*.14f)*.052f,0);pose("tail_2",0,Mth.sin(age*.14f)*.05f,0);
+        }
         for(var p:parts.values()){var held=FrozenRender.pose(p,p.pitch,p.yaw,p.roll);p.pitch=held[0];p.yaw=held[1];p.roll=held[2];}
+    }
+    private static float infernoWing(float seconds){
+        float t=seconds-(float)Math.floor(seconds);float[] times={0,.16f,.32f,.64f,.82f,1},angles={20,-32,-18,26,28,20};
+        for(int i=1;i<times.length;i++)if(t<=times[i]){float a=(t-times[i-1])/(times[i]-times[i-1]);a=a*a*(3-2*a);return Mth.lerp(a,angles[i-1],angles[i]);}return 20;
     }
     @Override public void translateToHand(HumanoidArm arm,PoseStack matrices){
         Part part=parts.get(arm==HumanoidArm.RIGHT?"right_arm":"left_arm");

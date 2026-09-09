@@ -6,7 +6,7 @@
 
 表格直接提取当前枚举和 JSON，并按源码顺序保留 ID。它展示默认声明，不声称每项都是配置后的有效值或实际扣血结果。公式与例外见 [施法与数值](02-casting-and-balance.md)、[铁魔法接入](05-iron-integration.md)。
 
-## 原生法术（30）
+## 原生法术（31）
 
 来源：[IronSpellProfile.java](../../src/main/java/dev/royalespells/iron/IronSpellProfile.java)。所有法术 ID 的命名空间均为 `royalespells`；学派命名空间为 `irons_spellbooks`。
 
@@ -44,12 +44,13 @@
 | `barbarian_barrel_hero` | 英雄野蛮人滚桶 | evocation | 传说 | 3 | 90 / +15 | 35 | 24 | 18 |
 | `barbarian_hut` | 野蛮人小屋 | evocation | 稀有 | 6 | 120 / +15 | 60 | 35 | 18 |
 | `skeleton_army_evolution` | 觉醒骷髅军团 | blood | 传说 | 1 | 125 / +0 | 15 | 40 | 20 |
+| `inferno_dragon` | 地狱飞龙 | fire | 传说 | 3 | 100 / +15 | 40 | 20 | 20 |
 
 镜像的魔力列只描述自身附加成本；实际施法还处理被复制法术的成本。冰冻/藤蔓另有共享 300 tick 控制冷却；军团与号角另有持久化共享限制，基础 15 秒可经过原生有效冷却计算。虚空伤害另乘 0.6。详见人工章节，不由本表单独推导完整平衡。
 
 ## 独立旧卡声明（28）
 
-来源：[Spell.java](../../src/main/java/dev/royalespells/Spell.java)。`duration` 是效果实体的基础生命周期，不等于吟唱时长，也不保证等于控制时长。部分实际半径在效果逻辑中另有常量；基色同样不等于每一层特效颜色。序号是存档/同步使用的 ordinal，已有项不能随意重排。
+铁魔法／旧工具基础字段（不是新版卡牌最终值）：[Spell.java](../../src/main/java/dev/royalespells/Spell.java)。新版卡牌见 [卡牌换算表](../../CARD-BALANCE.md)。`duration` 是效果实体的基础生命周期，不等于吟唱时长，也不保证等于控制时长。部分实际半径在效果逻辑中另有常量；基色同样不等于每一层特效颜色。序号是存档/同步使用的 ordinal，已有项不能随意重排。
 
 | ordinal | ID | 名称 | 圣水费用 | radius 格 | duration tick | 基色 RGB |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -82,7 +83,7 @@
 | 26 | `party_rocket` | 派对火箭（活动） | 5 | 3 | 40 | `#82F280` |
 | 27 | `barbarian_barrel_hero` | 英雄野蛮人滚桶 | 2 | 1.5 | 22 | `#F5D075` |
 
-## 法术声音阶段（71）
+## 法术声音阶段（74）
 
 服务端事件固定传播半径声明为 64 格，cue 音量乘 0.9。客户端衰减距离单独从 sounds.json 读取；实际声音仍受玩家音量设置、距离和同屏混音影响。
 
@@ -161,8 +162,11 @@
 | `spirit_heal` / jump | `spirit_heal_jump` | [spirits/heal/fire_spirit_step_vo_01](../../src/main/resources/assets/royalespells/sounds/spirits/heal/fire_spirit_step_vo_01.ogg)<br>[spirits/heal/fire_spirit_step_vo_02](../../src/main/resources/assets/royalespells/sounds/spirits/heal/fire_spirit_step_vo_02.ogg)<br>[spirits/heal/fire_spirit_step_vo_03](../../src/main/resources/assets/royalespells/sounds/spirits/heal/fire_spirit_step_vo_03.ogg) | 0.38 | 0.342 | 64/64/64 |
 | `spirit_heal` / impact | `spirit_heal_impact` | [spirits/heal/heal_magic_03](../../src/main/resources/assets/royalespells/sounds/spirits/heal/heal_magic_03.ogg) | 0.48 | 0.432 | 64 |
 | `spirit_heal` / step | `spirit_heal_step` | [spirits/heal/fire_spirit_step_sfx_01](../../src/main/resources/assets/royalespells/sounds/spirits/heal/fire_spirit_step_sfx_01.ogg) | 0.075 | 0.0675 | 64 |
+| `inferno_dragon` / deploy | `inferno_dragon_deploy` | [original/inferno_dragon_deploy](../../src/main/resources/assets/royalespells/sounds/original/inferno_dragon_deploy.ogg) | 0.43 | 0.387 | 64 |
+| `inferno_dragon` / wing | `inferno_dragon_wing` | [original/inferno_dragon_wing](../../src/main/resources/assets/royalespells/sounds/original/inferno_dragon_wing.ogg) | 0.085 | 0.0765 | 64 |
+| `inferno_dragon` / beam | `inferno_dragon_beam` | [original/inferno_dragon_beam](../../src/main/resources/assets/royalespells/sounds/original/inferno_dragon_beam.ogg) | 0.34 | 0.306 | 64 |
 
-## 数据包合成配方（35）
+## 数据包合成配方（36）
 
 旧卡配方只在未加载铁魔法时生效；熔炉法杖是加载铁魔法后的有序配方。原生卷轴锻造和铁砧升级通过 Java 接口接入，不是漏列的 JSON。浓缩顺序、天然重油仪式与等级映射见 [材料与结构](07-elixir-structures-rituals.md)。四种法杖绑定法术单独见 [熔炉法杖与精灵](11-furnace-staff-and-spirits.md)，不计入旧有 30 种 IronSpellProfile 表。
 
@@ -189,6 +193,7 @@
 | [goblin_curse](../../src/main/resources/data/royalespells/recipe/goblin_curse.json) | 1×`minecraft:paper` + 1×`minecraft:fermented_spider_eye` | 1×`royalespells:goblin_curse` | 未加载铁魔法；无序 |
 | [graveyard](../../src/main/resources/data/royalespells/recipe/graveyard.json) | 1×`minecraft:paper` + 1×`minecraft:bone` | 1×`royalespells:graveyard` | 未加载铁魔法；无序 |
 | [heal](../../src/main/resources/data/royalespells/recipe/heal.json) | 1×`minecraft:paper` + 1×`minecraft:glistering_melon_slice` | 1×`royalespells:heal` | 未加载铁魔法；无序 |
+| [inferno_dragon](../../src/main/resources/data/royalespells/recipe/inferno_dragon.json) | 1×`minecraft:paper` + 1×`minecraft:iron_helmet` + 1×`minecraft:blaze_rod` + 1×`minecraft:phantom_membrane` + 1×`minecraft:copper_ingot` | 1×`royalespells:inferno_dragon` | 未加载铁魔法；无序 |
 | [lightning](../../src/main/resources/data/royalespells/recipe/lightning.json) | 1×`minecraft:paper` + 1×`minecraft:lightning_rod` | 1×`royalespells:lightning` | 未加载铁魔法；无序 |
 | [mirror](../../src/main/resources/data/royalespells/recipe/mirror.json) | 1×`minecraft:paper` + 1×`minecraft:glass_pane` | 1×`royalespells:mirror` | 未加载铁魔法；无序 |
 | [party_rocket](../../src/main/resources/data/royalespells/recipe/party_rocket.json) | 1×`minecraft:paper` + 1×`minecraft:slime_ball` | 1×`royalespells:party_rocket` | 未加载铁魔法；无序 |

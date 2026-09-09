@@ -1,0 +1,12 @@
+{
+  "royale_jar": "royale-spells-neoforge-1.21.1-1.7.1-beta.3.jar",
+  "sha256": "eacee705018e3c23734c46726747bc3b4ae3efaac82fef9481c32d8d88433b01",
+  "runtime_qa_jar_sha256": "f15c2661904ea347d73fec329785e8ee4d2f961a66c6c6fd33f6ac6981ff7c4a",
+  "common_entries_changed": [],
+  "only_added_entries": [
+    "assets/royalespells/textures/mob_effect/card_slow.png",
+    "assets/royalespells/textures/mob_effect/card_speed.png"
+  ],
+  "removed_entries": [],
+  "verification": "All runtime-tested classes and existing assets byte-identical; only two reused status textures added."
+}

@@ -35,6 +35,7 @@ public final class ArmySkeleton extends AllySkeleton {
     public int formationSlot(){return general()?0:formationSlot>0?formationSlot:1+Math.floorMod(getUUID().hashCode(),15);}
     public void formationSlot(int slot){formationSlot=Math.max(0,Math.min(15,slot));}
     public void enlist(UUID owner,UUID army,boolean general,float health,float attack,int life){
+        health=CardBalance.SKELETON_HEALTH;
         setup(owner,life,false);this.army=army;entityData.set(GENERAL,general);entityData.set(SHIELD,general?health:0f);
         getAttribute(Attributes.MAX_HEALTH).setBaseValue(health);setHealth(health);getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(attack);
         getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(general?.25:.28);for(var slot:EquipmentSlot.values())setDropChance(slot,0);
@@ -44,7 +45,7 @@ public final class ArmySkeleton extends AllySkeleton {
     public int strikeDuration(){return hasEffect(RoyaleSpells.RAGED)?(general()?13:12):(general()?18:16);}
     public float strikeProgress(float partial){int strike=entityData.get(STRIKE);return strike==0?0:Math.min(1,(strike+partial)/strikeDuration());}
     public boolean beginStrike(LivingEntity target){
-        if(level().isClientSide||age()<18||dissolve()>0||entityData.get(STRIKE)!=0||age()<nextAttack||!SpellEngine.enemy(ownerId(),target)||hasEffect(RoyaleSpells.FROZEN)||hasEffect(RoyaleSpells.STUN))return false;
+        if(level().isClientSide||age()<18||dissolve()>0||entityData.get(STRIKE)!=0||age()<nextAttack||!SpellEngine.enemy(ownerId(),target)||hasEffect(RoyaleSpells.FROZEN)||(hasEffect(RoyaleSpells.STUN)||dev.royalespells.pause.ElectricPause.active(this)))return false;
         strikeTarget=target.getUUID();entityData.set(STRIKE,1);nextAttack=age()+(hasEffect(RoyaleSpells.RAGED)?(general()?15:16):(general()?20:22));return true;
     }
     @Override public boolean isWithinMeleeAttackRange(LivingEntity target){return general()?getBoundingBox().inflate(1.35,.2,1.35).intersects(target.getBoundingBox()):super.isWithinMeleeAttackRange(target);}
@@ -72,7 +73,7 @@ public final class ArmySkeleton extends AllySkeleton {
     private void finish(){if(general()&&ownerId()!=null&&level() instanceof ServerLevel world)ArmyLedger.get(world.getServer()).finish(ownerId(),army);}
     @Override public void remove(RemovalReason reason){if(reason.shouldDestroy())finish();super.remove(reason);}
     @Override public boolean doHurtTarget(Entity target){
-        if(!(level() instanceof ServerLevel)||!(target instanceof LivingEntity victim)||age()<18||dissolve()>0||hasEffect(RoyaleSpells.STUN)||hasEffect(RoyaleSpells.FROZEN)||!SpellEngine.enemy(ownerId(),victim))return false;
+        if(!(level() instanceof ServerLevel)||!(target instanceof LivingEntity victim)||age()<18||dissolve()>0||(hasEffect(RoyaleSpells.STUN)||dev.royalespells.pause.ElectricPause.active(this))||hasEffect(RoyaleSpells.FROZEN)||!SpellEngine.enemy(ownerId(),victim))return false;
         if(victim instanceof net.minecraft.world.entity.player.Player&&level() instanceof ServerLevel w&&!w.getServer().isPvpAllowed())return false;
         // Each small skeleton's weak hit must land, including simultaneous thrusts
         // and spectral hits. Preserve the victim's timer for unrelated attackers.
@@ -86,7 +87,7 @@ public final class ArmySkeleton extends AllySkeleton {
     @Override public boolean isPushable(){return !ghost()&&super.isPushable();}
     /** Friendly personal space is steering, not incoming knockback or noclip. */
     private void separateGhosts(){
-        if(!ghost()||age()<18||dissolve()>0||hasEffect(RoyaleSpells.STUN)||hasEffect(RoyaleSpells.FROZEN))return;
+        if(!ghost()||age()<18||dissolve()>0||(hasEffect(RoyaleSpells.STUN)||dev.royalespells.pause.ElectricPause.active(this))||hasEffect(RoyaleSpells.FROZEN))return;
         double x=0,z=0;int count=0;
         for(var other:level().getEntitiesOfClass(ArmySkeleton.class,getBoundingBox().inflate(.65,.15,.65),e->e!=this&&e.isAlive()&&e.dissolve()==0&&java.util.Objects.equals(army,e.armyId()))){
             double dx=getX()-other.getX(),dz=getZ()-other.getZ(),distance=Math.hypot(dx,dz);
@@ -115,11 +116,12 @@ public final class ArmySkeleton extends AllySkeleton {
     }
     @Override public void tick(){
         super.tick();if(level().isClientSide)return;
+        if(dev.royalespells.pause.ElectricPause.active(this))return;
         if(hasEffect(RoyaleSpells.FROZEN)&&supported())return;
         entityData.set(AGE,age()+1);if(ghostFlash>0)ghostFlash--;
         int strike=entityData.get(STRIKE);
         if(strike>0){
-            if(dissolve()>0||hasEffect(RoyaleSpells.FROZEN)||hasEffect(RoyaleSpells.STUN)){entityData.set(STRIKE,0);strikeTarget=null;}
+            if(dissolve()>0||hasEffect(RoyaleSpells.FROZEN)||(hasEffect(RoyaleSpells.STUN)||dev.royalespells.pause.ElectricPause.active(this))){entityData.set(STRIKE,0);strikeTarget=null;}
             else {
                 if(strike==Math.round(strikeDuration()*.44f)&&level() instanceof ServerLevel world&&world.getEntity(strikeTarget) instanceof LivingEntity target&&target.isAlive()&&isWithinMeleeAttackRange(target)&&getSensing().hasLineOfSight(target)){
                     doHurtTarget(target);playSound(ArmySounds.ATTACK,.18f,1.05f);
@@ -141,5 +143,5 @@ public final class ArmySkeleton extends AllySkeleton {
     @Override protected SoundEvent getHurtSound(DamageSource s){return null;}
     @Override protected void playStepSound(net.minecraft.core.BlockPos p,net.minecraft.world.level.block.state.BlockState s){if(!ghost()&&random.nextInt(3)==0)playSound(ArmySounds.STEP,.08f,1.05f);}
     @Override public void addAdditionalSaveData(CompoundTag n){super.addAdditionalSaveData(n);if(army!=null)n.putUUID("Army",army);n.putBoolean("NeutralArmy",neutralArmy);n.putBoolean("General",general());n.putBoolean("Ghost",ghost());n.putFloat("ArmyShield",shield());n.putInt("ArmyAge",age());n.putInt("ArmyDissolve",dissolve());n.putInt("ArmySlot",formationSlot());}
-    @Override public void readAdditionalSaveData(CompoundTag n){super.readAdditionalSaveData(n);army=n.hasUUID("Army")?n.getUUID("Army"):null;neutralArmy=n.getBoolean("NeutralArmy");entityData.set(GENERAL,n.getBoolean("General"));entityData.set(GHOST,n.getBoolean("Ghost"));entityData.set(SHIELD,n.getFloat("ArmyShield"));entityData.set(AGE,n.getInt("ArmyAge"));entityData.set(DISSOLVE,n.getInt("ArmyDissolve"));formationSlot=n.contains("ArmySlot")?Math.max(0,Math.min(15,n.getInt("ArmySlot"))):-1;}
+    @Override public void readAdditionalSaveData(CompoundTag n){super.readAdditionalSaveData(n);army=n.hasUUID("Army")?n.getUUID("Army"):null;neutralArmy=n.getBoolean("NeutralArmy");entityData.set(GENERAL,n.getBoolean("General"));entityData.set(GHOST,n.getBoolean("Ghost"));entityData.set(SHIELD,Math.min(CardBalance.SKELETON_HEALTH,n.getFloat("ArmyShield")));entityData.set(AGE,n.getInt("ArmyAge"));entityData.set(DISSOLVE,n.getInt("ArmyDissolve"));formationSlot=n.contains("ArmySlot")?Math.max(0,Math.min(15,n.getInt("ArmySlot"))):-1;getAttribute(Attributes.MAX_HEALTH).setBaseValue(CardBalance.SKELETON_HEALTH);setHealth(Math.min(getHealth(),CardBalance.SKELETON_HEALTH));}
 }

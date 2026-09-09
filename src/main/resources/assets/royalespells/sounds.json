@@ -885,5 +885,35 @@
         "preload": true
       }
     ]
+  },
+  "inferno_dragon_deploy": {
+    "subtitle": "subtitles.royalespells.inferno_dragon_deploy",
+    "sounds": [
+      {
+        "name": "royalespells:original/inferno_dragon_deploy",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "inferno_dragon_wing": {
+    "subtitle": "subtitles.royalespells.inferno_dragon_wing",
+    "sounds": [
+      {
+        "name": "royalespells:original/inferno_dragon_wing",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "inferno_dragon_beam": {
+    "subtitle": "subtitles.royalespells.inferno_dragon_beam",
+    "sounds": [
+      {
+        "name": "royalespells:original/inferno_dragon_beam",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
   }
 }

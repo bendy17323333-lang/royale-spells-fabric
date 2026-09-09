@@ -28,6 +28,7 @@ public final class SpellTint {
         boolean clone=VisualState.cloned(entity);
         if(clone)return new Buffers(original,.08f,.8f,1,.32f);
         if(VisualState.frozen(entity))return new Buffers(original,.48f,.83f,1,1);
+        if(VisualState.snowbound(entity))return new Buffers(original,.32f,.62f,1,1);
         if(VisualState.raged(entity))return new Buffers(original,.86f,.25f,1,1);
         return original;
     }

@@ -2,7 +2,9 @@
 
 本档案面向接手维护、排查问题和添加内容的开发者。它解释代码实际怎样运行、关键设计为什么这样实现，以及修改时需要一起检查哪些位置。
 
-**当前公开 Beta 2：`1.6.1-beta.2`，Minecraft 1.21.1 / NeoForge，铁魔法 1.21.1-3.16.3。**
+**当前公开 Beta 3：`1.7.1-beta.3`，Minecraft 1.21.1 / NeoForge，铁魔法 1.21.1-3.16.3。**
+
+本版包含地狱飞龙（第 12 章）、电击暂停与骨骼隔离（第 13 章）、雪球和火球视觉（第 14 章）以及卡牌数值独立配置（第 15 章）。下方 Beta 1 / Beta 2 的记录保留为历史验证。
 
 公开 Beta 1 的代码基线：[d033310](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/d03331030f40f2f46f505f07abf021ad188f4713)。本地 Beta 2 增加熔炉法杖、四种精灵并修复军团攻击和拥挤；[Beta 2 机制验证](../../VALIDATION-1.6.0-beta.2.md) 保留为历史证据。Beta 3 重做模型和材质；Beta 4 增加按原作时序的连锁电击、全身火焰、原卡图 UI 及军团后排/侧翼 AI，见 [第 11 章](11-furnace-staff-and-spirits.md) 和 [历史验证](../../VALIDATION-1.6.0-beta.4.md)。公开 Beta 2 再修复跳扑漏判、将军逃跑、普通小兵随将军消失，提高精灵伤害并接入原作音效；见 [本版验证](../../VALIDATION-1.6.1-beta.2.md)。
 
@@ -22,6 +24,10 @@
 | [08 同步、存档与 Mixin](08-data-and-mixins.md) | 网络消息、实体数据、持久化、所有 Mixin 的职责与风险 | 联机不同步或更新上游后崩溃查哪里？ |
 | [09 开发、测试与发布](09-development-and-validation.md) | 环境、构建、隔离测试、证据、发布流程 | 怎样复现、验证并交付一个改动？ |
 | [10 扩展与故障排查](10-extension-and-troubleshooting.md) | 新增法术步骤、修改清单、性能限制、已知边界 | 如何扩展而不遗漏预览、音效、配方？ |
+| [11 熔炉法杖与精灵](11-furnace-staff-and-spirits.md) | 四元素法杖、连锁电击、军团前后排 | 精灵和法杖怎样接入原生系统？ |
+| [12 地狱飞龙](12-inferno-dragon.md) | 飞行姿态、升温光束、打断、原作声音、模型导出 | 怎样调整飞龙模型和战斗行为？ |
+| [13 电击与动画暂停](13-electrical-pause.md) | 共享电击标签、每实体时钟、铁魔法施法、飞龙重置、骨骼污染修复 | 怎样冻结抬手且避免影响旁边的同类？ |
+| [14 雪球与投射物视觉](14-snowball-and-projectile-visuals.md) | 动画降速、蓝色同步、施法朝向、自发光核心、命中余效、录制 | 怎样组合减速与电击且避免变形、串色？ |
 | [源码索引](source-index.md) | 全部 Java 文件及资源、工具入口 | 按类名快速定位 |
 | [生成的参数参考](spell-reference.md) | 从枚举与资源提取的参数、音效阶段、配方 | 核对当前源码默认值 |
 
@@ -44,7 +50,8 @@
 - [独立卡牌与公共战斗工具](../../src/main/java/dev/royalespells/SpellEngine.java)
 - [效果实体](../../src/main/java/dev/royalespells/entity/SpellEntity.java)
 - [铁魔法法术基类](../../src/main/java/dev/royalespells/iron/RoyaleIronSpell.java)
-- [最新发布验证](../../VALIDATION-1.5.2-beta.1.md)
+- [当前本地版本验证](../validation-inferno-dev2/README.md)
+- [公开 Beta 2 验证](../../VALIDATION-1.6.1-beta.2.md)
 
 ## 维护本档案
 
@@ -62,3 +69,5 @@ python tools/technical_docs.py --check
 ## 公开源码与素材
 
 本项目自编代码、构建／工具脚本、配置与技术文档采用 [MIT 许可证](../../LICENSE)。第三方卡图、音频、MineClash 原始与改编素材等明确排除，保留原权利人与适用条款；详见 [LICENSE-NOTICE.md](../../LICENSE-NOTICE.md) 和 [ASSETS.md](../../ASSETS.md)。公开素材或项目内使用授权不等于本项目可以把第三方资产重新许可为 MIT。
+
+- [15 · 卡牌数值独立配置](15-card-balance.md)：2026-09-08 同等级换算、卡牌与铁魔法隔离、盾、镜像、范围同步及验证。

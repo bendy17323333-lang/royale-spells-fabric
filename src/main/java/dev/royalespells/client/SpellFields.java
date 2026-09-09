@@ -26,7 +26,7 @@ public final class SpellFields {
             ZapRenderer.render(e,delta,m,buffers);return;
         }
         if(spell==Spell.RAGE || spell==Spell.GRAVEYARD) {
-            float opacity=FieldAnimation.opacity(spell,time,e.duration());double radius=spell.radius*FieldAnimation.radius(spell,time,e.duration());
+            float opacity=FieldAnimation.opacity(spell,time,e.duration());double radius=e.radius()*FieldAnimation.radius(spell,time,e.duration());
             var v=buffers.getBuffer(SpellLayers.EFFECT);
             if(spell==Spell.RAGE) {
                 softRing(m,v,0,radius*.86f,.57f,.07f,.81f,.17f*opacity,.2f*opacity);
@@ -50,6 +50,6 @@ public final class SpellFields {
             case CLONE -> {r=.1f;g=.95f;b=1;a=.18f*(1-time/spell.duration);}
             default -> {return;}
         }
-        var v=buffers.getBuffer(SpellLayers.EFFECT);ring(m,v,0,spell.radius,r,g,b,a);ring(m,v,spell.radius-.035,spell.radius+.035,r,g,b,.5f);
+        var v=buffers.getBuffer(SpellLayers.EFFECT);ring(m,v,0,e.radius(),r,g,b,a);ring(m,v,e.radius()-.035,e.radius()+.035,r,g,b,.5f);
     }
 }

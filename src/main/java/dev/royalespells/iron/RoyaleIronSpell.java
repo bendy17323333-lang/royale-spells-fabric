@@ -67,7 +67,7 @@ public class RoyaleIronSpell extends AbstractSpell {
     @Override public boolean checkPreCastConditions(Level level,int spellLevel,LivingEntity caster,MagicData data) {
         if(!(level instanceof ServerLevel world) || !isEnabled())return false;
         if(control()&&caster instanceof net.minecraft.server.level.ServerPlayer player&&ControlCooldown.remaining(player)>0)return fail(caster,"message.royalespells.control_cooldown");
-        if(caster.hasEffect(RoyaleSpells.STUN) || caster.hasEffect(RoyaleSpells.FROZEN))return fail(caster,"message.royalespells.iron_stunned");
+        if((caster.hasEffect(RoyaleSpells.STUN)||dev.royalespells.pause.ElectricPause.active(caster)) || caster.hasEffect(RoyaleSpells.FROZEN))return fail(caster,"message.royalespells.iron_stunned");
         if(profile==IronSpellProfile.BARBARIAN_BARREL_HERO && data.getPlayerRecasts().hasRecastForSpell(getSpellId()) && hero(caster)==null)
             return fail(caster,"message.royalespells.no_hero");
         Vec3 at=target(caster);BlockPos block=BlockPos.containing(at);

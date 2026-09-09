@@ -24,14 +24,16 @@ public final class TargetPreview {
         contours=List.of();
         var client=Minecraft.getInstance();var player=client.player;
         if(player==null || client.options.hideGui || client.level==null || client.screen!=null || player.isSpectator())return;
-        Spell spell=null;boolean hut=false,army=false;var item=player.getMainHandItem().getItem();
+        boolean cardMode=false;Spell spell=null;boolean hut=false,army=false,dragon=false;var item=player.getMainHandItem().getItem();
         if(!SpellEngine.isCard(item))item=player.getOffhandItem().getItem();
-        if(item instanceof SpellItem card)spell=card.spell;
-        else if(item instanceof TroopItem)hut=true;
+        if(item instanceof SpellItem card){spell=card.spell;cardMode=true;}
+        else if(item instanceof TroopItem card){cardMode=true;hut=card.card==TroopCard.BARBARIAN_HUT;dragon=card.card==TroopCard.INFERNO_DRAGON;}
         else if(IronSpellSystem.loaded) {
             var selected=IronClientPreview.selected(player);if(selected==null)return;
             spell=selected.profile.card();hut=selected.profile==dev.royalespells.iron.IronSpellProfile.BARBARIAN_HUT;army=selected instanceof dev.royalespells.iron.EvolvedArmySpell;
+            dragon=selected.profile==dev.royalespells.iron.IronSpellProfile.INFERNO_DRAGON;
         } else return;
+        if(spell==null&&!hut&&!army&&!dragon)return;
         float delta=event.getPartialTick().getGameTimeDeltaPartialTick(false);
         Vec3 center=SpellEngine.aim(player,32,delta),forward=SpellEngine.horizontal(player.getViewVector(delta));
         if(player.isShiftKeyDown() && (spell==Spell.RAGE || spell==Spell.HEAL || spell==Spell.WARMTH || spell==Spell.CLONE))center=player.getPosition(delta);
@@ -41,11 +43,12 @@ public final class TargetPreview {
         var shapes=new ArrayList<Contour>();
         if(spell!=null && spell.rolling()) {
             Vec3 start=SpellEngine.ground(player.level(),player.getPosition(delta).add(forward.scale(1.1))).add(0,.08,0);
-            double length=spell==Spell.THE_LOG?10:5;
-            shapes.add(new Contour(TargetGeometry.rolling(start,forward,length,spell.radius),.4f,.95f,1));
+            double length=cardMode?CardBalance.range(spell):spell==Spell.THE_LOG?10:5;
+            double width=cardMode?CardBalance.stats(spell).radius():spell.radius;
+            shapes.add(new Contour(cardMode?TargetGeometry.rectangle(start,forward,length,width):TargetGeometry.rolling(start,forward,length,width),.4f,.95f,1));
             shapes.add(new Contour(List.of(start,start.add(forward.scale(length))),.85f,.98f,1));
         } else {
-            double radius=army?2.7:hut?1.6:spell==Spell.ZAP_EVOLUTION?Spell.ZAP.radius:spell.radius;
+            double radius=dragon?.65:army?2.7:hut?1.6:spell==Spell.ZAP_EVOLUTION?(cardMode?2.5:Spell.ZAP.radius):cardMode?CardBalance.stats(spell).radius():spell.radius;
             shapes.add(new Contour(TargetGeometry.circle(center,radius),.4f,.95f,1));
             if(spell==Spell.ZAP_EVOLUTION)shapes.add(new Contour(TargetGeometry.circle(center,spell.radius),.8f,.58f,1));
             if(spell==Spell.GOBLIN_BARREL_EVOLUTION) {

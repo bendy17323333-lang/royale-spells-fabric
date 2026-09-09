@@ -1,0 +1,35 @@
+[
+  {
+    "phase": "deploy",
+    "source_url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Inferno%20Dragon/babydragon_deploy_01.ogg",
+    "source_sha256": "99506e2d539ac904216fa17274e9183d5e60be0833186cd8982928f88d7e9e67",
+    "output": "src/main/resources/assets/royalespells/sounds/original/inferno_dragon_deploy.ogg",
+    "output_sha256": "99506e2d539ac904216fa17274e9183d5e60be0833186cd8982928f88d7e9e67"
+  },
+  {
+    "phase": "wing",
+    "source_url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Inferno%20Dragon/babydragon_wing_01.ogg",
+    "source_sha256": "902b291299f98af45b5aba165c91b8722a5a00db57404ed65e389f90d67cc5cd",
+    "output": "src/main/resources/assets/royalespells/sounds/original/inferno_dragon_wing.ogg",
+    "output_sha256": "902b291299f98af45b5aba165c91b8722a5a00db57404ed65e389f90d67cc5cd"
+  },
+  {
+    "phase": "beam",
+    "source_url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Inferno%20Dragon/inferno_dragon_fireloop_01.ogg",
+    "source_sha256": "bf465c1706064dfa6b4ed617bd9658e359f26d6e876a9789917cb8bf7d40e54a",
+    "output": "src/main/resources/assets/royalespells/sounds/original/inferno_dragon_beam.ogg",
+    "output_sha256": "bf465c1706064dfa6b4ed617bd9658e359f26d6e876a9789917cb8bf7d40e54a"
+  },
+  {
+    "asset": "card",
+    "source_url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/inferno-dragon.png",
+    "sha256": "09b3d010aaba0c5aa3d8d4df30b9c29d2dd51007c8702fb435133b57cc44e793"
+  },
+  {
+    "asset": "diffuse_atlas",
+    "origin": "Built-in ImageGen; original raster bytes unchanged",
+    "sha256": "573fbe96d349cbb7f7506004b1c22c1fb5f297c458fa2316600e7828a2a395d4",
+    "prompt_sha256": "f70d56024f1dde27ce19a18af04c80a10c630772097b2bd9e0e58e306ec629ed",
+    "source_model_sha256": "2777996484973f1171925fdaf75e62f985d2ef34643350310339804266b00cda"
+  }
+]

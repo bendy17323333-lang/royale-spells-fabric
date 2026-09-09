@@ -6,7 +6,7 @@ import io.redspace.ironsspellbooks.entity.mobs.AntiMagicSusceptible;
 import net.minecraft.world.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(value={SpellEntity.class,AllyZombie.class,AllySkeleton.class,RoyaleUnit.class,ElementalSpirit.class},remap=false)
+@Mixin(value={SpellEntity.class,AllyZombie.class,AllySkeleton.class,RoyaleUnit.class,ElementalSpirit.class,InfernoDragon.class},remap=false)
 public abstract class IronDispelMixin implements AntiMagicSusceptible {
     @Override public void onAntiMagic(MagicData data){((Entity)(Object)this).discard();}
 }

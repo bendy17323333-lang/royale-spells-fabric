@@ -27,7 +27,7 @@ public final class RoyaleSpells {
     public static final Map<TroopCard,TroopItem> TROOP_ITEMS=new EnumMap<>(TroopCard.class);
     public static Item PREVIOUS_SCENE,NEXT_SCENE,NEUTRAL_ARMY_EGG;
     public static ResourceLocation id(String path) { return ResourceLocation.fromNamespaceAndPath(MOD_ID,path); }
-    public static Holder<MobEffect> STUN,RAGED,FROZEN,ROOTED,CLONED;
+    public static Holder<MobEffect> STUN,RAGED,FROZEN,ROOTED,CLONED,ELECTRICAL_STUN,SNOWBOUND,CARD_SLOW,CARD_SPEED;
     public static final SimpleParticleType SPARK=new SimpleParticleType(false);
     public static final SimpleParticleType GRAVE_MOTE=new SimpleParticleType(false);
     public static final net.minecraft.sounds.SoundEvent GRAVEYARD_DEPLOY=net.minecraft.sounds.SoundEvent.createFixedRangeEvent(id("graveyard_deploy"),SpellSounds.RANGE);
@@ -36,6 +36,7 @@ public final class RoyaleSpells {
     public static EntityType<AllySkeleton> SKELETON;
     public static EntityType<ArmySkeleton> ARMY_SKELETON;
     public static EntityType<ElementalSpirit> ELEMENTAL_SPIRIT;
+    public static EntityType<InfernoDragon> INFERNO_DRAGON;
     public static EntityType<SpiritArc> SPIRIT_ARC;
     public static EntityType<RitualEntity> RITUAL;
     public static EntityType<EvolutionBurst> EVOLUTION_BURST;
@@ -50,6 +51,8 @@ public final class RoyaleSpells {
         bus.addListener((net.neoforged.neoforge.event.RegisterGameTestsEvent event)->{
             if(net.neoforged.fml.ModList.get().isLoaded("irons_spellbooks")) {
                 event.register(dev.royalespells.test.IronCompatibilityTests.class);
+                if(net.neoforged.fml.ModList.get().isLoaded("zappiesaddon"))event.register(dev.royalespells.test.ZappiesIntegrationTests.class);
+                event.register(dev.royalespells.test.InfernoIronTests.class);
                 event.register(dev.royalespells.test.Iron151Tests.class);
                 event.register(dev.royalespells.test.IronSpellSystemTests.class);event.register(dev.royalespells.test.ElixirTests.class);event.register(dev.royalespells.test.IronBalanceTests.class);event.register(dev.royalespells.test.ArmyTests.class);event.register(dev.royalespells.test.SpiritIronTests.class);
             }
@@ -72,8 +75,12 @@ public final class RoyaleSpells {
         var key=event.getRegistryKey();
         if(key.equals(net.minecraft.core.registries.Registries.MOB_EFFECT)) {
             STUN=Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT,id("stun"),IronSpellSystem.effect(MobEffectCategory.HARMFUL,0x92CAFF));
+            ELECTRICAL_STUN=Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT,id("electrical_stun"),IronSpellSystem.effect(MobEffectCategory.HARMFUL,0x8BE5FF));
+            CARD_SLOW=Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT,id("card_slow"),IronSpellSystem.effect(MobEffectCategory.HARMFUL,0x81BCDE).addAttributeModifier(Attributes.MOVEMENT_SPEED,id("card_slow"),-.05,net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+            CARD_SPEED=Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT,id("card_speed"),IronSpellSystem.effect(MobEffectCategory.BENEFICIAL,0xCC50ED).addAttributeModifier(Attributes.MOVEMENT_SPEED,id("card_speed"),.35,net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
             RAGED=Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT,id("rage"),IronSpellSystem.effect(MobEffectCategory.BENEFICIAL,0xCC50ED).addAttributeModifier(Attributes.ATTACK_SPEED,id("rage_attack_speed"),0.35,net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
             FROZEN=Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT,id("frozen"),IronSpellSystem.effect(MobEffectCategory.HARMFUL,0x9ADFFF));
+            SNOWBOUND=Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT,id("snowbound"),IronSpellSystem.effect(MobEffectCategory.HARMFUL,0x438FFF));
             ROOTED=Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT,id("rooted"),IronSpellSystem.effect(MobEffectCategory.HARMFUL,0x438724));
             CLONED=Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT,id("cloned"),IronSpellSystem.effect(MobEffectCategory.NEUTRAL,0x14CCFF));
         } else if(key.equals(net.minecraft.core.registries.Registries.ENTITY_TYPE)) {
@@ -84,6 +91,7 @@ public final class RoyaleSpells {
             SKELETON=unit("graveyard_skeleton",AllySkeleton::new,.48f,1.4f);
             ARMY_SKELETON=unit("army_skeleton",ArmySkeleton::new,.48f,1.4f);
             ELEMENTAL_SPIRIT=unit("elemental_spirit",ElementalSpirit::new,.6f,.8f);
+            INFERNO_DRAGON=unit("inferno_dragon",InfernoDragon::new,1.15f,1.65f);
             SPIRIT_ARC=Registry.register(BuiltInRegistries.ENTITY_TYPE,id("spirit_chain_arc"),EntityType.Builder.<SpiritArc>of(SpiritArc::new,MobCategory.MISC).sized(.1f,.1f).clientTrackingRange(64).updateInterval(1).build(id("spirit_chain_arc").toString()));
             RITUAL=Registry.register(BuiltInRegistries.ENTITY_TYPE,id("dark_elixir_ritual"),EntityType.Builder.<RitualEntity>of(RitualEntity::new,MobCategory.MISC).sized(.2f,.2f).clientTrackingRange(64).updateInterval(1).build(id("dark_elixir_ritual").toString()));
             EVOLUTION_BURST=Registry.register(BuiltInRegistries.ENTITY_TYPE,id("evolution_deployment"),EntityType.Builder.<EvolutionBurst>of(EvolutionBurst::new,MobCategory.MISC).sized(.1f,.1f).clientTrackingRange(96).updateInterval(1).build(id("evolution_deployment").toString()));
@@ -113,6 +121,7 @@ public final class RoyaleSpells {
         event.put(BARBARIAN_HUT,RoyaleUnit.attributes().build());
         event.put(ARMY_SKELETON,AllySkeleton.createAttributes().add(Attributes.ATTACK_DAMAGE,1.8).add(Attributes.MAX_HEALTH,4).build());
         event.put(ELEMENTAL_SPIRIT,ElementalSpirit.attributes().build());
+        event.put(INFERNO_DRAGON,InfernoDragon.attributes().build());
     }
     private void commands(net.neoforged.neoforge.event.RegisterCommandsEvent event) {
         event.getDispatcher().register(

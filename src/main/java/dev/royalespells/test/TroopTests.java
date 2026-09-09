@@ -31,7 +31,7 @@ public class TroopTests {
     private void cleanup(GameTestHelper c,UUID owner){for(var e:com.google.common.collect.ImmutableList.copyOf(c.getLevel().getAllEntities()))if(e instanceof Summoned s&&owner.equals(s.ownerId()))e.discard();}
     @GameTest(template=EMPTY_STRUCTURE,batch="retained-cards")
     public void retainedCardsAndOriginalSkeleton(GameTestHelper c){
-        c.assertTrue(RoyaleSpells.TROOP_ITEMS.size()==1,"Only the requested Hut card remains");
+        c.assertTrue(RoyaleSpells.TROOP_ITEMS.keySet().equals(EnumSet.of(TroopCard.BARBARIAN_HUT,TroopCard.INFERNO_DRAGON)),"Hut and newly requested Inferno Dragon are the two retained troop cards");
         c.assertTrue(c.getLevel().getRecipeManager().byKey(RoyaleSpells.id("barbarian_hut")).isPresent()!=IronSpellSystem.loaded,"Hut uses native scroll progression when Iron's is installed");
         for(String name:List.of("golem","night_witch","golemite","royale_bat","bat")){
             c.assertTrue(!BuiltInRegistries.ENTITY_TYPE.containsKey(RoyaleSpells.id(name)),"Removed troop entity: "+name);
@@ -84,9 +84,9 @@ public class TroopTests {
         c.assertTrue(SpellEngine.deploy(player,TroopCard.BARBARIAN_HUT),"Hut card deploys");for(int i=0;i<11;i++)SpellEngine.tick(c.getLevel().getServer());
         player.setPos(player.position().add(5,0,0));
         c.assertTrue(SpellEngine.cast(player,Spell.MIRROR),"Mirror copies the Hut card");
-        var boosted=(RoyaleUnit)units(c,owner).stream().filter(e->e instanceof RoyaleUnit u&&u.power()>1).findFirst().orElseThrow();
-        c.assertTrue(Math.abs(boosted.getMaxHealth()-71.5)<.001,"Mirrored hut gains one level of health");boosted.tick();
-        c.assertTrue(units(c,owner).stream().anyMatch(e->e.getType()==RoyaleSpells.BARBARIAN&&Math.abs(e.getMaxHealth()-22)<.001),"Produced barbarians inherit Mirror's one-level boost");
+        var boosted=(RoyaleUnit)units(c,owner).stream().filter(e->e instanceof RoyaleUnit u&&CardBalance.level(u)==12).findFirst().orElseThrow();
+        c.assertTrue(Math.abs(boosted.getMaxHealth()-CardBalance.convert(1278))<.001,"Mirrored hut gains one level of health");boosted.tick();
+        c.assertTrue(units(c,owner).stream().anyMatch(e->e.getType()==RoyaleSpells.BARBARIAN&&Math.abs(e.getMaxHealth()-CardBalance.convert(786))<.001),"Produced barbarians inherit Mirror's one-level boost");
         cleanup(c,owner);player.discard();c.succeed();
     }
 }

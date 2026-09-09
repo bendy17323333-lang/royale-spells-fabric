@@ -1,0 +1,67 @@
+{
+  "run": "run-production-combatpackfinal7",
+  "checks": {
+    "Z1": {
+      "held_samples": 9,
+      "held_time": 128.27999877929688,
+      "resume_delta": 0.67999267578125,
+      "neighbour_continues": true
+    },
+    "S1": {
+      "held_samples": 9,
+      "held_time": 128.27999877929688,
+      "resume_delta": 0.67999267578125,
+      "neighbour_continues": true
+    },
+    "one_death_does_not_contaminate_survivors": true,
+    "car_0": {
+      "shots": 7,
+      "intervals_ticks": [
+        46,
+        46,
+        46,
+        46,
+        46,
+        46
+      ]
+    },
+    "car_1": {
+      "shots": 5,
+      "intervals_ticks": [
+        46,
+        46,
+        46,
+        46
+      ]
+    },
+    "car_2": {
+      "shots": 6,
+      "intervals_ticks": [
+        46,
+        46,
+        46,
+        46,
+        46
+      ]
+    },
+    "actual_windup_pause": {
+      "samples": 9,
+      "windup": 6
+    }
+  },
+  "jars": {
+    "curios-neoforge-9.5.1+1.21.1.jar": "a45df2125c26219974aba7507ffc9afe7b83acc941a386af3faacb1cc0056fde",
+    "geckolib-neoforge-1.21.1-4.9.2.jar": "5e548466af9ab6aca7a91a7c7d4dc0dc8bc385e22958aed5da0e7bebd0fa3fba",
+    "iris-neoforge-1.8.12+mc1.21.1.jar": "3e3f94d2d5cdcb8145c4385d521974aa2d8669b2cc212351f70cf06488182e83",
+    "irons_lib-1.21.1-2.1.0.jar": "3d0ad1003d6edeaad2500b9922267b4192d2c603cdd846fda339b168f4deff72",
+    "irons_spellbooks-1.21.1-3.16.3.jar": "13d644474ddba4f8478b4ce68294687fd509c994b3f344a224142b102dbe6f73",
+    "Jade-1.21.1-NeoForge-15.10.6.jar": "276f1f65a20d04f536989c4f311949d770b52c440c23c2b904a08860f3c93810",
+    "liquid-glass-ui-1.21.1-4.1.2-neoforge.2.jar": "329d0baec349e4a712bcd2a8a4bdfd57741b8caf8eb4cf7a129c032ce937b421",
+    "mineclash-0.7.5-1.21.1.jar": "08a8b5a902677f3c979f1330151134d207bf81f72177defd205c0e5e477e6a63",
+    "mineclash-zappies-neoforge-1.21.1-0.1.0.jar": "1fe65f82335a3bb2d811c80f89c86ccc4b96e74c3354bd6fe9bac2348779cef0",
+    "mob-laboratory-neoforge-1.21.1-1.1.1.jar": "752dbf2de426b081659cc912012bb2d268431ffc3de369bc282740a7a501a698",
+    "player-animation-lib-forge-2.0.4+1.21.1.jar": "dbe5de45f5cd60c0e5e47af14e6d564534a98456e973cf670cb881f6938eee92",
+    "royale-spells-neoforge-1.21.1-1.7.0-dev.4.jar": "f442c4f7ca9fb71a85d20c66d5da9c521c5347f5d2f94733679d1d0ca80f5143",
+    "sodium-neoforge-0.6.13+mc1.21.1.jar": "7acd7af2ef75ec883a6872c17494ead65e38025151eb08a1d60e36d34377f403"
+  }
+}

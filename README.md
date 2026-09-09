@@ -1,22 +1,28 @@
-# 皇室法术 · 铁魔法适配 Beta 2
+# 皇室法术 · 铁魔法适配 Beta 3
+
+**Royale Spells `1.7.1-beta.3` · Minecraft 1.21.1 · NeoForge · Java 21**
+
+将皇室战争法术接入 Iron’s Spells ’n Spellbooks 的魔力、学派、稀有度、卷轴、抄写、法术书和奥术铁砧。新版汇总地狱飞龙、雪球与火球视觉更新、电击暂停和卡牌数值重做。
+
+[下载 Beta 3](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.7.1-beta.3-neoforge-mc1.21.1) · [本版更新](CHANGELOG-1.7.1.md) · [卡牌数值与来源](CARD-BALANCE.md) · [验证记录](VALIDATION-1.7.1-beta.3.md) · [完整技术档案](docs/technical/README.md)
 
 ## 开源许可证
 
-本项目自编代码、工具和文档采用 **[MIT 许可证](LICENSE)**，允许修改、再分发及商业使用，须保留许可声明。《皇室战争》原版卡图、音频、MineClash 原始／改编模型等第三方资产 **明确排除**；它们保留原作者权利，不因随源码或 JAR 发布而变为 MIT。完整范围见 [LICENSE-NOTICE.md](LICENSE-NOTICE.md) 和 [ASSETS.md](ASSETS.md)。
+自编代码、工具和文档采用 **[MIT](LICENSE)**。原作卡图、音频、MineClash 原始和改编素材等第三方资产明确排除，保留其原作者权利；详见 [LICENSE-NOTICE.md](LICENSE-NOTICE.md) 与 [ASSETS.md](ASSETS.md)。Original code is MIT licensed; third-party assets are excluded and retain their respective terms.
 
-Original code is MIT licensed. Third-party artwork, audio, MineClash-derived assets and other third-party content are excluded and retain their respective terms.
+## 本版重点
 
-**Royale Spells `1.6.1-beta.2` · Minecraft 1.21.1 · NeoForge · Java 21**
-
-将皇室战争法术接入 Iron’s Spells ’n Spellbooks 的魔力、学派、稀有度、卷轴、抄写、法术书和奥术铁砧系统。Beta 2 新增四元素熔炉法杖，并改进觉醒骷髅军团的实际战斗。
-
-[下载公开 Beta 2](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.6.1-beta.2-neoforge-mc1.21.1) · [本版更新](CHANGELOG-1.6.1.md) · [验证记录](VALIDATION-1.6.1-beta.2.md) · [完整中文技术档案](docs/technical/README.md)
-
-这是第二个公开铁魔法适配 Beta。此前 `1.6.0-beta.2`、`.3`、`.4` 是仅本地交付的开发迭代，本次以独立版本号 `1.6.1-beta.2` 汇总发布，避免与旧本地包混淆。
+- 卡牌以原作 11 级小骷髅 81 HP 对应模组 3 HP：伤害与召唤生命除以 27，范围一格一个方块，镜像使用 12 级数据。
+- **只调整卡牌形态与指定的觉醒军团**。普通铁魔法法术、精灵法杖及 MineClash 数值不套用换算。卡牌冰冻同步为 3.5 秒，铁魔法版仍为 5 秒。
+- 觉醒军团小骷髅、将军、盾各 3 HP；修复持剑隐藏加成、诅咒／小屋后续召唤的等级传递和卡牌卫队独立盾。
+- 连续火球尾焰、落地火星与黑烟；雪球蓝色动画减速和朝向修复；地狱飞龙模型、悬浮高度、逐级升温激光与被电击重置。
+- 电车附属提供三车编队、原作素材、连线电弧及可续接的电击暂停，保留雨水自伤。
 
 ## 安装
 
-把 **`royale-spells-neoforge-1.21.1-1.6.1-beta.2.jar`** 放入 NeoForge 实例的 `mods`。更新前保存并退出游戏、备份旧版与存档；同一实例只保留一份皇室法术。源码和模型压缩包不要放入 `mods`。
+下载 `royale-spells-neoforge-1.21.1-1.7.1-beta.3.jar` 放入 `mods`。电车功能还需同次发布的 **`mineclash-zappies-neoforge-1.21.1-0.1.1.jar`** 和 MineClash 0.7.5；只装皇室法术与 MineClash 不会加载这个独立附属的机制或电弧。
+
+`royale-spells-1.7.1-beta.3-with-zappies.zip` 包含这两份 JAR、安装说明、许可和数值表，第三方依赖另装。`source.zip` 是源码与可编辑模型，不要放入 mods。更新前保存并退出游戏、备份旧 JAR 与存档，同一实例只留一份本体和一份电车附属。
 
 | 依赖 | 本轮验证版本 |
 | --- | --- |
@@ -41,7 +47,7 @@ Original code is MIT licensed. Third-party artwork, audio, MineClash-derived ass
 | 雷电 | 紫水晶碎片 | 7 / 目标 | 每 0.25 秒向 3 格内下一敌人连锁，最多 9 个目标，眩晕 0.5 秒 |
 | 治疗 | 闪烁的西瓜片 | 7 | 半径 2.2 格伤害；3 格内友军恢复 4 生命 |
 
-右键走铁魔法原生吟唱和魔力扣除。四种元素共享 6 秒基础冷却，不可切换法杖绕过；伤害随法术和召唤强度成长。治疗精灵优先照顾受伤友军。基础伤害足以一击击杀本模组基础 6 生命小骷髅；装备、强化、护甲和其他模组抗性会改变实战结果。
+右键走铁魔法原生吟唱和魔力扣除。四种元素共享 6 秒基础冷却，不可切换法杖绕过；伤害随法术和召唤强度成长。治疗精灵优先照顾受伤友军。基础伤害足以一击击杀本模组铁魔法基础 6 生命小骷髅以及本版 3 生命卡牌小骷髅；装备、强化、护甲和其他模组抗性会改变实战结果。
 
 四精灵使用原作卡图、原比例和自带边框，铁魔法额外图标框仅对皇室卡牌隐藏。火精灵为全身燃烧的煤块；电精灵采用三处分叉冠簇与向外延伸的闪电胡须。四种精灵接入原作部署、跳扑、命中和低音量脚步声音。
 
@@ -68,7 +74,7 @@ Original code is MIT licensed. Third-party artwork, audio, MineClash-derived ass
 
 ## 验证与反馈
 
-本版通过 73 项独立 GameTest 和 132 项铁魔法同装 GameTest。新增回归覆盖四精灵在三个距离的一击击杀、连续飞行接触、原目标死亡、墙和友军、将军不逃跑及普通生还者的存档/战斗规则。成品客户端的具体结果与截图见 [验证记录](VALIDATION-1.6.1-beta.2.md)。测试不等于覆盖所有整合包、多人延迟、复杂地形或光影。
+本版通过 96 项独立 GameTest、162 项 Iron/MineClash/电车同装 GameTest，独立电车附属通过 12 项。新增回归覆盖完整卡牌伤害、原生数值隔离、持剑伤害、盾牌、镜像及军团旧存档，原有精灵、召唤 AI、电击暂停与生还者测试继续保留。成品客户端的具体结果与截图见 [验证记录](VALIDATION-1.7.1-beta.3.md)。测试不等于覆盖所有整合包、多人延迟、复杂地形或光影。
 
 反馈请附版本、加载器、铁魔法版本、复现步骤与 `latest.log`。开发入口、准星渲染、音频、数值、AI、模型和存档说明见 [技术档案](docs/technical/README.md)。
 

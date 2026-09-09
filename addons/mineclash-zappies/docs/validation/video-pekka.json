@@ -1,0 +1,12 @@
+{
+  "file": "01-Zappies-vs-MineClash-PEKKA.mp4",
+  "frame_count": 361,
+  "duration_seconds": 21.916999999999998,
+  "sound_events": 40,
+  "audible_events": 36,
+  "mix_peak_before_ceiling": 0.5017557144165039,
+  "audio_method": "actual game sound event samples, pitch, distance, timing, loop stops; no desktop or microphone audio",
+  "winner": "pekka",
+  "combat_ticks": 441,
+  "opponent_base_health": 150.0
+}

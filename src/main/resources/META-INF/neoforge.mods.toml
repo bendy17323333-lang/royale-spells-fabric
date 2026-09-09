@@ -9,6 +9,8 @@ displayName="皇室法术 · Royale Spells"
 description="Clash Royale spells and a Barbarian Hut for Minecraft 1.21.1 NeoForge."
 [[mixins]]
 config="royalespells.mixins.json"
+[[mixins]]
+config="royalespells-electrical.mixins.json"
 [[dependencies.royalespells]]
 modId="neoforge"
 type="required"

@@ -14,11 +14,11 @@ final class AmbientSpellRenderer {
         Spell spell=e.spell();
         if(spell!=Spell.POISON && spell!=Spell.GOBLIN_CURSE && spell!=Spell.HEAL && spell!=Spell.WARMTH && spell!=Spell.CLONE && spell!=Spell.MIRROR && spell!=Spell.EARTHQUAKE)return false;
         float time=e.time()+delta,alpha=FieldAnimation.opacity(spell,time,e.duration());
-        double radius=spell.radius*FieldAnimation.opening(spell,time);
+        double radius=e.radius()*FieldAnimation.opening(spell,time);
         var v=buffers.getBuffer(SpellLayers.EFFECT);
         if(spell==Spell.EARTHQUAKE) {
             float age=time%20;if(age<12) {
-                double r=spell.radius*Math.min(1,age/9);
+                double r=e.radius()*Math.min(1,age/9);
                 ring(m,v,r-.12,r+.14,.08,.79f,.56f,.25f,(1-age/12)*.62f,0);
                 ring(m,v,r*.7-.05,r*.7+.05,.1,.91f,.76f,.44f,(1-age/12)*.4f,0);
             }return true;
@@ -35,12 +35,22 @@ final class AmbientSpellRenderer {
         var rotation=Minecraft.getInstance().gameRenderer.getMainCamera().rotation();
         var right=new Vector3f(1,0,0).rotate(rotation);var up=new Vector3f(0,1,0).rotate(rotation);
         Vec3 r=new Vec3(right),u=new Vec3(up);
+        if(poison)for(int i=0;i<10;i++){
+            // Low amber banks roll independently from the higher green-gold
+            // bubbles. A gentle, uneven height keeps the field from reading as
+            // a flat tinted disk. Density falls with the same end fade.
+            double angle=i*2.399963+time*.012,d=Math.sqrt((i+.5)/10)*radius*.79;
+            Vec3 at=new Vec3(Math.cos(angle)*d,.12+.07*Math.sin(time*.10+i),Math.sin(angle)*d);
+            ProjectileVisuals.mist(m,v,at,r,u,.92+.16*Math.sin(time*.06+i),.78f,.38f+(i%3)*.04f,.035f,alpha*.22f);
+            float burst=Mth.frac(time/27+i*.371f);
+            if(burst>.68f)ring(m,v,(burst-.68)*1.2,(burst-.68)*1.2+.035,.13,.99f,.73f,.12f,(1-burst)*alpha*.6f,0,at.x,at.z);
+        }
         int count=poison?28:curse?18:10;
         for(int i=0;i<count;i++) {
             double seed=i*2.399963+e.getId()*.017;
             float life=Mth.frac(time/(poison?48:32)+i*.618034f);
             double distance=Math.sqrt((i+.5)/count)*radius*.88,angle=seed+time*.006;
-            Vec3 at=new Vec3(Math.cos(angle)*distance,.18+life*(poison?1.5:1.15),Math.sin(angle)*distance);
+            Vec3 at=new Vec3(Math.cos(angle)*distance,.18+life*(poison?1.8:1.15),Math.sin(angle)*distance);
             float fade=(float)Math.sin(life*Math.PI)*alpha;
             if(poison||curse) {
                 disk(m,v,at,r,u,(.6+life*.6)*(poison?1:.65),red,green*(.86f+(i%3)*.13f),blue,fade*.3f);

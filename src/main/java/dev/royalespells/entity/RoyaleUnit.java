@@ -49,7 +49,8 @@ public class RoyaleUnit extends PathfinderMob implements Summoned {
         for(int i=0;i<count;i++){
             double side=(i-(count-1)*.5)*.8;
             Vec3 at=SpellEngine.ground(world,position().add(forward.scale(2.7)).add(forward.z*side,0,-forward.x*side));
-            var unit=SpellEngine.summon(world,owner,at,"barbarian",false);SpellEngine.empower(unit,power);
+            var unit=SpellEngine.summon(world,owner,at,"barbarian",false);
+            if(CardBalance.isCard(this))CardBalance.apply(unit,"barbarian",false,CardBalance.level(this));SpellEngine.empower(unit,power);
             IronSpellSystem.summon(unit,owner,getPersistentData().getString("RoyaleIronSpell"),getPersistentData().getInt("RoyaleIronLevel"));
         }
 

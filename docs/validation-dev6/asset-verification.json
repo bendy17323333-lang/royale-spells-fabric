@@ -1,0 +1,9 @@
+{
+  "path": "src/main/resources/assets/royalespells/textures/entity/fireball_plume.png",
+  "sha256": "f9723c1ec257db56be8a73d33614d1579734b17a50ce09629196c69d94ca17f6",
+  "width": 1254,
+  "height": 1254,
+  "tool": "image_gen.imagegen",
+  "post_processing": "none; original PNG and alpha copied unchanged",
+  "prompt": "art/FIREBALL-PLUME-IMAGEGEN-PROMPT.md"
+}

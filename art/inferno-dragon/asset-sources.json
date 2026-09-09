@@ -1,0 +1,31 @@
+[
+  {
+    "phase": "deploy",
+    "source_url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Inferno%20Dragon/babydragon_deploy_01.ogg",
+    "source_sha256": "99506e2d539ac904216fa17274e9183d5e60be0833186cd8982928f88d7e9e67",
+    "output": "src/main/resources/assets/royalespells/sounds/original/inferno_dragon_deploy.ogg",
+    "output_sha256": "99506e2d539ac904216fa17274e9183d5e60be0833186cd8982928f88d7e9e67",
+    "probe": "Input #0, ogg, from 'C:\\Users\\BliBe\\Documents\\Codex\\2026-09-04\\new-chat\\work\\audio\\original-inferno-audio\\babydragon_deploy_01.ogg':\n  Duration: 00:00:01.03, start: 0.000000, bitrate: 86 kb/s\n  Stream #0:0: Audio: vorbis, 48000 Hz, mono, fltp\nStream mapping:\n  Stream #0:0 -> #0:0 (vorbis (native) -> pcm_s16le (native))\nPress [q] to stop, [?] for help\nOutput #0, null, to 'pipe:':\n  Metadata:\n    encoder         : Lavf61.7.100\n  Stream #0:0: Audio: pcm_s16le, 48000 Hz, mono, s16, 768 kb/s\n      Metadata:\n        encoder         : Lavc61.19.100 pcm_s16le\n[out#0/null @ 00000230e9a76b80] video:0KiB audio:96KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown\nsize=N/A time=00:00:01.02 bitrate=N/A speed= 242x    \n"
+  },
+  {
+    "phase": "wing",
+    "source_url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Inferno%20Dragon/babydragon_wing_01.ogg",
+    "source_sha256": "902b291299f98af45b5aba165c91b8722a5a00db57404ed65e389f90d67cc5cd",
+    "output": "src/main/resources/assets/royalespells/sounds/original/inferno_dragon_wing.ogg",
+    "output_sha256": "902b291299f98af45b5aba165c91b8722a5a00db57404ed65e389f90d67cc5cd",
+    "probe": "Input #0, ogg, from 'C:\\Users\\BliBe\\Documents\\Codex\\2026-09-04\\new-chat\\work\\audio\\original-inferno-audio\\babydragon_wing_01.ogg':\n  Duration: 00:00:00.74, start: 0.000000, bitrate: 80 kb/s\n  Stream #0:0: Audio: vorbis, 48000 Hz, mono, fltp\nStream mapping:\n  Stream #0:0 -> #0:0 (vorbis (native) -> pcm_s16le (native))\nPress [q] to stop, [?] for help\nOutput #0, null, to 'pipe:':\n  Metadata:\n    encoder         : Lavf61.7.100\n  Stream #0:0: Audio: pcm_s16le, 48000 Hz, mono, s16, 768 kb/s\n      Metadata:\n        encoder         : Lavc61.19.100 pcm_s16le\n[out#0/null @ 00000244495b6b80] video:0KiB audio:69KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown\nsize=N/A time=00:00:00.73 bitrate=N/A speed= 237x    \n"
+  },
+  {
+    "phase": "beam",
+    "source_url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Inferno%20Dragon/inferno_dragon_fireloop_01.ogg",
+    "source_sha256": "bf465c1706064dfa6b4ed617bd9658e359f26d6e876a9789917cb8bf7d40e54a",
+    "output": "src/main/resources/assets/royalespells/sounds/original/inferno_dragon_beam.ogg",
+    "output_sha256": "bf465c1706064dfa6b4ed617bd9658e359f26d6e876a9789917cb8bf7d40e54a",
+    "probe": "Input #0, ogg, from 'C:\\Users\\BliBe\\Documents\\Codex\\2026-09-04\\new-chat\\work\\audio\\original-inferno-audio\\inferno_dragon_fireloop_01.ogg':\n  Duration: 00:00:01.28, start: 0.000000, bitrate: 80 kb/s\n  Stream #0:0: Audio: vorbis, 48000 Hz, mono, fltp\nStream mapping:\n  Stream #0:0 -> #0:0 (vorbis (native) -> pcm_s16le (native))\nPress [q] to stop, [?] for help\nOutput #0, null, to 'pipe:':\n  Metadata:\n    encoder         : Lavf61.7.100\n  Stream #0:0: Audio: pcm_s16le, 48000 Hz, mono, s16, 768 kb/s\n      Metadata:\n        encoder         : Lavc61.19.100 pcm_s16le\n[out#0/null @ 0000017550726c00] video:0KiB audio:120KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown\nsize=N/A time=00:00:01.28 bitrate=N/A speed= 351x    \n"
+  },
+  {
+    "asset": "card",
+    "source_url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/inferno-dragon.png",
+    "sha256": "09b3d010aaba0c5aa3d8d4df30b9c29d2dd51007c8702fb435133b57cc44e793"
+  }
+]

@@ -30,7 +30,7 @@ public final class IronIntegration {
     private static final DeferredRegister<CreativeModeTab> TABS=DeferredRegister.create(Registries.CREATIVE_MODE_TAB,RoyaleSpells.MOD_ID);
     private static final Map<IronSpellProfile,Supplier<AbstractSpell>> REGISTERED=new EnumMap<>(IronSpellProfile.class);
     public static void install(IEventBus bus) {
-        for(var profile:IronSpellProfile.values())REGISTERED.put(profile,SPELLS.register(profile.id(),()->profile==IronSpellProfile.MIRROR?new MirrorIronSpell():profile==IronSpellProfile.SKELETON_ARMY_EVOLUTION?new EvolvedArmySpell():new RoyaleIronSpell(profile)));
+        for(var profile:IronSpellProfile.values())REGISTERED.put(profile,SPELLS.register(profile.id(),()->profile==IronSpellProfile.MIRROR?new MirrorIronSpell():profile==IronSpellProfile.SKELETON_ARMY_EVOLUTION?new EvolvedArmySpell():profile==IronSpellProfile.INFERNO_DRAGON?new InfernoDragonSpell():new RoyaleIronSpell(profile)));
         TABS.register("iron_scrolls",()->CreativeModeTab.builder().title(Component.translatable("itemGroup.royalespells.iron_scrolls"))
             .icon(()->scroll(IronSpellProfile.ZAP,1)).displayItems((context,output)->{
                 SpiritSpells.creative(output);

@@ -73,7 +73,7 @@ public final class MirrorIronSpell extends RoyaleIronSpell {
         if(!(player instanceof ServerPlayer serverPlayer) || world.isClientSide)return false;
         var data=MagicData.getPlayerMagicData(player);
         if(data.isCasting()){Utils.serverSideCancelCast(serverPlayer);return false;}
-        if(player.hasEffect(RoyaleSpells.STUN) || player.hasEffect(RoyaleSpells.FROZEN))return fail(player,"message.royalespells.iron_stunned");
+        if((player.hasEffect(RoyaleSpells.STUN)||dev.royalespells.pause.ElectricPause.active(player)) || player.hasEffect(RoyaleSpells.FROZEN))return fail(player,"message.royalespells.iron_stunned");
         var previous=history(player);if(previous==SpellData.EMPTY)return fail(player,"message.royalespells.iron_no_mirror");
         AbstractSpell target=previous.getSpell();
         if(!isEnabled() || !target.isEnabled() || target.requiresLearning() && !target.isLearned(player))return fail(player,"message.royalespells.iron_mirror_locked");

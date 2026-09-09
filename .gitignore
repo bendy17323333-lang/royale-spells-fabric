@@ -17,3 +17,7 @@ remappedSrc/
 
 # Local study copies of unrelated MineClash models are not release sources.
 art/mineclash-reference/assets/
+
+# Private runtime test dependencies and third-party binaries
+test-deps*/
+libs/

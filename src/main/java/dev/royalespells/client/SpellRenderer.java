@@ -43,6 +43,7 @@ public class SpellRenderer extends EntityRenderer<SpellEntity> {
                 // Local X is travel; local Z is the log's axle. Roll without slipping.
                 double distance=e.target().subtract(e.start()).horizontalDistance()*Mth.clamp((e.time()+delta)/spell.duration,0,1);
                 m.mulPose(LogMotion.rotation(e.target().subtract(e.start()),distance));
+                if(e.cardCast())m.scale(1,1,(float)(e.radius()*2/3.3));
                 box(m,v,light,Blocks.OAK_LOG,-.6,-.5,-1.65,1.2f,1,3.3f);
                 for(int j=-1;j<=1;j++)for(int i=0;i<4;i++) {
                     m.pushPose();m.mulPose(Axis.ZP.rotationDegrees(i*90));
@@ -67,13 +68,15 @@ public class SpellRenderer extends EntityRenderer<SpellEntity> {
                 box(m,v,light,Blocks.IRON_BLOCK,-.24,.08,.51,.45f,.35f,.04f);
                 box(m,v,0xF000F0,Blocks.ORANGE_STAINED_GLASS,-.18,-1.45,-.18,.36f,.48f,.36f);
             }            case GIANT_SNOWBALL, GIANT_SNOWBALL_EVOLUTION -> {
-                m.translate(0,.5,0);m.mulPose(Axis.XP.rotationDegrees(spin));
+                m.translate(0,.5,0);
+                Vec3 forward=e.castDirection();m.mulPose(Axis.YP.rotation((float)Math.atan2(forward.x,forward.z)));
+                m.mulPose(Axis.XP.rotationDegrees(spin));
                 float size=spell.evolved()&&e.time()>=24?2.4f:1.3f;m.scale(size,size,size);
                 box(m,v,light,Blocks.SNOW_BLOCK,-.5,-.35,-.35,1,.7f,.7f);
                 box(m,v,light,Blocks.SNOW_BLOCK,-.35,-.5,-.35,.7f,1,.7f);
                 box(m,v,light,Blocks.SNOW_BLOCK,-.35,-.35,-.5,.7f,.7f,1);
             }
-            case FIREBALL -> {m.mulPose(Axis.YP.rotationDegrees(spin));box(m,v,0xF000F0,Blocks.MAGMA_BLOCK,-.45,-.45,-.45,.9f,.9f,.9f);}
+            case FIREBALL -> ProjectileVisuals.core(e,delta,m,v);
             case ROYAL_DELIVERY -> {
                 box(m,v,light,Blocks.BARREL,-.65,0,-.65,1.3f,1.3f,1.3f);
                 box(m,v,light,Blocks.BLUE_CONCRETE,-.68,.55,-.68,1.36f,.2f,1.36f);
@@ -82,7 +85,7 @@ public class SpellRenderer extends EntityRenderer<SpellEntity> {
             case ARROWS -> {
                 float time=e.time()+delta,interval=e.ironSpellId().isEmpty()?8:10,phase=time%interval;int wave=Math.min(2,(int)(time/interval));
                 if(phase<6)for(int i=0;i<dev.royalespells.ArrowPattern.COUNT;i++) {
-                    var at=dev.royalespells.ArrowPattern.point(i,wave);double h=Math.max(.06,(4-phase)*1.65);
+                    var at=dev.royalespells.ArrowPattern.point(i,wave,e.radius());double h=Math.max(.06,(4-phase)*1.65);
                     box(m,v,light,Blocks.OAK_PLANKS,at.x-.0225,h,at.z-.0225,.045f,.75f,.045f);
                     box(m,v,light,Blocks.IRON_BLOCK,at.x-.06,h-.08,at.z-.06,.12f,.15f,.12f);
                 }

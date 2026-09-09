@@ -53,13 +53,13 @@ public class SpellGameTests {
     public void evolvedZapHitsTwice(GameTestHelper c) {
         UUID owner=UUID.randomUUID();var target=c.spawnWithNoFreeWill(EntityType.IRON_GOLEM,2,2,2);target.setNoAi(true);target.setNoGravity(true);
         float before=target.getHealth();cast(c,Spell.ZAP_EVOLUTION,owner,target.position());
-        c.runAfterDelay(25,()->{c.assertTrue(Math.abs(target.getHealth()-(before-8))<0.01,"Evolved Zap must deliver two 4-damage hits");finish(c,owner,target);});
+        c.runAfterDelay(25,()->{c.assertTrue(Math.abs(target.getHealth()-(before-CardBalance.convert(384)))<0.01,"Evolved Zap must deliver two reference-level Zap hits");finish(c,owner,target);});
     }
     @GameTest(template=EMPTY_STRUCTURE,timeoutTicks=60)
     public void arrowVolleysAllApply(GameTestHelper c) {
         UUID owner=UUID.randomUUID();var target=c.spawnWithNoFreeWill(EntityType.IRON_GOLEM,2,2,2);target.setNoAi(true);target.setNoGravity(true);
         float before=target.getHealth();cast(c,Spell.ARROWS,owner,target.position());
-        c.runAfterDelay(25,()->{c.assertTrue(Math.abs(target.getHealth()-(before-9))<0.01,"All three Arrows volleys must apply");finish(c,owner,target);});
+        c.runAfterDelay(25,()->{c.assertTrue(Math.abs(target.getHealth()-(before-CardBalance.convert(366)))<0.01,"All three Arrows volleys must apply");finish(c,owner,target);});
     }
     @GameTest(template=EMPTY_STRUCTURE,timeoutTicks=60)
     public void lightningSelectsThreeHighestHealthTargets(GameTestHelper c) {
@@ -68,7 +68,7 @@ public class SpellGameTests {
         cast(c,Spell.LIGHTNING,owner,mobs.get(1).position());
         c.runAfterDelay(25,()->{
             c.assertTrue(mobs.get(0).getHealth()==40,"Lowest health target must remain unharmed");
-            for(int i=1;i<4;i++)c.assertTrue(Math.abs(mobs.get(i).getHealth()-(40+i*15-22))<.01,"Exactly highest three receive 22 damage");
+            for(int i=1;i<4;i++)c.assertTrue(Math.abs(mobs.get(i).getHealth()-(40+i*15-CardBalance.convert(1057)))<.01,"Exactly highest three receive converted Lightning damage");
             finish(c,owner,mobs.toArray(Entity[]::new));
         });
     }
@@ -113,7 +113,7 @@ public class SpellGameTests {
         c.runAfterDelay(205,()->{
             var units=c.getLevel().getEntitiesOfClass(AllySkeleton.class,new AABB(pos(c).add(-12,-20,-12),pos(c).add(12,10,12)),e->owner.equals(e.ownerId()));
             c.assertTrue(!units.isEmpty(),"Graveyard creates real skeletons");
-            for(var unit:units)c.assertTrue(unit.getMaxHealth()==6 && unit.getMainHandItem().is(Items.STONE_SWORD),"Every summon uses requested stats");
+            for(var unit:units)c.assertTrue(unit.getMaxHealth()==3 && unit.getMainHandItem().is(Items.STONE_SWORD),"Every summon uses requested stats");
             c.assertTrue(effect.isRemoved(),"Finished field removed");finish(c,owner);
         });
     }

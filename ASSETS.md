@@ -144,3 +144,23 @@ Beta 3 的模型渲染图标已被替换。四张精灵法术图标采用原作�
 冰精灵模型、原贴图和发光遮罩改编自 **[MineClash](https://www.curseforge.com/minecraft/mc-mods/mineclash)**，作者 **LiziYowo / MineClash 团队**，源版本 0.7.5；冰法杖使用同一头部。未捆绑 MineClash 代码，不需要安装 MineClash。
 
 四精灵音效通过原作分类音轨导入，共 22 个 OGG、16 个事件；出处、原文件与单声道转换后哈希和共享片段说明见 [SPIRIT-AUDIO-SOURCES.json](SPIRIT-AUDIO-SOURCES.json)。模型、原卡图和声音的原始归属保留；本版不把第三方素材声明为本项目原创。
+
+## 本地 1.7.0-dev.1 · 地狱飞龙
+
+地狱飞龙几何由本项目在 Blockbench 经 MCP 制作，参考用户提供的皇室战争原作图片与 MineClash 的整体美术风格，没有导入 MineClash 飞龙模型。15 骨骼、173 网格的最终源、GLTF、离线预览和导出器见 [模型说明](art/inferno-dragon/README.md)。专属材质图集由内置 ImageGen 生成，保留原始 PNG；[提示词](art/inferno-dragon/texture-prompt.txt) 随源提供。
+
+卡图取自固定 RoyaleAPI/cr-api-assets 提交 `b4530a1043b213ee2baf9c50a3d0d7fae22c2313` 的 `cards/inferno-dragon.png`，直接复制到卡牌与铁魔法图标路径。部署、振翅与喷射取自固定 Henrylq/Clash-Royale-SFX 提交 `c2d7d67271113cb9fe3ad896d9d03dd7f49eed52` 的 `Cards/Inferno Dragon` 分类，三个原始单声道 OGG 保留原字节；运行时调整音量和喷射音高。原作角色设计、卡图和音频归 Supercell。
+
+完整 URL、原始和导入后 SHA-256、解码验证记录见 [地狱飞龙素材清单](art/inferno-dragon/asset-sources.json)。成品 JAR 中也保存来源摘要 `assets/royalespells/inferno_asset_sources.json` 和更新后的 `model_credits.txt`。该版本仅本地交付，未新增第三方素材许可声明。
+
+## 本地 1.7.0-dev.5 · 火球与寒冷视觉
+
+火球核心使用内置 ImageGen 新生成的专用炽热材质，PNG 按原字节导入；[完整提示词](art/FIREBALL-IMAGEGEN-PROMPT.md) 与尺寸、哈希记录随源提供。切面模型、火舌、沿轨迹拖尾、爆散和新增毒雾均由代码绘制，没有复制 MineClash 的火球资源。法术卡图及音效继续使用上文已注明的原作素材。
+
+雪球寒冷状态的小图标复用本项目已有冰冻图标，原图不变；蓝色生物通过渲染时的颜色乘数实现，不重绘或替换生物皮肤。本轮没有修改四精灵、军团或地狱飞龙的原有素材归属。
+
+## 本地 1.7.0-dev.6 · 火球尾焰
+
+`textures/entity/fireball_plume.png` 是本轮通过内置 ImageGen 新生成的专用四帧火焰团图集。PNG 按原字节导入，保留透明度；没有复制或改编 MineClash 火球素材。它由短小、重叠的摄像机朝向面片显示，沿真实飞行轨迹形成连续燃烧尾迹；不是将此前精灵火焰拉成长条。完整提示词见 [art/FIREBALL-PLUME-IMAGEGEN-PROMPT.md](art/FIREBALL-PLUME-IMAGEGEN-PROMPT.md)，文件哈希见 `docs/validation-dev6/asset-verification.json`。
+
+火球核心继续使用上一版独立 ImageGen 材质。烟雾、细小火星与短促火焰通过 Minecraft 粒子系统在运行时引用，未复制这些原版纹理进 JAR。上述原版资源依旧属于 Mojang/Microsoft。本轮独立生成的火焰贡献按根目录许可范围采用 MIT；《皇室战争》卡图与原作音效继续明确排除。

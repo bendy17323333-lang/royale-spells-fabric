@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.royalespells.pause.mixin",
+  "plugin": "dev.royalespells.pause.PauseMixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "PauseLivingMixin",
+    "PauseMobMixin",
+    "PauseIronManagerMixin",
+    "PauseIronStartMixin"
+  ],
+  "client": [
+    "PauseGeoMixin",
+    "PauseVanillaRendererMixin",
+    "PauseIronClientMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

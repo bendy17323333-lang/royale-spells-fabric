@@ -25,6 +25,7 @@ public abstract class IronGeoVisualMixin {
         if(!(entity instanceof LivingEntity living))return;
         if(VisualState.cloned(living))cir.setReturnValue(Color.ofRGBA(.08f,.8f,1,.32f));
         else if(VisualState.frozen(living))cir.setReturnValue(Color.ofRGBA(.48f,.83f,1,1));
+        else if(VisualState.snowbound(living))cir.setReturnValue(Color.ofRGBA(.32f,.62f,1,1));
         else if(VisualState.raged(living))cir.setReturnValue(Color.ofRGBA(.86f,.25f,1,1));
     }
     @Inject(method="getRenderType(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/MultiBufferSource;F)Lnet/minecraft/client/renderer/RenderType;",at=@At("RETURN"),cancellable=true,remap=false)

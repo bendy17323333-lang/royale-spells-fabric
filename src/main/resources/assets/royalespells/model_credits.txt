@@ -1,4 +1,4 @@
-Royale Spells 1.6.1-beta.2 — Iron integration public Beta 2
+Royale Spells 1.7.0-dev.2 — local Inferno Dragon development build
 
 Ice Spirit model, texture and glowmask: MineClash 0.7.5, by LiziYowo / the MineClash team.
 Original project: https://www.curseforge.com/minecraft/mc-mods/mineclash
@@ -10,3 +10,9 @@ Material atlas and animated flame bitmap: generated with built-in ImageGen; orig
 Clash Royale character designs, card artwork and original audio: Supercell.
 Original card PNGs: pinned RoyaleAPI/cr-api-assets archive; source URLs and hashes in SPIRIT-CARD-SOURCES.json.
 Original spirit audio: pinned Henrylq/Clash-Royale-SFX archive; source URLs, shared-cue notes, hashes and mono conversion in SPIRIT-AUDIO-SOURCES.json.
+
+Inferno Dragon geometry: created for Royale Spells in Blockbench via MCP, with a continuous shallow brow, body-rooted wings, vented visor and a single brass hose. No MineClash dragon mesh was imported.
+Inferno Dragon diffuse atlas: built-in ImageGen, original pixels unchanged. Editable model, prompt and export report: art/inferno-dragon in the source/model package.
+Inferno Dragon original card: RoyaleAPI/cr-api-assets, commit b4530a1043b213ee2baf9c50a3d0d7fae22c2313, cards/inferno-dragon.png.
+Inferno Dragon deployment, wingbeat and continuous beam audio: Henrylq/Clash-Royale-SFX, commit c2d7d67271113cb9fe3ad896d9d03dd7f49eed52, Cards/Inferno Dragon. All three mono OGG files retain their original bytes.
+Card and audio ownership: Supercell. Full source URLs and SHA-256: assets/royalespells/inferno_asset_sources.json in this JAR and art/inferno-dragon/asset-sources.json in the source/model package.

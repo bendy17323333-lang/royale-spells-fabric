@@ -46,12 +46,12 @@ public class SpellCoverageTests {
     @GameTest(template=EMPTY_STRUCTURE,batch="mirror-numbers")
     public void mirrorScalesDamageHealingAndEquippedAttack(GameTestHelper c) {
         UUID owner=UUID.randomUUID();var world=c.getLevel();var target=c.spawnWithNoFreeWill(EntityType.IRON_GOLEM,2,2,2);target.setNoAi(true);var at=target.position();
-        var zap=SpellEntity.create(world,Spell.ZAP,owner,at,at);zap.setPower(1.1f);zap.tick();
-        c.assertTrue(Math.abs(target.getHealth()-95.6)<.001,"Mirrored Zap must deal 4.4 damage");
+        var zap=SpellEntity.create(world,Spell.ZAP,owner,at,at);zap.setCardLevel(12);zap.tick();
+        c.assertTrue(Math.abs(target.getHealth()-(100-CardBalance.convert(210)))<.001,"Mirrored card Zap must use the exact level 12 value");
         var unit=SpellEngine.summon(world,owner,at.add(1,0,0),"barbarian",false);unit.tick();double before=unit.getAttributeValue(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE);
         SpellEngine.empower(unit,1.1f);c.assertTrue(Math.abs(unit.getAttributeValue(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE)-before*1.1)<.001,"Summon attack scaling must include its weapon bonus");
-        unit.setHealth(3);var heal=SpellEntity.create(world,Spell.HEAL,owner,at,at);heal.setPower(1.1f);heal.tick();
-        c.assertTrue(Math.abs(unit.getHealth()-5.2)<.001,"Mirrored healing must scale by one level");target.discard();cleanup(c,owner);c.succeed();
+        unit.setHealth(3);var heal=SpellEntity.create(world,Spell.HEAL,owner,at,at);heal.setCardLevel(12);heal.tick();
+        c.assertTrue(Math.abs(unit.getHealth()-(3+CardBalance.convert(86)))<.001,"Mirrored healing must scale by one level");target.discard();cleanup(c,owner);c.succeed();
     }
     @GameTest(template=EMPTY_STRUCTURE,batch="skeleton-iframe")
     public void skeletonSwarmBypassesOnlyItsOwnHitCooldown(GameTestHelper c) {
@@ -67,13 +67,13 @@ public class SpellCoverageTests {
     public void evolvedZapExpandsOnlyOnSecondPulse(GameTestHelper c) {
         var target=c.spawnWithNoFreeWill(EntityType.IRON_GOLEM,2,2,2);target.setNoAi(true);target.setNoGravity(true);
         Vec3 center=target.position().add(-2.75,0,0);var effect=SpellEntity.create(c.getLevel(),Spell.ZAP_EVOLUTION,UUID.randomUUID(),center,center);
-        effect.tick();c.assertTrue(target.getHealth()==100,"First 2.2-block pulse must not reach 2.75 blocks");
-        for(int i=1;i<21;i++)effect.tick();c.assertTrue(target.getHealth()==96,"Second 3-block pulse must hit the expanded annulus");target.discard();c.succeed();
+        effect.tick();c.assertTrue(target.getHealth()==100,"First 2.5-block pulse must not reach 2.75 blocks");
+        for(int i=1;i<21;i++)effect.tick();c.assertTrue(Math.abs(target.getHealth()-(100-CardBalance.convert(192)))<.001,"Second 3-block pulse must hit the expanded annulus");target.discard();c.succeed();
     }
     @GameTest(template=EMPTY_STRUCTURE,batch="visual-markers")
     public void freezeAndVinesHaveDistinctSyncedMarkers(GameTestHelper c) {
         UUID owner=UUID.randomUUID();var target=c.spawnWithNoFreeWill(EntityType.IRON_GOLEM,2,2,2);target.setNoAi(true);Vec3 at=target.position();
-        SpellEngine.stun(target,3);c.assertFalse(target.hasEffect(RoyaleSpells.FROZEN),"Zap stun must not visually encase targets in ice");
+        SpellEngine.electricStun(target,3);c.assertTrue(target.hasEffect(RoyaleSpells.ELECTRICAL_STUN),"Zap uses a resumable electrical pause");c.assertFalse(target.hasEffect(RoyaleSpells.FROZEN),"Zap stun must not visually encase targets in ice");
         var freeze=SpellEntity.create(c.getLevel(),Spell.FREEZE,owner,at,at);freeze.tick();c.assertTrue(target.hasEffect(RoyaleSpells.FROZEN),"Freeze must send an ice visual status to the client");
         var vines=SpellEntity.create(c.getLevel(),Spell.VINES,owner,at,at);vines.tick();c.assertTrue(target.hasEffect(RoyaleSpells.ROOTED),"Vines must send a modeled root visual status");
         target.discard();c.succeed();
@@ -93,13 +93,13 @@ public class SpellCoverageTests {
         c.assertTrue(SpellEngine.cast(player,Spell.GOBLIN_BARREL_EVOLUTION),"Original evolved card casts");
         for(int i=0;i<11;i++)SpellEngine.tick(c.getLevel().getServer());
         c.assertTrue(SpellEngine.cast(player,Spell.MIRROR),"Mirror casts the previous card");
-        var mirrors=c.getLevel().getEntitiesOfClass(SpellEntity.class,player.getBoundingBox().inflate(50),e->owner.equals(e.ownerId)&&e.power()>1);
+        var mirrors=c.getLevel().getEntitiesOfClass(SpellEntity.class,player.getBoundingBox().inflate(50),e->owner.equals(e.ownerId)&&e.cardLevel()==12);
         c.assertTrue(mirrors.size()==2 && mirrors.stream().allMatch(e->e.spell()==Spell.GOBLIN_BARREL_EVOLUTION),"Mirror keeps the evolved barrel and its decoy effect");
         var effect=mirrors.stream().filter(e->!e.decoy).findFirst().orElseThrow();
         var nbt=new net.minecraft.nbt.CompoundTag();effect.saveWithoutId(nbt);var loaded=RoyaleSpells.SPELL.create(c.getLevel());loaded.load(nbt);
-        c.assertTrue(Math.abs(loaded.power()-1.1)<.001,"Mirror level survives save reload");for(int i=0;i<30;i++)loaded.tick();
+        c.assertTrue(loaded.cardLevel()==12,"Mirror level survives save reload");for(int i=0;i<30;i++)loaded.tick();
         var zombies=c.getLevel().getEntitiesOfClass(AllyZombie.class,player.getBoundingBox().inflate(50),e->owner.equals(e.ownerId()));
-        c.assertTrue(zombies.size()==3 && zombies.stream().allMatch(e->Math.abs(e.getMaxHealth()-11)<.001),"Mirrored summons gain 10 percent max health");
+        c.assertTrue(zombies.size()==3 && zombies.stream().allMatch(e->Math.abs(e.getMaxHealth()-CardBalance.convert(221))<.001),"Mirrored summons use exact level 12 hitpoints");
         cleanup(c,owner);c.getLevel().getServer().getPlayerList().remove(player);player.discard();c.succeed();
     }
     @GameTest(template=EMPTY_STRUCTURE,batch="log-axis")
@@ -124,7 +124,7 @@ public class SpellCoverageTests {
         var effect=SpellEntity.create(c.getLevel(),Spell.VOID,owner,at,at);
         for(int i=0;i<16;i++)effect.tick();
         c.assertTrue(effect.voidStrikePoints().size()==2 && effect.voidStrength()==2,"Beam endpoints must match enemy victims, excluding allies");
-        c.assertTrue(first.getHealth()==91 && second.getHealth()==91,"Visuals must preserve the existing per-victim damage");
+        c.assertTrue(Math.abs(first.getHealth()-(100-CardBalance.convert(294)))<.001 && Math.abs(second.getHealth()-(100-CardBalance.convert(294)))<.001,"Visuals must preserve the existing per-victim damage");
         var nbt=new net.minecraft.nbt.CompoundTag();effect.saveWithoutId(nbt);var loaded=RoyaleSpells.SPELL.create(c.getLevel());loaded.load(nbt);
         c.assertTrue(loaded.voidStrikePoints().equals(effect.voidStrikePoints()) && loaded.voidStrikeTick()==16,"Strike snapshot must survive entity synchronization and save reload");
         second.setPos(at.add(12,0,0));for(int i=16;i<40;i++)loaded.tick();
@@ -184,8 +184,8 @@ public class SpellCoverageTests {
     public void changedRadiiMatchActualHits(GameTestHelper c){
         var w=c.getLevel();var mob=c.spawnWithNoFreeWill(EntityType.IRON_GOLEM,2,2,2);mob.setNoAi(true);mob.setNoGravity(true);var at=mob.position();
         for(Spell spell:List.of(Spell.ZAP,Spell.FIREBALL,Spell.ARROWS)){
-            double edge=spell==Spell.ZAP?2.2:spell==Spell.FIREBALL?2.8:4.5;
-            c.assertTrue(Math.abs(spell.radius-edge)<.001,"Displayed range matches tuning");
+            double edge=spell==Spell.ZAP?2.5:spell==Spell.FIREBALL?2.5:3.5;
+            c.assertTrue(Math.abs(CardBalance.stats(spell).radius()-edge)<.001,"Displayed range matches tuning");
             for(boolean inside:new boolean[]{false,true}){
                 mob.setHealth(100);mob.setPos(at);mob.setDeltaMovement(Vec3.ZERO);
                 var center=at.add(-edge+(inside?.05:-.05),0,0);var fx=SpellEntity.create(w,spell,UUID.randomUUID(),center,center);
@@ -265,7 +265,7 @@ public class SpellCoverageTests {
     public void healingAndWarmthHelpOwnerUnits(GameTestHelper c) {
         UUID owner=UUID.randomUUID();var ally=SpellEngine.summon(c.getLevel(),owner,pos(c),"barbarian",false);ally.setHealth(3);
         var heal=SpellEntity.create(c.getLevel(),Spell.HEAL,owner,pos(c),ally.position());for(int i=0;i<60;i++)heal.tick();
-        c.assertTrue(ally.getHealth()==9,"Heal must recover 6 HP over 3 pulses");
+        c.assertTrue(Math.abs(ally.getHealth()-(3+CardBalance.convert(156)))<.001,"Removed Heal card recovers its final published 156/27 HP over two pulses");
         SpellEngine.stun(ally,80);ally.setTicksFrozen(140);
         var warmth=SpellEntity.create(c.getLevel(),Spell.WARMTH,owner,pos(c),ally.position());warmth.tick();
         c.assertFalse(ally.hasEffect(RoyaleSpells.STUN),"Warmth removes spell freeze");

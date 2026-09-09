@@ -40,7 +40,7 @@ public class SpiritBeta2Tests {
             c.assertTrue(e.beginLeap(target),"Actual close/medium/far leap began");
         }
         c.runAfterDelay(60,()->{
-            for(int i=0;i<targets.size();i++)c.assertFalse(targets.get(i).isAlive(),kind+" must kill a base small skeleton in one real leap at distance "+distances[i]+"; hp="+targets.get(i).getHealth()+" spirit="+spirits.get(i).position());
+            for(int i=0;i<targets.size();i++)c.assertFalse(targets.get(i).isAlive(),kind+" must kill a base small skeleton in one real leap at distance "+distances[i]+"; hp="+targets.get(i).getHealth()+" spirit="+spirits.get(i).position()+" leap="+spirits.get(i).leapTicks()+" age="+spirits.get(i).tickCount+" removed="+spirits.get(i).isRemoved()+" effects="+spirits.get(i).getActiveEffects());
             c.assertTrue(spirits.stream().allMatch(Entity::isRemoved),"Every one-use spirit finishes");
             targets.forEach(Entity::discard);spirits.forEach(Entity::discard);chunks.forEach(p->c.getLevel().setChunkForced(p.x,p.z,false));c.succeed();
         });

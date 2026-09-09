@@ -24,7 +24,10 @@ public class AllyZombie extends Zombie implements Summoned {
     private boolean deploymentPlayed;
     private int lastFootstepAge=-8;
     private static final net.minecraft.network.syncher.EntityDataAccessor<Boolean> CLONED=net.minecraft.network.syncher.SynchedEntityData.defineId(AllyZombie.class,net.minecraft.network.syncher.EntityDataSerializers.BOOLEAN);
-    @Override protected void defineSynchedData(SynchedEntityData.Builder builder){super.defineSynchedData(builder);builder.define(CLONED,false);}
+    private static final net.minecraft.network.syncher.EntityDataAccessor<Float> CARD_SHIELD=net.minecraft.network.syncher.SynchedEntityData.defineId(AllyZombie.class,net.minecraft.network.syncher.EntityDataSerializers.FLOAT);
+    @Override protected void defineSynchedData(SynchedEntityData.Builder builder){super.defineSynchedData(builder);builder.define(CLONED,false);builder.define(CARD_SHIELD,-1f);}
+    public float cardShield(){return entityData.get(CARD_SHIELD);}
+    public void cardShield(float value){entityData.set(CARD_SHIELD,Math.max(0,value));}
     public boolean hero;
     public long nextReroll;
     public AllyZombie(EntityType<? extends Zombie> type,Level world) { super(type,world);xpReward=0; }
@@ -62,6 +65,14 @@ public class AllyZombie extends Zombie implements Summoned {
     }
     @Override public boolean hurt(DamageSource source,float amount) {
         if(!level().isClientSide && source.getEntity() instanceof LivingEntity attacker && SpellEngine.friendly(owner,attacker)) return false;
+        // A CR shield absorbs the complete breaking hit; its excess damage does
+        // not spill into health as vanilla Absorption would. Native Iron recruits
+        // retain their original absorption/armor profile.
+        if(!level().isClientSide&&amount>0&&cardShield()>0&&!isInvulnerableTo(source)&&!source.is(net.minecraft.tags.DamageTypeTags.BYPASSES_INVULNERABILITY)){
+            cardShield(cardShield()-amount);hurtTime=10;
+            if(cardShield()==0){setItemSlot(net.minecraft.world.entity.EquipmentSlot.OFFHAND,net.minecraft.world.item.ItemStack.EMPTY);playSound(SoundEvents.SHIELD_BREAK,.55f,1);}
+            return true;
+        }
         return super.hurt(source,amount);
     }
     @Override public void tick() {
@@ -78,13 +89,14 @@ public class AllyZombie extends Zombie implements Summoned {
         super.addAdditionalSaveData(nbt);if(owner!=null) nbt.putUUID("SpellOwner",owner);
         nbt.putInt("SpellLife",life);nbt.putBoolean("SpellClone",isClone());nbt.putBoolean("Hero",hero);nbt.putLong("NextReroll",nextReroll);
         nbt.putBoolean("DeploymentPlayed",deploymentPlayed);
+        nbt.putFloat("RoyaleCardShield",cardShield());
     }
     @Override public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);owner=nbt.hasUUID("SpellOwner")?nbt.getUUID("SpellOwner"):null;
         life=nbt.getInt("SpellLife");entityData.set(CLONED,nbt.getBoolean("SpellClone"));hero=nbt.getBoolean("Hero");nextReroll=nbt.getLong("NextReroll");
         deploymentPlayed=!nbt.contains("DeploymentPlayed")||nbt.getBoolean("DeploymentPlayed");
+        entityData.set(CARD_SHIELD,nbt.contains("RoyaleCardShield")?nbt.getFloat("RoyaleCardShield"):-1f);
     }
 }
-
 
 

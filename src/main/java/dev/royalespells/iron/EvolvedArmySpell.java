@@ -49,7 +49,7 @@ public final class EvolvedArmySpell extends RoyaleIronSpell {
         UUID army=UUID.randomUUID();var units=new ArrayList<ArmySkeleton>();float power=power(spellLevel,caster);
         for(int i=0;i<16;i++){
             var unit=RoyaleSpells.ARMY_SKELETON.create(world);if(unit==null)return;
-            unit.enlist(caster.getUUID(),army,i==0,4*power,1.8f*power,LIFETIME);
+            unit.enlist(caster.getUUID(),army,i==0,3,3,LIFETIME);
             unit.formationSlot(i);
             unit.moveTo(locations.get(i),caster.getYRot(),0);unit.setYBodyRot(caster.getYRot());units.add(unit);
         }

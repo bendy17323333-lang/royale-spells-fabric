@@ -32,7 +32,7 @@ public final class SpellEngine {
     private static final Map<UUID,Curse> CURSES=new HashMap<>();
     private static long clock;
     private static class State { double elixir=10; Spell last; TroopCard lastTroop; int cooldown; }
-    private record Curse(UUID owner,long until,float power,String ironSpell,int ironLevel){}
+    private record Curse(UUID owner,long until,float power,String ironSpell,int ironLevel,int cardLevel){}
     public static void clear(){PLAYERS.clear();CURSES.clear();clock=0;}
     public static void refill(ServerPlayer player){PLAYERS.computeIfAbsent(player.getUUID(),id->new State()).elixir=10;}
     public static void resetForRecording(ServerPlayer player){if(ShowcaseMap.enabled(player.serverLevel()))PLAYERS.remove(player.getUUID());}
@@ -55,7 +55,7 @@ public final class SpellEngine {
     public static boolean deploy(ServerPlayer player,TroopCard card){return deploy(player,card,false);}
     private static boolean deploy(ServerPlayer player,TroopCard card,boolean mirror) {
         State state=PLAYERS.computeIfAbsent(player.getUUID(),id->new State());int cost=card.cost+(mirror?1:0);
-        if(state.cooldown>0 || player.hasEffect(RoyaleSpells.STUN))return false;
+        if(state.cooldown>0 || (player.hasEffect(RoyaleSpells.STUN)||dev.royalespells.pause.ElectricPause.active(player)))return false;
         if(!player.isCreative() && state.elixir<cost)return insufficient(player);
         Vec3 at=ground(player.level(),aim(player,32));
         if(!player.serverLevel().getWorldBorder().isWithinBounds(BlockPos.containing(at)) || !player.serverLevel().hasChunkAt(BlockPos.containing(at)) || !player.mayInteract(player.level(),BlockPos.containing(at)))return false;
@@ -63,14 +63,14 @@ public final class SpellEngine {
         if(unit==null){player.displayClientMessage(Component.translatable("message.royalespells.deployment_blocked"),true);return false;}
         unit.setYRot(player.getYRot());unit.setYBodyRot(player.getYRot());
         if(unit instanceof RoyaleUnit deployed && deployed.building())deployed.lockFacing(player.getYRot());
-        if(mirror)empower(unit,1.1f);
+        CardBalance.apply(unit,card.unit,false,mirror?12:11);
         if(!player.isCreative())state.elixir-=cost;
         state.cooldown=10;if(!mirror){state.lastTroop=card;state.last=null;}
         player.swing(player.getUsedItemHand(),true);return true;
     }
     public static boolean cast(ServerPlayer player,Spell requested) {
         State state=PLAYERS.computeIfAbsent(player.getUUID(),id->new State());
-        if(state.cooldown>0 || player.hasEffect(RoyaleSpells.STUN))return false;
+        if(state.cooldown>0 || (player.hasEffect(RoyaleSpells.STUN)||dev.royalespells.pause.ElectricPause.active(player)))return false;
         Spell spell=requested;
         int cost=spell.cost;
         if(spell==Spell.MIRROR) {
@@ -87,9 +87,9 @@ public final class SpellEngine {
             if(!player.isCreative() && state.elixir<1)return insufficient(player);
             Vec3 dir=horizontal(player.getViewVector(1));
             SpellEntity effect=SpellEntity.create(world,spell,player.getUUID(),hero.position(),hero.position().add(dir.scale(3)));
-            effect.rerollId=hero.getUUID();effect.reroll=true;
+            effect.rerollId=hero.getUUID();effect.reroll=true;effect.setCardLevel(CardBalance.level(hero));
             if(!world.addFreshEntity(effect))return false;
-            hero.nextReroll=world.getGameTime()+200;
+            hero.nextReroll=Long.MAX_VALUE;
             if(!player.isCreative())state.elixir-=1;state.cooldown=10;return true;
         }
         if(!player.isCreative() && state.elixir+0.00001<cost)return insufficient(player);
@@ -99,17 +99,17 @@ public final class SpellEngine {
         Vec3 start=player.getEyePosition().subtract(0,0.25,0);
         if(spell.rolling()) {
             start=player.position().add(horizontal(player.getViewVector(1)).scale(1.1));
-            target=start.add(horizontal(player.getViewVector(1)).scale(spell==Spell.THE_LOG?10:5));
+            target=start.add(horizontal(player.getViewVector(1)).scale(CardBalance.range(spell)));
         }
         SpellEntity effect=SpellEntity.create(world,spell,player.getUUID(),start,target);
-        if(requested==Spell.MIRROR)effect.setPower(1.1f);
+        if(requested==Spell.MIRROR)effect.setCardLevel(12);
         if(!world.addFreshEntity(effect))return false;
         if(ControlCooldown.controls(spell))ControlCooldown.start(player);
         if(requested==Spell.MIRROR)SpellSounds.play(world,player.position(),Spell.MIRROR,"deploy");
         if(spell==Spell.GOBLIN_BARREL_EVOLUTION) {
             Vec3 side=horizontal(player.getViewVector(1)).cross(new Vec3(0,1,0)).scale(5);
             Vec3 decoyTarget=ground(world,target.add(side));
-            SpellEntity decoy=SpellEntity.create(world,spell,player.getUUID(),start,decoyTarget);decoy.setPower(effect.power());decoy.decoy=true;world.addFreshEntity(decoy);
+            SpellEntity decoy=SpellEntity.create(world,spell,player.getUUID(),start,decoyTarget);decoy.setPower(effect.power());decoy.setCardLevel(effect.cardLevel());decoy.decoy=true;world.addFreshEntity(decoy);
         }
         if(!player.isCreative()) state.elixir-=cost;
         state.cooldown=10;if(requested!=Spell.MIRROR){state.last=spell;state.lastTroop=null;}
@@ -171,6 +171,11 @@ public final class SpellEngine {
         if(target instanceof Player && !world.getServer().isPvpAllowed())return;
         target.invulnerableTime=0; CombatImpact.withoutKnockback(target,()->target.hurt(world.damageSources().indirectMagic(caster,caster),damage));
     }
+    /** Suspends ordinary windups/casts; Inferno Dragon separately resets its beam heat. */
+    public static void electricStun(LivingEntity target,int ticks) {
+        target.addEffect(new MobEffectInstance(RoyaleSpells.ELECTRICAL_STUN,ticks,0,false,false,true));
+        target.setDeltaMovement(Vec3.ZERO);target.hurtMarked=true;
+    }
     public static void stun(LivingEntity target,int ticks) {
         SpellMotion.cancel(target);
         IronSpellSystem.interrupt(target);
@@ -181,11 +186,14 @@ public final class SpellEngine {
     }
     public static void curse(UUID owner,LivingEntity target){curse(owner,target,1);}
     public static void curse(UUID owner,LivingEntity target,float power){curse(owner,target,power,"",1);}
-    public static void curse(UUID owner,LivingEntity target,float power,String ironSpell,int ironLevel){CURSES.put(target.getUUID(),new Curse(owner,clock+24,power,ironSpell,ironLevel));}
+    public static void curse(UUID owner,LivingEntity target,float power,String ironSpell,int ironLevel){curse(owner,target,power,ironSpell,ironLevel,0);}
+    public static void curse(UUID owner,LivingEntity target,float power,String ironSpell,int ironLevel,int cardLevel){CURSES.put(target.getUUID(),new Curse(owner,clock+24,power,ironSpell,ironLevel,cardLevel));}
     public static void onDeath(LivingEntity entity) {
         Curse curse=CURSES.remove(entity.getUUID());
         if(curse!=null && curse.until>=clock && entity.level() instanceof ServerLevel world) {
-            var summoned=summon(world,curse.owner,entity.position(),"zombie",false);empower(summoned,curse.power);
+            var summoned=summon(world,curse.owner,entity.position(),"zombie",false);
+            if(curse.cardLevel>0)CardBalance.apply(summoned,"zombie",false,curse.cardLevel);
+            empower(summoned,curse.power);
             if(summoned!=null)SpellSounds.play(world,entity.position(),Spell.GOBLIN_CURSE,"transform");
             IronSpellSystem.summon(summoned,curse.owner,curse.ironSpell,curse.ironLevel);
         }
@@ -199,10 +207,16 @@ public final class SpellEngine {
             case "barbarian", "hero" -> RoyaleSpells.BARBARIAN.create(world);
             case "recruit" -> RoyaleSpells.RECRUIT.create(world);
             case "barbarian_hut" -> RoyaleSpells.BARBARIAN_HUT.create(world);
+            case "inferno_dragon" -> RoyaleSpells.INFERNO_DRAGON.create(world);
             case "zombie" -> RoyaleSpells.ZOMBIE.create(world);
             default -> null;
         };
         if(mob==null)return null;
+        if(mob instanceof InfernoDragon dragon) {
+            Vec3 at=dragonPlacement(world,pos);if(at==null)return null;
+            dragon.setup(owner,InfernoDragon.LIFE_TICKS,false);dragon.moveTo(at.x,at.y,at.z,world.random.nextFloat()*360,0);
+            return world.addFreshEntity(dragon)?dragon:null;
+        }
         if(mob instanceof RoyaleUnit unit) {
             unit.setup(owner,600,false);
             unit.getAttribute(Attributes.MAX_HEALTH).setBaseValue(65);unit.setHealth(65);
@@ -233,6 +247,18 @@ public final class SpellEngine {
         if(!world.noCollision(mob))return null;
         return world.addFreshEntity(mob)?mob:null;
     }
+    /** Reserve a complete body-sized aerial spawn volume, within the loaded world. */
+    public static Vec3 dragonPlacement(ServerLevel world,Vec3 ground) {
+        for(int i=0;i<4;i++) {
+            Vec3 at=ground.add(0,InfernoDragon.MIN_HOVER_HEIGHT+i,0);var box=AABB.ofSize(at.add(0,.825,0),1.15,1.65,1.15);
+            if(box.maxY>=world.getMaxBuildHeight()||box.minY<world.getMinBuildHeight()||!world.getWorldBorder().isWithinBounds(box))continue;
+            boolean loaded=true;
+            for(int x=Mth.floor(box.minX);x<=Mth.floor(box.maxX);x++)for(int z=Mth.floor(box.minZ);z<=Mth.floor(box.maxZ);z++)
+                if(!world.hasChunkAt(new BlockPos(x,Mth.floor(at.y),z)))loaded=false;
+            if(loaded&&world.noCollision(box))return at;
+        }
+        return null;
+    }
     public static void unitTick(Mob mob,UUID owner) {
         SummonOrders.tick(mob,owner);
     }
@@ -251,22 +277,31 @@ public final class SpellEngine {
         cloneAllies(world,owner,pos,radius,power,"",1);
     }
     public static void cloneAllies(ServerLevel world,UUID owner,Vec3 pos,double radius,float power,String spell,int level) {
+        cloneAllies(world,owner,pos,radius,power,spell,level,0);
+    }
+    public static void cloneAllies(ServerLevel world,UUID owner,Vec3 pos,double radius,float power,String spell,int level,int cardLevel) {
         for(LivingEntity original:targets(world,owner,pos,radius,true)) {
             if(!(original instanceof Summoned)){IronSpellSystem.cloneNative(original,owner,power,spell,level);continue;}
             if(!(original instanceof Summoned summoned) || summoned.isClone() || original instanceof RoyaleUnit unit && unit.building())continue;
-            String kind=original instanceof RoyaleUnit unit?unit.kind():original instanceof AllySkeleton?"skeleton":original.getType()==RoyaleSpells.ZOMBIE?"zombie":
+            String kind=original instanceof InfernoDragon?"inferno_dragon":original instanceof RoyaleUnit unit?unit.kind():original instanceof AllySkeleton?"skeleton":original.getType()==RoyaleSpells.ZOMBIE?"zombie":
                 original.getType()==RoyaleSpells.RECRUIT?"recruit":"barbarian";
             Mob clone=summon(world,owner,original.position().add(0.7,0,0),kind,false);
             if(clone!=null) {
+                if(cardLevel>0)CardBalance.apply(clone,kind,false,cardLevel);
+                else if(CardBalance.isCard(original))CardBalance.apply(clone,kind,false,CardBalance.level(original));
                 ((Summoned)clone).setup(owner,400,true);
-                clone.getAttribute(Attributes.MAX_HEALTH).setBaseValue(1);clone.setHealth(1);
+                // Minecraft MAX_HEALTH has a hard lower bound of 1. Clones stay at
+                // that minimum; every damaging card still kills them in one hit.
+                float cloneHealth=1;
+                clone.getAttribute(Attributes.MAX_HEALTH).setBaseValue(cloneHealth);clone.setHealth(cloneHealth);
                 var attack=clone.getAttribute(Attributes.ATTACK_DAMAGE);var source=original.getAttribute(Attributes.ATTACK_DAMAGE);
-                attack.setBaseValue(source.getBaseValue()*(clone instanceof AllySkeleton?power:1));
-                if(!(clone instanceof AllySkeleton)) {
+                if(cardLevel<=0)attack.setBaseValue(source.getBaseValue()*(clone instanceof AllySkeleton?power:1));
+                if(cardLevel<=0&&!(clone instanceof AllySkeleton)) {
                     var boost=source.getModifier(MIRROR_ATTACK);double factor=(boost==null?1:1+boost.amount())*power;
                     if(factor>1)attack.addPermanentModifier(new net.minecraft.world.entity.ai.attributes.AttributeModifier(MIRROR_ATTACK,factor-1,net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
                 }
-                clone.removeEffect(MobEffects.ABSORPTION);
+                clone.removeEffect(MobEffects.ABSORPTION);clone.setAbsorptionAmount(0);
+                if(clone instanceof AllyZombie z)z.cardShield(cardLevel>0&&original instanceof AllyZombie s&&s.cardShield()>0?cloneHealth:0);
                 if(original instanceof RoyaleUnit sourceUnit && clone instanceof RoyaleUnit cloneUnit)cloneUnit.setPower(sourceUnit.power()*power);
                 IronSpellSystem.summon(clone,owner,spell,level);
             }

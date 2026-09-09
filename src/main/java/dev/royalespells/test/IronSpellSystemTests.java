@@ -79,7 +79,7 @@ public class IronSpellSystemTests {
             }
             count++;
         }
-        c.assertTrue(count==30,"All 29 existing profiles and the ritual-only army are registered");c.succeed();
+        c.assertTrue(count==31,"All 31 native profiles, including the ritual army and Inferno Dragon, are registered");c.succeed();
     }
     @GameTest(template="empty",templateNamespace="royalespells",batch="iron-system-forge",timeoutTicks=160)
     public void forgeEverySpellWithItsNativeInkAndFocus(GameTestHelper c) {
@@ -235,6 +235,10 @@ public class IronSpellSystemTests {
             var spell=IronIntegration.spell(profile);c.assertTrue(begin(p,spell,2,CastSource.SPELLBOOK),"Native cast starts: "+profile);finish(p,120);
             if(profile==IronSpellProfile.BARBARIAN_HUT) {
                 c.assertTrue(p.serverLevel().getEntitiesOfClass(RoyaleUnit.class,p.getBoundingBox().inflate(40),e->e.getPersistentData().getString("RoyaleIronSpell").equals(spell.getSpellId())).size()==1,"Native building deploys");
+            } else if(profile==IronSpellProfile.INFERNO_DRAGON) {
+                var dragons=p.serverLevel().getEntitiesOfClass(InfernoDragon.class,p.getBoundingBox().inflate(40),e->p.getUUID().equals(e.ownerId()));
+                c.assertTrue(dragons.size()==1&&dragons.getFirst().getPersistentData().getString("RoyaleIronSpell").equals(spell.getSpellId())&&dragons.getFirst().getPersistentData().getInt("RoyaleIronLevel")==2,"Native dragon cast preserves level and attribution");
+                dragons.forEach(Entity::discard);
             } else {
                 var effects=p.serverLevel().getEntitiesOfClass(SpellEntity.class,p.getBoundingBox().inflate(40),e->p.getUUID().equals(e.ownerId)&&e.ironSpellId().equals(spell.getSpellId()));
                 c.assertTrue(effects.size()==(profile==IronSpellProfile.GOBLIN_BARREL_EVOLUTION?2:1),"Correct attributed effect count: "+profile);
@@ -283,7 +287,7 @@ public class IronSpellSystemTests {
         c.assertTrue(RoyaleSpells.RAGED.value() instanceof io.redspace.ironsspellbooks.effect.MagicMobEffect,"Royal status participates in native dispelling");cleanup(p);c.succeed();
     }
     @GameTest(template="empty",templateNamespace="royalespells",batch="iron-system-interruption")
-    public void zapInterruptsNativeChannellingAndMirrorRespectsLearning(GameTestHelper c) {
+    public void nonElectricHardStunInterruptsNativeChannellingAndMirrorRespectsLearning(GameTestHelper c) {
         var p=player(c);var magic=MagicData.getPlayerMagicData(p);var electrocute=SpellRegistry.getSpell("irons_spellbooks:electrocute");
         c.assertTrue(begin(p,electrocute,1,CastSource.SPELLBOOK),"Begin native channel");
         c.assertTrue(magic.isCasting(),"Channel is actually active");SpellEngine.stun(p,10);
@@ -291,6 +295,31 @@ public class IronSpellSystemTests {
         var locked=SpellRegistry.REGISTRY.stream().filter(AbstractSpell::requiresLearning).findFirst().orElseThrow();
         var history=new net.minecraft.nbt.CompoundTag();history.putString("Id",locked.getSpellId());history.putInt("Level",1);p.getPersistentData().put("RoyaleIronMirrorHistory",history);p.setGameMode(GameType.SURVIVAL);
         c.assertFalse(begin(p,IronIntegration.spell(IronSpellProfile.MIRROR),1,CastSource.SPELLBOOK),"Mirror cannot bypass native learning requirements");cleanup(p);c.succeed();
+    }
+    @GameTest(template="empty",templateNamespace="royalespells",batch="iron-electrical-pause")
+    public void electricityPausesActualPlayerChannelAndResumesWithoutNewCast(GameTestHelper c) {
+        var p=player(c);var data=MagicData.getPlayerMagicData(p);var spell=SpellRegistry.getSpell("irons_spellbooks:electrocute");
+        p.getAttribute(AttributeRegistry.MAX_MANA).setBaseValue(1000);data.setMana(1000);
+        c.assertTrue(begin(p,spell,1,CastSource.SPELLBOOK),"Begin an actual native channel");
+        var manager=new MagicManager();manager.tick(p.serverLevel());int remaining=data.getCastDurationRemaining();float mana=data.getMana();
+        c.assertTrue(data.isCasting()&&remaining>50,"The funded channel has really progressed before shock");
+        SpellEngine.electricStun(p,10);
+        c.assertTrue(dev.royalespells.pause.ElectricPause.active(p),"Electrical action pause effect is active on the caster");
+        for(int i=0;i<10;i++)manager.tick(p.serverLevel());
+        c.assertTrue(data.isCasting()&&data.getCastDurationRemaining()==remaining,"Channel survives: casting="+data.isCasting()+", remaining="+data.getCastDurationRemaining()+", before="+remaining+", paused="+dev.royalespells.pause.ElectricPause.active(p));
+        c.assertTrue(data.getMana()>=mana,"A held channel does not emit repeated damage or spend channel mana");
+        c.assertTrue(data.getCastingSpellId().equals(spell.getSpellId()),"Same spell, no cancellation/restart");
+        p.removeEffect(RoyaleSpells.ELECTRICAL_STUN);manager.tick(p.serverLevel());
+        c.assertTrue(data.isCasting()&&data.getCastDurationRemaining()==remaining-1,"Resume the next original casting tick");
+        cleanup(p);c.succeed();
+    }
+    @GameTest(template="empty",templateNamespace="royalespells",batch="iron-electrical-start")
+    public void electricalStunBlocksStartingANewNativeSpell(GameTestHelper c) {
+        var p=player(c);SpellEngine.electricStun(p,10);
+        c.assertFalse(begin(p,SpellRegistry.FIREBALL_SPELL.get(),1,CastSource.SPELLBOOK),"No fresh attack during electrical pause");
+        p.removeEffect(RoyaleSpells.ELECTRICAL_STUN);
+        c.assertTrue(begin(p,SpellRegistry.FIREBALL_SPELL.get(),1,CastSource.SPELLBOOK),"The same spell is available when shock ends");
+        cleanup(p);c.succeed();
     }
     @GameTest(template="empty",templateNamespace="royalespells",batch="iron-system-native-clone")
     public void cloneCopiesOwnedIronSummonsWithOneHealthAndNoRecursion(GameTestHelper c) {

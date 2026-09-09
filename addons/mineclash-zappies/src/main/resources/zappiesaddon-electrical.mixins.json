@@ -1,0 +1,1 @@
+{"required":true,"minVersion":"0.8","package":"dev.mineclash.zappies.pause.mixin","plugin":"dev.mineclash.zappies.mixin.ZappyMixinPlugin","compatibilityLevel":"JAVA_21","mixins":["PauseLivingMixin","PauseMobMixin","PauseIronManagerMixin","PauseIronStartMixin"],"client":["PauseGeoMixin","PauseVanillaRendererMixin","PauseIronClientMixin"],"injectors":{"defaultRequire":1}}
