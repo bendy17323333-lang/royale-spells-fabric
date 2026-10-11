@@ -1,0 +1,297 @@
+{
+  "source_commit": "c2d7d67271113cb9fe3ad896d9d03dd7f49eed52",
+  "source_repository": "https://github.com/Henrylq/Clash-Royale-SFX",
+  "original_rights": "Clash Royale / Supercell",
+  "profiles": {
+    "fire": {
+      "deploy": [
+        "fire_spirit_deploy_01",
+        "fire_spirit_deploy_02"
+      ],
+      "jump": [
+        "fire_spirit_attack_01"
+      ],
+      "impact": [
+        "sound_fireball_hit_01"
+      ],
+      "step": [
+        "fire_spirit_step_sfx_01"
+      ]
+    },
+    "ice": {
+      "deploy": [
+        "ice_sp_deploy_01",
+        "ice_sp_deploy_02"
+      ],
+      "jump": [
+        "fire_spirit_attack_01"
+      ],
+      "impact": [
+        "ice_mage_impact_02"
+      ],
+      "step": [
+        "fire_spirit_step_sfx_01"
+      ]
+    },
+    "electro": {
+      "deploy": [
+        "electro_spirit_dep_01"
+      ],
+      "jump": [
+        "elec_spirit_atk_vo_01",
+        "elec_spirit_atk_vo_02"
+      ],
+      "impact": [
+        "tesla_zap_01"
+      ],
+      "step": [
+        "elec_spirit_step_01",
+        "elec_spirit_step_02"
+      ]
+    },
+    "heal": {
+      "deploy": [
+        "heal_spirit_deploy_vo_01_dl"
+      ],
+      "jump": [
+        "fire_spirit_step_vo_01",
+        "fire_spirit_step_vo_02",
+        "fire_spirit_step_vo_03"
+      ],
+      "impact": [
+        "heal_magic_03"
+      ],
+      "step": [
+        "fire_spirit_step_sfx_01"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/fire/fire_spirit_attack_01.ogg",
+      "classification": "Cards/Fire Spirit/fire_spirit_attack_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Fire%20Spirit/fire_spirit_attack_01.ogg",
+      "original_sha256": "1c32ad8112c90f6853bde4f4dfe9273ba23b7de0ce70fe9f004ce92c7cb288f7",
+      "sha256": "1c32ad8112c90f6853bde4f4dfe9273ba23b7de0ce70fe9f004ce92c7cb288f7",
+      "bytes": 8678,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/fire/fire_spirit_deploy_01.ogg",
+      "classification": "Cards/Fire Spirit/fire_spirit_deploy_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Fire%20Spirit/fire_spirit_deploy_01.ogg",
+      "original_sha256": "b3b4581d2c9216bf9d7c8a1fb41045feeff9a82aa2804dd6e9d0dc97235877df",
+      "sha256": "b3b4581d2c9216bf9d7c8a1fb41045feeff9a82aa2804dd6e9d0dc97235877df",
+      "bytes": 8993,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/fire/fire_spirit_deploy_02.ogg",
+      "classification": "Cards/Fire Spirit/fire_spirit_deploy_02.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Fire%20Spirit/fire_spirit_deploy_02.ogg",
+      "original_sha256": "e854a3462da8a93e88181433ac824ccb4d1e3cb56ef58d625f0d23624c353b07",
+      "sha256": "e854a3462da8a93e88181433ac824ccb4d1e3cb56ef58d625f0d23624c353b07",
+      "bytes": 8940,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/fire/fire_spirit_step_sfx_01.ogg",
+      "classification": "Cards/Fire Spirit/fire_spirit_step_sfx_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Fire%20Spirit/fire_spirit_step_sfx_01.ogg",
+      "original_sha256": "edbec38c378ea41c29af8330a3a32bb650165357e931ff314c3a1fcd568f899e",
+      "sha256": "edbec38c378ea41c29af8330a3a32bb650165357e931ff314c3a1fcd568f899e",
+      "bytes": 6035,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/fire/sound_fireball_hit_01.ogg",
+      "classification": "Cards/Fire Spirit/sound_fireball_hit_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Fire%20Spirit/sound_fireball_hit_01.ogg",
+      "original_sha256": "f063f7a55ead295d066c5a9ed9ed2a26be21bac6843eadb306ebf84eceb5a9e3",
+      "sha256": "f063f7a55ead295d066c5a9ed9ed2a26be21bac6843eadb306ebf84eceb5a9e3",
+      "bytes": 10165,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/ice/fire_spirit_attack_01.ogg",
+      "classification": "Cards/Ice Spirit/fire_spirit_attack_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Ice%20Spirit/fire_spirit_attack_01.ogg",
+      "original_sha256": "1c32ad8112c90f6853bde4f4dfe9273ba23b7de0ce70fe9f004ce92c7cb288f7",
+      "sha256": "1c32ad8112c90f6853bde4f4dfe9273ba23b7de0ce70fe9f004ce92c7cb288f7",
+      "bytes": 8678,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/ice/fire_spirit_step_sfx_01.ogg",
+      "classification": "Cards/Ice Spirit/fire_spirit_step_sfx_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Ice%20Spirit/fire_spirit_step_sfx_01.ogg",
+      "original_sha256": "edbec38c378ea41c29af8330a3a32bb650165357e931ff314c3a1fcd568f899e",
+      "sha256": "edbec38c378ea41c29af8330a3a32bb650165357e931ff314c3a1fcd568f899e",
+      "bytes": 6035,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/ice/ice_mage_impact_02.ogg",
+      "classification": "Cards/Ice Spirit/ice_mage_impact_02.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Ice%20Spirit/ice_mage_impact_02.ogg",
+      "original_sha256": "5b7e8b65873e964ec648b1b746eec56cbddbf0c1ab855c438bf31bbf89beefb8",
+      "sha256": "5b7e8b65873e964ec648b1b746eec56cbddbf0c1ab855c438bf31bbf89beefb8",
+      "bytes": 10032,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/ice/ice_sp_deploy_01.ogg",
+      "classification": "Cards/Ice Spirit/ice_sp_deploy_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Ice%20Spirit/ice_sp_deploy_01.ogg",
+      "original_sha256": "b278e51681fbbf61143ceb70147feb3048c077ca926dea9caaea6f3e3557cbc0",
+      "sha256": "b278e51681fbbf61143ceb70147feb3048c077ca926dea9caaea6f3e3557cbc0",
+      "bytes": 14093,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/ice/ice_sp_deploy_02.ogg",
+      "classification": "Cards/Ice Spirit/ice_sp_deploy_02.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Ice%20Spirit/ice_sp_deploy_02.ogg",
+      "original_sha256": "e75b3a9a281b415911ab8a321a343112c45a965a68f5c50de55c407b9f8dc343",
+      "sha256": "e75b3a9a281b415911ab8a321a343112c45a965a68f5c50de55c407b9f8dc343",
+      "bytes": 14362,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/electro/elec_spirit_atk_vo_01.ogg",
+      "classification": "Cards/Electro Spirit/elec_spirit_atk_vo_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Electro%20Spirit/elec_spirit_atk_vo_01.ogg",
+      "original_sha256": "8b2a7e49bc2a017d272c0b8f5d8aea8ff17bc13d3cece914da82bd5a76a94fc1",
+      "sha256": "8b2a7e49bc2a017d272c0b8f5d8aea8ff17bc13d3cece914da82bd5a76a94fc1",
+      "bytes": 6753,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/electro/elec_spirit_atk_vo_02.ogg",
+      "classification": "Cards/Electro Spirit/elec_spirit_atk_vo_02.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Electro%20Spirit/elec_spirit_atk_vo_02.ogg",
+      "original_sha256": "44a09862b44c041755acfde60a8cacdc4eb75b8cc9b4a9c46073919ffac72b0c",
+      "sha256": "44a09862b44c041755acfde60a8cacdc4eb75b8cc9b4a9c46073919ffac72b0c",
+      "bytes": 6197,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/electro/elec_spirit_step_01.ogg",
+      "classification": "Cards/Electro Spirit/elec_spirit_step_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Electro%20Spirit/elec_spirit_step_01.ogg",
+      "original_sha256": "e66d57d51e55727397bd8c0c10be0bfca6df73baa4188fe074029c831864bb08",
+      "sha256": "e66d57d51e55727397bd8c0c10be0bfca6df73baa4188fe074029c831864bb08",
+      "bytes": 5535,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/electro/elec_spirit_step_02.ogg",
+      "classification": "Cards/Electro Spirit/elec_spirit_step_02.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Electro%20Spirit/elec_spirit_step_02.ogg",
+      "original_sha256": "b0b7ad59eadd3a756cd92f399db318325d6f6c40d477e669ca9cda1d926ae776",
+      "sha256": "b0b7ad59eadd3a756cd92f399db318325d6f6c40d477e669ca9cda1d926ae776",
+      "bytes": 5399,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/electro/electro_spirit_dep_01.ogg",
+      "classification": "Cards/Electro Spirit/electro_spirit_dep_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Electro%20Spirit/electro_spirit_dep_01.ogg",
+      "original_sha256": "688b792b47d9a12947191b6db0346a247b36d6bcb7bf09db33b406a8b34fa183",
+      "sha256": "688b792b47d9a12947191b6db0346a247b36d6bcb7bf09db33b406a8b34fa183",
+      "bytes": 15190,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/electro/tesla_zap_01.ogg",
+      "classification": "Cards/Electro Spirit/tesla_zap_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Electro%20Spirit/tesla_zap_01.ogg",
+      "original_sha256": "6f9f9fede82aaec41dc0d056cbfb1cc344ed53471f67afdfb77d741f24c610b9",
+      "sha256": "6f9f9fede82aaec41dc0d056cbfb1cc344ed53471f67afdfb77d741f24c610b9",
+      "bytes": 9478,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/heal/fire_spirit_step_sfx_01.ogg",
+      "classification": "Cards/Heal Spirit/fire_spirit_step_sfx_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Heal%20Spirit/fire_spirit_step_sfx_01.ogg",
+      "original_sha256": "edbec38c378ea41c29af8330a3a32bb650165357e931ff314c3a1fcd568f899e",
+      "sha256": "edbec38c378ea41c29af8330a3a32bb650165357e931ff314c3a1fcd568f899e",
+      "bytes": 6035,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/heal/fire_spirit_step_vo_01.ogg",
+      "classification": "Cards/Heal Spirit/fire_spirit_step_vo_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Heal%20Spirit/fire_spirit_step_vo_01.ogg",
+      "original_sha256": "353af8349929003e8138f939646b3082e7d408ef37cd4f1721fdf0e26b2a82a1",
+      "sha256": "353af8349929003e8138f939646b3082e7d408ef37cd4f1721fdf0e26b2a82a1",
+      "bytes": 5490,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/heal/fire_spirit_step_vo_02.ogg",
+      "classification": "Cards/Heal Spirit/fire_spirit_step_vo_02.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Heal%20Spirit/fire_spirit_step_vo_02.ogg",
+      "original_sha256": "6b61047e42722976c03741da778200ea0d56cfd99529058829713177d87dc48c",
+      "sha256": "6b61047e42722976c03741da778200ea0d56cfd99529058829713177d87dc48c",
+      "bytes": 6334,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/heal/fire_spirit_step_vo_03.ogg",
+      "classification": "Cards/Heal Spirit/fire_spirit_step_vo_03.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Heal%20Spirit/fire_spirit_step_vo_03.ogg",
+      "original_sha256": "680bd81ca7b81903aa2ced9fbcb70cd39fcbc995c002b859905f5144dac9ad14",
+      "sha256": "680bd81ca7b81903aa2ced9fbcb70cd39fcbc995c002b859905f5144dac9ad14",
+      "bytes": 6189,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/heal/heal_magic_03.ogg",
+      "classification": "Cards/Heal Spirit/heal_magic_03.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Heal%20Spirit/heal_magic_03.ogg",
+      "original_sha256": "b73df9a9a4e369528f4c7c1b1692fdf9b0ea1e23db71c45a8364c5464c165796",
+      "sha256": "b73df9a9a4e369528f4c7c1b1692fdf9b0ea1e23db71c45a8364c5464c165796",
+      "bytes": 27107,
+      "channels": 1,
+      "processing": "Original bytes"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/heal/heal_spirit_deploy_vo_01_dl.ogg",
+      "classification": "Cards/Heal Spirit/heal_spirit_deploy_vo_01_dl.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Heal%20Spirit/heal_spirit_deploy_vo_01_dl.ogg",
+      "original_sha256": "d04234347f122605611241ec2c6766ff8e61304204d2184c2b31783b4ca27a10",
+      "sha256": "d04234347f122605611241ec2c6766ff8e61304204d2184c2b31783b4ca27a10",
+      "bytes": 17974,
+      "channels": 1,
+      "processing": "Original bytes"
+    }
+  ],
+  "notes": {
+    "shared_cues": "Ice uses the fire-named attack and footstep files classified under Ice Spirit in the game-audio archive. Heal uses the shared spirit movement voices classified under Heal Spirit for its leap; no invented exclusive heal attack recording is claimed.",
+    "timing": "Deploy once after spawn, not on reload; leap once on commitment; impact on actual burst/each electro chain link; quiet steps at least 10 ticks apart, never attack sounds used as footsteps.",
+    "range": "64-block fixed server delivery and positional mono attenuation, with 0.9 global spell volume scaling.",
+    "omitted": "dummy_01 is not used; no dedicated spirit death recording was identified in these classified folders."
+  }
+}

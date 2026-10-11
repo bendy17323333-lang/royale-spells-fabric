@@ -1,0 +1,16 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Created project with name \"royale-witch-1.9.0\" (UUID: 1e0ea9b7-34cf-b177-ccc5-afce29b8a822) and format \"free\"."
+    },
+    {
+      "name": "royale-witch-1.9.0.bbmodel",
+      "title": "royale-witch-1.9.0 project file",
+      "uri": "blockbench://project/1e0ea9b7-34cf-b177-ccc5-afce29b8a822.bbmodel",
+      "description": "Live Blockbench project file, including unsaved edits and embedded textures. Readable while this project is active; select it again if unavailable.",
+      "mimeType": "application/json",
+      "type": "resource_link"
+    }
+  ]
+}

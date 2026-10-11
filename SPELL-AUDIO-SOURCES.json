@@ -1,0 +1,726 @@
+{
+  "source_commit": "c2d7d67271113cb9fe3ad896d9d03dd7f49eed52",
+  "profiles": {
+    "arrows": {
+      "deploy": {
+        "file": "archer_queen_attack_02",
+        "volume": 0.5,
+        "event": "spell_arrows_deploy"
+      },
+      "strike": {
+        "file": "arrow_norm_impact_06",
+        "volume": 0.7,
+        "event": "spell_arrows_strike"
+      }
+    },
+    "fireball": {
+      "deploy": {
+        "file": "fire_ball_02",
+        "volume": 0.65,
+        "event": "spell_fireball_deploy"
+      },
+      "impact": {
+        "file": "fire_ball_explo_02",
+        "volume": 0.85,
+        "event": "spell_fireball_impact"
+      }
+    },
+    "zap": {
+      "deploy": {
+        "file": "zap_02",
+        "volume": 0.7,
+        "event": "spell_zap_deploy"
+      }
+    },
+    "zap_evolution": {
+      "deploy": {
+        "file": "zap_02",
+        "volume": 0.7,
+        "event": "spell_zap_evolution_deploy"
+      },
+      "strike": {
+        "file": "evo_zap_01",
+        "volume": 0.7,
+        "event": "spell_zap_evolution_strike"
+      }
+    },
+    "lightning": {
+      "deploy": {
+        "file": "lightning_02",
+        "volume": 0.9,
+        "event": "spell_lightning_deploy"
+      }
+    },
+    "rocket": {
+      "deploy": {
+        "file": "rocket_launch_02v2",
+        "volume": 0.75,
+        "event": "spell_rocket_deploy"
+      },
+      "impact": {
+        "file": "rocket_hit_01v2",
+        "volume": 1,
+        "event": "spell_rocket_impact"
+      }
+    },
+    "poison": {
+      "deploy": {
+        "file": "poison_spell_01",
+        "volume": 0.65,
+        "event": "spell_poison_deploy"
+      }
+    },
+    "freeze": {
+      "deploy": {
+        "file": "freeze_04",
+        "volume": 0.75,
+        "event": "spell_freeze_deploy"
+      }
+    },
+    "rage": {
+      "deploy": {
+        "file": "rage_spell_01",
+        "volume": 0.65,
+        "event": "spell_rage_deploy"
+      }
+    },
+    "the_log": {
+      "deploy": {
+        "file": "log_vocal_01",
+        "volume": 0.65,
+        "event": "spell_the_log_deploy"
+      },
+      "travel": {
+        "file": "logroll01",
+        "volume": 0.45,
+        "event": "spell_the_log_travel"
+      },
+      "hit": {
+        "file": "log_impact_01",
+        "volume": 0.55,
+        "event": "spell_the_log_hit"
+      }
+    },
+    "tornado": {
+      "deploy": {
+        "file": "royale_tornado_01",
+        "volume": 0.7,
+        "event": "spell_tornado_deploy"
+      }
+    },
+    "earthquake": {
+      "deploy": {
+        "file": "scrollearthquake01",
+        "volume": 0.7,
+        "event": "spell_earthquake_deploy"
+      },
+      "strike": {
+        "file": "boulder_impact_01",
+        "volume": 0.3,
+        "event": "spell_earthquake_strike"
+      }
+    },
+    "giant_snowball": {
+      "deploy": {
+        "file": "throw_snowball_01",
+        "volume": 0.6,
+        "event": "spell_giant_snowball_deploy"
+      },
+      "impact": {
+        "file": "snowball_impact_01",
+        "volume": 0.8,
+        "event": "spell_giant_snowball_impact"
+      }
+    },
+    "giant_snowball_evolution": {
+      "deploy": {
+        "file": "evo_snowball_deploy_01",
+        "volume": 0.65,
+        "event": "spell_giant_snowball_evolution_deploy"
+      },
+      "impact": {
+        "file": "evo_snowball_land_01",
+        "volume": 0.75,
+        "event": "spell_giant_snowball_evolution_impact"
+      },
+      "capture": {
+        "file": "evo_snowball_capture_01",
+        "volume": 0.5,
+        "event": "spell_giant_snowball_evolution_capture"
+      }
+    },
+    "goblin_barrel": {
+      "deploy": {
+        "file": "barrel_drawback_14",
+        "volume": 0.7,
+        "event": "spell_goblin_barrel_deploy"
+      },
+      "impact": {
+        "file": "barrel_explosion_02",
+        "volume": 0.7,
+        "event": "spell_goblin_barrel_impact"
+      }
+    },
+    "goblin_barrel_evolution": {
+      "deploy": {
+        "file": "evo_gob_barrel_dep_01",
+        "volume": 0.7,
+        "event": "spell_goblin_barrel_evolution_deploy"
+      },
+      "impact": {
+        "file": "barrel_explosion_02",
+        "volume": 0.7,
+        "event": "spell_goblin_barrel_evolution_impact"
+      }
+    },
+    "barbarian_barrel": {
+      "deploy": {
+        "file": "barbarrel_01",
+        "volume": 0.7,
+        "event": "spell_barbarian_barrel_deploy"
+      },
+      "impact": {
+        "file": "log_impact_01",
+        "volume": 0.65,
+        "event": "spell_barbarian_barrel_impact"
+      }
+    },
+    "barbarian_barrel_hero": {
+      "deploy": {
+        "file": "card_hero_barbarian_barrel_deploy",
+        "volume": 0.7,
+        "event": "spell_barbarian_barrel_hero_deploy"
+      },
+      "reroll": {
+        "file": "card_hero_barbarian_barrel_ability_activated",
+        "volume": 0.65,
+        "event": "spell_barbarian_barrel_hero_reroll"
+      },
+      "impact": {
+        "file": "card_hero_barbarian_barrel_crash",
+        "volume": 0.75,
+        "event": "spell_barbarian_barrel_hero_impact"
+      },
+      "hit": {
+        "file": "card_hero_barbarian_barrel_hit",
+        "volume": 0.5,
+        "event": "spell_barbarian_barrel_hero_hit"
+      }
+    },
+    "royal_delivery": {
+      "deploy": {
+        "file": "royal_recruit_whistle_01",
+        "volume": 0.7,
+        "event": "spell_royal_delivery_deploy"
+      },
+      "impact": {
+        "file": "barrel_explosion_02",
+        "volume": 0.7,
+        "event": "spell_royal_delivery_impact"
+      },
+      "summon": {
+        "file": "royal_recruit_deploy_01",
+        "volume": 0.65,
+        "event": "spell_royal_delivery_summon"
+      }
+    },
+    "graveyard": {
+      "deploy": {
+        "file": "cemetary_deploy_01",
+        "volume": 1,
+        "event": "graveyard_deploy"
+      }
+    },
+    "clone": {
+      "deploy": {
+        "file": "clone_spell_01",
+        "volume": 0.65,
+        "event": "spell_clone_deploy"
+      }
+    },
+    "mirror": {
+      "deploy": {
+        "file": "mirror_02_dl",
+        "volume": 0.65,
+        "event": "spell_mirror_deploy"
+      }
+    },
+    "goblin_curse": {
+      "deploy": {
+        "file": "goblin_curse_spell_02",
+        "volume": 0.6,
+        "event": "spell_goblin_curse_deploy"
+      },
+      "transform": {
+        "file": "gob_spell_transformation_01",
+        "volume": 0.65,
+        "event": "spell_goblin_curse_transform"
+      },
+      "end": {
+        "file": "gob_spell_end_01",
+        "volume": 0.5,
+        "event": "spell_goblin_curse_end"
+      }
+    },
+    "void": {
+      "deploy": {
+        "file": "dark_void_spell_01",
+        "volume": 0.7,
+        "event": "spell_void_deploy"
+      },
+      "strike": {
+        "file": "zap_02",
+        "volume": 0.7,
+        "event": "spell_void_strike"
+      }
+    },
+    "vines": {
+      "deploy": {
+        "file": "card_epic_vines_cast",
+        "volume": 0.65,
+        "event": "spell_vines_deploy"
+      },
+      "hit": {
+        "file": "card_epic_vines_debuff",
+        "volume": 0.45,
+        "event": "spell_vines_hit"
+      },
+      "end": {
+        "file": "card_epic_vines_end",
+        "volume": 0.5,
+        "event": "spell_vines_end"
+      }
+    },
+    "heal": {
+      "deploy": {
+        "file": "heal_magic_03",
+        "volume": 0.65,
+        "event": "spell_heal_deploy"
+      }
+    },
+    "warmth": {
+      "deploy": {
+        "file": "heal_magic_03",
+        "volume": 0.5,
+        "event": "spell_warmth_deploy"
+      }
+    },
+    "party_rocket": {
+      "deploy": {
+        "file": "rocket_launch_02v2",
+        "volume": 0.65,
+        "event": "spell_party_rocket_deploy"
+      },
+      "impact": {
+        "file": "rocket_hit_01v2",
+        "volume": 0.65,
+        "event": "spell_party_rocket_impact"
+      },
+      "party": {
+        "file": "gob_party_hut_deploy_01",
+        "volume": 0.5,
+        "event": "spell_party_rocket_party"
+      }
+    },
+    "barbarian_hut": {
+      "deploy": {
+        "file": "building_place_01",
+        "volume": 0.65,
+        "event": "spell_barbarian_hut_deploy"
+      },
+      "end": {
+        "file": "boulder_impact_01",
+        "volume": 0.55,
+        "event": "spell_barbarian_hut_end"
+      }
+    }
+  },
+  "files": [
+    {
+      "file": "archer_queen_attack_02.ogg",
+      "classification": "Cards/Arrows/archer_queen_attack_02.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Arrows/archer_queen_attack_02.ogg",
+      "original_sha256": "b6762da18acf25c6a092edfb06461e43ab90a08979f646ed18a186b1e852dedc",
+      "installed_sha256": "b6762da18acf25c6a092edfb06461e43ab90a08979f646ed18a186b1e852dedc",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "arrow_norm_impact_06.ogg",
+      "classification": "Cards/Arrows/arrow_norm_impact_06.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Arrows/arrow_norm_impact_06.ogg",
+      "original_sha256": "b85de3ebcfe8d96d031d612054e443533a602b9479b32bd2d847249bfc26b8a9",
+      "installed_sha256": "b85de3ebcfe8d96d031d612054e443533a602b9479b32bd2d847249bfc26b8a9",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "barbarrel_01.ogg",
+      "classification": "Cards/Barbarian Barrel/barbarrel_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarian%20Barrel/barbarrel_01.ogg",
+      "original_sha256": "c0ef2ef19f53138f6c6e951dd6ce5f1f1f2cd3bcfc2c1672599bba78669e57e4",
+      "installed_sha256": "c0ef2ef19f53138f6c6e951dd6ce5f1f1f2cd3bcfc2c1672599bba78669e57e4",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "barrel_drawback_14.ogg",
+      "classification": "Cards/Goblin Barrel/barrel_drawback_14.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Goblin%20Barrel/barrel_drawback_14.ogg",
+      "original_sha256": "5e1a38eb2a83bfa32f9515b59b6bed055595c7e67dfcf1116b41a34d8e5a1bd1",
+      "installed_sha256": "5e1a38eb2a83bfa32f9515b59b6bed055595c7e67dfcf1116b41a34d8e5a1bd1",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "barrel_explosion_02.ogg",
+      "classification": "Cards/Skeleton Barrel/barrel_explosion_02.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Skeleton%20Barrel/barrel_explosion_02.ogg",
+      "original_sha256": "bc27cc763f0bd9f18a30c72a93013490d008be01c25bd27d3551357d9e818913",
+      "installed_sha256": "bc27cc763f0bd9f18a30c72a93013490d008be01c25bd27d3551357d9e818913",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "boulder_impact_01.ogg",
+      "classification": "Cards/Tombstone/boulder_impact_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Tombstone/boulder_impact_01.ogg",
+      "original_sha256": "b8d8a81d1b6be854549adade4b7fc9743eae4478b6a3930984831294eba97d97",
+      "installed_sha256": "b8d8a81d1b6be854549adade4b7fc9743eae4478b6a3930984831294eba97d97",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "building_place_01.ogg",
+      "classification": "Cards/Tesla/building_place_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Tesla/building_place_01.ogg",
+      "original_sha256": "57ac6e7bd2704d434e49d5395d66b5e7f730f160ebdd7a5991f411df44327266",
+      "installed_sha256": "57ac6e7bd2704d434e49d5395d66b5e7f730f160ebdd7a5991f411df44327266",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "card_epic_vines_cast.ogg",
+      "classification": "Cards/Vines/card_epic_vines_cast.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Vines/card_epic_vines_cast.ogg",
+      "original_sha256": "bfd5e17c2c53da66fdce0ed4c3fdc79238c550aa2a5fa0f56ec69c975c324899",
+      "installed_sha256": "d55b9e15d8a6ff7ffbd51e08684b9abf5e967fcb8819d29ebbcd3149515f48af",
+      "processing": "stereo to mono for positional playback; no time or pitch change"
+    },
+    {
+      "file": "card_epic_vines_debuff.ogg",
+      "classification": "Cards/Vines/card_epic_vines_debuff.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Vines/card_epic_vines_debuff.ogg",
+      "original_sha256": "7b9824efd711f204f9b03747941b08ea4fbeef4668f9f60148a5c3b1ca9be94e",
+      "installed_sha256": "acc200e98760535d16bc6b681ea4a8035f6ac2c44d187d96a71a8dc2d7b92b10",
+      "processing": "stereo to mono for positional playback; no time or pitch change"
+    },
+    {
+      "file": "card_epic_vines_end.ogg",
+      "classification": "Cards/Vines/card_epic_vines_end.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Vines/card_epic_vines_end.ogg",
+      "original_sha256": "b6936002eb3c6f1789355814c0134c82d055ac2b004ddc4c2de1fd5b001da75d",
+      "installed_sha256": "db2c9a4ec785b7272d55ee54912329db8290334f54a7a5fa16abf5bb4b527005",
+      "processing": "stereo to mono for positional playback; no time or pitch change"
+    },
+    {
+      "file": "card_hero_barbarian_barrel_ability_activated.ogg",
+      "classification": "Cards/Barbarian Barrel/card_hero_barbarian_barrel_ability_activated.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarian%20Barrel/card_hero_barbarian_barrel_ability_activated.ogg",
+      "original_sha256": "4dda2fae66cdc19d8f675d613f181222496d6d939a12db841ddad6526c261a61",
+      "installed_sha256": "e9c4577d084c1d3fd8424732e05238cc470714b91f7ae2846dc18272092d5536",
+      "processing": "stereo to mono for positional playback; no time or pitch change"
+    },
+    {
+      "file": "card_hero_barbarian_barrel_crash.ogg",
+      "classification": "Cards/Barbarian Barrel/card_hero_barbarian_barrel_crash.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarian%20Barrel/card_hero_barbarian_barrel_crash.ogg",
+      "original_sha256": "96ffb8615e4b98d9d106d370b8591bf60cb0165e6a11beab14d16381f7e0dbdd",
+      "installed_sha256": "c476cf0a7b69acbf282757f00150d97cf3e2d712f0ebed990c7ffc3c8eb7904a",
+      "processing": "stereo to mono for positional playback; no time or pitch change"
+    },
+    {
+      "file": "card_hero_barbarian_barrel_deploy.ogg",
+      "classification": "Cards/Barbarian Barrel/card_hero_barbarian_barrel_deploy.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarian%20Barrel/card_hero_barbarian_barrel_deploy.ogg",
+      "original_sha256": "d4e5df00b1767d3d76fcff93e6deb504bb763d6e3d875c1b55e500ac45ea882c",
+      "installed_sha256": "46644c7e7e1eab76111add586b9eb5ea1a6ca6fb98726d61171c81e6cbdd483b",
+      "processing": "stereo to mono for positional playback; no time or pitch change"
+    },
+    {
+      "file": "card_hero_barbarian_barrel_hit.ogg",
+      "classification": "Cards/Barbarian Barrel/card_hero_barbarian_barrel_hit.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarian%20Barrel/card_hero_barbarian_barrel_hit.ogg",
+      "original_sha256": "fe0c3fc252eb376f5fc46ec2072cede9ea2940104a5abee6660b342e31b3e812",
+      "installed_sha256": "70af7b9a884a1025bc3bc19897cb87e2af6cbdb31a8ec2c5339b73c7763c1282",
+      "processing": "stereo to mono for positional playback; no time or pitch change"
+    },
+    {
+      "file": "cemetary_deploy_01.ogg",
+      "classification": "Cards/Graveyard/cemetary_deploy_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Graveyard/cemetary_deploy_01.ogg",
+      "original_sha256": "a9b7e0119244a39932990f927465bf1697e7671ae9cdb68fcacedae26f0d80f1",
+      "installed_sha256": "a9b7e0119244a39932990f927465bf1697e7671ae9cdb68fcacedae26f0d80f1",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "clone_spell_01.ogg",
+      "classification": "Cards/Clone/clone_spell_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Clone/clone_spell_01.ogg",
+      "original_sha256": "e18ae7b83eca48ffd9aae6e2f5dbc23457f3c4d2a661f96f8e37020165b122e5",
+      "installed_sha256": "e18ae7b83eca48ffd9aae6e2f5dbc23457f3c4d2a661f96f8e37020165b122e5",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "dark_void_spell_01.ogg",
+      "classification": "Cards/Void/dark_void_spell_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Void/dark_void_spell_01.ogg",
+      "original_sha256": "e3542f13ab6cab39b6d5b17ee590c1b09b773025c86e20ae531c966b0edd66ff",
+      "installed_sha256": "e95f16fc4895c9cd4240e2bfbd3e45c9f529a28fc81fb962311e96a82fc5d717",
+      "processing": "stereo to mono for positional playback; no time or pitch change"
+    },
+    {
+      "file": "evo_gob_barrel_dep_01.ogg",
+      "classification": "Cards/Goblin Barrel/evo_gob_barrel_dep_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Goblin%20Barrel/evo_gob_barrel_dep_01.ogg",
+      "original_sha256": "6180a6a607bbc23d462aae17c1d7dbdcaf1e6babd76e43d007e98341c8cb0f39",
+      "installed_sha256": "6180a6a607bbc23d462aae17c1d7dbdcaf1e6babd76e43d007e98341c8cb0f39",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "evo_snowball_capture_01.ogg",
+      "classification": "Cards/Giant Snowball/evo_snowball_capture_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Giant%20Snowball/evo_snowball_capture_01.ogg",
+      "original_sha256": "6177237378e27383f74de460e90455d66ea01ef8f7dc51ffe0e8fdc8da3505ce",
+      "installed_sha256": "e41ffeb95ecf8bf1a126b375432d162847e52e8639fc0cdd8ef82abb494706a2",
+      "processing": "stereo to mono for positional playback; no time or pitch change"
+    },
+    {
+      "file": "evo_snowball_deploy_01.ogg",
+      "classification": "Cards/Giant Snowball/evo_snowball_deploy_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Giant%20Snowball/evo_snowball_deploy_01.ogg",
+      "original_sha256": "692a257f6476d557d3f8f3c6a4c93a4447e563f030c0666620c324365d65df5f",
+      "installed_sha256": "f049d2b0033c8d276733fff7d6e883db033937ebe9c1973d000419092dbb098d",
+      "processing": "stereo to mono for positional playback; no time or pitch change"
+    },
+    {
+      "file": "evo_snowball_land_01.ogg",
+      "classification": "Cards/Giant Snowball/evo_snowball_land_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Giant%20Snowball/evo_snowball_land_01.ogg",
+      "original_sha256": "ae8dfb29a903a4315bbc82c9431b811400d4a75e8151afa049f4910213e8041e",
+      "installed_sha256": "537ac74e061622f1786346ed1462c03a7e865ced3063c103e0cf2219d71e1838",
+      "processing": "stereo to mono for positional playback; no time or pitch change"
+    },
+    {
+      "file": "evo_zap_01.ogg",
+      "classification": "Cards/Zap/evo_zap_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Zap/evo_zap_01.ogg",
+      "original_sha256": "fb2bbd9155610b8e9cea0ef3d0821c675b3f02d29126b02868c34ca9b918d830",
+      "installed_sha256": "fb2bbd9155610b8e9cea0ef3d0821c675b3f02d29126b02868c34ca9b918d830",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "fire_ball_02.ogg",
+      "classification": "Cards/Fireball/fire_ball_02.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Fireball/fire_ball_02.ogg",
+      "original_sha256": "f7404b51b5bb2446b996756048cc5300930d6adcf30189e1c08554046257ecd1",
+      "installed_sha256": "f7404b51b5bb2446b996756048cc5300930d6adcf30189e1c08554046257ecd1",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "fire_ball_explo_02.ogg",
+      "classification": "Cards/Fireball/fire_ball_explo_02.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Fireball/fire_ball_explo_02.ogg",
+      "original_sha256": "c20f2c526a5e452e212711d2829d3baaf35cb734bd6f9bc419675632179a30c1",
+      "installed_sha256": "c20f2c526a5e452e212711d2829d3baaf35cb734bd6f9bc419675632179a30c1",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "freeze_04.ogg",
+      "classification": "Cards/Freeze/freeze_04.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Freeze/freeze_04.ogg",
+      "original_sha256": "9f40abf81959543e5b253ecc421d604459b12d2266d7f163a72bb129fe301d1c",
+      "installed_sha256": "9f40abf81959543e5b253ecc421d604459b12d2266d7f163a72bb129fe301d1c",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "gob_party_hut_deploy_01.ogg",
+      "classification": "Cards/Party Hut/gob_party_hut_deploy_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Party%20Hut/gob_party_hut_deploy_01.ogg",
+      "original_sha256": "978da3547ff0f88eecff2a197369ca1b448de3c04b339802d2055ab9e7f4b6c0",
+      "installed_sha256": "978da3547ff0f88eecff2a197369ca1b448de3c04b339802d2055ab9e7f4b6c0",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "gob_spell_end_01.ogg",
+      "classification": "Cards/Goblin Curse/gob_spell_end_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Goblin%20Curse/gob_spell_end_01.ogg",
+      "original_sha256": "4438d0e69d600ea97925a0cd171287e301f47cb14d26b25949a92625d018d700",
+      "installed_sha256": "4438d0e69d600ea97925a0cd171287e301f47cb14d26b25949a92625d018d700",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "gob_spell_transformation_01.ogg",
+      "classification": "Cards/Goblin Curse/gob_spell_transformation_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Goblin%20Curse/gob_spell_transformation_01.ogg",
+      "original_sha256": "a19652be6f1f43354b57597e2c862bd8b8433e1b895b134ba018960ec48c7812",
+      "installed_sha256": "a19652be6f1f43354b57597e2c862bd8b8433e1b895b134ba018960ec48c7812",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "goblin_curse_spell_02.ogg",
+      "classification": "Cards/Goblin Curse/goblin_curse_spell_02.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Goblin%20Curse/goblin_curse_spell_02.ogg",
+      "original_sha256": "9f39b6b9ffcf1ec454c56cb75ce2a7122e6c545da8890c7280f333a11c57cba3",
+      "installed_sha256": "9f39b6b9ffcf1ec454c56cb75ce2a7122e6c545da8890c7280f333a11c57cba3",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "heal_magic_03.ogg",
+      "classification": "Cards/Heal Spirit/heal_magic_03.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Heal%20Spirit/heal_magic_03.ogg",
+      "original_sha256": "b73df9a9a4e369528f4c7c1b1692fdf9b0ea1e23db71c45a8364c5464c165796",
+      "installed_sha256": "b73df9a9a4e369528f4c7c1b1692fdf9b0ea1e23db71c45a8364c5464c165796",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "lightning_02.ogg",
+      "classification": "Cards/Lightning/lightning_02.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Lightning/lightning_02.ogg",
+      "original_sha256": "45f4a0f0b5076698c614aa10208564a146d50f3531e591bbbbc299566ac3f7b3",
+      "installed_sha256": "45f4a0f0b5076698c614aa10208564a146d50f3531e591bbbbc299566ac3f7b3",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "log_impact_01.ogg",
+      "classification": "Cards/The Log/log_impact_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/The%20Log/log_impact_01.ogg",
+      "original_sha256": "01e3138a335b0eea2c69a87edbe3e76f6195c8a25b09418747b42923fd907166",
+      "installed_sha256": "01e3138a335b0eea2c69a87edbe3e76f6195c8a25b09418747b42923fd907166",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "log_vocal_01.ogg",
+      "classification": "Cards/The Log/log_vocal_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/The%20Log/log_vocal_01.ogg",
+      "original_sha256": "f965a3d0941ede72307d0732750776133cd18b5135a2f3a650a639808918a2c1",
+      "installed_sha256": "f965a3d0941ede72307d0732750776133cd18b5135a2f3a650a639808918a2c1",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "logroll01.ogg",
+      "classification": "Cards/The Log/logroll01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/The%20Log/logroll01.ogg",
+      "original_sha256": "24e3ae1e2864825a8a3d565a5a7a435b34ad367a59d4cc326b9121f74779714c",
+      "installed_sha256": "24e3ae1e2864825a8a3d565a5a7a435b34ad367a59d4cc326b9121f74779714c",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "mirror_02_dl.ogg",
+      "classification": "Cards/Mirror/mirror_02_dl.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Mirror/mirror_02_dl.ogg",
+      "original_sha256": "d6970aa342487df6d9e0d81edee10376e29a5a8eb607f8226ad096bafd01405f",
+      "installed_sha256": "d6970aa342487df6d9e0d81edee10376e29a5a8eb607f8226ad096bafd01405f",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "poison_spell_01.ogg",
+      "classification": "Cards/Poison/poison_spell_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Poison/poison_spell_01.ogg",
+      "original_sha256": "dbad39ead2ac75786aea9e4525d96973af6da70538a32483f1e2e234667f74b7",
+      "installed_sha256": "dbad39ead2ac75786aea9e4525d96973af6da70538a32483f1e2e234667f74b7",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "rage_spell_01.ogg",
+      "classification": "Cards/Rage/rage_spell_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Rage/rage_spell_01.ogg",
+      "original_sha256": "5fa22a92f7a33e506b99c42bd4a2efdb9374af4c16b7c33bcdf42065f6dcc2d1",
+      "installed_sha256": "5fa22a92f7a33e506b99c42bd4a2efdb9374af4c16b7c33bcdf42065f6dcc2d1",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "rocket_hit_01v2.ogg",
+      "classification": "Cards/Rocket/rocket_hit_01v2.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Rocket/rocket_hit_01v2.ogg",
+      "original_sha256": "f4a6d75a4f64ca8b1c08e63d7c2f181c9f120f508d0d5b6a290f21ea8c464d8d",
+      "installed_sha256": "f4a6d75a4f64ca8b1c08e63d7c2f181c9f120f508d0d5b6a290f21ea8c464d8d",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "rocket_launch_02v2.ogg",
+      "classification": "Cards/Rocket/rocket_launch_02v2.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Rocket/rocket_launch_02v2.ogg",
+      "original_sha256": "4c0fcc0266c0b784376a79ace0caafdf3dcc7f6f1b52eb5f70660bbbeac15918",
+      "installed_sha256": "4c0fcc0266c0b784376a79ace0caafdf3dcc7f6f1b52eb5f70660bbbeac15918",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "royal_recruit_deploy_01.ogg",
+      "classification": "Cards/Royal Delivery/royal_recruit_deploy_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Royal%20Delivery/royal_recruit_deploy_01.ogg",
+      "original_sha256": "e23c2e1ed9545c55499c1efaefd7f2903dc12f019b6a757401079eaad20e63c7",
+      "installed_sha256": "e23c2e1ed9545c55499c1efaefd7f2903dc12f019b6a757401079eaad20e63c7",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "royal_recruit_whistle_01.ogg",
+      "classification": "Cards/Royal Delivery/royal_recruit_whistle_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Royal%20Delivery/royal_recruit_whistle_01.ogg",
+      "original_sha256": "3dfed94181c149aa35f0106de71109b13c2dfde4fde847acf12a8a01c5f9e77b",
+      "installed_sha256": "3dfed94181c149aa35f0106de71109b13c2dfde4fde847acf12a8a01c5f9e77b",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "royale_tornado_01.ogg",
+      "classification": "Cards/Tornado/royale_tornado_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Tornado/royale_tornado_01.ogg",
+      "original_sha256": "039dace78b123369b7c9040f5f6f79017c14a9fcfd378832b00cc7f48f842231",
+      "installed_sha256": "039dace78b123369b7c9040f5f6f79017c14a9fcfd378832b00cc7f48f842231",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "scrollearthquake01.ogg",
+      "classification": "Cards/Earthquake/scrollearthquake01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Earthquake/scrollearthquake01.ogg",
+      "original_sha256": "2b0fad7cd8a5ffff176d48a6cee9e50b9ba57b2700dda25409d14cfebf48b9df",
+      "installed_sha256": "2b0fad7cd8a5ffff176d48a6cee9e50b9ba57b2700dda25409d14cfebf48b9df",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "snowball_impact_01.ogg",
+      "classification": "Cards/Giant Snowball/snowball_impact_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Giant%20Snowball/snowball_impact_01.ogg",
+      "original_sha256": "01749e7662b53ca004e81d1bdba28507c436537f93f75d4762c0e7f2bc71a0f5",
+      "installed_sha256": "01749e7662b53ca004e81d1bdba28507c436537f93f75d4762c0e7f2bc71a0f5",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "throw_snowball_01.ogg",
+      "classification": "Cards/Giant Snowball/throw_snowball_01.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Giant%20Snowball/throw_snowball_01.ogg",
+      "original_sha256": "357e72a535481b21236ea88cd1db51538c67e6c32ed80db974df337f814a9e4c",
+      "installed_sha256": "357e72a535481b21236ea88cd1db51538c67e6c32ed80db974df337f814a9e4c",
+      "processing": "original bytes unchanged"
+    },
+    {
+      "file": "zap_02.ogg",
+      "classification": "Cards/Zappies/zap_02.ogg",
+      "url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Zappies/zap_02.ogg",
+      "original_sha256": "d9c8b209fe840f91d2f5bc3deb203e3ee800c39a6952ead44dd6f41ae1f9cd50",
+      "installed_sha256": "d9c8b209fe840f91d2f5bc3deb203e3ee800c39a6952ead44dd6f41ae1f9cd50",
+      "processing": "original bytes unchanged"
+    }
+  ],
+  "notes": {
+    "warmth": "No separately classified Warmth clip found in the public archives; uses the original heal_magic_03 game asset as a documented substitute.",
+    "party_rocket": "Rocket launch/impact plus the original Party Hut celebration clip; not claimed as an independently verified Party Rocket-only track.",
+    "heal": "Original heal_magic_03 is currently classified under Heal Spirit.",
+    "barbarian_hut": "Uses the original shared building placement sound, plus existing original Barbarian voice assets.",
+    "graveyard": "Existing graveyard_deploy event and original 1.0.1 audio are retained."
+  },
+  "audio_update_1_5": {
+    "network_radius": 64,
+    "attenuation_distance": 64,
+    "runtime_volume_scale": 0.9,
+    "void_strikes_ticks": [
+      16,
+      40,
+      64
+    ],
+    "void_impact": "Original archived zap_02.ogg electric impact, independently triggered; the archive has no separate Void impact recording."
+  }
+}

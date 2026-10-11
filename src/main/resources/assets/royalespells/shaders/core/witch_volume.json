@@ -1,0 +1,25 @@
+{
+  "blend": { "func": "add", "srcrgb": "srcalpha", "dstrgb": "1-srcalpha", "srcalpha": "1", "dstalpha": "1-srcalpha" },
+  "vertex": "royalespells:witch_volume",
+  "fragment": "royalespells:witch_volume",
+  "attributes": ["Position"],
+  "samplers": [{"name": "SceneDepth"}],
+  "uniforms": [
+    {"name":"Projection","type":"matrix4x4","count":16,"values":[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]},
+    {"name":"VolumeToView","type":"matrix4x4","count":16,"values":[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]},
+    {"name":"InverseProjection","type":"matrix4x4","count":16,"values":[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]},
+    {"name":"ViewToVolume","type":"matrix4x4","count":16,"values":[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]},
+    {"name":"TargetSize","type":"float","count":2,"values":[1,1]},
+    {"name":"BoundsMin","type":"float","count":3,"values":[-1,-1,-1]},
+    {"name":"BoundsMax","type":"float","count":3,"values":[1,1,1]},
+    {"name":"Params","type":"float","count":4,"values":[0,0,0,1]},
+    {"name":"Shape","type":"float","count":4,"values":[0.34,32,0,0]},
+    {"name":"Tail0","type":"float","count":4,"values":[0,0,0,0.25]},
+    {"name":"Tail1","type":"float","count":4,"values":[0,0,0,0.20]},
+    {"name":"Tail2","type":"float","count":4,"values":[0,0,0,0.16]},
+    {"name":"Tail3","type":"float","count":4,"values":[0,0,0,0.13]},
+    {"name":"Tail4","type":"float","count":4,"values":[0,0,0,0.10]},
+    {"name":"Tail5","type":"float","count":4,"values":[0,0,0,0.08]},
+    {"name":"Tail6","type":"float","count":4,"values":[0,0,0,0.06]}
+  ]
+}

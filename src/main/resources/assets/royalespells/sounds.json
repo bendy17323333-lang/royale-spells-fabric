@@ -5,7 +5,7 @@
       {
         "name": "royalespells:graveyard_deploy",
         "preload": true,
-        "attenuation_distance": 16
+        "attenuation_distance": 64
       }
     ]
   },
@@ -76,6 +76,964 @@
         "name": "royalespells:barbarian/npc_die_02",
         "preload": true,
         "attenuation_distance": 16
+      }
+    ]
+  },
+  "spell_arrows_deploy": {
+    "subtitle": "item.royalespells.arrows",
+    "sounds": [
+      {
+        "name": "royalespells:original/archer_queen_attack_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_arrows_strike": {
+    "subtitle": "item.royalespells.arrows",
+    "sounds": [
+      {
+        "name": "royalespells:original/arrow_norm_impact_06",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_fireball_deploy": {
+    "subtitle": "item.royalespells.fireball",
+    "sounds": [
+      {
+        "name": "royalespells:original/fire_ball_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_fireball_impact": {
+    "subtitle": "item.royalespells.fireball",
+    "sounds": [
+      {
+        "name": "royalespells:original/fire_ball_explo_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_zap_deploy": {
+    "subtitle": "item.royalespells.zap",
+    "sounds": [
+      {
+        "name": "royalespells:original/zap_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_zap_evolution_deploy": {
+    "subtitle": "item.royalespells.zap_evolution",
+    "sounds": [
+      {
+        "name": "royalespells:original/zap_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_zap_evolution_strike": {
+    "subtitle": "item.royalespells.zap_evolution",
+    "sounds": [
+      {
+        "name": "royalespells:original/evo_zap_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_lightning_deploy": {
+    "subtitle": "item.royalespells.lightning",
+    "sounds": [
+      {
+        "name": "royalespells:original/lightning_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_rocket_deploy": {
+    "subtitle": "item.royalespells.rocket",
+    "sounds": [
+      {
+        "name": "royalespells:original/rocket_launch_02v2",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_rocket_impact": {
+    "subtitle": "item.royalespells.rocket",
+    "sounds": [
+      {
+        "name": "royalespells:original/rocket_hit_01v2",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_poison_deploy": {
+    "subtitle": "item.royalespells.poison",
+    "sounds": [
+      {
+        "name": "royalespells:original/poison_spell_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_freeze_deploy": {
+    "subtitle": "item.royalespells.freeze",
+    "sounds": [
+      {
+        "name": "royalespells:original/freeze_04",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_rage_deploy": {
+    "subtitle": "item.royalespells.rage",
+    "sounds": [
+      {
+        "name": "royalespells:original/rage_spell_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_the_log_deploy": {
+    "subtitle": "item.royalespells.the_log",
+    "sounds": [
+      {
+        "name": "royalespells:original/log_vocal_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_the_log_travel": {
+    "subtitle": "item.royalespells.the_log",
+    "sounds": [
+      {
+        "name": "royalespells:original/logroll01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_the_log_hit": {
+    "subtitle": "item.royalespells.the_log",
+    "sounds": [
+      {
+        "name": "royalespells:original/log_impact_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_tornado_deploy": {
+    "subtitle": "item.royalespells.tornado",
+    "sounds": [
+      {
+        "name": "royalespells:original/royale_tornado_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_earthquake_deploy": {
+    "subtitle": "item.royalespells.earthquake",
+    "sounds": [
+      {
+        "name": "royalespells:original/scrollearthquake01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_earthquake_strike": {
+    "subtitle": "item.royalespells.earthquake",
+    "sounds": [
+      {
+        "name": "royalespells:original/boulder_impact_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_giant_snowball_deploy": {
+    "subtitle": "item.royalespells.giant_snowball",
+    "sounds": [
+      {
+        "name": "royalespells:original/throw_snowball_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_giant_snowball_impact": {
+    "subtitle": "item.royalespells.giant_snowball",
+    "sounds": [
+      {
+        "name": "royalespells:original/snowball_impact_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_giant_snowball_evolution_deploy": {
+    "subtitle": "item.royalespells.giant_snowball_evolution",
+    "sounds": [
+      {
+        "name": "royalespells:original/evo_snowball_deploy_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_giant_snowball_evolution_impact": {
+    "subtitle": "item.royalespells.giant_snowball_evolution",
+    "sounds": [
+      {
+        "name": "royalespells:original/evo_snowball_land_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_giant_snowball_evolution_capture": {
+    "subtitle": "item.royalespells.giant_snowball_evolution",
+    "sounds": [
+      {
+        "name": "royalespells:original/evo_snowball_capture_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_goblin_barrel_deploy": {
+    "subtitle": "item.royalespells.goblin_barrel",
+    "sounds": [
+      {
+        "name": "royalespells:original/barrel_drawback_14",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_goblin_barrel_impact": {
+    "subtitle": "item.royalespells.goblin_barrel",
+    "sounds": [
+      {
+        "name": "royalespells:original/barrel_explosion_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_goblin_barrel_evolution_deploy": {
+    "subtitle": "item.royalespells.goblin_barrel_evolution",
+    "sounds": [
+      {
+        "name": "royalespells:original/evo_gob_barrel_dep_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_goblin_barrel_evolution_impact": {
+    "subtitle": "item.royalespells.goblin_barrel_evolution",
+    "sounds": [
+      {
+        "name": "royalespells:original/barrel_explosion_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_barbarian_barrel_deploy": {
+    "subtitle": "item.royalespells.barbarian_barrel",
+    "sounds": [
+      {
+        "name": "royalespells:original/barbarrel_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_barbarian_barrel_impact": {
+    "subtitle": "item.royalespells.barbarian_barrel",
+    "sounds": [
+      {
+        "name": "royalespells:original/log_impact_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_barbarian_barrel_hero_deploy": {
+    "subtitle": "item.royalespells.barbarian_barrel_hero",
+    "sounds": [
+      {
+        "name": "royalespells:original/card_hero_barbarian_barrel_deploy",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_barbarian_barrel_hero_reroll": {
+    "subtitle": "item.royalespells.barbarian_barrel_hero",
+    "sounds": [
+      {
+        "name": "royalespells:original/card_hero_barbarian_barrel_ability_activated",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_barbarian_barrel_hero_impact": {
+    "subtitle": "item.royalespells.barbarian_barrel_hero",
+    "sounds": [
+      {
+        "name": "royalespells:original/card_hero_barbarian_barrel_crash",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_barbarian_barrel_hero_hit": {
+    "subtitle": "item.royalespells.barbarian_barrel_hero",
+    "sounds": [
+      {
+        "name": "royalespells:original/card_hero_barbarian_barrel_hit",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_royal_delivery_deploy": {
+    "subtitle": "item.royalespells.royal_delivery",
+    "sounds": [
+      {
+        "name": "royalespells:original/royal_recruit_whistle_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_royal_delivery_impact": {
+    "subtitle": "item.royalespells.royal_delivery",
+    "sounds": [
+      {
+        "name": "royalespells:original/barrel_explosion_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_royal_delivery_summon": {
+    "subtitle": "item.royalespells.royal_delivery",
+    "sounds": [
+      {
+        "name": "royalespells:original/royal_recruit_deploy_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_clone_deploy": {
+    "subtitle": "item.royalespells.clone",
+    "sounds": [
+      {
+        "name": "royalespells:original/clone_spell_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_mirror_deploy": {
+    "subtitle": "item.royalespells.mirror",
+    "sounds": [
+      {
+        "name": "royalespells:original/mirror_02_dl",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_goblin_curse_deploy": {
+    "subtitle": "item.royalespells.goblin_curse",
+    "sounds": [
+      {
+        "name": "royalespells:original/goblin_curse_spell_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_goblin_curse_transform": {
+    "subtitle": "item.royalespells.goblin_curse",
+    "sounds": [
+      {
+        "name": "royalespells:original/gob_spell_transformation_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_goblin_curse_end": {
+    "subtitle": "item.royalespells.goblin_curse",
+    "sounds": [
+      {
+        "name": "royalespells:original/gob_spell_end_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_void_deploy": {
+    "subtitle": "item.royalespells.void",
+    "sounds": [
+      {
+        "name": "royalespells:original/dark_void_spell_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_vines_deploy": {
+    "subtitle": "item.royalespells.vines",
+    "sounds": [
+      {
+        "name": "royalespells:original/card_epic_vines_cast",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_vines_hit": {
+    "subtitle": "item.royalespells.vines",
+    "sounds": [
+      {
+        "name": "royalespells:original/card_epic_vines_debuff",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_vines_end": {
+    "subtitle": "item.royalespells.vines",
+    "sounds": [
+      {
+        "name": "royalespells:original/card_epic_vines_end",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_heal_deploy": {
+    "subtitle": "item.royalespells.heal",
+    "sounds": [
+      {
+        "name": "royalespells:original/heal_magic_03",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_warmth_deploy": {
+    "subtitle": "item.royalespells.warmth",
+    "sounds": [
+      {
+        "name": "royalespells:original/heal_magic_03",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_party_rocket_deploy": {
+    "subtitle": "item.royalespells.party_rocket",
+    "sounds": [
+      {
+        "name": "royalespells:original/rocket_launch_02v2",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_party_rocket_impact": {
+    "subtitle": "item.royalespells.party_rocket",
+    "sounds": [
+      {
+        "name": "royalespells:original/rocket_hit_01v2",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_party_rocket_party": {
+    "subtitle": "item.royalespells.party_rocket",
+    "sounds": [
+      {
+        "name": "royalespells:original/gob_party_hut_deploy_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_barbarian_hut_deploy": {
+    "subtitle": "item.royalespells.barbarian_hut",
+    "sounds": [
+      {
+        "name": "royalespells:original/building_place_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spell_barbarian_hut_end": {
+    "subtitle": "item.royalespells.barbarian_hut",
+    "sounds": [
+      {
+        "name": "royalespells:original/boulder_impact_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "army_deploy": {
+    "subtitle": "subtitles.royalespells.army_deploy",
+    "sounds": [
+      {
+        "name": "royalespells:original/card_evolution_skeleton_army_deploy",
+        "stream": false,
+        "attenuation_distance": 64,
+        "volume": 0.9
+      }
+    ]
+  },
+  "army_horn": {
+    "subtitle": "subtitles.royalespells.army_horn",
+    "sounds": [
+      {
+        "name": "royalespells:original/card_evolution_skeleton_army_change_horn",
+        "stream": false,
+        "attenuation_distance": 64,
+        "volume": 0.9
+      }
+    ]
+  },
+  "army_change": {
+    "subtitle": "subtitles.royalespells.army_change",
+    "sounds": [
+      {
+        "name": "royalespells:original/card_evolution_skeleton_army_change",
+        "stream": false
+      }
+    ]
+  },
+  "army_death": {
+    "subtitle": "subtitles.royalespells.army_death",
+    "sounds": [
+      {
+        "name": "royalespells:original/card_evolution_skeleton_army_death_vo",
+        "stream": false
+      }
+    ]
+  },
+  "skeleton_step": {
+    "subtitle": "subtitles.royalespells.skeleton_step",
+    "sounds": [
+      {
+        "name": "royalespells:original/skeleton_step_02",
+        "stream": false
+      }
+    ]
+  },
+  "skeleton_attack": {
+    "subtitle": "subtitles.royalespells.skeleton_attack",
+    "sounds": [
+      {
+        "name": "royalespells:original/skeleton_atk_03",
+        "stream": false
+      }
+    ]
+  },
+  "skeleton_death": {
+    "subtitle": "subtitles.royalespells.skeleton_death",
+    "sounds": [
+      {
+        "name": "royalespells:original/npc_die_02",
+        "stream": false
+      }
+    ]
+  },
+  "spell_void_strike": {
+    "subtitle": "subtitles.royalespells.void_strike",
+    "sounds": [
+      {
+        "name": "royalespells:original/zap_02",
+        "preload": true,
+        "attenuation_distance": 64
+      }
+    ]
+  },
+  "army_shield_break": {
+    "subtitle": "subtitles.royalespells.army_shield_break",
+    "sounds": [
+      {
+        "name": "royalespells:original/shield_skele_lost_02",
+        "stream": false,
+        "attenuation_distance": 32
+      }
+    ]
+  },
+  "spirit_fire_deploy": {
+    "subtitle": "subtitle.royalespells.spirit_fire_deploy",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/fire/fire_spirit_deploy_01",
+        "attenuation_distance": 64,
+        "preload": true
+      },
+      {
+        "name": "royalespells:spirits/fire/fire_spirit_deploy_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_fire_jump": {
+    "subtitle": "subtitle.royalespells.spirit_fire_jump",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/fire/fire_spirit_attack_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_fire_impact": {
+    "subtitle": "subtitle.royalespells.spirit_fire_impact",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/fire/sound_fireball_hit_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_fire_step": {
+    "subtitle": "subtitle.royalespells.spirit_fire_step",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/fire/fire_spirit_step_sfx_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_ice_deploy": {
+    "subtitle": "subtitle.royalespells.spirit_ice_deploy",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/ice/ice_sp_deploy_01",
+        "attenuation_distance": 64,
+        "preload": true
+      },
+      {
+        "name": "royalespells:spirits/ice/ice_sp_deploy_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_ice_jump": {
+    "subtitle": "subtitle.royalespells.spirit_ice_jump",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/ice/fire_spirit_attack_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_ice_impact": {
+    "subtitle": "subtitle.royalespells.spirit_ice_impact",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/ice/ice_mage_impact_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_ice_step": {
+    "subtitle": "subtitle.royalespells.spirit_ice_step",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/ice/fire_spirit_step_sfx_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_electro_deploy": {
+    "subtitle": "subtitle.royalespells.spirit_electro_deploy",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/electro/electro_spirit_dep_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_electro_jump": {
+    "subtitle": "subtitle.royalespells.spirit_electro_jump",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/electro/elec_spirit_atk_vo_01",
+        "attenuation_distance": 64,
+        "preload": true
+      },
+      {
+        "name": "royalespells:spirits/electro/elec_spirit_atk_vo_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_electro_impact": {
+    "subtitle": "subtitle.royalespells.spirit_electro_impact",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/electro/tesla_zap_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_electro_step": {
+    "subtitle": "subtitle.royalespells.spirit_electro_step",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/electro/elec_spirit_step_01",
+        "attenuation_distance": 64,
+        "preload": true
+      },
+      {
+        "name": "royalespells:spirits/electro/elec_spirit_step_02",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_heal_deploy": {
+    "subtitle": "subtitle.royalespells.spirit_heal_deploy",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/heal/heal_spirit_deploy_vo_01_dl",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_heal_jump": {
+    "subtitle": "subtitle.royalespells.spirit_heal_jump",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/heal/fire_spirit_step_vo_01",
+        "attenuation_distance": 64,
+        "preload": true
+      },
+      {
+        "name": "royalespells:spirits/heal/fire_spirit_step_vo_02",
+        "attenuation_distance": 64,
+        "preload": true
+      },
+      {
+        "name": "royalespells:spirits/heal/fire_spirit_step_vo_03",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_heal_impact": {
+    "subtitle": "subtitle.royalespells.spirit_heal_impact",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/heal/heal_magic_03",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "spirit_heal_step": {
+    "subtitle": "subtitle.royalespells.spirit_heal_step",
+    "sounds": [
+      {
+        "name": "royalespells:spirits/heal/fire_spirit_step_sfx_01",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "inferno_dragon_deploy": {
+    "subtitle": "subtitles.royalespells.inferno_dragon_deploy",
+    "sounds": [
+      {
+        "name": "royalespells:original/inferno_dragon_deploy",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "inferno_dragon_wing": {
+    "subtitle": "subtitles.royalespells.inferno_dragon_wing",
+    "sounds": [
+      {
+        "name": "royalespells:original/inferno_dragon_wing",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "inferno_dragon_beam": {
+    "subtitle": "subtitles.royalespells.inferno_dragon_beam",
+    "sounds": [
+      {
+        "name": "royalespells:original/inferno_dragon_beam",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
+  },
+  "witch_deploy": {
+    "subtitle": "subtitles.royalespells.witch_deploy",
+    "sounds": [
+      {
+        "name": "royalespells:witch/summon_witch_01",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "witch_attack": {
+    "subtitle": "subtitles.royalespells.witch_attack",
+    "sounds": [
+      {
+        "name": "royalespells:witch/witch_attack_02",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "witch_impact": {
+    "subtitle": "subtitles.royalespells.witch_impact",
+    "sounds": [
+      {
+        "name": "royalespells:witch/card_evolution_witch_attack_hit",
+        "preload": true,
+        "attenuation_distance": 48,
+        "volume": 0.55
+      }
+    ]
+  },
+  "witch_summon": {
+    "subtitle": "subtitles.royalespells.witch_summon",
+    "sounds": [
+      {
+        "name": "royalespells:witch/witch_summon_02",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "witch_heal": {
+    "subtitle": "subtitles.royalespells.witch_heal",
+    "sounds": [
+      {
+        "name": "royalespells:witch/card_evolution_witch_healing",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "witch_death": {
+    "subtitle": "subtitles.royalespells.witch_death",
+    "sounds": [
+      {
+        "name": "royalespells:witch/npc_die_02",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "evolved_witch_deploy": {
+    "subtitle": "subtitles.royalespells.evolved_witch_deploy",
+    "sounds": [
+      {
+        "name": "royalespells:witch/card_evolution_witch_deploy_sfx",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "evolved_witch_deploy_voice": {
+    "subtitle": "subtitles.royalespells.evolved_witch_deploy_voice",
+    "sounds": [
+      {
+        "name": "royalespells:witch/card_evolution_witch_deploy_vo_01",
+        "preload": true,
+        "attenuation_distance": 48
+      },
+      {
+        "name": "royalespells:witch/card_evolution_witch_deploy_vo_02",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "evolved_witch_attack": {
+    "subtitle": "subtitles.royalespells.evolved_witch_attack",
+    "sounds": [
+      {
+        "name": "royalespells:witch/card_evolution_witch_attack",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "evolved_witch_impact": {
+    "subtitle": "subtitles.royalespells.evolved_witch_impact",
+    "sounds": [
+      {
+        "name": "royalespells:witch/card_evolution_witch_attack_hit",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "evolved_witch_summon": {
+    "subtitle": "subtitles.royalespells.evolved_witch_summon",
+    "sounds": [
+      {
+        "name": "royalespells:witch/card_evolution_witch_skill_skeleton_01",
+        "preload": true,
+        "attenuation_distance": 48
+      },
+      {
+        "name": "royalespells:witch/card_evolution_witch_skill_skeleton_02",
+        "preload": true,
+        "attenuation_distance": 48
       }
     ]
   }

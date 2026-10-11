@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "release": "1.9.3",
+  "loader": "fabric-1.20.1",
+  "runtimeVersion": "1.9.3",
+  "scope": "Migration references, not a stable binary API or independently compilable SDK",
+  "licenseNotice": "Original code MIT; original game audio/card art and third-party derived assets excluded. Model original contributions do not license Supercell character design.",
+  "files": [
+    {
+      "path": "src/main/java/dev/royalespells/client/WitchMagicRenderer.java",
+      "purpose": "volume modes, collection, trails and palm anchors",
+      "category": "source-reference",
+      "license": "MIT",
+      "sha256": "96282223da9d0737ada35a76d7eceb15347686c1ed6d968cbebe30e01f7d1969"
+    },
+    {
+      "path": "src/main/java/dev/royalespells/client/WitchVolume.java",
+      "purpose": "GPU depth copy, proxy box, uniforms, LOD and state restoration",
+      "category": "source-reference",
+      "license": "MIT",
+      "sha256": "b4737a8575afd5f73980483d767fdd5f955ae1922cf69bb4b6d88c0645601950"
+    },
+    {
+      "path": "src/main/java/dev/royalespells/client/WitchRenderer.java",
+      "purpose": "current left palm matrix, model and emissive layer",
+      "category": "source-reference",
+      "license": "MIT",
+      "sha256": "83d6cd3edb85109ec323dcf50cae6d4cd8f3d2e5df5b10861b5013fbe619301d"
+    },
+    {
+      "path": "src/main/java/dev/royalespells/client/TroopModel.java",
+      "purpose": "custom mesh loader and skeletal pose reference",
+      "category": "source-reference",
+      "license": "MIT",
+      "sha256": "682d3ca18c37ff911c382e5365513f5ab0ccd85213d82ebe80057b5bc04c6c5d"
+    },
+    {
+      "path": "src/main/java/dev/royalespells/client/EvolutionBurstRenderer.java",
+      "purpose": "evolution deployment world geometry",
+      "category": "source-reference",
+      "license": "MIT",
+      "sha256": "719f1f471e5460e34227cea1ab0658e04514674381b8d70fc6e95a1397eab803"
+    },
+    {
+      "path": "src/main/java/dev/royalespells/client/GraveMoteParticle.java",
+      "purpose": "secondary summon motes",
+      "category": "source-reference",
+      "license": "MIT",
+      "sha256": "240236e42a8169554bdcbfc0c108e57ebe32176705c7bfe7f9a2b0dcb6d1993d"
+    },
+    {
+      "path": "src/main/java/dev/royalespells/client/FrozenRender.java",
+      "purpose": "control state visual reference",
+      "category": "source-reference",
+      "license": "MIT",
+      "sha256": "e911c72dfa682af5215b37caba952751132b1625b109a8e389e9132cfd0bd8e1"
+    },
+    {
+      "path": "src/main/java/dev/royalespells/client/RoyaleClient.java",
+      "purpose": "client registration and event integration reference",
+      "category": "source-reference",
+      "license": "MIT",
+      "sha256": "b845320f5628f595ce9122b574ed8ef621dee261fd24bdb2061c78180dbad549"
+    },
+    {
+      "path": "src/main/java/dev/royalespells/client/TargetPreview.java",
+      "purpose": "NeoForge world matrix helper reference; do not copy unrelated UI",
+      "category": "source-reference",
+      "license": "MIT",
+      "sha256": "c5d678df7ad1d65f5ab13f4000eebd03a643e3604b7242c8337062f9e3f0016d"
+    },
+    {
+      "path": "src/main/java/dev/royalespells/entity/WitchBolt.java",
+      "purpose": "synchronized projectile and soul visual state",
+      "category": "source-reference",
+      "license": "MIT",
+      "sha256": "9192417155bc341b6921bcd976b14be3dc4f8f4606829079665290f78c80039a"
+    },
+    {
+      "path": "src/main/java/dev/royalespells/entity/RoyalWitch.java",
+      "purpose": "card actor state and event timing",
+      "category": "source-reference",
+      "license": "MIT",
+      "sha256": "9ec49c9c34b9ab5a5fb7d56281ca1305794352ae3e5b2e4fc11de3e59aad7666"
+    },
+    {
+      "path": "src/main/java/dev/royalespells/entity/EvolutionBurst.java",
+      "purpose": "deployment visual entity lifecycle",
+      "category": "source-reference",
+      "license": "MIT",
+      "sha256": "e58364a9ceb06c017e347a26451035db78765487cb18f6ee031736ed4f8b2d8c"
+    },
+    {
+      "path": "src/main/java/dev/royalespells/WitchSounds.java",
+      "purpose": "sound event registration",
+      "category": "source-reference",
+      "license": "MIT",
+      "sha256": "6a413e32c25e64e2a2a64c99d73223b32cb72bc7cf049ce1f733ef0c588a4bed"
+    },
+    {
+      "path": "src/main/java/dev/royalespells/AnimationTimeline.java",
+      "purpose": "per-entity presentation clock",
+      "category": "source-reference",
+      "license": "MIT",
+      "sha256": "2b59a78106ee3f2bcb5781a62a76d1bdf507bc20aee033755561647f6a21549e"
+    },
+    {
+      "path": "src/main/java/dev/royalespells/SummonOrders.java",
+      "purpose": "escort and attack target policy reference",
+      "category": "source-reference",
+      "license": "MIT",
+      "sha256": "12573870a0a8511dde6a03dcf00014583ef8e359e35be2239b984e654c0e0a3e"
+    },
+    {
+      "path": "src/main/java/dev/royalespells/entity/FollowSummonerGoal.java",
+      "purpose": "idle-only escort navigation reference",
+      "category": "source-reference",
+      "license": "MIT",
+      "sha256": "2ae17f111651dd362bd4b60143ccf342925b3937f4fbbf71f812d9b00286de2f"
+    },
+    {
+      "path": "src/main/java/dev/royalespells/test/WitchTests.java",
+      "purpose": "Fabric gameplay regression reference",
+      "category": "source-reference",
+      "license": "MIT",
+      "sha256": "901bc1af58d874720ec3a0e89d9fed5308786a71d52f75b0ed9d29da4327e610"
+    },
+    {
+      "path": "src/main/java/dev/royalespells/test/SummonAiTests.java",
+      "purpose": "real-world pathfinding regression reference",
+      "category": "source-reference",
+      "license": "MIT",
+      "sha256": "90f573455d6c1b330c3e458973703c830cdf0979e547276dcfefb5a0120a0db6"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/shaders/core/witch_volume.json",
+      "purpose": "volume-shader",
+      "category": "volume-shader",
+      "license": "MIT",
+      "sha256": "8c02071177b49953ea887641c2e4af2b93cbdf7732044d62ebcf0d76cd3379ec"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/shaders/core/witch_volume.vsh",
+      "purpose": "volume-shader",
+      "category": "volume-shader",
+      "license": "MIT",
+      "sha256": "2ac756e8236208b1fedeeb08c257cbc16e998e5ac32fbd772c2f6a56895ab7e4"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/shaders/core/witch_volume.fsh",
+      "purpose": "volume-shader",
+      "category": "volume-shader",
+      "license": "MIT",
+      "sha256": "ced2cef31116fb238a0c7cfc2f7754d0cc3462dd02a9c8f1e8cdde027f2f6b25"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/particles/grave_mote.json",
+      "purpose": "particle-definition",
+      "category": "particle-definition",
+      "license": "MIT",
+      "sha256": "3c1c8b1363b6e229b9eccbe26b4a32265e84c96ca65af5800ecfd19e53bc4e6a"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/particle/grave_mote.png",
+      "purpose": "secondary-sprite",
+      "category": "secondary-sprite",
+      "license": "MIT-original-contribution; character-design-rights-excluded",
+      "sha256": "dd89d6685898982546480e3f2f4b770739bc19ccd3e22d5bd660deee0452d70d"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/witch/card_evolution_witch_attack.ogg",
+      "purpose": "original-game-audio",
+      "category": "original-game-audio",
+      "license": "THIRD-PARTY-SUPERCELL-NOT-MIT",
+      "sha256": "0cf28971b6faa6db67823063f0f84596b656342eb6902cec230f94774971edd4"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/witch/card_evolution_witch_attack_hit.ogg",
+      "purpose": "original-game-audio",
+      "category": "original-game-audio",
+      "license": "THIRD-PARTY-SUPERCELL-NOT-MIT",
+      "sha256": "6db7304b21f765b4e82f00c4d6c79f8920bb0226cc83fb4efb519ce1463085ae"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/witch/card_evolution_witch_deploy_sfx.ogg",
+      "purpose": "original-game-audio",
+      "category": "original-game-audio",
+      "license": "THIRD-PARTY-SUPERCELL-NOT-MIT",
+      "sha256": "c2b9ea9c645dda8dfd01cfbf4b94299783375b8c6d11bfcccdd0412b7b97f206"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/witch/card_evolution_witch_deploy_vo_01.ogg",
+      "purpose": "original-game-audio",
+      "category": "original-game-audio",
+      "license": "THIRD-PARTY-SUPERCELL-NOT-MIT",
+      "sha256": "07667c6c7e19cdb30db692291b790ba16fed2ef82df89134cee2d2f800c3cc97"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/witch/card_evolution_witch_deploy_vo_02.ogg",
+      "purpose": "original-game-audio",
+      "category": "original-game-audio",
+      "license": "THIRD-PARTY-SUPERCELL-NOT-MIT",
+      "sha256": "e6473b6d93c13dbfa3764c77a7a5bb966e0627ca4f37b6b2ac412632e40520a7"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/witch/card_evolution_witch_healing.ogg",
+      "purpose": "original-game-audio",
+      "category": "original-game-audio",
+      "license": "THIRD-PARTY-SUPERCELL-NOT-MIT",
+      "sha256": "51935558f60e6f28235f96d5f1e727cbd8ce9176947d07dd658f9906e8663222"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/witch/card_evolution_witch_skill_skeleton_01.ogg",
+      "purpose": "original-game-audio",
+      "category": "original-game-audio",
+      "license": "THIRD-PARTY-SUPERCELL-NOT-MIT",
+      "sha256": "98b522dbffe5064da25410e61c13e43f3ccc49bb26569e70f94e9886a54c86fb"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/witch/card_evolution_witch_skill_skeleton_02.ogg",
+      "purpose": "original-game-audio",
+      "category": "original-game-audio",
+      "license": "THIRD-PARTY-SUPERCELL-NOT-MIT",
+      "sha256": "1197699b1f85aee0a1a19e96e6e47f50b12b122867cce862fae4a6e840c42885"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/witch/npc_die_02.ogg",
+      "purpose": "original-game-audio",
+      "category": "original-game-audio",
+      "license": "THIRD-PARTY-SUPERCELL-NOT-MIT",
+      "sha256": "7bbbe10854d59f091c98126ff14ac9c58c02d8f6e0b0cfdd5c96f853f70ff1ff"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/witch/summon_witch_01.ogg",
+      "purpose": "original-game-audio",
+      "category": "original-game-audio",
+      "license": "THIRD-PARTY-SUPERCELL-NOT-MIT",
+      "sha256": "888b662aff0ddcd797082d77ea8527d00a8c88ca6d0c17168756c266f0d7f378"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/witch/witch_attack_02.ogg",
+      "purpose": "original-game-audio",
+      "category": "original-game-audio",
+      "license": "THIRD-PARTY-SUPERCELL-NOT-MIT",
+      "sha256": "7fbab4fb6fd3ff5ce00662d0a7fdf6f715a8e3f5084a540e7de1ce9210523325"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/witch/witch_summon_02.ogg",
+      "purpose": "original-game-audio",
+      "category": "original-game-audio",
+      "license": "THIRD-PARTY-SUPERCELL-NOT-MIT",
+      "sha256": "effb6558dd3c30282424cf8296c650bfd55f08e733698898149a9209e08da826"
+    },
+    {
+      "path": "art/blockbench/witch.bbmodel",
+      "purpose": "optional model and bone anchor reference",
+      "category": "model-reference",
+      "license": "MIT-original-contribution; Supercell-character-design-rights-excluded",
+      "sha256": "dc6091443e8835f3f293a6bd571ac507fd72a0060998c779b527fe52e0cf3c88"
+    },
+    {
+      "path": "art/blockbench/witch_evolution.bbmodel",
+      "purpose": "optional model and bone anchor reference",
+      "category": "model-reference",
+      "license": "MIT-original-contribution; Supercell-character-design-rights-excluded",
+      "sha256": "132ec6c33b1767a89e70e3752147adf1123d51515d5bb42b6424704a91c966f0"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/troop/witch.json",
+      "purpose": "optional model and bone anchor reference",
+      "category": "model-reference",
+      "license": "MIT-original-contribution; Supercell-character-design-rights-excluded",
+      "sha256": "4ce7555335f3d40596c911887c7cbe00e33cf44eafb1f089286dab7cec9d1909"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/troop/witch_evolution.json",
+      "purpose": "optional model and bone anchor reference",
+      "category": "model-reference",
+      "license": "MIT-original-contribution; Supercell-character-design-rights-excluded",
+      "sha256": "f58f318602461025ec32c1b3a4a0b6523795c22a344efd0f6bfd1e0a9892aae1"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/entity/witch_materials.png",
+      "purpose": "optional model and bone anchor reference",
+      "category": "model-reference",
+      "license": "MIT-original-contribution; Supercell-character-design-rights-excluded",
+      "sha256": "a0258cd3b01f53e22d66ef896d90f34c273cdc6a09f45da18124ca678ee2f8de"
+    }
+  ]
+}

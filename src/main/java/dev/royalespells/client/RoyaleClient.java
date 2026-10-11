@@ -1,94 +1,99 @@
 package dev.royalespells.client;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import dev.royalespells.*;
 import dev.royalespells.entity.SpellEntity;
-import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.*;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.entity.*;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.math.*;
-import net.minecraft.particle.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.SkeletonRenderer;
+import net.minecraft.client.renderer.entity.ZombieRenderer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 
-public class RoyaleClient implements ClientModInitializer {
-    public void onInitializeClient() {
-        if(Boolean.getBoolean("royalespells.buildShowcase"))ShowcaseCapture.install();
-        else if(Boolean.getBoolean("royalespells.visualSmoke"))VisualSmoke.install();
-        EntityRendererRegistry.register(RoyaleSpells.SPELL,SpellRenderer::new);
-        EntityRendererRegistry.register(RoyaleSpells.ZOMBIE,ZombieEntityRenderer::new);
-        EntityRendererRegistry.register(RoyaleSpells.SKELETON,SkeletonEntityRenderer::new);
-        EntityRendererRegistry.register(RoyaleSpells.BARBARIAN,c->new TroopRenderer<>(c,"barbarian",.45f));
-        EntityRendererRegistry.register(RoyaleSpells.RECRUIT,c->new TroopRenderer<>(c,"royal_recruit",.5f));
-        EntityRendererRegistry.register(RoyaleSpells.BARBARIAN_HUT,c->new TroopRenderer<>(c,"barbarian_hut",1.7f));
-        LivingEntityFeatureRendererRegistrationCallback.EVENT.register((type,renderer,helper,context)->
-            helper.register(new SpellTint.ColorFeature(renderer)));
-        ParticleFactoryRegistry.getInstance().register(RoyaleSpells.SPARK,MagicParticle.Factory::new);
+public class RoyaleClient implements net.fabricmc.api.ClientModInitializer {
+    @Override @SuppressWarnings({"rawtypes","unchecked"}) public void onInitializeClient() {
+        InfernoDragonAudio.install();
+        WitchMagicRenderer.install();
+        net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry.ITEM.register((stack,tint)->tint==0?0xE3D9BF:0x842BDC,RoyaleSpells.NEUTRAL_ARMY_EGG);
+        net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry.getInstance().register(RoyaleSpells.SPARK,MagicParticle.Factory::new);
+        net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry.getInstance().register(RoyaleSpells.GRAVE_MOTE,GraveMoteParticle.Factory::new);
+        net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry.register(RoyaleSpells.SPELL,SpellRenderer::new);
+        net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry.register(RoyaleSpells.ZOMBIE,ZombieRenderer::new);
+        net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry.register(RoyaleSpells.SKELETON,RoyaleSkeletonRenderer::new);
+        net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry.register(RoyaleSpells.ARMY_SKELETON,RoyaleSkeletonRenderer::new);
+        net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry.register(RoyaleSpells.ELEMENTAL_SPIRIT,SpiritRenderer::new);
+        net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry.register(RoyaleSpells.INFERNO_DRAGON,InfernoDragonRenderer::new);
+        net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry.register(RoyaleSpells.SPIRIT_ARC,SpiritArcRenderer::new);
+        net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry.register(RoyaleSpells.EVOLUTION_BURST,EvolutionBurstRenderer::new);
+        net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry.register(RoyaleSpells.WITCH_BOLT,WitchMagicRenderer::new);
+        net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry.register(RoyaleSpells.WITCH,WitchRenderer::new);
+        net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry.register(RoyaleSpells.EVOLVED_WITCH,WitchRenderer::new);
+        net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry.register(RoyaleSpells.BARBARIAN,c->new TroopRenderer<>(c,"barbarian",.45f));
+        net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry.register(RoyaleSpells.RECRUIT,c->new TroopRenderer<>(c,"royal_recruit",.5f));
+        net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry.register(RoyaleSpells.BARBARIAN_HUT,c->new TroopRenderer<>(c,"barbarian_hut",1.7f));
+        net.fabricmc.fabric.api.client.rendering.v1.LivingEntityFeatureRendererRegistrationCallback.EVENT.register((type,renderer,helper,context)->helper.register(new SpellTint.ColorFeature(renderer)));
         CardRenderer.register();
-        SpellEntity.visualTick=RoyaleClient::particles;
-        WorldRenderEvents.AFTER_TRANSLUCENT.register(context->{
-            var client=MinecraftClient.getInstance();if(client.world==null || context.matrixStack()==null)return;
-            var buffers=client.getBufferBuilders().getEntityVertexConsumers();var matrices=context.matrixStack();var camera=context.camera().getPos();
-            for(var entity:client.world.getEntities())if(entity instanceof SpellEntity effect && effect.squaredDistanceTo(camera)<96*96) {
-                Vec3d at=effect.visualPosition(context.tickDelta());matrices.push();matrices.translate(at.x-camera.x,at.y-camera.y,at.z-camera.z);
-                SpellFields.render(effect,context.tickDelta(),matrices,buffers);matrices.pop();
-            }
-            if(Boolean.getBoolean("royalespells.visualSmoke"))RangeDepthAudit.before();
-            buffers.draw(SpellLayers.EFFECT);
-            if(Boolean.getBoolean("royalespells.visualSmoke"))RangeDepthAudit.after();
-        });
-        WorldRenderEvents.LAST.register(context->{
-            var client=MinecraftClient.getInstance();
-            if(client.player==null || client.options.hudHidden || context.matrixStack()==null)return;
-            var item=client.player.getMainHandStack().getItem();
-            if(!SpellEngine.isCard(item))item=client.player.getOffHandStack().getItem();
-            if(!SpellEngine.isCard(item))return;
-            double radius=item instanceof SpellItem card?card.spell.radius:1.6;
-            Vec3d center=SpellEngine.aim(client.player,32),camera=context.camera().getPos();
-            MatrixStack matrices=context.matrixStack();matrices.push();matrices.translate(-camera.x,-camera.y,-camera.z);
-            var consumers=client.getBufferBuilders().getEntityVertexConsumers();
-            VertexConsumer vertices=consumers.getBuffer(RenderLayer.getLines());
-            int rgb=item instanceof SpellItem card?card.spell.color:0x79AEFF;float r=(rgb>>16&255)/255f,g=(rgb>>8&255)/255f,b=(rgb&255)/255f;
-            for(int i=0;i<64;i++) {
-                double a=i*Math.PI/32,c=(i+1)*Math.PI/32;
-                Vec3d from=center.add(Math.cos(a)*radius,0.1,Math.sin(a)*radius);
-                Vec3d to=center.add(Math.cos(c)*radius,0.1,Math.sin(c)*radius);
-                line(matrices,vertices,from,to,r,g,b,0.9f);
-            }
-            line(matrices,vertices,center.add(-0.3,0.1,0),center.add(0.3,0.1,0),r,g,b,1);
-            line(matrices,vertices,center.add(0,0.1,-0.3),center.add(0,0.1,0.3),r,g,b,1);
-            consumers.draw(RenderLayer.getLines());matrices.pop();
-        });
+        if(Boolean.getBoolean("royalespells.visualSmoke")&&!Boolean.getBoolean("royalespells.witchSmoke"))StandaloneClientSmoke.install();
+        if(Boolean.getBoolean("royalespells.witchSmoke"))WitchClientSmoke.install();
+        SpellEntity.visualTick=RoyaleClient::particles;SpellEntity.impactVisual=ProjectileVisuals::impact;
+        net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents.AFTER_TRANSLUCENT.register(this::fields);
+        net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents.LAST.register(TargetPreview::render);
     }
-    public static void line(MatrixStack matrices,VertexConsumer v,Vec3d a,Vec3d b,float r,float g,float blue,float alpha) {
-        Vec3d normal=b.subtract(a).normalize();var entry=matrices.peek();
-        v.vertex(entry.getPositionMatrix(),(float)a.x,(float)a.y,(float)a.z).color(r,g,blue,alpha).normal(entry.getNormalMatrix(),(float)normal.x,(float)normal.y,(float)normal.z).next();
-        v.vertex(entry.getPositionMatrix(),(float)b.x,(float)b.y,(float)b.z).color(r,g,blue,alpha).normal(entry.getNormalMatrix(),(float)normal.x,(float)normal.y,(float)normal.z).next();
+    private void fields(net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext context) {
+        var client=Minecraft.getInstance();if(client.level==null)return;
+        var buffers=client.renderBuffers().bufferSource();var matrices=context.matrixStack();var camera=context.camera().getPosition();float partial=context.tickDelta();
+        for(var entity:client.level.entitiesForRendering())if(entity.distanceToSqr(camera)<96*96 && (entity instanceof SpellEntity || entity instanceof dev.royalespells.entity.EvolutionBurst || entity instanceof dev.royalespells.entity.SpiritArc || entity instanceof dev.royalespells.entity.InfernoDragon)) {
+            Vec3 at=entity instanceof SpellEntity effect?effect.visualPosition(partial):entity.getPosition(partial);matrices.pushPose();matrices.translate(at.x-camera.x,at.y-camera.y,at.z-camera.z);
+            if(entity instanceof SpellEntity effect){SpellFields.render(effect,partial,matrices,buffers);ProjectileVisuals.flight(effect,partial,matrices,buffers);}
+            else if(entity instanceof dev.royalespells.entity.SpiritArc arc)SpiritArcRenderer.draw(arc,partial,matrices,buffers);
+            else if(entity instanceof dev.royalespells.entity.InfernoDragon dragon)InfernoDragonRenderer.beam(dragon,partial,matrices,buffers);
+            else EvolutionBurstRenderer.draw((dev.royalespells.entity.EvolutionBurst)entity,partial,matrices,buffers);
+            matrices.popPose();
+        }
+        // Fabric supplies the camera rotation in this stack already; translate only once.
+        ProjectileVisuals.impacts(client.level,partial,matrices,camera,buffers);
+        buffers.endBatch(SpellLayers.FIRE_TRAIL);buffers.endBatch(SpellLayers.EFFECT);
+    }
+    public static void line(PoseStack matrices,VertexConsumer v,Vec3 a,Vec3 b,float r,float g,float blue,float alpha) {
+        Vec3 normal=b.subtract(a).normalize();var entry=matrices.last();
+        v.vertex(entry.pose(),(float)a.x,(float)a.y,(float)a.z).color(r,g,blue,alpha).normal(entry.normal(),(float)normal.x,(float)normal.y,(float)normal.z).endVertex();
+        v.vertex(entry.pose(),(float)b.x,(float)b.y,(float)b.z).color(r,g,blue,alpha).normal(entry.normal(),(float)normal.x,(float)normal.y,(float)normal.z).endVertex();
     }
     private static void particles(SpellEntity e) {
-        Spell spell=e.spell();var world=e.getWorld();int t=e.time();Vec3d p=e.visualPosition(0);
+        Spell spell=e.spell();var world=e.level();int t=e.time();Vec3 p=e.visualPosition(0);
+        if(spell==Spell.GRAVEYARD && e.tickCount%2==0 && world.random.nextFloat()<FieldAnimation.opacity(spell,t,e.duration())) {
+            for(int i=0;i<2;i++) {
+                double angle=world.random.nextDouble()*Math.PI*2,radius=Math.sqrt(world.random.nextDouble())*e.radius()*FieldAnimation.opening(spell,t);
+                world.addParticle(RoyaleSpells.GRAVE_MOTE,p.x+Math.cos(angle)*radius,p.y+.12+world.random.nextDouble()*.25,p.z+Math.sin(angle)*radius,Math.cos(angle)*.006,.015,Math.sin(angle)*.006);
+            }
+        }
         if(spell==Spell.ROCKET || spell==Spell.PARTY_ROCKET) {
             double progress=(double)t/spell.duration;
-            Vec3d tail=RocketMotion.exhaust(e.start(),e.target(),progress);
-            Vec3d exhaust=RocketMotion.direction(e.start(),e.target(),progress).multiply(-.09);
+            Vec3 tail=RocketMotion.exhaust(e.start(),e.target(),progress);
+            Vec3 exhaust=RocketMotion.direction(e.start(),e.target(),progress).scale(-.09);
             world.addParticle(ParticleTypes.FLAME,tail.x,tail.y,tail.z,exhaust.x,exhaust.y,exhaust.z);
-            if(e.age%2==0)world.addParticle(ParticleTypes.SMOKE,tail.x,tail.y,tail.z,exhaust.x,exhaust.y,exhaust.z);
+            if(e.tickCount%2==0)world.addParticle(ParticleTypes.SMOKE,tail.x,tail.y,tail.z,exhaust.x,exhaust.y,exhaust.z);
         } else if(spell==Spell.FIREBALL) {
-            world.addParticle(ParticleTypes.FLAME,p.x,p.y-.4,p.z,0,-.035,0);
-            if(e.age%2==0)world.addParticle(ParticleTypes.SMOKE,p.x,p.y-.7,p.z,0,-.06,0);
-        } else if(spell.rolling() && e.age%3==0) {
+            FireballParticles.flight(e);
+        } else if(spell.rolling() && e.tickCount%3==0) {
             p=SpellEngine.ground(world,p);
-            world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK,world.getBlockState(BlockPos.ofFloored(p).down())),p.x,p.y+.1,p.z,0,.04,0);
+            world.addParticle(new BlockParticleOption(ParticleTypes.BLOCK,world.getBlockState(BlockPos.containing(p).below())),p.x,p.y+.1,p.z,0,.04,0);
         } else if(spell==Spell.TORNADO) {
             for(int i=0;i<7;i++){double h=i*.45,a=t*.55+i*.8,r=.3+h*.55;world.addParticle(ParticleTypes.CLOUD,p.x+Math.cos(a)*r,p.y+h,p.z+Math.sin(a)*r,0,.02,0);}
-        } else if(spell==Spell.FREEZE && e.age%3==0 || (spell==Spell.GIANT_SNOWBALL || spell==Spell.GIANT_SNOWBALL_EVOLUTION) && e.age%2==0) {
-            for(int i=0;i<3;i++)world.addParticle(ParticleTypes.SNOWFLAKE,p.x+(world.random.nextDouble()-.5)*spell.radius*2,p.y+.3,p.z+(world.random.nextDouble()-.5)*spell.radius*2,0,.015,0);
-        } else if(spell==Spell.EARTHQUAKE && e.age%2==0 || spell==Spell.GRAVEYARD && t>=20 && t%12==8) {
-            for(int i=0;i<4;i++)world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK,world.getBlockState(BlockPos.ofFloored(p).down())),p.x+(world.random.nextDouble()-.5)*5,p.y+.15,p.z+(world.random.nextDouble()-.5)*5,0,.08,0);
-        } else if(spell==Spell.POISON && e.age%4==0) {
-            world.addParticle(new DustParticleEffect(new Vector3f(.75f,.43f,.06f),.65f),p.x+(world.random.nextDouble()-.5)*5,p.y+.2,p.z+(world.random.nextDouble()-.5)*5,0,.025,0);
-        } else if((spell==Spell.HEAL || spell==Spell.WARMTH) && e.age%8==0)world.addParticle(ParticleTypes.HAPPY_VILLAGER,p.x,p.y+.3,p.z,0,.02,0);
+        } else if((spell==Spell.GIANT_SNOWBALL || spell==Spell.GIANT_SNOWBALL_EVOLUTION) && e.tickCount%2==0) {
+            Vec3 tail=e.visualPosition(-.8f).add(0,.5,0),side=e.castDirection().cross(new Vec3(0,1,0));
+            for(int i=0;i<3;i++){Vec3 at=tail.add(side.scale((world.random.nextDouble()-.5)*.85));world.addParticle(ParticleTypes.SNOWFLAKE,at.x,at.y,at.z,side.x*.02,.012,side.z*.02);}
+        } else if(spell==Spell.FREEZE && e.tickCount%3==0) {
+            for(int i=0;i<3;i++)world.addParticle(ParticleTypes.SNOWFLAKE,p.x+(world.random.nextDouble()-.5)*e.radius()*2,p.y+.3,p.z+(world.random.nextDouble()-.5)*e.radius()*2,0,.015,0);
+        } else if(spell==Spell.EARTHQUAKE && e.tickCount%2==0 || spell==Spell.GRAVEYARD && t>=20 && t%12==8) {
+            for(int i=0;i<4;i++)world.addParticle(new BlockParticleOption(ParticleTypes.BLOCK,world.getBlockState(BlockPos.containing(p).below())),p.x+(world.random.nextDouble()-.5)*e.radius()*1.414,p.y+.15,p.z+(world.random.nextDouble()-.5)*e.radius()*1.414,0,.08,0);
+        } else if(spell==Spell.POISON && e.tickCount%4==0) {
+            world.addParticle(new DustParticleOptions(new Vector3f(.75f,.43f,.06f),.65f),p.x+(world.random.nextDouble()-.5)*e.radius()*1.414,p.y+.2,p.z+(world.random.nextDouble()-.5)*e.radius()*1.414,0,.025,0);
+        } else if((spell==Spell.HEAL || spell==Spell.WARMTH) && e.tickCount%8==0)world.addParticle(ParticleTypes.HAPPY_VILLAGER,p.x,p.y+.3,p.z,0,.02,0);
     }
 }

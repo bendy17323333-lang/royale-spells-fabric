@@ -1,0 +1,129 @@
+{
+  "version": "1.9.1",
+  "native_editor": {
+    "version": "5.2.2",
+    "plugin": "1.10.0",
+    "environment": "desktop win32",
+    "normal_project_uuid": "42191b01-5388-7b75-297c-d50828dc708a",
+    "evolved_project_uuid": "a1b270e5-936f-175e-a4be-c799f973a76b",
+    "operations": "Native Mesh, MeshFace, Group, Texture canvas and Undo edits through Blockbench MCP. Saved with Codecs.project.compile; native private Preview framebuffer captures."
+  },
+  "model_source": "The final editable bbmodel files are authoritative; editor scripts record iterative operations on those named projects, not an unattended one-click generator. Runtime exporter reconstructs hierarchy, UV and reflected winding from actual native files.",
+  "scope": "Normal reference hood roof retained. Independent fingers removed at user request. Gameplay unchanged except authorized 20 percent bolt speed increase.",
+  "native_editor_captures": [
+    "art/witch-remake/blockbench-final-witch-back.png",
+    "art/witch-remake/blockbench-final-witch-front.png",
+    "art/witch-remake/blockbench-final-witch-side.png",
+    "art/witch-remake/blockbench-final-witch-three-quarter.png",
+    "art/witch-remake/blockbench-final-witch_evolution-back.png",
+    "art/witch-remake/blockbench-final-witch_evolution-front.png",
+    "art/witch-remake/blockbench-final-witch_evolution-side.png",
+    "art/witch-remake/blockbench-final-witch_evolution-three-quarter.png"
+  ],
+  "files": [
+    {
+      "path": "art/blockbench/witch.bbmodel",
+      "sha256": "2d9de5f1828b0323c23f03c5b2ed23337e38ed49b39b66523efc077fa40c34fd"
+    },
+    {
+      "path": "art/blockbench/witch_evolution.bbmodel",
+      "sha256": "61ba242a117e46caa6f1ff85925182d6f7bb38cc0bd890976937c58c3681e00f"
+    },
+    {
+      "path": "art/witch-remake/blockbench-final-witch-back.png",
+      "sha256": "6ee56c371be4a6cf1e4f30d265fd388a3e4dce2893fe5ec6691445894c276cdd"
+    },
+    {
+      "path": "art/witch-remake/blockbench-final-witch-front.png",
+      "sha256": "3c3bce895213d6eab91779c0af53ff85e61054198c23274702ecf5fee15b2223"
+    },
+    {
+      "path": "art/witch-remake/blockbench-final-witch-side.png",
+      "sha256": "ed826b5b0c75a74702f7206abc833c156e0a4adc1dc2e8c64b272d6ff80c6b84"
+    },
+    {
+      "path": "art/witch-remake/blockbench-final-witch-three-quarter.png",
+      "sha256": "1e0143b30a48dde2db2c8a7e355204a6680193690259492f7165654b4b34ef2c"
+    },
+    {
+      "path": "art/witch-remake/blockbench-final-witch_evolution-back.png",
+      "sha256": "422412b5299665a3ebcf621b204f5153286e99ec74e33f748150299c5e1d4afb"
+    },
+    {
+      "path": "art/witch-remake/blockbench-final-witch_evolution-front.png",
+      "sha256": "afe738f2ed7cbf5a3f7939a72b7a1363af7a0cbd074b5d08df65ca558ce42b8b"
+    },
+    {
+      "path": "art/witch-remake/blockbench-final-witch_evolution-side.png",
+      "sha256": "722b6dafb2edee15faa39d986987689bcdda89bb9a1813a1b636459a56caedc7"
+    },
+    {
+      "path": "art/witch-remake/blockbench-final-witch_evolution-three-quarter.png",
+      "sha256": "73377d0001e47775c6d3c4951f4fb32c168367cda00232e85c8d4ad2307f44c1"
+    },
+    {
+      "path": "art/witch-remake/build-in-blockbench.js",
+      "sha256": "74160f292941474fab132ca3724b729a15e9931346493f60c006d719e9f2b781"
+    },
+    {
+      "path": "art/witch-remake/capture-native-witch.js",
+      "sha256": "fdf82bc1cab5090188311b0c83f6866411f42585e085bb6808bb4278c001d707"
+    },
+    {
+      "path": "art/witch-remake/evolution-in-blockbench.js",
+      "sha256": "021f34274a75148595aa801d185edac42fd8dd1dcb8e8f07ddccae63f8228537"
+    },
+    {
+      "path": "art/witch-remake/face-opening-in-blockbench.js",
+      "sha256": "da590d4286f6651cbaa13042232014c619c02e89a4738e874582a69f854318eb"
+    },
+    {
+      "path": "art/witch-remake/final-cleanup-in-blockbench.js",
+      "sha256": "ab1376fed6634e1b896d3f2d7ff95cacd220010e0dfe4d82500927c18c4e0916"
+    },
+    {
+      "path": "art/witch-remake/native-export-audit.json",
+      "sha256": "183ecc0ccb11320f7995cd44d6d6c9ad90fe5f492c492adc158295aad97257af"
+    },
+    {
+      "path": "art/witch-remake/polish-in-blockbench.js",
+      "sha256": "4bfd1316a0be6169e5de22fddc265befcc104b2b5ec933937e338e205c8169ac"
+    },
+    {
+      "path": "art/witch-remake/proportion-in-blockbench.js",
+      "sha256": "5411c3328fb73df851739266059aa56ed205118d68b629c9d3b9b85aefcc6a3a"
+    },
+    {
+      "path": "art/witch-remake/refine-in-blockbench.js",
+      "sha256": "f035173f4e819350ddf94cbc54d4332a1c3b263b6f7a85af6a829cc1d2b4bf68"
+    },
+    {
+      "path": "art/witch-remake/simplify-hands-in-blockbench.js",
+      "sha256": "519543bd052b19f5c8b546f7309ca9c1ff55cf8c14a50e7f90f91646bf38cce2"
+    },
+    {
+      "path": "art/witch-remake/witch-legacy-staff.json",
+      "sha256": "3aaf18051f0a0b26ce3c12f35294f4631bc1ffe471a47f9289021eab7aedddc5"
+    },
+    {
+      "path": "art/witch-remake/witch_evolution-legacy-staff.json",
+      "sha256": "9d9fcb541515fc4baf4fbcf7519ac3bc1db8f5eb992cfa090eed48723faac26f"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/troop/witch.json",
+      "sha256": "744614eb1e61a383b9c20e57a270057e6fdefc33850334845ce4da0389d36d7d"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/troop/witch_evolution.json",
+      "sha256": "9cb2d3c8db0b303100725e129a3b5b5c7f49189aa44172cf63071f50b630e969"
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/entity/witch_materials.png",
+      "sha256": "a0258cd3b01f53e22d66ef896d90f34c273cdc6a09f45da18124ca678ee2f8de"
+    },
+    {
+      "path": "tools/export-native-witch.py",
+      "sha256": "6f83f1a32a803bc222703e850230322550514e5931b89464b53435a3ffc1fd64"
+    }
+  ]
+}

@@ -3,13 +3,20 @@
   "package": "dev.royalespells.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "PersistentDataMixin",
     "LivingEntityMixin",
-    "MobEntityMixin"
+    "SkeletonArrowImpactMixin",
+    "MobEntityMixin",
+    "SummonTargetMixin"
+  ],
+  "client": [
+    "ChillVanillaAnimationMixin",
+    "ChillSwingMixin",
+    "LivingVisualMixin",
+    "FrozenModelPartMixin",
+    "SilentLightningMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-  },
-  "client": [
-    "LivingVisualMixin"
-  ]
+  }
 }

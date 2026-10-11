@@ -1,0 +1,210 @@
+[
+  {
+    "path": "cards-150-gold/mother-witch.png",
+    "size": 43805
+  },
+  {
+    "path": "cards-150-gold/night-witch.png",
+    "size": 41282
+  },
+  {
+    "path": "cards-150-gold/super-witch.png",
+    "size": 43158
+  },
+  {
+    "path": "cards-150-gold/witch.png",
+    "size": 46787
+  },
+  {
+    "path": "cards-150/mother-witch.png",
+    "size": 44320
+  },
+  {
+    "path": "cards-150/night-witch.png",
+    "size": 41731
+  },
+  {
+    "path": "cards-150/super-witch.png",
+    "size": 43597
+  },
+  {
+    "path": "cards-150/witch-ev1.png",
+    "size": 44517
+  },
+  {
+    "path": "cards-150/witch.png",
+    "size": 45533
+  },
+  {
+    "path": "cards-75-gold/mother-witch.png",
+    "size": 13325
+  },
+  {
+    "path": "cards-75-gold/night-witch.png",
+    "size": 13223
+  },
+  {
+    "path": "cards-75-gold/super-witch.png",
+    "size": 13259
+  },
+  {
+    "path": "cards-75-gold/witch.png",
+    "size": 13859
+  },
+  {
+    "path": "cards-75/mother-witch.png",
+    "size": 13864
+  },
+  {
+    "path": "cards-75/night-witch.png",
+    "size": 13706
+  },
+  {
+    "path": "cards-75/super-witch.png",
+    "size": 13754
+  },
+  {
+    "path": "cards-75/witch-ev1.png",
+    "size": 14327
+  },
+  {
+    "path": "cards-75/witch.png",
+    "size": 13749
+  },
+  {
+    "path": "cards-gold-png8/night-witch.png",
+    "size": 26371
+  },
+  {
+    "path": "cards-gold-png8/witch.png",
+    "size": 34555
+  },
+  {
+    "path": "cards-gold/mother-witch.png",
+    "size": 127239
+  },
+  {
+    "path": "cards-gold/night-witch.png",
+    "size": 128210
+  },
+  {
+    "path": "cards-gold/super-witch.png",
+    "size": 136682
+  },
+  {
+    "path": "cards-gold/witch.png",
+    "size": 156394
+  },
+  {
+    "path": "cards-png8/mother-witch.png",
+    "size": 116443
+  },
+  {
+    "path": "cards-png8/night-witch.png",
+    "size": 20706
+  },
+  {
+    "path": "cards-png8/super-witch.png",
+    "size": 18549
+  },
+  {
+    "path": "cards-png8/witch-ev1.png",
+    "size": 135809
+  },
+  {
+    "path": "cards-png8/witch.png",
+    "size": 20598
+  },
+  {
+    "path": "cards/mother-witch.png",
+    "size": 117721
+  },
+  {
+    "path": "cards/night-witch.png",
+    "size": 118623
+  },
+  {
+    "path": "cards/super-witch.png",
+    "size": 127065
+  },
+  {
+    "path": "cards/witch-ev1.png",
+    "size": 137310
+  },
+  {
+    "path": "cards/witch.png",
+    "size": 149912
+  },
+  {
+    "path": "chr/mother_witch.png",
+    "size": 165024
+  },
+  {
+    "path": "chr/mother_witch_dl.png",
+    "size": 165024
+  },
+  {
+    "path": "chr/night_witch.png",
+    "size": 118084
+  },
+  {
+    "path": "chr/night_witch_dl.png",
+    "size": 118084
+  },
+  {
+    "path": "chr/witch.png",
+    "size": 139904
+  },
+  {
+    "path": "chr/witch_dl.png",
+    "size": 159126
+  },
+  {
+    "path": "music/night_witch_impact_01.ogg",
+    "size": 6301
+  },
+  {
+    "path": "music/summon_witch_01.ogg",
+    "size": 8595
+  },
+  {
+    "path": "music/witch_attack_02.ogg",
+    "size": 9364
+  },
+  {
+    "path": "music/witch_step_01.ogg",
+    "size": 7618
+  },
+  {
+    "path": "music/witch_summon_02.ogg",
+    "size": 8865
+  },
+  {
+    "path": "sfx/emotes/emotes_night_witch_01_01_dl.ogg",
+    "size": 16893
+  },
+  {
+    "path": "sfx/emotes/emotes_night_witch_clap_01_01_dl.ogg",
+    "size": 22000
+  },
+  {
+    "path": "sfx/night_witch_impact_01.ogg",
+    "size": 6301
+  },
+  {
+    "path": "sfx/summon_witch_01.ogg",
+    "size": 8595
+  },
+  {
+    "path": "sfx/witch_attack_02.ogg",
+    "size": 9364
+  },
+  {
+    "path": "sfx/witch_step_01.ogg",
+    "size": 7618
+  },
+  {
+    "path": "sfx/witch_summon_02.ogg",
+    "size": 8865
+  }
+]

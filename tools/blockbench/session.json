@@ -1,0 +1,1 @@
+{"id": "d1d5065c-4caa-4cc8-87f3-7959a3dd3ef5", "server": {"protocolVersion": "2024-11-05", "capabilities": {"tools": {"listChanged": true}, "resources": {"listChanged": true}, "prompts": {"listChanged": true}}, "serverInfo": {"name": "Blockbench MCP", "version": "1.10.0"}}}

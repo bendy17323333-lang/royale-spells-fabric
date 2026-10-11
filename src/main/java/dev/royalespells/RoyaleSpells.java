@@ -1,107 +1,77 @@
 package dev.royalespells;
-
-import com.mojang.brigadier.arguments.StringArgumentType;
+import dev.royalespells.entity.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.item.*;
-import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.registry.*;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import dev.royalespells.entity.*;
+import net.minecraft.commands.Commands;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.item.*;
 import java.util.*;
-
 public final class RoyaleSpells implements ModInitializer {
     public static final String MOD_ID="royalespells";
+    public static ResourceLocation id(String path){return new ResourceLocation(MOD_ID,path);}
     public static final Map<Spell,SpellItem> ITEMS=new EnumMap<>(Spell.class);
     public static final Map<TroopCard,TroopItem> TROOP_ITEMS=new EnumMap<>(TroopCard.class);
-    public static final Item PREVIOUS_SCENE=new SceneControlItem(-1),NEXT_SCENE=new SceneControlItem(1);
-    public static Identifier id(String path) { return new Identifier(MOD_ID,path); }
-    public static final StatusEffect STUN=new StatusEffect(StatusEffectCategory.HARMFUL,0x92CAFF) {};
-    public static final StatusEffect RAGED=new StatusEffect(StatusEffectCategory.BENEFICIAL,0xCC50ED) {}.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED,"e9786d48-7cfe-4ddf-8dbd-b373e65a431d",0.35,net.minecraft.entity.attribute.EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
-    public static final DefaultParticleType SPARK=FabricParticleTypes.simple();
-    public static final StatusEffect FROZEN=new StatusEffect(StatusEffectCategory.HARMFUL,0x9ADFFF) {};
-    public static final StatusEffect ROOTED=new StatusEffect(StatusEffectCategory.HARMFUL,0x438724) {};
-    public static final net.minecraft.sound.SoundEvent GRAVEYARD_DEPLOY=Registry.register(Registries.SOUND_EVENT,id("graveyard_deploy"),net.minecraft.sound.SoundEvent.of(id("graveyard_deploy")));
-    public static final EntityType<SpellEntity> SPELL=Registry.register(Registries.ENTITY_TYPE,id("spell"),
-        FabricEntityTypeBuilder.<SpellEntity>create(SpawnGroup.MISC,SpellEntity::new)
-            .dimensions(EntityDimensions.fixed(0.1f,0.1f)).trackRangeBlocks(96).trackedUpdateRate(1).build());
-    public static final EntityType<AllyZombie> ZOMBIE=unit("baby_zombie",AllyZombie::new,0.6f,1.95f);
-    public static final EntityType<AllyZombie> BARBARIAN=unit("barbarian",AllyZombie::new,0.6f,1.95f);
-    public static final EntityType<AllyZombie> RECRUIT=unit("royal_recruit",AllyZombie::new,0.6f,1.95f);
-    public static final EntityType<AllySkeleton> SKELETON=unit("graveyard_skeleton",AllySkeleton::new,0.6f,1.99f);
-    public static final EntityType<RoyaleUnit> BARBARIAN_HUT=unit("barbarian_hut",RoyaleUnit::new,3.2f,3.4f);
-    private static <T extends Entity> EntityType<T> unit(String name,EntityType.EntityFactory<T> factory,float w,float h) {
-        return Registry.register(Registries.ENTITY_TYPE,id(name),FabricEntityTypeBuilder.create(SpawnGroup.CREATURE,factory)
-            .dimensions(EntityDimensions.fixed(w,h)).trackRangeBlocks(80).build());
-    }
-    public void onInitialize() {
-        Registry.register(Registries.STATUS_EFFECT,id("stun"),STUN);
-        Registry.register(Registries.STATUS_EFFECT,id("rage"),RAGED);
-        Registry.register(Registries.STATUS_EFFECT,id("frozen"),FROZEN);
-        Registry.register(Registries.STATUS_EFFECT,id("rooted"),ROOTED);
-        Registry.register(Registries.PARTICLE_TYPE,id("spell_spark"),SPARK);
-        for(Spell spell:Spell.values()) ITEMS.put(spell,Registry.register(Registries.ITEM,id(spell.id()),new SpellItem(spell)));
-        for(TroopCard card:TroopCard.values())TROOP_ITEMS.put(card,Registry.register(Registries.ITEM,id(card.id()),new TroopItem(card)));
-        Registry.register(Registries.ITEM,id("previous_scene"),PREVIOUS_SCENE);
-        Registry.register(Registries.ITEM,id("next_scene"),NEXT_SCENE);
-        ShowcaseMap.install();
-        Registry.register(Registries.ITEM_GROUP,id("spells"),FabricItemGroup.builder()
-            .displayName(Text.translatable("itemGroup.royalespells.spells"))
-            .icon(()->new ItemStack(ITEMS.get(Spell.ZAP_EVOLUTION)))
-            .entries((ctx,entries)->{ITEMS.values().forEach(entries::add);TROOP_ITEMS.values().forEach(entries::add);}).build());
-        FabricDefaultAttributeRegistry.register(ZOMBIE,AllyZombie.createZombieAttributes());
-        FabricDefaultAttributeRegistry.register(BARBARIAN,AllyZombie.createZombieAttributes());
-        FabricDefaultAttributeRegistry.register(RECRUIT,AllyZombie.createZombieAttributes());
-        FabricDefaultAttributeRegistry.register(SKELETON,AllySkeleton.createAbstractSkeletonAttributes().add(EntityAttributes.GENERIC_ATTACK_DAMAGE,3));
-        FabricDefaultAttributeRegistry.register(BARBARIAN_HUT,RoyaleUnit.attributes());
-        UnitSounds.initialize();
-        ServerTickEvents.END_SERVER_TICK.register(SpellEngine::tick);
-        ServerTickEvents.END_SERVER_TICK.register(EarthquakeDestruction::tickAll);
-        ServerTickEvents.END_SERVER_TICK.register(SpellMotion::tick);
-        ServerLifecycleEvents.SERVER_STOPPED.register(server->SpellMotion.clear());
-        ServerLifecycleEvents.SERVER_STOPPED.register(server->EarthquakeDestruction.clear());
-        ServerLifecycleEvents.SERVER_STOPPED.register(server->SpellEngine.clear());
-        ServerLivingEntityEvents.AFTER_DEATH.register((entity,source)->SpellEngine.onDeath(entity));
-        CommandRegistrationCallback.EVENT.register((dispatcher,access,environment)->dispatcher.register(
-            CommandManager.literal("royalespells").requires(source->source.hasPermissionLevel(2))
-              .then(CommandManager.literal("give").executes(ctx->{
-                  var player=ctx.getSource().getPlayerOrThrow();
-                  for(var item:ITEMS.values()) player.giveItemStack(new ItemStack(item));
-                  for(var item:TROOP_ITEMS.values()) player.giveItemStack(new ItemStack(item));
-                  return ITEMS.size()+TROOP_ITEMS.size();
-              }).then(CommandManager.argument("spell",StringArgumentType.word()).suggests((ctx,builder)->{
-                  for(Spell spell:Spell.values()) builder.suggest(spell.id());for(TroopCard card:TroopCard.values())builder.suggest(card.id());return builder.buildFuture();
-              }).executes(ctx->{
-                  String id=StringArgumentType.getString(ctx,"spell");
-                  for(TroopCard card:TroopCard.values())if(card.id().equals(id)){ctx.getSource().getPlayerOrThrow().giveItemStack(new ItemStack(TROOP_ITEMS.get(card)));return 1;}
-                  for(Spell spell:Spell.values()) if(spell.id().equals(id)) {
-                      ctx.getSource().getPlayerOrThrow().giveItemStack(new ItemStack(ITEMS.get(spell))); return 1;
-                  }
-                  ctx.getSource().sendError(Text.literal("Unknown spell: "+id)); return 0;
-              })))
-              .then(CommandManager.literal("refill").executes(ctx->{SpellEngine.refill(ctx.getSource().getPlayerOrThrow());return 1;}))
-              .then(CommandManager.literal("scene").executes(ctx->{ShowcaseMap.switchScene(ctx.getSource().getPlayerOrThrow(),0);return 1;})
-                  .then(CommandManager.literal("next").executes(ctx->{ShowcaseMap.switchScene(ctx.getSource().getPlayerOrThrow(),1);return 1;}))
-                  .then(CommandManager.literal("previous").executes(ctx->{ShowcaseMap.switchScene(ctx.getSource().getPlayerOrThrow(),-1);return 1;})))
-              .then(CommandManager.literal("clear").executes(ctx->{
-                  var player=ctx.getSource().getPlayerOrThrow();
-                  for(Entity e:player.getServerWorld().iterateEntities())
-                      if((e instanceof Summoned s && player.getUuid().equals(s.ownerId())) ||
-                         (e instanceof SpellEntity fx && player.getUuid().equals(fx.ownerId))) e.discard();
-                  return 1;
-              }))
-        ));
+    public static Item PREVIOUS_SCENE,NEXT_SCENE,NEUTRAL_ARMY_EGG;
+    private static MobEffect effect(String id,MobEffectCategory kind,int color){return Registry.register(BuiltInRegistries.MOB_EFFECT,id(id),new MobEffect(kind,color){});}
+    public static final MobEffect STUN=effect("stun",MobEffectCategory.HARMFUL,0x92CAFF),ELECTRICAL_STUN=effect("electrical_stun",MobEffectCategory.HARMFUL,0x8BE5FF),
+        RAGED=effect("rage",MobEffectCategory.BENEFICIAL,0xCC50ED).addAttributeModifier(Attributes.ATTACK_SPEED,"e9786d48-7cfe-4ddf-8dbd-b373e65a431d",.35,AttributeModifier.Operation.MULTIPLY_TOTAL),
+        FROZEN=effect("frozen",MobEffectCategory.HARMFUL,0x9ADFFF),ROOTED=effect("rooted",MobEffectCategory.HARMFUL,0x438724),
+        CLONED=effect("cloned",MobEffectCategory.NEUTRAL,0x14CCFF),SNOWBOUND=effect("snowbound",MobEffectCategory.HARMFUL,0x438FFF),
+        CARD_SLOW=effect("card_slow",MobEffectCategory.HARMFUL,0x81BCDE).addAttributeModifier(Attributes.MOVEMENT_SPEED,"7bba2d5d-c805-455b-890d-a053c11500a1",-.05,AttributeModifier.Operation.MULTIPLY_TOTAL),
+        CARD_SPEED=effect("card_speed",MobEffectCategory.BENEFICIAL,0xCC50ED).addAttributeModifier(Attributes.MOVEMENT_SPEED,"bd6c8491-66fc-49fb-ab49-ac90c03e00a2",.35,AttributeModifier.Operation.MULTIPLY_TOTAL);
+    public static final SimpleParticleType SPARK=FabricParticleTypes.simple(),GRAVE_MOTE=FabricParticleTypes.simple();
+    public static final net.minecraft.sounds.SoundEvent GRAVEYARD_DEPLOY=net.minecraft.sounds.SoundEvent.createFixedRangeEvent(id("graveyard_deploy"),SpellSounds.RANGE);
+    private static <T extends Entity> EntityType<T> type(String name,EntityType.EntityFactory<T> factory,float width,float height,MobCategory group){return Registry.register(BuiltInRegistries.ENTITY_TYPE,id(name),EntityType.Builder.of(factory,group).sized(width,height).clientTrackingRange(96).updateInterval(1).build(id(name).toString()));}
+    public static final EntityType<SpellEntity> SPELL=type("spell",SpellEntity::new,.1f,.1f,MobCategory.MISC);
+    public static final EntityType<AllyZombie> ZOMBIE=type("baby_zombie",AllyZombie::new,.6f,1.95f,MobCategory.CREATURE),BARBARIAN=type("barbarian",AllyZombie::new,.6f,1.95f,MobCategory.CREATURE),RECRUIT=type("royal_recruit",AllyZombie::new,.6f,1.95f,MobCategory.CREATURE);
+    public static final EntityType<AllySkeleton> SKELETON=type("graveyard_skeleton",AllySkeleton::new,.48f,1.4f,MobCategory.CREATURE);
+    public static final EntityType<ArmySkeleton> ARMY_SKELETON=type("army_skeleton",ArmySkeleton::new,.48f,1.4f,MobCategory.CREATURE);
+    public static final EntityType<ElementalSpirit> ELEMENTAL_SPIRIT=type("elemental_spirit",ElementalSpirit::new,.6f,.8f,MobCategory.CREATURE);
+    public static final EntityType<InfernoDragon> INFERNO_DRAGON=type("inferno_dragon",InfernoDragon::new,1.15f,1.65f,MobCategory.CREATURE);
+    public static final EntityType<RoyalWitch> WITCH=type("witch",RoyalWitch::new,.65f,1.95f,MobCategory.CREATURE);
+    public static final EntityType<RoyalWitch> EVOLVED_WITCH=type("witch_evolution",(type,world)->{var w=new RoyalWitch(type,world);w.setEvolved(true);return w;},.65f,1.95f,MobCategory.CREATURE);
+    public static net.minecraft.world.item.Item WITCH_EGG,EVOLVED_WITCH_EGG;
+    public static final EntityType<WitchBolt> WITCH_BOLT=type("witch_bolt",WitchBolt::new,.15f,.15f,MobCategory.MISC);
+    public static final EntityType<SpiritArc> SPIRIT_ARC=type("spirit_chain_arc",SpiritArc::new,.1f,.1f,MobCategory.MISC);
+    public static final EntityType<EvolutionBurst> EVOLUTION_BURST=type("evolution_deployment",EvolutionBurst::new,.1f,.1f,MobCategory.MISC);
+    public static final EntityType<RoyaleUnit> BARBARIAN_HUT=type("barbarian_hut",RoyaleUnit::new,3.2f,3.4f,MobCategory.CREATURE);
+    @Override public void onInitialize(){
+        for(var spell:Spell.values())ITEMS.put(spell,Registry.register(BuiltInRegistries.ITEM,id(spell.id()),new SpellItem(spell)));
+        for(var card:TroopCard.values())TROOP_ITEMS.put(card,Registry.register(BuiltInRegistries.ITEM,id(card.id()),new TroopItem(card)));
+        PREVIOUS_SCENE=Registry.register(BuiltInRegistries.ITEM,id("previous_scene"),new SceneControlItem(-1));
+        NEXT_SCENE=Registry.register(BuiltInRegistries.ITEM,id("next_scene"),new SceneControlItem(1));
+        NEUTRAL_ARMY_EGG=Registry.register(BuiltInRegistries.ITEM,id("neutral_skeleton_army_spawn_egg"),new dev.royalespells.army.NeutralArmyEgg());
+        Registry.register(BuiltInRegistries.PARTICLE_TYPE,id("spell_spark"),SPARK);Registry.register(BuiltInRegistries.PARTICLE_TYPE,id("grave_mote"),GRAVE_MOTE);
+        Registry.register(BuiltInRegistries.SOUND_EVENT,id("graveyard_deploy"),GRAVEYARD_DEPLOY);UnitSounds.initialize();SpellSounds.initialize();WitchSounds.register();dev.royalespells.army.ArmySounds.register();
+        FabricDefaultAttributeRegistry.register(ZOMBIE,AllyZombie.createAttributes());FabricDefaultAttributeRegistry.register(BARBARIAN,AllyZombie.createAttributes());FabricDefaultAttributeRegistry.register(RECRUIT,AllyZombie.createAttributes());
+        FabricDefaultAttributeRegistry.register(SKELETON,AllySkeleton.createAttributes().add(Attributes.ATTACK_DAMAGE,3));FabricDefaultAttributeRegistry.register(ARMY_SKELETON,AllySkeleton.createAttributes().add(Attributes.ATTACK_DAMAGE,3).add(Attributes.MAX_HEALTH,3));
+        FabricDefaultAttributeRegistry.register(WITCH,RoyalWitch.attributes());
+        FabricDefaultAttributeRegistry.register(EVOLVED_WITCH,RoyalWitch.attributes());
+        WITCH_EGG=Registry.register(BuiltInRegistries.ITEM,id("witch_spawn_egg"),new net.minecraft.world.item.SpawnEggItem(WITCH,0x3E216E,0xDBC078,new Item.Properties()));
+        EVOLVED_WITCH_EGG=Registry.register(BuiltInRegistries.ITEM,id("witch_evolution_spawn_egg"),new net.minecraft.world.item.SpawnEggItem(EVOLVED_WITCH,0x281447,0xF08CF0,new Item.Properties()));
+        net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents.modifyEntriesEvent(net.minecraft.world.item.CreativeModeTabs.SPAWN_EGGS).register(entries->{entries.accept(WITCH_EGG);entries.accept(EVOLVED_WITCH_EGG);});
+        FabricDefaultAttributeRegistry.register(ELEMENTAL_SPIRIT,ElementalSpirit.attributes());FabricDefaultAttributeRegistry.register(INFERNO_DRAGON,InfernoDragon.attributes());FabricDefaultAttributeRegistry.register(BARBARIAN_HUT,RoyaleUnit.attributes());
+        Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB,id("spells"),FabricItemGroup.builder().title(Component.translatable("itemGroup.royalespells.spells")).icon(()->new ItemStack(ITEMS.get(Spell.ZAP_EVOLUTION))).displayItems((ctx,entries)->{ITEMS.values().forEach(entries::accept);TROOP_ITEMS.values().forEach(entries::accept);entries.accept(NEUTRAL_ARMY_EGG);entries.accept(WITCH_EGG);entries.accept(EVOLVED_WITCH_EGG);}).build());
+        ServerTickEvents.END_SERVER_TICK.register(server->{SpellEngine.tick(server);EarthquakeDestruction.tickAll(server);SpellMotion.tick(server);});
+        ServerLifecycleEvents.SERVER_STOPPED.register(server->{SpellEngine.clear();EarthquakeDestruction.clear();SpellMotion.clear();});
+        ServerLivingEntityEvents.AFTER_DEATH.register((entity,damage)->{SpellEngine.onDeath(entity);RoyalWitch.onSkeletonDeath(entity);});
+        SummonOrders.install();ControlCooldown.install();ShowcaseMap.install();
+        CommandRegistrationCallback.EVENT.register((dispatcher,registries,environment)->dispatcher.register(Commands.literal("royalespells").requires(s->s.hasPermission(2))
+            .then(Commands.literal("give").executes(ctx->{var player=ctx.getSource().getPlayerOrException();for(var i:ITEMS.values())player.addItem(new ItemStack(i));for(var i:TROOP_ITEMS.values())player.addItem(new ItemStack(i));return ITEMS.size()+TROOP_ITEMS.size();})
+                .then(Commands.argument("card",com.mojang.brigadier.arguments.StringArgumentType.word()).suggests((ctx,suggestions)->{ITEMS.keySet().forEach(c->suggestions.suggest(c.id()));TROOP_ITEMS.keySet().forEach(c->suggestions.suggest(c.id()));return suggestions.buildFuture();}).executes(ctx->{String wanted=com.mojang.brigadier.arguments.StringArgumentType.getString(ctx,"card");for(var c:ITEMS.entrySet())if(c.getKey().id().equals(wanted)){ctx.getSource().getPlayerOrException().addItem(new ItemStack(c.getValue()));return 1;}for(var c:TROOP_ITEMS.entrySet())if(c.getKey().id().equals(wanted)){ctx.getSource().getPlayerOrException().addItem(new ItemStack(c.getValue()));return 1;}return 0;})))
+            .then(Commands.literal("refill").executes(ctx->{SpellEngine.refill(ctx.getSource().getPlayerOrException());return 1;}))
+            .then(Commands.literal("clear").executes(ctx->{var player=ctx.getSource().getPlayerOrException();for(var e:com.google.common.collect.ImmutableList.copyOf(player.serverLevel().getAllEntities()))if(e instanceof Summoned s&&player.getUUID().equals(s.ownerId())||e instanceof SpellEntity effect&&player.getUUID().equals(effect.ownerId))e.discard();return 1;}))));
     }
 }

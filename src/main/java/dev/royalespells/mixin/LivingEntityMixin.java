@@ -1,34 +1,46 @@
 package dev.royalespells.mixin;
 
 import dev.royalespells.RoyaleSpells;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin implements dev.royalespells.VisualState {
+    @com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod(method="hurt")
+    private boolean royaleSkeletonImpact(DamageSource source,float amount,com.llamalad7.mixinextras.injector.wrapoperation.Operation<Boolean> original){
+        LivingEntity self=(LivingEntity)(Object)this;
+        if(dev.royalespells.SummonOrders.smallSkeleton(source.getEntity()))return dev.royalespells.CombatImpact.withoutKnockback(self,()->original.call(source,amount));
+        return original.call(source,amount);
+    }
+    @Inject(method="knockback",at=@At("HEAD"),cancellable=true)
+    private void royaleNoIncidentalImpulse(double strength,double x,double z,CallbackInfo ci){
+        LivingEntity self=(LivingEntity)(Object)this;
+        if(dev.royalespells.CombatImpact.suppressed(self)||self instanceof dev.royalespells.entity.ArmySkeleton army&&army.blocksConversionKnockback())ci.cancel();
+    }
     @org.spongepowered.asm.mixin.Unique
-    private static final net.minecraft.entity.data.TrackedData<Byte> ROYALE_VISUAL=net.minecraft.entity.data.DataTracker.registerData(LivingEntity.class,net.minecraft.entity.data.TrackedDataHandlerRegistry.BYTE);
-    @Inject(method="initDataTracker",at=@At("TAIL"))
-    private void initVisualData(CallbackInfo ci){((LivingEntity)(Object)this).getDataTracker().startTracking(ROYALE_VISUAL,(byte)0);}
-    public byte royaleVisualFlags(){return ((LivingEntity)(Object)this).getDataTracker().get(ROYALE_VISUAL);}
+    private static final net.minecraft.network.syncher.EntityDataAccessor<Byte> ROYALE_VISUAL=net.minecraft.network.syncher.SynchedEntityData.defineId(LivingEntity.class,net.minecraft.network.syncher.EntityDataSerializers.BYTE);
+    @Inject(method="defineSynchedData",at=@At("TAIL"))
+    private void initVisualData(CallbackInfo ci){((LivingEntity)(Object)this).getEntityData().define(ROYALE_VISUAL,(byte)0);}
+    public byte royaleVisualFlags(){return ((LivingEntity)(Object)this).getEntityData().get(ROYALE_VISUAL);}
     @Inject(method="tick",at=@At("TAIL"))
     private void syncVisualData(CallbackInfo ci){
-        LivingEntity self=(LivingEntity)(Object)this;if(self.getWorld().isClient)return;
-        byte bits=(byte)((self.hasStatusEffect(RoyaleSpells.RAGED)?1:0)|(self.hasStatusEffect(RoyaleSpells.FROZEN)?2:0)|(self.hasStatusEffect(RoyaleSpells.ROOTED)?4:0));
-        self.getDataTracker().set(ROYALE_VISUAL,bits);
+        LivingEntity self=(LivingEntity)(Object)this;if(self.level().isClientSide)return;
+        byte bits=(byte)((self.hasEffect(RoyaleSpells.RAGED)?1:0)|(self.hasEffect(RoyaleSpells.FROZEN)?2:0)|(self.hasEffect(RoyaleSpells.ROOTED)?4:0)|(self.hasEffect(RoyaleSpells.CLONED)?8:0)|(self.hasEffect(RoyaleSpells.SNOWBOUND)?16:0));
+        self.getEntityData().set(ROYALE_VISUAL,bits);
     }
     @Inject(method="travel",at=@At("HEAD"),cancellable=true)
-    private void royaleFreeze(Vec3d input,CallbackInfo ci) {
+    private void royaleFreeze(Vec3 input,CallbackInfo ci) {
         LivingEntity self=(LivingEntity)(Object)this;
-        if(self.hasStatusEffect(RoyaleSpells.STUN)) {self.setVelocity(Vec3d.ZERO);ci.cancel();}
+        if(self.hasEffect(RoyaleSpells.STUN)) {self.setDeltaMovement(Vec3.ZERO);ci.cancel();}
     }
-    @Inject(method="damage",at=@At("HEAD"),cancellable=true)
+    @Inject(method="hurt",at=@At("HEAD"),cancellable=true)
     private void royaleBlockFrozenAttack(DamageSource source,float amount,CallbackInfoReturnable<Boolean> cir) {
-        if((source.isOf(net.minecraft.entity.damage.DamageTypes.PLAYER_ATTACK)||source.isOf(net.minecraft.entity.damage.DamageTypes.MOB_ATTACK)||source.isOf(net.minecraft.entity.damage.DamageTypes.MOB_ATTACK_NO_AGGRO)) && source.getAttacker() instanceof LivingEntity attacker && attacker.hasStatusEffect(RoyaleSpells.STUN))cir.setReturnValue(false);
+        if((source.is(net.minecraft.world.damagesource.DamageTypes.PLAYER_ATTACK)||source.is(net.minecraft.world.damagesource.DamageTypes.MOB_ATTACK)||source.is(net.minecraft.world.damagesource.DamageTypes.MOB_ATTACK_NO_AGGRO)) && source.getEntity() instanceof LivingEntity attacker && attacker.hasEffect(RoyaleSpells.STUN))cir.setReturnValue(false);
     }
+    @Inject(method="hurt",at=@At("RETURN"))
+    private void royaleDamageOrder(DamageSource source,float amount,CallbackInfoReturnable<Boolean> cir){if(cir.getReturnValue()&&amount>0&&source.getEntity() instanceof net.minecraft.server.level.ServerPlayer player)dev.royalespells.SummonOrders.order(player,(LivingEntity)(Object)this);}
 }
-

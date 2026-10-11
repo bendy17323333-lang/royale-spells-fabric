@@ -1,0 +1,566 @@
+{
+  "release": "1.9.1",
+  "minecraft": "1.20.1",
+  "loader_family": "Fabric",
+  "fabric_api": "0.92.6+1.20.1",
+  "jar_sha256": "e05413ab460a423436aaeeed499fc6997069cb89da13000b7b379bc7078fa75b",
+  "class_major": 61,
+  "class_count": 144,
+  "gametests": {
+    "passed": 45,
+    "xml_sha256": "0e728a73818625900c2a4e3f1193b43f3c629376b841c3221ae3b1da6512a794",
+    "build_log": "witch-final-build.log",
+    "build_log_sha256": "cad6272f5c9c6c4215bedde6019a17a4bbb2a2b184ffbd2b35cf5cf3526271ac"
+  },
+  "isolated_production_client": {
+    "world": "Witch-1.9.1-QA-remake-1791690996523",
+    "rendered_frames": 4483,
+    "capture_count": 62,
+    "callback_count": 62,
+    "controls_passed": true,
+    "control_evidence": "passed=true snowStaffSpanRadians=0.8726645708084106 recoveredStaffSpanRadians=1.0681549310684204 snowActionStepsPerWorldTick=0.65 recoveredActionStepsPerWorldTick=1.0 frozenSamples=118 frozenPoseVariants=1 frozenAttackVariants=1 otherSamples=118 otherPoseVariants=118",
+    "actual_draw_continuity": {
+      "passed": true,
+      "source": "run-production-witch/witch-visual-continuity.csv",
+      "path": "docs/validation/witch-visual-continuity.csv",
+      "sha256": "30df3392446d5f3bad94fb23d6b89ff8b57e711150226447e008caef3131e3a1",
+      "samples": 1981,
+      "flightPairs": 672,
+      "stationaryPairs": 127,
+      "stairEvents": 0,
+      "positionSpikes": 0,
+      "clockBackwards": 0,
+      "phaseBackwards": 0,
+      "impactPairs": 930,
+      "impactClockDiscontinuities": 0,
+      "nonFinite": 0,
+      "excludedFrameGaps": 106,
+      "completionSamples": 188,
+      "flightSubjects": 47,
+      "stationary_ratio": 0.18898809523809523,
+      "server_speed_blocks_per_tick": 0.72,
+      "max_received_impact_gap": 1.7440877673672472,
+      "max_visible_flight_to_impact_join": 0.630148176073579,
+      "scope": "Actual GPU submissions in this isolated run; not network impairment or FPS benchmark",
+      "summary": "passed=true samples=1981 flightSubjects=47 flightPairs=672 stationaryPairs=127 stationaryRatio=0.18898809523809523 stairEvents=0 positionSpikes=0 clockBackwards=0 phaseBackwards=0 impactPairs=930 impactClockDiscontinuities=0 nonFinite=0 excludedFrameGaps=106 maxFlightStep=0.6952853156368359 maxStepPerVisualTick=0.9935399504701035 maxFlightToImpactJoin=0.630148176073579 completionSamples=188 maxReceivedImpactGap=1.7440877673672472 serverSpeed=0.72 csv=witch-visual-continuity.csv scope=actual-rendered-frames notNetworkImpairmentTest=true visualQualityRequiresHumanReview=true"
+    },
+    "world_saved": true,
+    "shader_errors_found": false,
+    "shader_warning_lines": [
+      "[20:56:44] [Render thread/WARN]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program."
+    ],
+    "allowed_baseline_diagnostics": [
+      "[20:56:35] [Render thread/ERROR]: Failed to verify authentication",
+      "[20:56:36] [Render thread/ERROR]: No data fixer registered for royalespells:spell",
+      "[20:56:36] [Render thread/ERROR]: No data fixer registered for royalespells:baby_zombie",
+      "[20:56:36] [Render thread/ERROR]: No data fixer registered for royalespells:barbarian",
+      "[20:56:36] [Render thread/ERROR]: No data fixer registered for royalespells:royal_recruit",
+      "[20:56:36] [Render thread/ERROR]: No data fixer registered for royalespells:graveyard_skeleton",
+      "[20:56:36] [Render thread/ERROR]: No data fixer registered for royalespells:army_skeleton",
+      "[20:56:36] [Render thread/ERROR]: No data fixer registered for royalespells:elemental_spirit",
+      "[20:56:36] [Render thread/ERROR]: No data fixer registered for royalespells:inferno_dragon",
+      "[20:56:36] [Render thread/ERROR]: No data fixer registered for royalespells:witch",
+      "[20:56:36] [Render thread/ERROR]: No data fixer registered for royalespells:witch_bolt",
+      "[20:56:36] [Render thread/ERROR]: No data fixer registered for royalespells:spirit_chain_arc",
+      "[20:56:36] [Render thread/ERROR]: No data fixer registered for royalespells:evolution_deployment",
+      "[20:56:36] [Render thread/ERROR]: No data fixer registered for royalespells:barbarian_hut"
+    ],
+    "diagnostic_scope": "Offline QA authentication 401 and exact custom-entity DataFixer registration messages only; not proof of old-save migration.",
+    "log_sha256": "c28f5105d77a735791e84c034a61aa10c63017d9479773eb272a493b2126c519"
+  },
+  "visual_review": {
+    "status": "reviewed",
+    "record_sha256": "12cfab0a2fd01da1abbd5feba08870e855667c049f672a61ad5d57472dd7b5a4",
+    "record": "docs/validation/witch-visual-review.json",
+    "reviewed_images": [
+      "docs/validation/witch19-normal-three-quarter.png",
+      "docs/validation/witch19-evolved-three-quarter.png",
+      "docs/validation/witch19-face-close.png",
+      "docs/validation/witch19-profile-and-grip.png",
+      "docs/validation/witch19-walk-stride-a.png",
+      "docs/validation/witch19-walk-stride-b.png",
+      "docs/validation/witch19-normal-front.png",
+      "docs/validation/witch19-normal-back.png",
+      "docs/validation/witch19-evolved-front.png",
+      "docs/validation/witch19-evolved-back.png",
+      "docs/validation/witch19-close-side-flight.png",
+      "docs/validation/witch19-close-side-impact-core.png",
+      "docs/validation/witch19-close-side-impact-expansion.png",
+      "docs/validation/witch19-close-side-impact-smoke.png",
+      "docs/validation/witch19-close-side-impact-embers.png",
+      "docs/validation/witch19-stone-occlusion-impact-expansion.png",
+      "docs/validation/witch19-high-impact-expansion.png",
+      "docs/validation/witch19-rear-flight.png",
+      "docs/validation/witch19-front-oblique-windup.png",
+      "docs/validation/witch19-front-oblique-release.png"
+    ],
+    "quality_verdict": "See the review record; this script does not judge visual quality",
+    "capture_pass_is_not_art_acceptance": true
+  },
+  "native_model_provenance": {
+    "record": "art/witch-remake/model-provenance.json",
+    "sha256": "e3d2df0c81257ce78928da5c1468cc8d28fbac6dcbb00322eeb9e3d7f062ac43",
+    "native_editor_captures": [
+      "art/witch-remake/blockbench-final-witch-back.png",
+      "art/witch-remake/blockbench-final-witch-front.png",
+      "art/witch-remake/blockbench-final-witch-side.png",
+      "art/witch-remake/blockbench-final-witch-three-quarter.png",
+      "art/witch-remake/blockbench-final-witch_evolution-back.png",
+      "art/witch-remake/blockbench-final-witch_evolution-front.png",
+      "art/witch-remake/blockbench-final-witch_evolution-side.png",
+      "art/witch-remake/blockbench-final-witch_evolution-three-quarter.png"
+    ],
+    "atlas_size": [
+      128,
+      128
+    ],
+    "runtime_model_and_atlas_hash_bound": true,
+    "editor_capture_is_not_game_visual_acceptance": true
+  },
+  "captures": [
+    {
+      "path": "docs/validation/witch19-close-side-flight.png",
+      "sha256": "388cf3ada19c8a926db61369f75992725f167297b2a9c1bb40f82bd1443c9be9",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-close-side-flight.png"
+    },
+    {
+      "path": "docs/validation/witch19-close-side-impact-core.png",
+      "sha256": "43f10bbd0ea3a253401851e921b0609c06c3969c5da3f521bca648ab8673992b",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-close-side-impact-core.png"
+    },
+    {
+      "path": "docs/validation/witch19-close-side-impact-embers.png",
+      "sha256": "f8fe8094a9f6c9d807a28bf9aefe08311dbf9592fcc6c16b307be5a9f84e730b",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-close-side-impact-embers.png"
+    },
+    {
+      "path": "docs/validation/witch19-close-side-impact-expansion.png",
+      "sha256": "46d9b35e94ce99158be03dd15ff5baa4c659287fb816176db5bcaa176305c980",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-close-side-impact-expansion.png"
+    },
+    {
+      "path": "docs/validation/witch19-close-side-impact-smoke.png",
+      "sha256": "ad75820ad98d8aef559d009be7ba0aa73a17664dc66cc21557a214e681ba24ba",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-close-side-impact-smoke.png"
+    },
+    {
+      "path": "docs/validation/witch19-close-side-release.png",
+      "sha256": "e1ea5a7a46285bdc65f64a8695314af4dbfdec467c6bb3dce6a3eeb38732ad61",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-close-side-release.png"
+    },
+    {
+      "path": "docs/validation/witch19-close-side-windup.png",
+      "sha256": "7d524d2617f6c001617582707d638d5440ecc8ee8ed777e4e9ec5684ddfcc984",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-close-side-windup.png"
+    },
+    {
+      "path": "docs/validation/witch19-evolved-back.png",
+      "sha256": "e44b15ba09c51ebb1b71f6f107e3cddf9ea26683d9bfc6bbbace9cd476e4b823",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-evolved-back.png"
+    },
+    {
+      "path": "docs/validation/witch19-evolved-first-wave.png",
+      "sha256": "c4cf63fb764a7c27b97cd87b02945eb9b579610ec40d50c84d109a8c2849f319",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-evolved-first-wave.png"
+    },
+    {
+      "path": "docs/validation/witch19-evolved-front.png",
+      "sha256": "5f5e8e1a63842292ab3dcf4635510538259fb18327501312faed2309acfd4e03",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-evolved-front.png"
+    },
+    {
+      "path": "docs/validation/witch19-evolved-three-quarter.png",
+      "sha256": "38cc957576422356add222b05cda5347e5e32a105bc205b100554bd96eb83fc8",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-evolved-three-quarter.png"
+    },
+    {
+      "path": "docs/validation/witch19-face-close.png",
+      "sha256": "1a24bdfadd4143466a18d079698ff8f5994a1619b5bf1d703ed5d1798bea4bc9",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-face-close.png"
+    },
+    {
+      "path": "docs/validation/witch19-freeze-hold-01.png",
+      "sha256": "367bc5e5e76c5194e46b9ad4ae9db8bea139c2ae5800a84163767be0572f48ad",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-freeze-hold-01.png"
+    },
+    {
+      "path": "docs/validation/witch19-freeze-hold-02.png",
+      "sha256": "36add6d0871bb92e1d0f53ec80c312fe7ea4934f029502f7d781e339abacdb34",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-freeze-hold-02.png"
+    },
+    {
+      "path": "docs/validation/witch19-freeze-hold-03.png",
+      "sha256": "c7749b1f9d27f739f4822702f3da2a9309f56611646830bc40888b6796285c4c",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-freeze-hold-03.png"
+    },
+    {
+      "path": "docs/validation/witch19-freeze-resumed.png",
+      "sha256": "f98c5f9273f48d3c9a5226d3e7a88a3b18b03ec02584b2698f58e82e0abc5b55",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-freeze-resumed.png"
+    },
+    {
+      "path": "docs/validation/witch19-front-oblique-flight.png",
+      "sha256": "41711e7873b1954275e2996f671c7e3f1d6261a30e8071014a7d4a1c12f86cec",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-front-oblique-flight.png"
+    },
+    {
+      "path": "docs/validation/witch19-front-oblique-impact-core.png",
+      "sha256": "8ab2f131057adabd8e949789624e6ace1ec5c632fb26430b3fa5289b1a42840f",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-front-oblique-impact-core.png"
+    },
+    {
+      "path": "docs/validation/witch19-front-oblique-impact-embers.png",
+      "sha256": "9a270f69dc89eef040de800d53a288457a58a2021696d906283f5ba114677eee",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-front-oblique-impact-embers.png"
+    },
+    {
+      "path": "docs/validation/witch19-front-oblique-impact-expansion.png",
+      "sha256": "2aef3807002b6b9771932c6ec4ec2e5d89a9ec51b78849d148d334ca5ab4600f",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-front-oblique-impact-expansion.png"
+    },
+    {
+      "path": "docs/validation/witch19-front-oblique-impact-smoke.png",
+      "sha256": "8bfc9399eba21a357b9d09fd01cd20a42d4ec436e0376e49b1f4b7549f64e261",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-front-oblique-impact-smoke.png"
+    },
+    {
+      "path": "docs/validation/witch19-front-oblique-release.png",
+      "sha256": "e7bf198b64100e41e8299a77431b415644299b6a1a8eda875120a05c6ad5d8a9",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-front-oblique-release.png"
+    },
+    {
+      "path": "docs/validation/witch19-front-oblique-windup.png",
+      "sha256": "c785606ca947d98a23318a67eb72cc46f8681ed8af1aba0157a01cf4b9fb37e4",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-front-oblique-windup.png"
+    },
+    {
+      "path": "docs/validation/witch19-heal-flash.png",
+      "sha256": "345b8dfad9733387b58acd33b5cc6adffef9808591e3954c1394e9da2eb1f907",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-heal-flash.png"
+    },
+    {
+      "path": "docs/validation/witch19-high-flight.png",
+      "sha256": "daf994b7b63e07eb48228f153c23ea995105141062148ab82dd0e483ebd95b4f",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-high-flight.png"
+    },
+    {
+      "path": "docs/validation/witch19-high-impact-core.png",
+      "sha256": "85b55f4c83998388188dd7c21ad9f785dffe7c9ea481bdccd64eb1bffe64de37",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-high-impact-core.png"
+    },
+    {
+      "path": "docs/validation/witch19-high-impact-embers.png",
+      "sha256": "152559232bc5640be863e3c49c7148fd1e6f283640aaed894e9723622b5864a3",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-high-impact-embers.png"
+    },
+    {
+      "path": "docs/validation/witch19-high-impact-expansion.png",
+      "sha256": "ba2d75e4f46c1af6d9fcf816445bc3746441cf9985b3ec5c4d9084adcae6f4e3",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-high-impact-expansion.png"
+    },
+    {
+      "path": "docs/validation/witch19-high-impact-smoke.png",
+      "sha256": "ad4d7311f4e113f170f851b3fabc8631cab110bc19760cba082a335dd5ecf93d",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-high-impact-smoke.png"
+    },
+    {
+      "path": "docs/validation/witch19-high-release.png",
+      "sha256": "ca6bea2b1c06f6928a767e6ebc748b62bac55e8ea5b791fd1198964188ef09ca",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-high-release.png"
+    },
+    {
+      "path": "docs/validation/witch19-high-windup.png",
+      "sha256": "b6b240bebfc2a79e19caa643c56bc4509731b53e2d92e1b793eb3789b7222689",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-high-windup.png"
+    },
+    {
+      "path": "docs/validation/witch19-normal-back.png",
+      "sha256": "d24422894385dcdaa0f48774dcf33e6bead8cf19a1ace60d5d4eccce03cfb1b3",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-normal-back.png"
+    },
+    {
+      "path": "docs/validation/witch19-normal-front.png",
+      "sha256": "65ebf275075aa32d642f6c5c63069bfe6cad85c0d31dc26fda18a06020118304",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-normal-front.png"
+    },
+    {
+      "path": "docs/validation/witch19-normal-three-quarter.png",
+      "sha256": "6e0d6f7cf33cf287567e20645aa506fd957bedc19ce7cad865f64bca82be8406",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-normal-three-quarter.png"
+    },
+    {
+      "path": "docs/validation/witch19-profile-and-grip.png",
+      "sha256": "7413d36eb59744830e24f03da87693ad211c9abd5252fc7e12ae5f1db40bc9d5",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-profile-and-grip.png"
+    },
+    {
+      "path": "docs/validation/witch19-rear-flight.png",
+      "sha256": "fb09c71825f2e2de1ad02f4a5aa20e0dcf29abca0ae4d6f8002a552adf366596",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-rear-flight.png"
+    },
+    {
+      "path": "docs/validation/witch19-rear-impact-core.png",
+      "sha256": "d05d692dd7a97d80db23f9d11c04b64b27a903a1c80dc8436620bc307f16b4ce",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-rear-impact-core.png"
+    },
+    {
+      "path": "docs/validation/witch19-rear-impact-embers.png",
+      "sha256": "235b6875d374755487a0dcbb10bea5acedfbd75c950ae753c55ce40255c71bd6",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-rear-impact-embers.png"
+    },
+    {
+      "path": "docs/validation/witch19-rear-impact-expansion.png",
+      "sha256": "f7158bab9dca2e740bd50e61816a148d69c29dacd84f7e523e7796c87c17c18d",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-rear-impact-expansion.png"
+    },
+    {
+      "path": "docs/validation/witch19-rear-impact-smoke.png",
+      "sha256": "beeb1c42a99a4552afe6de408faac3b9cc89ce541828b1c7aa65456cdf281886",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-rear-impact-smoke.png"
+    },
+    {
+      "path": "docs/validation/witch19-rear-release.png",
+      "sha256": "e18eedb68e9b4c9a7087b2c0fa21823ad4891f06b2989da19ecf48fe81801b0a",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-rear-release.png"
+    },
+    {
+      "path": "docs/validation/witch19-rear-windup.png",
+      "sha256": "45d24c204533795459139164436e15277e321ce8f977be1fcc1bb6c8ebe54b10",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-rear-windup.png"
+    },
+    {
+      "path": "docs/validation/witch19-snow-recovered-early.png",
+      "sha256": "38145ec2358b62d869783c13f82d644c190b508aa9ac93a8beb57460361916d3",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-snow-recovered-early.png"
+    },
+    {
+      "path": "docs/validation/witch19-snow-slow-early.png",
+      "sha256": "a2237a6916ec2fee301166a676632d436ca9218db19c5ec7ecb240e6272e6d37",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-snow-slow-early.png"
+    },
+    {
+      "path": "docs/validation/witch19-snow-slow-late.png",
+      "sha256": "7f1a7c58a582f428f1df2c3e6c3b0ae35364c2170364fe0fc07ef8903cfba3be",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-snow-slow-late.png"
+    },
+    {
+      "path": "docs/validation/witch19-soul-04.png",
+      "sha256": "692e136b9f0dc456a77a8b8c1cca540d4122495e22215bc27230f64841deb99f",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-soul-04.png"
+    },
+    {
+      "path": "docs/validation/witch19-soul-10.png",
+      "sha256": "8ca33e848b7d8cd2424ae5a1a3571f277ce879cca537086385ec90c720a59d12",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-soul-10.png"
+    },
+    {
+      "path": "docs/validation/witch19-soul-17.png",
+      "sha256": "d480dbd3b26dd94917c7a4b3ac94def47a51f514e918708e28fffe04dea90806",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-soul-17.png"
+    },
+    {
+      "path": "docs/validation/witch19-soul-arrival.png",
+      "sha256": "ef903baf0ab974e68d0dde8d5ede7155b4cce64b6d064822cf4ce6a1126f65d7",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-soul-arrival.png"
+    },
+    {
+      "path": "docs/validation/witch19-stone-occlusion-flight.png",
+      "sha256": "4226422a763a4a024bf87c2d9bb597eaedd89747bd58d186035bea806ab75310",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-stone-occlusion-flight.png"
+    },
+    {
+      "path": "docs/validation/witch19-stone-occlusion-impact-core.png",
+      "sha256": "dd374180b31141c92600221b61924fcdb077f8f9f473da5b6332eb8a68866287",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-stone-occlusion-impact-core.png"
+    },
+    {
+      "path": "docs/validation/witch19-stone-occlusion-impact-embers.png",
+      "sha256": "eab7d29dcd86a2b6a39bb89ee2a80491ce5ca91a6762c65aeadcef5bd90f8e28",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-stone-occlusion-impact-embers.png"
+    },
+    {
+      "path": "docs/validation/witch19-stone-occlusion-impact-expansion.png",
+      "sha256": "7ecdf1c9b620be816f861e51ddd063bb89eee5c1ae1eb3783133aa01092ad87f",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-stone-occlusion-impact-expansion.png"
+    },
+    {
+      "path": "docs/validation/witch19-stone-occlusion-impact-smoke.png",
+      "sha256": "30df7f67595b6aa2cb54907f488c82f7083822ed1414baa2a04d3859eb0bc167",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-stone-occlusion-impact-smoke.png"
+    },
+    {
+      "path": "docs/validation/witch19-stone-occlusion-release.png",
+      "sha256": "7ec0e489aa33c0171c51c96367405ace845c4944f56d46f3bf2c443ef7c1f383",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-stone-occlusion-release.png"
+    },
+    {
+      "path": "docs/validation/witch19-stone-occlusion-windup.png",
+      "sha256": "0d7dd788f8d9cfc253c05c4f8056b7ec0d750584c450c123461818db55a0190a",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-stone-occlusion-windup.png"
+    },
+    {
+      "path": "docs/validation/witch19-summon-four-skeletons.png",
+      "sha256": "45419beb308b300c8f970222e5145ea5e10e7292b9d3ccd8e7a5b16df46f86ac",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-summon-four-skeletons.png"
+    },
+    {
+      "path": "docs/validation/witch19-summon-opening.png",
+      "sha256": "1702a4f760a6e2a0b280ee6e598b195a4fcdc53a6603912dd832b9e6576589d7",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-summon-opening.png"
+    },
+    {
+      "path": "docs/validation/witch19-two-witches-independent-attacks.png",
+      "sha256": "764e45195f2f80434002f611b1cc220828868c7f22011fa4d80fb506245332e6",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-two-witches-independent-attacks.png"
+    },
+    {
+      "path": "docs/validation/witch19-two-witches-one-attacking.png",
+      "sha256": "083f320db8715888592bf43ea10966efda8bc4c2a251d48b22df07495b07a147",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-two-witches-one-attacking.png"
+    },
+    {
+      "path": "docs/validation/witch19-walk-stride-a.png",
+      "sha256": "eb97dfddad33d79e7fbd0cb2060e13441fb9bb0fcb0bfb42e0cd853b9c479607",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-walk-stride-a.png"
+    },
+    {
+      "path": "docs/validation/witch19-walk-stride-b.png",
+      "sha256": "53d497c2a21bb4888a803ac2a9b1289567183e7f81c9830eab9921e99bd7d647",
+      "width": 1280,
+      "height": 800,
+      "source": "run-production-witch/screenshots/witch19-walk-stride-b.png"
+    }
+  ],
+  "runtime_asset_count": 261,
+  "sound_references": 111,
+  "installed_into_user_instance": false,
+  "published_to_github": false,
+  "limitations": [
+    "Capture completion is not subjective art acceptance.",
+    "Review conclusions belong to witch-visual-review.json.",
+    "An isolated flat-world QA run is not player-modpack performance or compatibility proof.",
+    "No user save or installed instance was modified by this packaging script."
+  ]
+}

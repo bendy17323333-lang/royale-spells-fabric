@@ -5,22 +5,24 @@ base { archivesName = 'royale-spells-fabric-1.20.1' }
 repositories { mavenCentral() }
 dependencies {
     minecraft 'com.mojang:minecraft:1.20.1'
-    mappings 'net.fabricmc:yarn:1.20.1+build.10:v2'
+    mappings loom.officialMojangMappings()
     modImplementation 'net.fabricmc:fabric-loader:0.16.14'
     modImplementation 'net.fabricmc.fabric-api:fabric-api:0.92.6+1.20.1'
+    implementation(annotationProcessor('io.github.llamalad7:mixinextras-fabric:0.5.0'))
+    include 'io.github.llamalad7:mixinextras-fabric:0.5.0'
     // Optional local regression fixtures, never bundled in the published mod.
     if (project.hasProperty('compatModsDir')) {
         modRuntimeOnly fileTree(dir: project.property('compatModsDir'), include: '*.jar')
     }
 }
 processResources {
-    // Ship the code license and the separate third-party asset scope together.
-    from('LICENSE', 'LICENSE-NOTICE.md', 'ASSETS.md')
     inputs.property 'version', project.version
     filesMatching('fabric.mod.json') { expand 'version': project.version }
+    from(rootDir) { include 'LICENSE', 'LICENSE-NOTICE.md', 'ASSETS.md' }
 }
 tasks.withType(JavaCompile).configureEach { options.release = 17; options.encoding = 'UTF-8' }
 java { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17; withSourcesJar() }
+tasks.withType(JavaExec).configureEach { javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(17) } }
 loom {
     runs {
         server { runDir 'run-server' }
@@ -34,15 +36,6 @@ loom {
     }
 }
 loom.runs {
-    showcase {
-        client()
-        name 'Royale Recording Map Builder'
-        runDir 'run-showcase'
-        vmArg '-Droyalespells.buildShowcase=true'
-        vmArg '-Droyalespells.visualSmoke=true'
-        vmArg '-Xmx3G'
-        programArgs '--width', '1600', '--height', '1000'
-    }
     visualSmoke {
         client()
         name 'Royale visual smoke'
@@ -52,3 +45,5 @@ loom.runs {
         programArgs '--width', '1280', '--height', '800'
     }
 }
+
+tasks.withType(JavaCompile).configureEach { options.compilerArgs += ['-Xmaxerrs', '500'] }

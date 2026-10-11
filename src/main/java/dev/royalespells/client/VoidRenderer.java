@@ -1,16 +1,20 @@
 package dev.royalespells.client;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 import dev.royalespells.entity.SpellEntity;
-import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.math.*;
+import dev.royalespells.FieldAnimation;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
 
 /** Texture-free dark field, hot rim, and descending per-victim beams. */
 public final class VoidRenderer {
-    private static void vertex(MatrixStack m,VertexConsumer v,double x,double y,double z,float r,float g,float b,float a){
-        v.vertex(m.peek().getPositionMatrix(),(float)x,(float)y,(float)z).color(r,g,b,a).next();
+    private static void vertex(PoseStack m,VertexConsumer v,double x,double y,double z,float r,float g,float b,float a){
+        v.vertex(m.last().pose(),(float)x,(float)y,(float)z).color(r,g,b,a).endVertex();
     }
-    private static void ring(MatrixStack m,VertexConsumer v,double x,double y,double z,double inner,double outer,float r,float g,float b,float alpha){
+    private static void ring(PoseStack m,VertexConsumer v,double x,double y,double z,double inner,double outer,float r,float g,float b,float alpha){
         for(int i=0;i<64;i++) {
             double a=i*Math.PI/32,c=(i+1)*Math.PI/32;
             vertex(m,v,x+Math.cos(a)*inner,y,z+Math.sin(a)*inner,r,g,b,alpha);
@@ -19,7 +23,7 @@ public final class VoidRenderer {
             vertex(m,v,x+Math.cos(a)*outer,y,z+Math.sin(a)*outer,r,g,b,alpha);
         }
     }
-    private static void beam(MatrixStack m,VertexConsumer v,Vec3d point,float age,float width,float r,float g,float b,float alpha) {
+    private static void beam(PoseStack m,VertexConsumer v,Vec3 point,float age,float width,float r,float g,float b,float alpha) {
         double bottom=12*Math.max(0,1-age/2.0),top=12;
         for(int segment=0;segment<8;segment++) {
             double y0=bottom+(top-bottom)*segment/8,y1=bottom+(top-bottom)*(segment+1)/8;
@@ -34,18 +38,36 @@ public final class VoidRenderer {
             }
         }
     }
-    public static void render(SpellEntity e,float delta,MatrixStack m,VertexConsumerProvider consumers) {
-        float time=e.time()+delta;double radius=e.spell().radius;
-        ring(m,consumers.getBuffer(SpellLayers.EFFECT),0,.07,0,0,radius,.05f,.009f,.003f,.8f);
+    private static void gradient(PoseStack m,VertexConsumer v,double inner,double outer,double y,float[] a,float[] b,float opacity,float time) {
+        for(int i=0;i<96;i++) {
+            double t0=i*Math.PI/48,t1=(i+1)*Math.PI/48;
+            double wave0=1+.012*Math.sin(t0*7+time*.09),wave1=1+.012*Math.sin(t1*7+time*.09);
+            float light=.94f+.06f*(float)Math.sin(t0*4-time*.12);
+            vertex(m,v,Math.cos(t0)*inner*wave0,y,Math.sin(t0)*inner*wave0,a[0]*light,a[1]*light,a[2]*light,a[3]*opacity);
+            vertex(m,v,Math.cos(t1)*inner*wave1,y,Math.sin(t1)*inner*wave1,a[0]*light,a[1]*light,a[2]*light,a[3]*opacity);
+            vertex(m,v,Math.cos(t1)*outer*wave1,y,Math.sin(t1)*outer*wave1,b[0]*light,b[1]*light,b[2]*light,b[3]*opacity);
+            vertex(m,v,Math.cos(t0)*outer*wave0,y,Math.sin(t0)*outer*wave0,b[0]*light,b[1]*light,b[2]*light,b[3]*opacity);
+        }
+    }
+    public static void render(SpellEntity e,float delta,PoseStack m,MultiBufferSource consumers) {
+        float time=e.time()+delta,opacity=FieldAnimation.opacity(e.spell(),time,e.duration());
+        double radius=e.radius()*FieldAnimation.radius(e.spell(),time,e.duration());
         VertexConsumer glow=consumers.getBuffer(SpellLayers.EFFECT);
-        float pulse=.65f+.2f*(float)Math.sin(time*.25);
-        ring(m,glow,0,.085,0,radius-.09,radius+.06,1,.12f,.015f,pulse);
-        ring(m,glow,0,.09,0,radius+.06,radius+.22,1,.07f,.005f,.2f);
+        // Broad wine-dark interior, crimson transition, ember rim and diffuse orange falloff.
+        // Interpolated vertex colours avoid opaque concentric bands and retain the terrain underneath.
+        gradient(m,glow,0,radius*.66,.075,new float[]{.065f,.006f,.035f,.58f},new float[]{.19f,.007f,.04f,.55f},opacity,time);
+        gradient(m,glow,radius*.66,radius*.91,.077,new float[]{.19f,.007f,.04f,.55f},new float[]{.5f,.025f,.055f,.54f},opacity,time);
+        gradient(m,glow,radius*.91,radius,.08,new float[]{.5f,.025f,.055f,.54f},new float[]{1,.25f,.065f,.86f},opacity,time);
+        gradient(m,glow,radius,radius*1.055,.082,new float[]{1,.25f,.065f,.86f},new float[]{.96f,.07f,.025f,0},opacity,time);
+        float opening=FieldAnimation.opening(e.spell(),time);
+        if(time<14)ring(m,glow,0,.1,0,Math.max(0,radius-.07),radius+.1,1,.46f,.14f,opacity*(1-opening)*.85f);
+        float breath=.12f+.05f*(float)Math.sin(time*.19);
+        gradient(m,glow,radius*.76,radius*.97,.09,new float[]{.8f,.028f,.12f,0},new float[]{.93f,.08f,.075f,breath},opacity,time+10);
         float age=time-e.voidStrikeTick();
         if(e.voidStrikeTick()==0 || age<0 || age>9)return;
-        float fade=MathHelper.clamp((9-age)/5,0,1),width=.13f+.12f*e.voidStrength();
-        for(Vec3d worldPoint:e.voidStrikePoints()) {
-            Vec3d point=worldPoint.subtract(e.target());
+        float fade=Mth.clamp((9-age)/5,0,1)*opacity,width=.13f+.12f*e.voidStrength();
+        for(Vec3 worldPoint:e.voidStrikePoints()) {
+            Vec3 point=worldPoint.subtract(e.target());
             // Draw the hot core first so transparent outer faces cannot depth-occlude it.
             beam(m,glow,point,age,width*.30f,1,.88f,.5f,fade);
             beam(m,glow,point,age,width,1,.16f,.015f,.32f*fade);
@@ -53,13 +75,12 @@ public final class VoidRenderer {
             if(age>=2) {
                 ring(m,glow,point.x,.12,point.z,.15+age*.08,.3+age*.11,1,.2f,.02f,.7f*fade);
                 // A bright flare crosses the beam at impact height.
-                m.push();m.translate(point.x,point.y,point.z);m.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
-                ring(m,glow,0,0,0,0,width*1.4,1,.62f,.1f,.6f*fade);m.pop();
+                m.pushPose();m.translate(point.x,point.y,point.z);m.mulPose(Axis.XP.rotationDegrees(90));
+                ring(m,glow,0,0,0,0,width*1.4,1,.62f,.1f,.6f*fade);m.popPose();
             }
         }
     }
 }
-
 
 
 

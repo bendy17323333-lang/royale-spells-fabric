@@ -1,0 +1,6 @@
+{
+  "arguments": {
+    "code": "(()=>{const p=ModelProject.all.find(p=>p.uuid==='1e0ea9b7-34cf-b177-ccc5-afce29b8a822');if(!p)throw Error('missing');p.select();return {name:Project.name,count:Outliner.elements.length,texture:Texture.all.length};})()"
+  },
+  "name": "risky_eval"
+}

@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "dev.royalespells.pause.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "PauseLivingMixin",
+    "PauseMobMixin"
+  ],
+  "client": [
+    "PauseVanillaRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

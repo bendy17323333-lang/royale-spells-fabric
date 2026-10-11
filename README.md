@@ -1,134 +1,66 @@
-# 皇室法术 · Royale Spells
+# 皇室法术 · Royale Spells 1.9.3
 
-## 开源许可证
+**Minecraft Java 1.20.1 / Fabric / Java 17。独立卡牌版，共 37 张卡。**
 
-本项目自编代码、工具和文档采用 **[MIT 许可证](LICENSE)**，允许修改、再分发及商业使用，须保留许可声明。《皇室战争》原版卡图、音频、MineClash 原始／改编模型等第三方资产 **明确排除**；它们保留原作者权利，不因随源码或 JAR 发布而变为 MIT。完整范围见 [LICENSE-NOTICE.md](LICENSE-NOTICE.md) 和 [ASSETS.md](ASSETS.md)。
+基于已发布的 NeoForge Beta 3 内容移植，保留其卡牌数值、模型、原作卡图、音效与特效更新。本版完全移除铁魔法接入、法杖、卷轴、抄写、墨水、奥术铁砧、巫师塔、液体池和号角仪式。四元素精灵与觉醒骷髅军团均改为可合成、可重复使用的独立卡牌，地狱飞龙保留。
 
-Original code is MIT licensed. Third-party artwork, audio, MineClash-derived assets and other third-party content are excluded and retain their respective terms.
+## 下载与版本选择
 
-把皇室战争的法术带进 **Minecraft Java 1.20.1 / Fabric，以及 1.21.1 / Fabric、NeoForge**。
+| Minecraft / 加载器 | 最新发布 | 内容 |
+| --- | --- | --- |
+| 1.20.1 Fabric | [1.9.3](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.9.3-fabric-mc1.20.1) | 37 张独立卡牌，普通/觉醒女巫及两枚蛋，不需要铁魔法 |
+| 1.21.1 NeoForge | [1.9.3-beta.4](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.9.3-beta.4-neoforge-mc1.21.1) | 独立女巫卡牌；可选完整铁魔法接入与新增女巫塔 |
+| 1.21.1 Fabric | [历史 1.2.0](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0-mc1.21.1) | 旧版移植与录制地图，未包含本轮女巫更新 |
 
-最新铁魔法适配版为 **1.7.1-beta.3（Beta 3）**，适用于 **Minecraft 1.21.1 / NeoForge**，已接入铁魔法的学派、稀有度、等级、魔力、卷轴制作、抄写、法术书与武器施法，并加入圣水、暗黑重油和觉醒骷髅军团。本次第三个公开 Beta 汇总地狱飞龙、雪球蓝色动画减速、火球连续尾焰与火星黑烟、电击动作暂停，并完成卡牌形态的数值与范围重做。四元素熔炉法杖和原作精灵音效继续保留。
+两份新发布均有 JAR、完整源码、验证资料和女巫 VFX 交接包。**给 MineClash 合作开发者：[女巫全部特效分类与接入手册](docs/technical/16-witch-vfx-handoff.md)**，含动画挂点、GLSL、声音、生命周期、性能和许可边界。
 
-Fabric 1.20.1、Fabric 1.21.1 和旧版 NeoForge 同装适配分支目前仍为 **1.2.0**，包含 28 张法术卡牌与野蛮人小屋。各版本的下载入口见下表。
+## 1.9.3：女巫卡牌与召唤 AI
 
-Clash Royale inspired spells for Minecraft Java 1.20.1 (Fabric) and 1.21.1 (Fabric / NeoForge). The latest NeoForge Iron's Spells integration is **1.7.1-beta.3**, with native spellbook, mana, scroll crafting and progression support; the Fabric releases remain at **1.2.0**.
+普通/觉醒女巫各有独立刷怪蛋。小骷髅和小僵尸改用统一目标选择与互斥的战斗/跟随 Goal，避免跟随路径覆盖追敌；女巫护卫会主动寻找附近敌对单位，保留自己的战斗并尝试站在母体前方。配方和详细规则见 [女巫卡牌与 AI](docs/technical/17-witch-cards-and-ai.md)。
 
-## 开发技术档案
+[本版更新](CHANGELOG-1.9.3.md) · [验证记录](VALIDATION-1.9.3.md) · [NeoForge 技术档案](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/iron-integration-1.21.1/docs/technical/README.md)
 
-[完整中文技术档案 · 铁魔法 Beta 3](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/iron-integration-1.21.1/docs/technical/README.md) 已按 `1.7.1-beta.3` 源码整理，覆盖架构、施法数值、铁魔法系统、召唤 AI、圣水与重油、结构与仪式、同步存档、特效模型、音频、构建测试和扩展流程；包含四元素法杖、真实跳扑、连锁电击与模型导出，新增地狱飞龙、电击动作暂停、雪球／火球视觉和卡牌数值隔离章节。
+## 1.9.2：女巫比例与施法动作
 
-可直接阅读 [准星渲染原理与故障修复](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/iron-integration-1.21.1/docs/technical/03-target-preview.md)、[源码索引](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/iron-integration-1.21.1/docs/technical/source-index.md) 和 [法术、音效与配方表](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/iron-integration-1.21.1/docs/technical/spell-reference.md)。技术档案对应 NeoForge 铁魔法分支，旧 Fabric 分支的接口和数值应以各自源码为准。
+补齐脖颈与立体衣身，加长普通版双腿；兜帽高约 1.895 格。觉醒版取消双腿，改成悬空空心袍摆。右手拄杖，左手施法，蓄力与弹体从左掌发出。详见 [1.9.2 改动与技术说明](docs/WITCH-1.9.2.md)。
 
-## 下载与安装
+## 历史 1.9.1：女巫模型与动态呈现重做
 
-**想体验铁魔法完整适配，请下载下表第一行的 Beta 3。** 它在 GitHub Releases 中标为 **Pre-release（预发布）**。
+使用原生 Blockbench 重建兜帽、短脸、金色肩甲与分层袍摆，采用 128×128 像素图集和整体块状手掌；普通女巫保留羊头骨法杖。弹速由每 tick 0.6 格提高到 0.72 格，弹体和体积雾改为连续帧插值。详见 [本版技术增量](docs/WITCH-1.9.1.md) 与 [验证记录](BUILD_STATUS.md)。
 
-请按 Minecraft 版本、加载器和玩法选择，下载同一行对应的发布包：
+新增两张 5 圣水卡牌：女巫、觉醒女巫。真实远程法球命中后产生 1.5 格范围伤害；每 7 秒召唤四只骷髅。觉醒只由自己首波四只非克隆骷髅返回灵魂，在灵魂飞回后治疗，并允许超出初始生命。支持镜像、克隆、玩家攻击指令，以及冰冻/电击暂停和雪球动作减速。
 
-| Minecraft | 下载 | Java | 源码分支 |
-|---|---|---|---|
-| **1.21.1 NeoForge** | **[1.7.1-beta.3 铁魔法完整适配 · Beta 3](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.7.1-beta.3-neoforge-mc1.21.1)** | **21** | [iron-integration-1.21.1](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/iron-integration-1.21.1) |
-| 1.21.1 NeoForge | [1.2.0 旧版同装适配与地图](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0-neoforge-mc1.21.1) | 21 | [neoforge-1.21.1](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/neoforge-1.21.1) |
-| 1.21.1 Fabric | [1.2.0 适配版与新版地图](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0-mc1.21.1) | 21 | [mc-1.21.1](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/mc-1.21.1) |
-| 1.20.1 Fabric | [1.2.0 模组与地图](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0) | 17+ | main |
+女巫的数值、配方、首波归魂和控制机制见 [玩法及机制说明](docs/WITCH-1.9.0.md)；该历史文档中的旧模型、脸部贴图及弹速由 1.9.1 替代。
 
-**Beta 3** 已验证与 **Iron's Spells 'n Spellbooks 1.21.1-3.16.3** 配合使用，包含皇室法术、召唤法术、地狱飞龙与绑定在熔炉法杖上的四元素精灵。支持卷轴制作、抄写、提取、奥术铁砧升级、镜像复制皇室及铁魔法法术，以及圣水和暗黑重油获取、卡牌觉醒、骷髅军团与号角仪式。安装依赖、玩法和测试记录见 [铁魔法 Beta 分支说明](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/iron-integration-1.21.1)。
+## 安装
 
-Beta 的安装文件是 `royale-spells-neoforge-1.21.1-1.7.1-beta.3.jar`。本次同时提供可选的 `mineclash-zappies-neoforge-1.21.1-0.1.1.jar`：在 MineClash 原有电车上加入三车部署、连线电弧和短暂暂停，保留雨水自伤。**电车功能需要安装这个附属，以及 MineClash 0.7.5 和 GeckoLib；只装皇室法术不会启用电车附属。**
+1. 新建或选用 **1.20.1 Fabric** 实例，游戏使用 **Java 17**。
+2. 安装 Fabric Loader **0.16.14 或兼容新版**，以及 [Fabric API 0.92.6+1.20.1](https://modrinth.com/mod/fabric-api/version/0.92.6+1.20.1)。
+3. 将 `royale-spells-fabric-1.20.1-1.9.3.jar` 放入 `mods`。同一实例只保留一份 Royale Spells。
+4. 不需要 Iron’s Spells、NeoForge、GeckoLib 或 MineClash。本模组需同时装在服务端和客户端。
 
-`royale-spells-1.7.1-beta.3-with-zappies.zip` 提供两份 JAR、安装说明和许可；第三方依赖另装。完整源码 ZIP 包含 `addons/mineclash-zappies`，并有 SHA-256 校验清单。录制地图目前仍放在各个 **1.2.0** 发布条目中。
+升级既有 Fabric 实例前请备份存档。旧卡牌 ID 保留，但本轮没有验证旧世界完整迁移；不能把 1.21.1 NeoForge 世界直接降级为 1.20.1 世界。本次发布不自动替换本地游戏实例。
 
-本次数值只改卡牌形态和指定的觉醒骷髅军团：原作 11 级小骷髅 81 HP 对应模组 3 HP，伤害除以 27，范围一格一个方块；镜像使用 12 级数据。**卡牌冰冻 3.5 秒，铁魔法版保持 5 秒**，普通铁魔法法术、精灵法杖和 MineClash 不套用卡牌重做。完整来源、历史活动卡和克隆生命下限等例外见 [2026-09-08 卡牌换算表](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/iron-integration-1.21.1/CARD-BALANCE.md)。
+## 使用与获取
 
-通过本体独立 96 项、同装 162 项和电车独立 12 项 GameTest；隔离实际客户端确认火球画面、电车电弧、连续 46 tick 攻击、暂停续接与死亡姿态隔离。[验证边界和画面证据](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/iron-integration-1.21.1/VALIDATION-1.7.1-beta.3.md)。
+工作台合成全部卡牌；配方无形状，详见 [完整合成表](docs/RECIPES.md)。物品可重复使用，不在施放后消失。
 
-**冰精灵模型、皮肤与发光遮罩改编自 [MineClash](https://www.curseforge.com/minecraft/mc-mods/mineclash)，作者 LiziYowo / MineClash 团队。** 原作角色、卡图和声音归 Supercell；完整来源见铁魔法分支素材清单。
+- 右键瞄准施法，最多瞄准 32 格；卡牌提示说明圣水花费。
+- 圣水上限 10，正常 20 TPS 下每 2 秒回复 1。创造模式不扣圣水。
+- 仅持有卡牌时显示范围预览与圣水状态；圆形范围不随台阶扭曲。滚木、滚桶显示长条；觉醒飞桶显示两个落点。
+- 镜像复制上一次成功使用的卡，圣水费用 +1，使用 12 级表；其它普通卡使用 11 级表。军团仍保留 3 HP 固定基准与一支军团限制。
+- 女巫与觉醒女巫各花费 5 圣水；四精灵各花费 1 圣水；觉醒骷髅军团 3、地狱飞龙 4、野蛮人小屋 6。
+- 军团为将军 + 15 只小骷髅，每名玩家同一时间最多一支受将军支持的军团，冷却 15 秒；将军死亡后普通存活骷髅保留，幽灵消散。
+- 冰冻持续 3.5 秒，冰冻和藤蔓共用 15 秒冷却。雪球带蓝色染色与动作减速；电击短暂暂停攻击动作。
+- Shift + 狂暴／治疗／温暖／克隆可向脚下施法；Shift + 英雄滚桶触发已部署英雄的再次滚动。
+- 创造栏包含全部卡、中立军团刷怪蛋，以及普通/觉醒女巫两枚刷怪蛋。管理员可用 `/royalespells give` 获得全部卡；`/royalespells give fire_spirit` 可给单卡；`/royalespells refill` 补满圣水；`/royalespells clear` 清理自己的召唤物与法术。
 
-旧版 **NeoForge 1.2.0** 提供铁魔法同装与战斗兼容，使用独立圣水体系；该版本的说明见 [旧版 NeoForge 分支](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/neoforge-1.21.1)。
+28 张法术含普通及觉醒小电、雪球、飞桶，以及活动／历史法术；另有野蛮人小屋、地狱飞龙、四精灵、觉醒骷髅军团、女巫与觉醒女巫。旧录制地图的上一场／下一场物品与场景识别保留；本次没有附带新录制地图。
 
-以下安装文件、玩法、地图和构建说明对应本分支的 **1.20.1 Fabric 1.2.0** 版；铁魔法 Beta 和其它 **1.21.1** 版本请使用上表对应的发布条目及分支说明。同一实例只保留对应 Minecraft 版本和加载器的一份模组。
+## 数值、技术与许可证
 
-- `royale-spells-fabric-1.20.1-1.2.0.jar`：模组本体。
-- `royale-spells-1.2.0-fabric-1.20.1.zip`：安装包，包含本体、Fabric API、说明与预览。
-- `royale-spells-1.2.0-recording-map.zip`：26 场法术演示／测试地图。
-- `royale-spells-1.2.0-source.zip`：完整源码、资源和可编辑模型。
+[数值表](CARD-BALANCE.md) · [技术说明](docs/TECHNICAL.md) · [验证记录](BUILD_STATUS.md) · [素材出处](ASSETS.md)
 
-需要 Minecraft **1.20.1**、Fabric Loader **0.16.14 或兼容的新版本**、对应 1.20.1 的 **Fabric API**，以及 **Java 17 或以上**。
+自编代码、配置、构建脚本及技术文档按 [MIT](LICENSE) 开源。皇室战争原版卡图、音频、MineClash 改编素材等第三方资产明确排除，见 [许可范围](LICENSE-NOTICE.md)。MineClash 冰精灵出处：[原项目](https://www.curseforge.com/minecraft/mc-mods/mineclash)。本项目为非官方玩家模组。
 
-退出游戏，将 JAR 放入对应实例的 `mods` 文件夹。升级时替换旧版，只保留一份本模组；已有兼容 Fabric API 时也只保留一份。联机时服务端和每位玩家都需要安装本模组与 Fabric API。
-
-## 1.20.1 Fabric 版怎么玩
-
-创造模式在 **皇室卡牌** 物品组取卡，手持卡牌瞄准后右键施放。生存模式使用无序配方制作卡牌，卡牌可以反复使用。
-
-圣水上限 10，每两秒恢复 1 点；创造模式免圣水消耗。镜像复制上一张卡，保留觉醒效果，并将伤害、治疗及召唤物属性提高约 10%。
-
-管理员或开启作弊后可以使用：
-
-```mcfunction
-/royalespells give
-/royalespells give barbarian_hut
-/royalespells refill
-/royalespells clear
-```
-
-全部卡牌、配方和适配数值见 [中文使用说明](README-zh_CN.md)。
-
-## 法术与召唤物
-
-- 包含火球、火箭、Zap、雷电、滚木、墓园、毒药、狂暴、冰冻、克隆、镜像、虚空、地震、藤蔓等 28 张法术卡，包含觉醒与历史／活动变体。
-- 卡牌图标使用皇室战争原版卡图；哥布林召唤物改为小僵尸。
-- 墓园使用经典原版登场音效，召唤持石剑、6 点生命的原版骷髅；每击基础伤害 1.5，多只骷髅的攻击可分别命中。
-- 野蛮人使用定制金发、长胡子模型及原版角色音效；野蛮人小屋定时出兵。
-- 克隆体为青色半透明，狂暴呈紫色染色，冰冻有冰壳，藤蔓有立体缠绕模型。
-- 地震的三次震荡累积方块裂纹，第三次破坏木材、让石材保留 90% 进度约 5 秒；可在此期间继续施法破坏石材。
-
-![原版卡牌在游戏中的展示](docs/images/cards.png)
-
-## 1.2.0 更新
-
-- 重做小电动态：下降先导、分叉电弧、闪烁和消散，电弧连接实际命中的目标。
-- 普通小电／觉醒首击半径 2.2 格，觉醒第二击 3 格；万箭齐发 4.5 格，火球 2.8 格。
-- 修正野蛮人握剑位置；皇家卫队换为原作风格的木桶头盔、蓝色羽毛、钢甲、木盾与凉鞋。
-- 地震改为三次累积破坏，短暂保留裂纹；飓风、雪球等推拉能实际移动关闭 AI 的目标，并保留墙体碰撞。
-- 新增 26 个演示场景，排除治疗和温暖。快捷栏羽毛切上一场、烈焰棒切下一场，潜行使用重置当前场景。详见 [录制地图说明](docs/recording-map.md)。
-
-下载地图 ZIP，解压后把包含 `level.dat` 的「皇室法术-录制片场-1.2.0」文件夹放进实例的 `saves`。安装 1.2.0 模组后，在单人游戏中打开「皇室法术 · 录制片场 1.2.0」。第 8 格羽毛右键上一场，第 9 格烈焰棒右键下一场；潜行右键任一控制物品可重置场景。
-
-![法术演示地图的电击试场](docs/images/recording-map.png)
-
-![木桶头皇家卫队与修正持剑位置的野蛮人](docs/images/recruit-bucket.png)
-
-## 1.1.2 更新
-
-- 火箭头部沿实际弹道转动，上升抬头、顶点转平、下落俯冲；尾焰和烟从尾部喷出。
-- 重做野蛮人脸型、眉眼、金发和长马蹄形胡子，调整身体轮廓与服饰，铁剑跟随真实手部动作。
-- 脚步只播放原作无喊声版本，降低音量并限制频率；攻击语音仍由实际攻击触发。
-
-![野蛮人游戏内近景](docs/images/barbarian.png)
-
-![火箭三个飞行阶段，画面中从右向左飞行](docs/images/rocket-arc.png)
-
-![野蛮人小屋](docs/images/barbarian-hut.png)
-
-## 从源码构建
-
-构建使用 **JDK 21**，产物兼容 **Java 17**：
-
-```powershell
-./gradlew.bat build
-./gradlew.bat runGametest
-```
-
-Linux / macOS 使用 `./gradlew`。无 `sources` 后缀的安装 JAR 位于 `build/libs`。
-
-`runVisualSmoke` 会启动开发客户端，在工程自己的目录创建新测试世界并截图，完成后自动关闭。需要可用的图形环境；普通游戏不会启用该流程。游戏不会通过这个任务打开已有正式存档。
-
-`art/make-troop-models.py` 是几何生成器，`art/blockbench` 包含可编辑的模型工程。野蛮人网格的顶点配色由游戏渲染器应用，导出工程保留对应元数据。
-
-## 验证与素材
-
-1.2.0 已通过 36 项 Minecraft GameTest、开发客户端与整合包副本中的 26 场地图检查，以及范围深度、模型、音效和火箭飞行回归。详见 [验证记录](docs/validation-1.2.0.md)。
-
-本项目为玩家制作的非官方模组。皇室战争卡图与音效属于原权利人，素材来源、原始哈希和生成提示词见 [ASSETS.md](ASSETS.md)、各项 `*-SOURCES.json` 及 [TROOP-ASSETS.json](TROOP-ASSETS.json)。本项目自编代码现已采用 MIT；第三方资产排除范围见 LICENSE-NOTICE.md。
+构建需要 JDK 21 启动 Gradle 9.4.1，并安装 JDK 17 运行游戏测试；产出 Java 17 字节码。执行 `gradlew.bat build`，产物在 `build/libs`。`gradlew.bat runGametest` 运行 51 项独立测试；`gradlew.bat runVisualSmoke` 在新建的隔离世界截图并退出。普通游戏启动不会执行测试或自动新建世界。

@@ -1,0 +1,10 @@
+{
+  "version": "1.3.0",
+  "method": "Built-in image_gen.imagegen",
+  "path": "src/main/resources/assets/royalespells/textures/particle/grave_mote.png",
+  "use": "Continuous drifting Graveyard purple soul wisps",
+  "generated": true,
+  "postprocessing": "None; generated PNG copied without modification",
+  "prompt": "Use case: stylized-concept. Asset type: one transparent game particle sprite for a Minecraft adaptation of Clash Royale Graveyard. Create ONE isolated small violet spectral ember / drifting soul wisp centered on a square canvas, real transparent alpha background. A compact rounded irregular soft luminous core, a delicate curling upward smoke tail, pale lavender center, saturated amethyst and deep plum edge, softly dissolving outer opacity. Clean hand-painted stylized fantasy game VFX, readable at 32 to 64 pixels, no sharp lightning, no large explosion, no portal, no Enderman particle, no face, no skull, no symbols, no letters, no ground, no cast shadow, no border. Occupy central 60 percent of the image, leave transparent padding. Straight-on billboard sprite designed to drift gently upward, gracefully fade, and be rendered in small clusters. Preserve transparent alpha including soft low-opacity wisps.",
+  "sha256": "dd89d6685898982546480e3f2f4b770739bc19ccd3e22d5bd660deee0452d70d"
+}

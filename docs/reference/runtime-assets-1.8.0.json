@@ -1,0 +1,1201 @@
+{
+  "release": "1.8.0",
+  "third_party_exclusions": "See ASSETS.md and LICENSE-NOTICE.md",
+  "files": [
+    {
+      "path": "src/main/resources/assets/royalespells/inferno_asset_sources.json",
+      "sha256": "c993dc20a911ef590f5faf10c2f84e635d48c0851a0f28d3e873f27bd7191681",
+      "bytes": 2090
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/lang/en_us.json",
+      "sha256": "7f0bf8d06ba3d682fa7e1dff95a433b9b9e5f6f3c239188a1892dc21647d6ecc",
+      "bytes": 17627
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/lang/zh_cn.json",
+      "sha256": "d40fd57de189b648cddff4d6c82709f0d0623e2acde860162589f8b61f9841a1",
+      "bytes": 17924
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/arrows.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/barbarian_barrel.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/barbarian_barrel_hero.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/barbarian_hut.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/clone.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/earthquake.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/electro_spirit.json",
+      "sha256": "bf30b342e2e7635e2cb03c729010b72cc297bdd6cc60e6d2282efe0d8b0f8472",
+      "bytes": 1731
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/fire_spirit.json",
+      "sha256": "bf30b342e2e7635e2cb03c729010b72cc297bdd6cc60e6d2282efe0d8b0f8472",
+      "bytes": 1731
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/fireball.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/freeze.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/giant_snowball.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/giant_snowball_evolution.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/goblin_barrel.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/goblin_barrel_evolution.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/goblin_curse.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/graveyard.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/heal.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/heal_spirit.json",
+      "sha256": "bf30b342e2e7635e2cb03c729010b72cc297bdd6cc60e6d2282efe0d8b0f8472",
+      "bytes": 1731
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/ice_spirit.json",
+      "sha256": "bf30b342e2e7635e2cb03c729010b72cc297bdd6cc60e6d2282efe0d8b0f8472",
+      "bytes": 1731
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/inferno_dragon.json",
+      "sha256": "bf30b342e2e7635e2cb03c729010b72cc297bdd6cc60e6d2282efe0d8b0f8472",
+      "bytes": 1731
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/lightning.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/mirror.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/neutral_skeleton_army_spawn_egg.json",
+      "sha256": "1f4088868a2c3aa4d85298cdff0bd3cf5f9b1f788b67979bcf80e232c7ad7494",
+      "bytes": 48
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/next_scene.json",
+      "sha256": "63e50eec7721f1a6aeed94bcb53d01db4ff69a70416a80fa33a4531ad37ca041",
+      "bytes": 87
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/party_rocket.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/poison.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/previous_scene.json",
+      "sha256": "8a9d9ed45d26cd996ccbb796e23bce96895bb5757b38ef5f8673b5d2c9b7891a",
+      "bytes": 85
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/rage.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/rocket.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/royal_delivery.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/skeleton_army_evolution.json",
+      "sha256": "bf30b342e2e7635e2cb03c729010b72cc297bdd6cc60e6d2282efe0d8b0f8472",
+      "bytes": 1731
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/the_log.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/tornado.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/vines.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/void.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/warmth.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/zap.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/item/zap_evolution.json",
+      "sha256": "8cc40f8d71662311531018b7f79da69f6c7179821ea9c597cda06d3ad918b48b",
+      "bytes": 1606
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/troop/barbarian.json",
+      "sha256": "1e3f09c681f74563676bf06acf4f418e12bfb7fbcbacec5470dcf97e21bf0d1a",
+      "bytes": 302123
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/troop/barbarian_hut.json",
+      "sha256": "cc53c44bf345bb5c31673b87d571b84484fc395197a96864bead2de77730dd5a",
+      "bytes": 30256
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/troop/inferno_dragon.json",
+      "sha256": "90915cfc71f9e7ac85acb03808d3490ed193b12045a91b980946c9d9f2210c79",
+      "bytes": 200189
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/troop/royal_recruit.json",
+      "sha256": "56b0fd1e6ebd2512d9ad24ccd39192d936fcae3797fd57f118c1602cb5868a02",
+      "bytes": 594832
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/troop/spirit_electro.json",
+      "sha256": "3bbf672e97c66daa079c00e658ec0980047fbe48868f0f99b0d1e3ad0c98b472",
+      "bytes": 49723
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/troop/spirit_fire.json",
+      "sha256": "236b278b9ee47a09bc95c1e92c9ff8621f484a1494b2dab667acf4578e1f47f9",
+      "bytes": 19148
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/troop/spirit_heal.json",
+      "sha256": "eece943cb67cbf2f1d6d410bbac2f4b26f4d267ab9b9beeac03f8334a0d7430b",
+      "bytes": 21083
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/troop/spirit_ice.json",
+      "sha256": "7fe6630750c06f864a98f65e4181ce19f42720556007031d266e3043c92ec87d",
+      "bytes": 12087
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/particles/grave_mote.json",
+      "sha256": "3c1c8b1363b6e229b9eccbe26b4a32265e84c96ca65af5800ecfd19e53bc4e6a",
+      "bytes": 41
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/particles/spell_spark.json",
+      "sha256": "7a84b3acd3d449f47972a3fac090be6b337482ccedb5b2d0b567ee5c843c5c15",
+      "bytes": 55
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/barbarian/barb_footstep_01.ogg",
+      "sha256": "8219a0f0068d1504a98e175f6c29cc594b70f045f86a0930789249bd6523fb57",
+      "bytes": 5228
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/barbarian/barb_footstep_02.ogg",
+      "sha256": "fc584da90b62d73f803e588e6f6053f26608a0cbd0d50c76f1bfda2d7074ddcc",
+      "bytes": 5458
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/barbarian/barb_footstep_03_no_vo.ogg",
+      "sha256": "3c566751a5c3507e9cd782d9bbb7562e5231b08204c12c43b46a1d2b84b44075",
+      "bytes": 5756
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/barbarian/barb_footstep_04.ogg",
+      "sha256": "48c6a0e92efc7354602384291a8c2acd0530dc1ca3060c84afd45ce65dd03373",
+      "bytes": 5486
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/barbarian/barb_footstep_05.ogg",
+      "sha256": "a26964962d8f3b8d8a5e26f55bf84005488f72722ff19b4fb1fc5c1266919e56",
+      "bytes": 5896
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/barbarian/barb_footstep_06.ogg",
+      "sha256": "0bec6e11a559f1f88b8497bb70958a863f97c5a33a9b099393b2ed1a4a6b2ab7",
+      "bytes": 5398
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/barbarian/barbarian_attack_02.ogg",
+      "sha256": "26cadb451b60c87e81f9141b8683cb1281402cb09e5cf8926d78f929830a083b",
+      "bytes": 6185
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/barbarian/barbarian_attack_03.ogg",
+      "sha256": "4317fb70efa3d7d9e70f863e4967787fe579be178ec896fe1516272c4e8a95fb",
+      "bytes": 6846
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/barbarian/barbarian_attack_04.ogg",
+      "sha256": "8e882249a8d8f7c74e7c45e4d3f76934cce1531e08318209c6c0f8c28b368c32",
+      "bytes": 7107
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/barbarian/barbarian_attack_05.ogg",
+      "sha256": "5464f7f6d2553c11d45b1dd9552adfccb028da5a2aa362a60d24198030cab422",
+      "bytes": 6470
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/barbarian/barbarian_attack_06.ogg",
+      "sha256": "f5121d3fae67df65e0b4739f64a15c9156169c246f23ae834f9102eee226fc57",
+      "bytes": 6691
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/barbarian/barbarian_attack_07.ogg",
+      "sha256": "cc7cc96627ff338317fe4a307ca747365bd311d8e320cdad8fdbcdcbae4b60b3",
+      "bytes": 6716
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/barbarian/barbarian_attack_08.ogg",
+      "sha256": "196d8e4cb1f136f31685cba77f4c330e1ccc507a02d52e3a8ae4ebae65bf99c0",
+      "bytes": 7514
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/barbarian/deploy_barbarians_01.ogg",
+      "sha256": "3c0e45c8f116da6426feba8670b5c43e8f2dbb59efa91d502432392bd80c628d",
+      "bytes": 8189
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/barbarian/npc_die_02.ogg",
+      "sha256": "ca1525f4d64a20d1963aea03d937160277a30362bcc84d6e08328a5acd11b167",
+      "bytes": 8823
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/graveyard_deploy.ogg",
+      "sha256": "06a0a9c773a06ba35e9364244c02d3b3cc11f358e5d6dc75f86c83ffdda5ab94",
+      "bytes": 16076
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/archer_queen_attack_02.ogg",
+      "sha256": "b6762da18acf25c6a092edfb06461e43ab90a08979f646ed18a186b1e852dedc",
+      "bytes": 21928
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/arrow_norm_impact_06.ogg",
+      "sha256": "b85de3ebcfe8d96d031d612054e443533a602b9479b32bd2d847249bfc26b8a9",
+      "bytes": 7354
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/barbarrel_01.ogg",
+      "sha256": "c0ef2ef19f53138f6c6e951dd6ce5f1f1f2cd3bcfc2c1672599bba78669e57e4",
+      "bytes": 16409
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/barrel_drawback_14.ogg",
+      "sha256": "5e1a38eb2a83bfa32f9515b59b6bed055595c7e67dfcf1116b41a34d8e5a1bd1",
+      "bytes": 27610
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/barrel_explosion_02.ogg",
+      "sha256": "bc27cc763f0bd9f18a30c72a93013490d008be01c25bd27d3551357d9e818913",
+      "bytes": 12312
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/boulder_impact_01.ogg",
+      "sha256": "b8d8a81d1b6be854549adade4b7fc9743eae4478b6a3930984831294eba97d97",
+      "bytes": 15377
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/building_place_01.ogg",
+      "sha256": "57ac6e7bd2704d434e49d5395d66b5e7f730f160ebdd7a5991f411df44327266",
+      "bytes": 8242
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/card_epic_vines_cast.ogg",
+      "sha256": "d55b9e15d8a6ff7ffbd51e08684b9abf5e967fcb8819d29ebbcd3149515f48af",
+      "bytes": 45084
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/card_epic_vines_debuff.ogg",
+      "sha256": "acc200e98760535d16bc6b681ea4a8035f6ac2c44d187d96a71a8dc2d7b92b10",
+      "bytes": 5294
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/card_epic_vines_end.ogg",
+      "sha256": "db2c9a4ec785b7272d55ee54912329db8290334f54a7a5fa16abf5bb4b527005",
+      "bytes": 20185
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/card_epic_vines_hit.ogg",
+      "sha256": "2736ee50c8af3e67b650dcad280b420cce0345a36822f738f8b5b88f9ad7b97c",
+      "bytes": 56644
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/card_evolution_skeleton_army_change.ogg",
+      "sha256": "1d1cecdf278dd6b32770f33d1e10600810fd24d4d0f58d63c2853ebcb4edab00",
+      "bytes": 10216
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/card_evolution_skeleton_army_change_horn.ogg",
+      "sha256": "2934b984fe69048cf766d263a55910b6101cf5e4126f14127884e2460b9c27e7",
+      "bytes": 19778
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/card_evolution_skeleton_army_death_vo.ogg",
+      "sha256": "bdb8caa91c702ad7ea71b55fdee232a1094d97089072cb19bda88ce47e7a247d",
+      "bytes": 13393
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/card_evolution_skeleton_army_deploy.ogg",
+      "sha256": "149faa06eb6369700ffcaa9bde554d12d92fdfa2af528aa52f0d0bfe20032ec0",
+      "bytes": 31624
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/card_hero_barbarian_barrel_ability_activated.ogg",
+      "sha256": "e9c4577d084c1d3fd8424732e05238cc470714b91f7ae2846dc18272092d5536",
+      "bytes": 32240
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/card_hero_barbarian_barrel_crash.ogg",
+      "sha256": "c476cf0a7b69acbf282757f00150d97cf3e2d712f0ebed990c7ffc3c8eb7904a",
+      "bytes": 16778
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/card_hero_barbarian_barrel_deploy.ogg",
+      "sha256": "46644c7e7e1eab76111add586b9eb5ea1a6ca6fb98726d61171c81e6cbdd483b",
+      "bytes": 31305
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/card_hero_barbarian_barrel_hit.ogg",
+      "sha256": "70af7b9a884a1025bc3bc19897cb87e2af6cbdb31a8ec2c5339b73c7763c1282",
+      "bytes": 15211
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/cemetary_deploy_01.ogg",
+      "sha256": "a9b7e0119244a39932990f927465bf1697e7671ae9cdb68fcacedae26f0d80f1",
+      "bytes": 26990
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/clone_spell_01.ogg",
+      "sha256": "e18ae7b83eca48ffd9aae6e2f5dbc23457f3c4d2a661f96f8e37020165b122e5",
+      "bytes": 14167
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/dark_void_spell_01.ogg",
+      "sha256": "e95f16fc4895c9cd4240e2bfbd3e45c9f529a28fc81fb962311e96a82fc5d717",
+      "bytes": 51993
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/evo_gob_barrel_dep_01.ogg",
+      "sha256": "6180a6a607bbc23d462aae17c1d7dbdcaf1e6babd76e43d007e98341c8cb0f39",
+      "bytes": 36523
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/evo_snowball_capture_01.ogg",
+      "sha256": "e41ffeb95ecf8bf1a126b375432d162847e52e8639fc0cdd8ef82abb494706a2",
+      "bytes": 25465
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/evo_snowball_deploy_01.ogg",
+      "sha256": "f049d2b0033c8d276733fff7d6e883db033937ebe9c1973d000419092dbb098d",
+      "bytes": 26068
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/evo_snowball_land_01.ogg",
+      "sha256": "537ac74e061622f1786346ed1462c03a7e865ced3063c103e0cf2219d71e1838",
+      "bytes": 23840
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/evo_zap_01.ogg",
+      "sha256": "fb2bbd9155610b8e9cea0ef3d0821c675b3f02d29126b02868c34ca9b918d830",
+      "bytes": 18869
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/fire_ball_02.ogg",
+      "sha256": "f7404b51b5bb2446b996756048cc5300930d6adcf30189e1c08554046257ecd1",
+      "bytes": 26090
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/fire_ball_explo_02.ogg",
+      "sha256": "c20f2c526a5e452e212711d2829d3baaf35cb734bd6f9bc419675632179a30c1",
+      "bytes": 26701
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/freeze_04.ogg",
+      "sha256": "9f40abf81959543e5b253ecc421d604459b12d2266d7f163a72bb129fe301d1c",
+      "bytes": 37371
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/gob_party_hut_deploy_01.ogg",
+      "sha256": "978da3547ff0f88eecff2a197369ca1b448de3c04b339802d2055ab9e7f4b6c0",
+      "bytes": 127876
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/gob_spell_end_01.ogg",
+      "sha256": "4438d0e69d600ea97925a0cd171287e301f47cb14d26b25949a92625d018d700",
+      "bytes": 27689
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/gob_spell_transformation_01.ogg",
+      "sha256": "a19652be6f1f43354b57597e2c862bd8b8433e1b895b134ba018960ec48c7812",
+      "bytes": 16492
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/goblin_curse_spell_02.ogg",
+      "sha256": "9f39b6b9ffcf1ec454c56cb75ce2a7122e6c545da8890c7280f333a11c57cba3",
+      "bytes": 42480
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/heal_magic_03.ogg",
+      "sha256": "b73df9a9a4e369528f4c7c1b1692fdf9b0ea1e23db71c45a8364c5464c165796",
+      "bytes": 27107
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/inferno_dragon_beam.ogg",
+      "sha256": "bf465c1706064dfa6b4ed617bd9658e359f26d6e876a9789917cb8bf7d40e54a",
+      "bytes": 12981
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/inferno_dragon_deploy.ogg",
+      "sha256": "99506e2d539ac904216fa17274e9183d5e60be0833186cd8982928f88d7e9e67",
+      "bytes": 11097
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/inferno_dragon_wing.ogg",
+      "sha256": "902b291299f98af45b5aba165c91b8722a5a00db57404ed65e389f90d67cc5cd",
+      "bytes": 7427
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/lightning_02.ogg",
+      "sha256": "45f4a0f0b5076698c614aa10208564a146d50f3531e591bbbbc299566ac3f7b3",
+      "bytes": 17210
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/log_impact_01.ogg",
+      "sha256": "01e3138a335b0eea2c69a87edbe3e76f6195c8a25b09418747b42923fd907166",
+      "bytes": 6893
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/log_vocal_01.ogg",
+      "sha256": "f965a3d0941ede72307d0732750776133cd18b5135a2f3a650a639808918a2c1",
+      "bytes": 14383
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/logroll01.ogg",
+      "sha256": "24e3ae1e2864825a8a3d565a5a7a435b34ad367a59d4cc326b9121f74779714c",
+      "bytes": 43229
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/mirror_02_dl.ogg",
+      "sha256": "d6970aa342487df6d9e0d81edee10376e29a5a8eb607f8226ad096bafd01405f",
+      "bytes": 18588
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/npc_die_02.ogg",
+      "sha256": "0dfc19be34e720659a632efb3e38d65669443ba7d1dd8523f742ee572b87c972",
+      "bytes": 12530
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/poison_spell_01.ogg",
+      "sha256": "dbad39ead2ac75786aea9e4525d96973af6da70538a32483f1e2e234667f74b7",
+      "bytes": 40895
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/rage_spell_01.ogg",
+      "sha256": "5fa22a92f7a33e506b99c42bd4a2efdb9374af4c16b7c33bcdf42065f6dcc2d1",
+      "bytes": 34996
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/rocket_hit_01v2.ogg",
+      "sha256": "f4a6d75a4f64ca8b1c08e63d7c2f181c9f120f508d0d5b6a290f21ea8c464d8d",
+      "bytes": 26562
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/rocket_launch_02v2.ogg",
+      "sha256": "4c0fcc0266c0b784376a79ace0caafdf3dcc7f6f1b52eb5f70660bbbeac15918",
+      "bytes": 37320
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/royal_recruit_deploy_01.ogg",
+      "sha256": "e23c2e1ed9545c55499c1efaefd7f2903dc12f019b6a757401079eaad20e63c7",
+      "bytes": 14317
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/royal_recruit_whistle_01.ogg",
+      "sha256": "3dfed94181c149aa35f0106de71109b13c2dfde4fde847acf12a8a01c5f9e77b",
+      "bytes": 20414
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/royale_tornado_01.ogg",
+      "sha256": "039dace78b123369b7c9040f5f6f79017c14a9fcfd378832b00cc7f48f842231",
+      "bytes": 32147
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/scrollearthquake01.ogg",
+      "sha256": "2b0fad7cd8a5ffff176d48a6cee9e50b9ba57b2700dda25409d14cfebf48b9df",
+      "bytes": 41556
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/shield_skele_lost_02.ogg",
+      "sha256": "7cb06f219226ca5809f841afb38306c26d7825003dbb616da6661be3b272117a",
+      "bytes": 10084
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/skeleton_atk_03.ogg",
+      "sha256": "fd6a3c7c8827a2e6c15552dee8f470c86a2a208804ca134324611a7b544e573e",
+      "bytes": 7458
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/skeleton_step_02.ogg",
+      "sha256": "d303a709978d99f297f187dc48843bdb6817eb32016e2e7f16d535396a3c7612",
+      "bytes": 6346
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/snowball_impact_01.ogg",
+      "sha256": "01749e7662b53ca004e81d1bdba28507c436537f93f75d4762c0e7f2bc71a0f5",
+      "bytes": 14582
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/throw_snowball_01.ogg",
+      "sha256": "357e72a535481b21236ea88cd1db51538c67e6c32ed80db974df337f814a9e4c",
+      "bytes": 18457
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/original/zap_02.ogg",
+      "sha256": "d9c8b209fe840f91d2f5bc3deb203e3ee800c39a6952ead44dd6f41ae1f9cd50",
+      "bytes": 17270
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/electro/elec_spirit_atk_vo_01.ogg",
+      "sha256": "8b2a7e49bc2a017d272c0b8f5d8aea8ff17bc13d3cece914da82bd5a76a94fc1",
+      "bytes": 6753
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/electro/elec_spirit_atk_vo_02.ogg",
+      "sha256": "44a09862b44c041755acfde60a8cacdc4eb75b8cc9b4a9c46073919ffac72b0c",
+      "bytes": 6197
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/electro/elec_spirit_step_01.ogg",
+      "sha256": "e66d57d51e55727397bd8c0c10be0bfca6df73baa4188fe074029c831864bb08",
+      "bytes": 5535
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/electro/elec_spirit_step_02.ogg",
+      "sha256": "b0b7ad59eadd3a756cd92f399db318325d6f6c40d477e669ca9cda1d926ae776",
+      "bytes": 5399
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/electro/electro_spirit_dep_01.ogg",
+      "sha256": "688b792b47d9a12947191b6db0346a247b36d6bcb7bf09db33b406a8b34fa183",
+      "bytes": 15190
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/electro/tesla_zap_01.ogg",
+      "sha256": "6f9f9fede82aaec41dc0d056cbfb1cc344ed53471f67afdfb77d741f24c610b9",
+      "bytes": 9478
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/fire/fire_spirit_attack_01.ogg",
+      "sha256": "1c32ad8112c90f6853bde4f4dfe9273ba23b7de0ce70fe9f004ce92c7cb288f7",
+      "bytes": 8678
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/fire/fire_spirit_deploy_01.ogg",
+      "sha256": "b3b4581d2c9216bf9d7c8a1fb41045feeff9a82aa2804dd6e9d0dc97235877df",
+      "bytes": 8993
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/fire/fire_spirit_deploy_02.ogg",
+      "sha256": "e854a3462da8a93e88181433ac824ccb4d1e3cb56ef58d625f0d23624c353b07",
+      "bytes": 8940
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/fire/fire_spirit_step_sfx_01.ogg",
+      "sha256": "edbec38c378ea41c29af8330a3a32bb650165357e931ff314c3a1fcd568f899e",
+      "bytes": 6035
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/fire/sound_fireball_hit_01.ogg",
+      "sha256": "f063f7a55ead295d066c5a9ed9ed2a26be21bac6843eadb306ebf84eceb5a9e3",
+      "bytes": 10165
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/heal/fire_spirit_step_sfx_01.ogg",
+      "sha256": "edbec38c378ea41c29af8330a3a32bb650165357e931ff314c3a1fcd568f899e",
+      "bytes": 6035
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/heal/fire_spirit_step_vo_01.ogg",
+      "sha256": "353af8349929003e8138f939646b3082e7d408ef37cd4f1721fdf0e26b2a82a1",
+      "bytes": 5490
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/heal/fire_spirit_step_vo_02.ogg",
+      "sha256": "6b61047e42722976c03741da778200ea0d56cfd99529058829713177d87dc48c",
+      "bytes": 6334
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/heal/fire_spirit_step_vo_03.ogg",
+      "sha256": "680bd81ca7b81903aa2ced9fbcb70cd39fcbc995c002b859905f5144dac9ad14",
+      "bytes": 6189
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/heal/heal_magic_03.ogg",
+      "sha256": "b73df9a9a4e369528f4c7c1b1692fdf9b0ea1e23db71c45a8364c5464c165796",
+      "bytes": 27107
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/heal/heal_spirit_deploy_vo_01_dl.ogg",
+      "sha256": "d04234347f122605611241ec2c6766ff8e61304204d2184c2b31783b4ca27a10",
+      "bytes": 17974
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/ice/fire_spirit_attack_01.ogg",
+      "sha256": "1c32ad8112c90f6853bde4f4dfe9273ba23b7de0ce70fe9f004ce92c7cb288f7",
+      "bytes": 8678
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/ice/fire_spirit_step_sfx_01.ogg",
+      "sha256": "edbec38c378ea41c29af8330a3a32bb650165357e931ff314c3a1fcd568f899e",
+      "bytes": 6035
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/ice/ice_mage_impact_02.ogg",
+      "sha256": "5b7e8b65873e964ec648b1b746eec56cbddbf0c1ab855c438bf31bbf89beefb8",
+      "bytes": 10032
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/ice/ice_sp_deploy_01.ogg",
+      "sha256": "b278e51681fbbf61143ceb70147feb3048c077ca926dea9caaea6f3e3557cbc0",
+      "bytes": 14093
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds/spirits/ice/ice_sp_deploy_02.ogg",
+      "sha256": "e75b3a9a281b415911ab8a321a343112c45a965a68f5c50de55c407b9f8dc343",
+      "bytes": 14362
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/sounds.json",
+      "sha256": "69cd451005cbe7745e33e1dab812d23b2022e29894c93790e3fde7e474f95a39",
+      "bytes": 23717
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/spell_audio.json",
+      "sha256": "0d9410279ca4f0586862bd9b6cafbd8a155e4bb922986ee3e82e3a6f06a530f7",
+      "bytes": 9400
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/arrows.png",
+      "sha256": "3edcaaafe1d1955ad274896bb15efb85172bb8d44aea79083239b813bebddd99",
+      "bytes": 127040
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/barbarian_barrel.png",
+      "sha256": "84529d1a0e5c57a4f8e39f7844e0ec3dd9373fdcfe236db04325c580c79694ac",
+      "bytes": 149762
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/barbarian_barrel_hero.png",
+      "sha256": "9f217795ae851eb489342b82ace1c7bae87b9ce0ff97c4deb5c8a54320c766c6",
+      "bytes": 125779
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/barbarian_hut.png",
+      "sha256": "cbee8ebf5514af11551937db69cc44365e1196aef16628f6f37c8d58c8e88bbb",
+      "bytes": 144860
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/clone.png",
+      "sha256": "f2f67ff3f60392cfcdfb419b8f495be4f4ba08c51e3f9a4b455d5b675acdf28c",
+      "bytes": 106855
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/earthquake.png",
+      "sha256": "8e69b4ad266b158daab08600279cc4e5c6af94e60864a76cf179034f4630096e",
+      "bytes": 126487
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/electro_spirit.png",
+      "sha256": "b3ad3838e1889fa60b4c94558834765de8b3b3fb5e26d86cda51827c6dd1d2c3",
+      "bytes": 104647
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/fire_spirit.png",
+      "sha256": "12fa2adbe28b57b8caa1d9bd7fa6d6c22e8e2f7196f1591fdbb00a8cdf0104b5",
+      "bytes": 131487
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/fireball.png",
+      "sha256": "6bbe17a15330f6c0b9020f149023f728a97bffbd8a373d18a69ee09784ac571a",
+      "bytes": 123797
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/freeze.png",
+      "sha256": "bcbccf3289dc362eaa9e553b886d59e2255c82d62abcfe8c2f8d83560b2ec58d",
+      "bytes": 136477
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/giant_snowball.png",
+      "sha256": "a543a3229799214bb4c8f8ec9948496458bcec445295e2cf143459d8049ace13",
+      "bytes": 113852
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/giant_snowball_evolution.png",
+      "sha256": "36576bd2ab91ceda5e9676828c4a9fdac78b6eae88a1cdc5921f850300b9226b",
+      "bytes": 124922
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/goblin_barrel.png",
+      "sha256": "6d34267ad6f5d42a8e88f840e36d6a11e25f16f3d111c716bee2e31b03330c4c",
+      "bytes": 135753
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/goblin_barrel_evolution.png",
+      "sha256": "eebc3871686fa75718a6846a04022fc4713967561c4a31f6a69e9d1066a79bb8",
+      "bytes": 138743
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/goblin_curse.png",
+      "sha256": "d8df2ab4decb29dc9a893d9f4b5765b7e10c65358c822d364ec24c3242f15379",
+      "bytes": 112373
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/graveyard.png",
+      "sha256": "5478b3a4af71d885046367f65614928f0b6f2a95b075b22ee9e83f58998647d4",
+      "bytes": 117357
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/heal.png",
+      "sha256": "541e023fe90289b4a24e5448ba76a8b7703257d2c4f5016c58a2d89c37d0db40",
+      "bytes": 110531
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/heal_spirit.png",
+      "sha256": "fdcce46eee982d7cf67e68bf7e3c319363448af9527836fdced5421b03741b61",
+      "bytes": 126738
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/ice_spirit.png",
+      "sha256": "634e23f7cfe7508f8833216a4c657abb90bd47916364eba4701dd7e622f028d5",
+      "bytes": 135591
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/inferno_dragon.png",
+      "sha256": "09b3d010aaba0c5aa3d8d4df30b9c29d2dd51007c8702fb435133b57cc44e793",
+      "bytes": 129397
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/lightning.png",
+      "sha256": "47c994fc25232801eed483458395ad9d73d2aa692d736d8fcc7a119ae61f4587",
+      "bytes": 142331
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/mirror.png",
+      "sha256": "7b3a3b042574ede94cbcdf321e3f963657cd8497a3aaa6fe7c272d4a86e2ee6e",
+      "bytes": 92364
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/party_rocket.png",
+      "sha256": "042e64dd5b367e6dac3a88ae3113c4be3e2d292646d744dd6d4c7d4082d2bdd9",
+      "bytes": 145920
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/poison.png",
+      "sha256": "4f28bc86f2b1a236bc02e7abace6e4904c1a51773cc666eaa10618e450a91d35",
+      "bytes": 119225
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/rage.png",
+      "sha256": "bfa631dd55d66fa19c585279ecc07ead74f0db65c1aa19566b98254a43f3880a",
+      "bytes": 116774
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/rocket.png",
+      "sha256": "4fc948e1cace137e9ef2828ebda5fdafe9b17c02c9ef6f8074770a2c65629c07",
+      "bytes": 126993
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/royal_delivery.png",
+      "sha256": "8aa6c48ec9da412e073d92eb7162f81cc1de86961242bdf6ebe0aad5851c5b5d",
+      "bytes": 133053
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/skeleton_army_evolution.png",
+      "sha256": "cbaf4a2cb7b2c24015f83a3e0b45ef8cc2d9c75bff294dcc33fe90703aee2a6a",
+      "bytes": 144035
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/the_log.png",
+      "sha256": "2d9202b67ebd1ae3fd9d0d343b0809c63922f81b3a2afc45d7ef058ae5a1400a",
+      "bytes": 130249
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/tornado.png",
+      "sha256": "1d7c4187b27b44fe16f4cb4664c128e02553961665d701b9c1295d5040c5f26d",
+      "bytes": 130257
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/vines.png",
+      "sha256": "d70904f654f19c226250f45a80aeed6c5f4d273bca93b873b9db6cf2cb581a91",
+      "bytes": 110663
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/void.png",
+      "sha256": "851c5cc01906c4fdd51afda4cced7d09109a4d351b54985d7705607d6298fa5d",
+      "bytes": 105403
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/warmth.png",
+      "sha256": "e6401b3713459697ddbf0838401fec0cb433a62cb96ef479c07c006777740efd",
+      "bytes": 104850
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/zap.png",
+      "sha256": "8d02f5743a858ba2a6ddee722a297c515f23d0cbb5ac04ff2e7db1058d686a24",
+      "bytes": 137311
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/card/zap_evolution.png",
+      "sha256": "fb6998a97889188293c48dcf3406b53852aedc4019ef9d0a5eb56138fb19ad42",
+      "bytes": 118517
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/entity/barbarian.png",
+      "sha256": "db51ecabb8809dbc38b6c6f3aa08fd7b3a27aa969c475d098dbd995ec3087fc0",
+      "bytes": 484
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/entity/fireball_core.png",
+      "sha256": "2ffda30fefca95d68105a707adf10d56808523d7339dcdabb2520d022a8697eb",
+      "bytes": 1142972
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/entity/fireball_plume.png",
+      "sha256": "f9723c1ec257db56be8a73d33614d1579734b17a50ce09629196c69d94ca17f6",
+      "bytes": 1255011
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/entity/inferno_dragon.png",
+      "sha256": "573fbe96d349cbb7f7506004b1c22c1fb5f297c458fa2316600e7828a2a395d4",
+      "bytes": 1652407
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/entity/recruit.png",
+      "sha256": "d53a4fa7750f07a6db45f08846dc08e974c2bf930b4a3187c11735ef2d0af561",
+      "bytes": 486
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/entity/spirit_flame.png",
+      "sha256": "265e7942bad4bd851a1cfe805efb48c63f32b364573dc4ba7a80e3cd78ebecd1",
+      "bytes": 701048
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/entity/spirit_ice_mineclash.png",
+      "sha256": "14cc25bcca3e3cc0a0a6ae3d2e0d138230253a525f46906d562f5d53aea934c5",
+      "bytes": 3208
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/entity/spirit_ice_mineclash_glowmask.png",
+      "sha256": "a4ae2083dee513e4e2eb9683cae8a7915d1c4230010b7c8656ef3a7d198c0def",
+      "bytes": 2513
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/entity/spirit_materials.png",
+      "sha256": "f4f4aabd4bb510781a6a899c0df220cb32b02b5915c06d171c4846f8145190f6",
+      "bytes": 988395
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/entity/troop_materials.png",
+      "sha256": "494ce55bcfb96d6e3c56c341ed4f20855f8b490c3639492fa1a873051c31355b",
+      "bytes": 1530619
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/arrows.png",
+      "sha256": "3edcaaafe1d1955ad274896bb15efb85172bb8d44aea79083239b813bebddd99",
+      "bytes": 127040
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/barbarian_barrel.png",
+      "sha256": "84529d1a0e5c57a4f8e39f7844e0ec3dd9373fdcfe236db04325c580c79694ac",
+      "bytes": 149762
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/barbarian_barrel_hero.png",
+      "sha256": "9f217795ae851eb489342b82ace1c7bae87b9ce0ff97c4deb5c8a54320c766c6",
+      "bytes": 125779
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/barbarian_hut.png",
+      "sha256": "cbee8ebf5514af11551937db69cc44365e1196aef16628f6f37c8d58c8e88bbb",
+      "bytes": 144860
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/clone.png",
+      "sha256": "f2f67ff3f60392cfcdfb419b8f495be4f4ba08c51e3f9a4b455d5b675acdf28c",
+      "bytes": 106855
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/earthquake.png",
+      "sha256": "8e69b4ad266b158daab08600279cc4e5c6af94e60864a76cf179034f4630096e",
+      "bytes": 126487
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/fireball.png",
+      "sha256": "6bbe17a15330f6c0b9020f149023f728a97bffbd8a373d18a69ee09784ac571a",
+      "bytes": 123797
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/freeze.png",
+      "sha256": "bcbccf3289dc362eaa9e553b886d59e2255c82d62abcfe8c2f8d83560b2ec58d",
+      "bytes": 136477
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/giant_snowball.png",
+      "sha256": "a543a3229799214bb4c8f8ec9948496458bcec445295e2cf143459d8049ace13",
+      "bytes": 113852
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/giant_snowball_evolution.png",
+      "sha256": "36576bd2ab91ceda5e9676828c4a9fdac78b6eae88a1cdc5921f850300b9226b",
+      "bytes": 124922
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/goblin_barrel.png",
+      "sha256": "6d34267ad6f5d42a8e88f840e36d6a11e25f16f3d111c716bee2e31b03330c4c",
+      "bytes": 135753
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/goblin_barrel_evolution.png",
+      "sha256": "eebc3871686fa75718a6846a04022fc4713967561c4a31f6a69e9d1066a79bb8",
+      "bytes": 138743
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/goblin_curse.png",
+      "sha256": "d8df2ab4decb29dc9a893d9f4b5765b7e10c65358c822d364ec24c3242f15379",
+      "bytes": 112373
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/graveyard.png",
+      "sha256": "5478b3a4af71d885046367f65614928f0b6f2a95b075b22ee9e83f58998647d4",
+      "bytes": 117357
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/heal.png",
+      "sha256": "541e023fe90289b4a24e5448ba76a8b7703257d2c4f5016c58a2d89c37d0db40",
+      "bytes": 110531
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/inferno_dragon.png",
+      "sha256": "09b3d010aaba0c5aa3d8d4df30b9c29d2dd51007c8702fb435133b57cc44e793",
+      "bytes": 129397
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/lightning.png",
+      "sha256": "47c994fc25232801eed483458395ad9d73d2aa692d736d8fcc7a119ae61f4587",
+      "bytes": 142331
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/mirror.png",
+      "sha256": "7b3a3b042574ede94cbcdf321e3f963657cd8497a3aaa6fe7c272d4a86e2ee6e",
+      "bytes": 92364
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/party_rocket.png",
+      "sha256": "042e64dd5b367e6dac3a88ae3113c4be3e2d292646d744dd6d4c7d4082d2bdd9",
+      "bytes": 145920
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/poison.png",
+      "sha256": "4f28bc86f2b1a236bc02e7abace6e4904c1a51773cc666eaa10618e450a91d35",
+      "bytes": 119225
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/rage.png",
+      "sha256": "bfa631dd55d66fa19c585279ecc07ead74f0db65c1aa19566b98254a43f3880a",
+      "bytes": 116774
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/rocket.png",
+      "sha256": "4fc948e1cace137e9ef2828ebda5fdafe9b17c02c9ef6f8074770a2c65629c07",
+      "bytes": 126993
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/royal_delivery.png",
+      "sha256": "8aa6c48ec9da412e073d92eb7162f81cc1de86961242bdf6ebe0aad5851c5b5d",
+      "bytes": 133053
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/skeleton_army_evolution.png",
+      "sha256": "cbaf4a2cb7b2c24015f83a3e0b45ef8cc2d9c75bff294dcc33fe90703aee2a6a",
+      "bytes": 144035
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/summon_electro_spirit.png",
+      "sha256": "b3ad3838e1889fa60b4c94558834765de8b3b3fb5e26d86cda51827c6dd1d2c3",
+      "bytes": 104647
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/summon_fire_spirit.png",
+      "sha256": "12fa2adbe28b57b8caa1d9bd7fa6d6c22e8e2f7196f1591fdbb00a8cdf0104b5",
+      "bytes": 131487
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/summon_heal_spirit.png",
+      "sha256": "fdcce46eee982d7cf67e68bf7e3c319363448af9527836fdced5421b03741b61",
+      "bytes": 126738
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/summon_ice_spirit.png",
+      "sha256": "634e23f7cfe7508f8833216a4c657abb90bd47916364eba4701dd7e622f028d5",
+      "bytes": 135591
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/the_log.png",
+      "sha256": "2d9202b67ebd1ae3fd9d0d343b0809c63922f81b3a2afc45d7ef058ae5a1400a",
+      "bytes": 130249
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/tornado.png",
+      "sha256": "1d7c4187b27b44fe16f4cb4664c128e02553961665d701b9c1295d5040c5f26d",
+      "bytes": 130257
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/vines.png",
+      "sha256": "d70904f654f19c226250f45a80aeed6c5f4d273bca93b873b9db6cf2cb581a91",
+      "bytes": 110663
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/void.png",
+      "sha256": "851c5cc01906c4fdd51afda4cced7d09109a4d351b54985d7705607d6298fa5d",
+      "bytes": 105403
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/warmth.png",
+      "sha256": "e6401b3713459697ddbf0838401fec0cb433a62cb96ef479c07c006777740efd",
+      "bytes": 104850
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/zap.png",
+      "sha256": "8d02f5743a858ba2a6ddee722a297c515f23d0cbb5ac04ff2e7db1058d686a24",
+      "bytes": 137311
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/zap_evolution.png",
+      "sha256": "fb6998a97889188293c48dcf3406b53852aedc4019ef9d0a5eb56138fb19ad42",
+      "bytes": 118517
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/mob_effect/card_slow.png",
+      "sha256": "55898d1e16944a7bd6dfee4418e7f824726aa00ea343945fab273d45345ec51a",
+      "bytes": 156
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/mob_effect/card_speed.png",
+      "sha256": "77eee6df33a6e169ba9d8273f9592fc9a4d27de392305dc6080bd360bc7d9bf9",
+      "bytes": 156
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/mob_effect/cloned.png",
+      "sha256": "55898d1e16944a7bd6dfee4418e7f824726aa00ea343945fab273d45345ec51a",
+      "bytes": 156
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/mob_effect/frozen.png",
+      "sha256": "55898d1e16944a7bd6dfee4418e7f824726aa00ea343945fab273d45345ec51a",
+      "bytes": 156
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/mob_effect/rage.png",
+      "sha256": "77eee6df33a6e169ba9d8273f9592fc9a4d27de392305dc6080bd360bc7d9bf9",
+      "bytes": 156
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/mob_effect/rooted.png",
+      "sha256": "55898d1e16944a7bd6dfee4418e7f824726aa00ea343945fab273d45345ec51a",
+      "bytes": 156
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/mob_effect/snowbound.png",
+      "sha256": "55898d1e16944a7bd6dfee4418e7f824726aa00ea343945fab273d45345ec51a",
+      "bytes": 156
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/mob_effect/stun.png",
+      "sha256": "55898d1e16944a7bd6dfee4418e7f824726aa00ea343945fab273d45345ec51a",
+      "bytes": 156
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/particle/grave_mote.png",
+      "sha256": "dd89d6685898982546480e3f2f4b770739bc19ccd3e22d5bd660deee0452d70d",
+      "bytes": 780361
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/particle/spell_spark.png",
+      "sha256": "154aeedb656c6ed9ca9d04beae285aead60c670c441b736f4b648ed84a812751",
+      "bytes": 447765
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+[
+  {
+    "path": "Cards/Witch",
+    "size": null
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_attack.ogg",
+    "size": 16226
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_attack_hit.ogg",
+    "size": 10508
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_deploy_sfx.ogg",
+    "size": 45819
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_deploy_vo_01.ogg",
+    "size": 32739
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_deploy_vo_02.ogg",
+    "size": 31244
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_healing.ogg",
+    "size": 19646
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_skill_skeleton_01.ogg",
+    "size": 22214
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_skill_skeleton_02.ogg",
+    "size": 18696
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_skill_vo_01.ogg",
+    "size": 20782
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_skill_vo_02.ogg",
+    "size": 20818
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_skill_vo_03.ogg",
+    "size": 19507
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_skill_vo_04.ogg",
+    "size": 22889
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_skill_vo_05.ogg",
+    "size": 20815
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_step_01.ogg",
+    "size": 11876
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_step_02.ogg",
+    "size": 12170
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_step_03.ogg",
+    "size": 11106
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_step_04.ogg",
+    "size": 10491
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_step_05.ogg",
+    "size": 10346
+  },
+  {
+    "path": "Cards/Witch/card_evolution_witch_step_06.ogg",
+    "size": 12899
+  },
+  {
+    "path": "Cards/Witch/knight_attack_hack_01.ogg",
+    "size": 9467
+  },
+  {
+    "path": "Cards/Witch/npc_die_02.ogg",
+    "size": 12724
+  },
+  {
+    "path": "Cards/Witch/summon_witch_01.ogg",
+    "size": 11796
+  },
+  {
+    "path": "Cards/Witch/witch_attack_02.ogg",
+    "size": 12450
+  },
+  {
+    "path": "Cards/Witch/witch_step_01.ogg",
+    "size": 9553
+  },
+  {
+    "path": "Cards/Witch/witch_summon_02.ogg",
+    "size": 10790
+  }
+]

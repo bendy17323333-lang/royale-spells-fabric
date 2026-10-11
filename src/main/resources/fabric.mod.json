@@ -1,18 +1,39 @@
 {
   "schemaVersion": 1,
-  "license": "MIT",
   "id": "royalespells",
   "version": "${version}",
   "name": "皇室法术 · Royale Spells",
-  "description": "Clash Royale spells, evolutions and special spells for Minecraft. Goblins become baby zombies.",
-  "authors": ["Royale Spells"],
+  "description": "Independent Clash Royale cards, troops and effects. No Iron's Spells dependency.",
+  "authors": [
+    "Royale Spells"
+  ],
   "environment": "*",
   "entrypoints": {
-    "main": ["dev.royalespells.RoyaleSpells"],
-    "client": ["dev.royalespells.client.RoyaleClient"],
-    "fabric-gametest": ["dev.royalespells.test.SpellGameTests", "dev.royalespells.test.SpellCoverageTests", "dev.royalespells.test.TroopTests"]
+    "main": [
+      "dev.royalespells.RoyaleSpells"
+    ],
+    "client": [
+      "dev.royalespells.client.RoyaleClient"
+    ],
+    "fabric-gametest": [
+      "dev.royalespells.test.CardBalanceTests",
+      "dev.royalespells.test.SpiritBeta2Tests",
+      "dev.royalespells.test.SnowballVisualTests",
+      "dev.royalespells.test.InfernoDragonTests",
+      "dev.royalespells.test.StandaloneTests",
+      "dev.royalespells.test.WitchTests",
+      "dev.royalespells.test.SummonAiTests"
+    ]
   },
-  "mixins": ["royalespells.mixins.json"],
-  "depends": {"fabricloader": ">=0.16.14", "minecraft": "~1.20.1", "java": ">=17", "fabric-api": "*"}
+  "mixins": [
+    "royalespells.mixins.json",
+    "royalespells-electrical.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.14",
+    "minecraft": "1.20.1",
+    "java": ">=17",
+    "fabric-api": "*"
+  },
+  "license": "MIT"
 }
-

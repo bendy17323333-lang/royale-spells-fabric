@@ -1,266 +1,320 @@
 package dev.royalespells;
 
 import dev.royalespells.entity.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.RaycastContext;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import java.util.*;
 
 public final class SpellEngine {
     private SpellEngine(){}
     public static final int MAX_UNITS_PER_OWNER=64;
-    private static final UUID MIRROR_ATTACK=UUID.fromString("b27ad4dd-7a38-40cf-8cc4-7ddad5b601b0");
+    private static final UUID MIRROR_ATTACK=UUID.fromString("334f9e35-f1f0-4cba-a6e0-a8ec3db88202");
     private static final Map<UUID,State> PLAYERS=new HashMap<>();
     private static final Map<UUID,Curse> CURSES=new HashMap<>();
     private static long clock;
     private static class State { double elixir=10; Spell last; TroopCard lastTroop; int cooldown; }
-    private record Curse(UUID owner,long until,float power){}
+    private record Curse(UUID owner,long until,float power,int cardLevel){}
     public static void clear(){PLAYERS.clear();CURSES.clear();clock=0;}
-    public static void refill(ServerPlayerEntity player){PLAYERS.computeIfAbsent(player.getUuid(),id->new State()).elixir=10;}
-    public static void resetForRecording(ServerPlayerEntity player){if(ShowcaseMap.enabled(player.getServerWorld()))PLAYERS.remove(player.getUuid());}
+    public static void refill(ServerPlayer player){PLAYERS.computeIfAbsent(player.getUUID(),id->new State()).elixir=10;}
+    public static double elixir(ServerPlayer player){return PLAYERS.computeIfAbsent(player.getUUID(),id->new State()).elixir;}
+    public static void resetForRecording(ServerPlayer player){PLAYERS.remove(player.getUUID());}
     public static void tick(MinecraftServer server) {
         clock++;
-        for(ServerPlayerEntity p:server.getPlayerManager().getPlayerList()) {
-            State s=PLAYERS.computeIfAbsent(p.getUuid(),id->new State());
+        for(ServerPlayer p:server.getPlayerList().getPlayers()) {
+            State s=PLAYERS.computeIfAbsent(p.getUUID(),id->new State());
             s.elixir=Math.min(10,s.elixir+0.025); if(s.cooldown>0)s.cooldown--;
-            if(clock%10==0 && (isCard(p.getMainHandStack().getItem()) || isCard(p.getOffHandStack().getItem()))) {
+            if(clock%10==0 && (isCard(p.getMainHandItem().getItem()) || isCard(p.getOffhandItem().getItem()))) {
                 String bar="◆".repeat((int)s.elixir)+"◇".repeat(10-(int)s.elixir);
-                p.sendMessage(Text.translatable("message.royalespells.elixir",bar,String.format(java.util.Locale.ROOT,"%.1f",s.elixir)),true);
+                p.displayClientMessage(Component.translatable("message.royalespells.elixir",bar,String.format(java.util.Locale.ROOT,"%.1f",s.elixir)),true);
             }
         }
         if(clock%100==0) {
             CURSES.entrySet().removeIf(e->e.getValue().until<clock);
-            PLAYERS.keySet().removeIf(id->server.getPlayerManager().getPlayer(id)==null);
+            PLAYERS.keySet().removeIf(id->server.getPlayerList().getPlayer(id)==null);
         }
     }
     public static boolean isCard(Item item){return item instanceof SpellItem || item instanceof TroopItem;}
-    public static boolean deploy(ServerPlayerEntity player,TroopCard card){return deploy(player,card,false);}
-    private static boolean deploy(ServerPlayerEntity player,TroopCard card,boolean mirror) {
-        State state=PLAYERS.computeIfAbsent(player.getUuid(),id->new State());int cost=card.cost+(mirror?1:0);
-        if(state.cooldown>0 || player.hasStatusEffect(RoyaleSpells.STUN))return false;
+    public static boolean deploy(ServerPlayer player,TroopCard card){return deploy(player,card,false);}
+    private static boolean deploy(ServerPlayer player,TroopCard card,boolean mirror) {
+        State state=PLAYERS.computeIfAbsent(player.getUUID(),id->new State());int cost=card.cost+(mirror?1:0);
+        if(state.cooldown>0 || (player.hasEffect(RoyaleSpells.STUN)||dev.royalespells.pause.ElectricPause.active(player)))return false;
         if(!player.isCreative() && state.elixir<cost)return insufficient(player);
-        Vec3d at=ground(player.getWorld(),aim(player,32));
-        if(!player.getServerWorld().getWorldBorder().contains(BlockPos.ofFloored(at)) || !player.getServerWorld().isChunkLoaded(BlockPos.ofFloored(at)) || !player.canModifyAt(player.getWorld(),BlockPos.ofFloored(at)))return false;
-        var unit=summon(player.getServerWorld(),player.getUuid(),at,card.unit,false);
-        if(unit==null){player.sendMessage(Text.translatable("message.royalespells.deployment_blocked"),true);return false;}
-        unit.setYaw(player.getYaw());unit.setBodyYaw(player.getYaw());
-        if(unit instanceof RoyaleUnit deployed && deployed.building())deployed.lockFacing(player.getYaw());
-        if(mirror)empower(unit,1.1f);
+        if(card==TroopCard.SKELETON_ARMY_EVOLUTION&&!CardDeployment.armyAvailable(player))return false;
+        Vec3 at=ground(player.level(),aim(player,32));
+        if(!player.serverLevel().getWorldBorder().isWithinBounds(BlockPos.containing(at)) || !player.serverLevel().hasChunkAt(BlockPos.containing(at)) || !player.mayInteract(player.level(),BlockPos.containing(at)))return false;
+        var unit=CardDeployment.deploy(player,card,at,mirror?12:11);
+        if(unit==null){player.displayClientMessage(Component.translatable("message.royalespells.deployment_blocked"),true);return false;}
+        unit.setYRot(player.getYRot());unit.setYBodyRot(player.getYRot());
+        if(unit instanceof RoyaleUnit deployed && deployed.building())deployed.lockFacing(player.getYRot());
+        if(card==TroopCard.BARBARIAN_HUT||card==TroopCard.INFERNO_DRAGON)CardBalance.apply(unit,card.unit,false,mirror?12:11);
         if(!player.isCreative())state.elixir-=cost;
         state.cooldown=10;if(!mirror){state.lastTroop=card;state.last=null;}
-        player.swingHand(player.getActiveHand(),true);return true;
+        player.swing(player.getUsedItemHand(),true);return true;
     }
-    public static boolean cast(ServerPlayerEntity player,Spell requested) {
-        State state=PLAYERS.computeIfAbsent(player.getUuid(),id->new State());
-        if(state.cooldown>0 || player.hasStatusEffect(RoyaleSpells.STUN))return false;
+    public static boolean cast(ServerPlayer player,Spell requested) {
+        State state=PLAYERS.computeIfAbsent(player.getUUID(),id->new State());
+        if(state.cooldown>0 || (player.hasEffect(RoyaleSpells.STUN)||dev.royalespells.pause.ElectricPause.active(player)))return false;
         Spell spell=requested;
         int cost=spell.cost;
         if(spell==Spell.MIRROR) {
-            if(state.lastTroop!=null)return deploy(player,state.lastTroop,true);
-            if(state.last==null) {player.sendMessage(Text.translatable("message.royalespells.no_mirror"),true);return false;}
+            if(state.lastTroop!=null){boolean cast=deploy(player,state.lastTroop,true);if(cast)SpellSounds.play(player.level(),player.position(),Spell.MIRROR,"deploy");return cast;}
+            if(state.last==null) {player.displayClientMessage(Component.translatable("message.royalespells.no_mirror"),true);return false;}
             spell=state.last;cost=spell.cost+1;
         }
-        ServerWorld world=player.getServerWorld();
-        if(requested==Spell.BARBARIAN_BARREL_HERO && player.isSneaking()) {
-            AllyZombie hero=world.getEntitiesByClass(AllyZombie.class,player.getBoundingBox().expand(40),
-                e->e.hero && player.getUuid().equals(e.ownerId()) && e.isAlive()).stream().findFirst().orElse(null);
-            if(hero==null || hero.nextReroll>world.getTime()) {player.sendMessage(Text.translatable("message.royalespells.no_hero"),true);return false;}
+        ServerLevel world=player.serverLevel();
+        if(ControlCooldown.controls(spell)&&ControlCooldown.remaining(player)>0){player.displayClientMessage(Component.translatable("message.royalespells.control_cooldown"),true);return false;}
+        if(requested==Spell.BARBARIAN_BARREL_HERO && player.isShiftKeyDown()) {
+            AllyZombie hero=world.getEntitiesOfClass(AllyZombie.class,player.getBoundingBox().inflate(40),
+                e->e.hero && player.getUUID().equals(e.ownerId()) && e.isAlive()).stream().findFirst().orElse(null);
+            if(hero==null || hero.nextReroll>world.getGameTime()) {player.displayClientMessage(Component.translatable("message.royalespells.no_hero"),true);return false;}
             if(!player.isCreative() && state.elixir<1)return insufficient(player);
-            Vec3d dir=horizontal(player.getRotationVec(1));
-            SpellEntity effect=SpellEntity.create(world,spell,player.getUuid(),hero.getPos(),hero.getPos().add(dir.multiply(3)));
-            effect.rerollId=hero.getUuid();effect.reroll=true;
-            if(!world.spawnEntity(effect))return false;
-            hero.nextReroll=world.getTime()+200;
+            Vec3 dir=horizontal(player.getViewVector(1));
+            SpellEntity effect=SpellEntity.create(world,spell,player.getUUID(),hero.position(),hero.position().add(dir.scale(3)));
+            effect.rerollId=hero.getUUID();effect.reroll=true;effect.setCardLevel(CardBalance.level(hero));
+            if(!world.addFreshEntity(effect))return false;
+            hero.nextReroll=Long.MAX_VALUE;
             if(!player.isCreative())state.elixir-=1;state.cooldown=10;return true;
         }
         if(!player.isCreative() && state.elixir+0.00001<cost)return insufficient(player);
-        int active=0;for(Entity e:world.iterateEntities())if(e instanceof SpellEntity)active++;
-        if(active>=256) {player.sendMessage(Text.translatable("message.royalespells.limit"),true);return false;}
-        Vec3d target=aim(player,32);
-        Vec3d start=player.getEyePos().subtract(0,0.25,0);
+        int active=0;for(Entity e:world.getAllEntities())if(e instanceof SpellEntity)active++;
+        if(active>=256) {player.displayClientMessage(Component.translatable("message.royalespells.limit"),true);return false;}
+        Vec3 target=player.isShiftKeyDown()&&(spell==Spell.RAGE||spell==Spell.HEAL||spell==Spell.WARMTH||spell==Spell.CLONE)?player.position():aim(player,32);
+        Vec3 start=player.getEyePosition().subtract(0,0.25,0);
         if(spell.rolling()) {
-            start=player.getPos().add(horizontal(player.getRotationVec(1)).multiply(1.1));
-            target=start.add(horizontal(player.getRotationVec(1)).multiply(spell==Spell.THE_LOG?10:5));
+            start=player.position().add(horizontal(player.getViewVector(1)).scale(1.1));
+            target=start.add(horizontal(player.getViewVector(1)).scale(CardBalance.range(spell)));
         }
-        SpellEntity effect=SpellEntity.create(world,spell,player.getUuid(),start,target);
-        if(requested==Spell.MIRROR)effect.setPower(1.1f);
-        if(!world.spawnEntity(effect))return false;
+        SpellEntity effect=SpellEntity.create(world,spell,player.getUUID(),start,target);
+        if(requested==Spell.MIRROR)effect.setCardLevel(12);
+        if(!world.addFreshEntity(effect))return false;
+        if(ControlCooldown.controls(spell))ControlCooldown.start(player);
+        if(requested==Spell.MIRROR)SpellSounds.play(world,player.position(),Spell.MIRROR,"deploy");
         if(spell==Spell.GOBLIN_BARREL_EVOLUTION) {
-            Vec3d side=horizontal(player.getRotationVec(1)).crossProduct(new Vec3d(0,1,0)).multiply(5);
-            Vec3d decoyTarget=ground(world,target.add(side));
-            SpellEntity decoy=SpellEntity.create(world,spell,player.getUuid(),start,decoyTarget);decoy.setPower(effect.power());decoy.decoy=true;world.spawnEntity(decoy);
+            Vec3 side=horizontal(player.getViewVector(1)).cross(new Vec3(0,1,0)).scale(5);
+            Vec3 decoyTarget=ground(world,target.add(side));
+            SpellEntity decoy=SpellEntity.create(world,spell,player.getUUID(),start,decoyTarget);decoy.setPower(effect.power());decoy.setCardLevel(effect.cardLevel());decoy.decoy=true;world.addFreshEntity(decoy);
         }
         if(!player.isCreative()) state.elixir-=cost;
         state.cooldown=10;if(requested!=Spell.MIRROR){state.last=spell;state.lastTroop=null;}
-        player.swingHand(player.getActiveHand(),true);
+        player.swing(player.getUsedItemHand(),true);
         return true;
     }
-    private static boolean insufficient(ServerPlayerEntity p){p.sendMessage(Text.translatable("message.royalespells.no_elixir"),true);return false;}
-    public static Vec3d aim(PlayerEntity p,double range) {
-        Vec3d eye=p.getEyePos(),end=eye.add(p.getRotationVec(1).multiply(range));
-        HitResult block=p.raycast(range,1,false);
-        Vec3d hit=block.getType()==HitResult.Type.MISS?end:block.getPos();
-        double distance=eye.squaredDistanceTo(hit);
-        var entityHit=net.minecraft.entity.projectile.ProjectileUtil.raycast(p,eye,end,p.getBoundingBox().stretch(end.subtract(eye)).expand(1),
+    private static boolean insufficient(ServerPlayer p){p.displayClientMessage(Component.translatable("message.royalespells.no_elixir"),true);return false;}
+    public static Vec3 aim(LivingEntity p,double range) {
+        return aim(p,range,1);
+    }
+    public static Vec3 aim(LivingEntity p,double range,float delta) {
+        Vec3 eye=p.getEyePosition(delta),end=eye.add(p.getViewVector(delta).scale(range));
+        HitResult block=p.pick(range,delta,false);
+        Vec3 hit=block.getType()==HitResult.Type.MISS?end:block.getLocation();
+        double distance=eye.distanceToSqr(hit);
+        var entityHit=net.minecraft.world.entity.projectile.ProjectileUtil.getEntityHitResult(p,eye,end,p.getBoundingBox().expandTowards(end.subtract(eye)).inflate(1),
             e->e instanceof LivingEntity && !e.isSpectator() && e.isAlive(),distance);
-        if(entityHit!=null)hit=entityHit.getEntity().getPos();
+        if(entityHit!=null)hit=entityHit.getEntity().position();
         else if(block.getType()==HitResult.Type.BLOCK)hit=hit.add(0,0.07,0);
-        else hit=ground(p.getWorld(),hit);
+        else hit=ground(p.level(),hit);
         return hit;
     }
-    public static Vec3d horizontal(Vec3d v){Vec3d h=new Vec3d(v.x,0,v.z);return h.lengthSquared()<0.001?new Vec3d(0,0,1):h.normalize();}
-    public static Vec3d ground(net.minecraft.world.World world,Vec3d pos) {
-        Vec3d from=pos.add(0,2,0),to=pos.subtract(0,12,0);
-        for(int y=MathHelper.floor(from.y);y>=MathHelper.floor(to.y);y--) {
-            BlockPos block=new BlockPos(MathHelper.floor(pos.x),y,MathHelper.floor(pos.z));
+    public static Vec3 horizontal(Vec3 v){Vec3 h=new Vec3(v.x,0,v.z);return h.lengthSqr()<0.001?new Vec3(0,0,1):h.normalize();}
+    public static Vec3 ground(net.minecraft.world.level.Level world,Vec3 pos) {
+        Vec3 from=pos.add(0,2,0),to=pos.subtract(0,12,0);
+        for(int y=Mth.floor(from.y);y>=Mth.floor(to.y);y--) {
+            BlockPos block=new BlockPos(Mth.floor(pos.x),y,Mth.floor(pos.z));
             var shape=world.getBlockState(block).getCollisionShape(world,block);
             if(shape.isEmpty())continue;
-            var hit=shape.raycast(from,to,block);
-            if(hit!=null)return hit.getPos().add(0,0.05,0);
+            var hit=shape.clip(from,to,block);
+            if(hit!=null)return hit.getLocation().add(0,0.05,0);
         }
         return pos;
     }
     public static boolean friendly(UUID owner,LivingEntity entity) {
         if(owner==null)return false;
-        if(owner.equals(entity.getUuid()))return true;
-        if(entity instanceof Summoned s && owner.equals(s.ownerId()))return true;
-        if(entity instanceof TameableEntity t && owner.equals(t.getOwnerUuid()))return true;
-        if(entity.getWorld() instanceof ServerWorld world) {
-            Entity caster=world.getEntity(owner);
-            if(caster==null && world.getServer()!=null)caster=world.getServer().getPlayerManager().getPlayer(owner);
-            if(caster!=null && caster.isTeammate(entity))return true;
-            if(entity instanceof Summoned s && s.ownerId()!=null) {
-                Entity other=world.getEntity(s.ownerId());
-                if(caster!=null && other!=null && caster.isTeammate(other))return true;
-            }
+        if(owner.equals(entity.getUUID()))return true;
+        UUID otherOwner=CombatCompatibility.ownerOf(entity);
+        if(owner.equals(otherOwner))return true;
+        if(entity.level() instanceof ServerLevel world) {
+            Entity caster=CombatCompatibility.resolve(world,owner);
+            if(caster!=null && caster.isAlliedTo(entity))return true;
+            Entity other=CombatCompatibility.resolve(world,otherOwner);
+            if(caster!=null && other!=null && caster.isAlliedTo(other))return true;
         }
         return false;
     }
     public static boolean enemy(UUID owner,LivingEntity entity) {
-        return entity.isAlive() && !entity.isSpectator() && !(entity instanceof PlayerEntity p && p.isCreative()) && !friendly(owner,entity);
+        return entity.isAlive() && !entity.isSpectator() && !(entity instanceof Player p && p.isCreative()) && !friendly(owner,entity);
     }
-    public static List<LivingEntity> targets(ServerWorld world,UUID owner,Vec3d center,double radius,boolean allies) {
-        return world.getEntitiesByClass(LivingEntity.class,new Box(center.add(-radius,-3,-radius),center.add(radius,5,radius)),
+    public static List<LivingEntity> targets(ServerLevel world,UUID owner,Vec3 center,double radius,boolean allies) {
+        return world.getEntitiesOfClass(LivingEntity.class,new AABB(center.add(-radius,-3,-radius),center.add(radius,5,radius)),
             e->e.isAlive() && !e.isSpectator() && (allies?friendly(owner,e):enemy(owner,e)) &&
-                MathHelper.square(e.getX()-center.x)+MathHelper.square(e.getZ()-center.z)<=radius*radius);
+                Mth.square(e.getX()-center.x)+Mth.square(e.getZ()-center.z)<=radius*radius);
     }
-    public static void hit(ServerWorld world,UUID owner,LivingEntity target,float damage) {
+    public static void hit(ServerLevel world,UUID owner,LivingEntity target,float damage) {
         if(!enemy(owner,target))return;
         Entity caster=owner==null?null:world.getEntity(owner);
-        if(target instanceof PlayerEntity && !world.getServer().isPvpEnabled())return;
-        target.timeUntilRegen=0; target.damage(world.getDamageSources().indirectMagic(caster,caster),damage);
+        if(target instanceof Player && !world.getServer().isPvpAllowed())return;
+        target.invulnerableTime=0; CombatImpact.withoutKnockback(target,()->target.hurt(world.damageSources().indirectMagic(caster,caster),damage));
+    }
+    /** Suspends ordinary windups/casts; Inferno Dragon separately resets its beam heat. */
+    public static void electricStun(LivingEntity target,int ticks) {
+        target.addEffect(new MobEffectInstance(RoyaleSpells.ELECTRICAL_STUN,ticks,0,false,false,true));
+        target.setDeltaMovement(Vec3.ZERO);target.hurtMarked=true;
     }
     public static void stun(LivingEntity target,int ticks) {
         SpellMotion.cancel(target);
-        target.addStatusEffect(new StatusEffectInstance(RoyaleSpells.STUN,ticks,0,false,false,true));
-        target.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS,ticks,9,false,false));
-        target.setVelocity(Vec3d.ZERO);target.velocityModified=true;
-        if(target instanceof MobEntity mob)mob.getNavigation().stop();
+        target.addEffect(new MobEffectInstance(RoyaleSpells.STUN,ticks,0,false,false,true));
+        target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,ticks,9,false,false));
+        target.setDeltaMovement(Vec3.ZERO);target.hurtMarked=true;
+        if(target instanceof Mob mob)mob.getNavigation().stop();
     }
     public static void curse(UUID owner,LivingEntity target){curse(owner,target,1);}
-    public static void curse(UUID owner,LivingEntity target,float power){CURSES.put(target.getUuid(),new Curse(owner,clock+24,power));}
+    public static void curse(UUID owner,LivingEntity target,float power){curse(owner,target,power,11);}
+
+    public static void curse(UUID owner,LivingEntity target,float power,int cardLevel){CURSES.put(target.getUUID(),new Curse(owner,clock+24,power,cardLevel));}
     public static void onDeath(LivingEntity entity) {
-        Curse curse=CURSES.remove(entity.getUuid());
-        if(curse!=null && curse.until>=clock && entity.getWorld() instanceof ServerWorld world)
-            empower(summon(world,curse.owner,entity.getPos(),"zombie",false),curse.power);
+        Curse curse=CURSES.remove(entity.getUUID());
+        if(curse!=null && curse.until>=clock && entity.level() instanceof ServerLevel world) {
+            var summoned=summon(world,curse.owner,entity.position(),"zombie",false);
+            if(curse.cardLevel>0)CardBalance.apply(summoned,"zombie",false,curse.cardLevel);
+            empower(summoned,curse.power);
+            if(summoned!=null)SpellSounds.play(world,entity.position(),Spell.GOBLIN_CURSE,"transform");
+        }
     }
-    public static MobEntity summon(ServerWorld world,UUID owner,Vec3d pos,String kind,boolean decoy) {
+    public static Mob summon(ServerLevel world,UUID owner,Vec3 pos,String kind,boolean decoy) {
         int owned=0,total=0;
-        for(Entity entity:world.iterateEntities())if(entity instanceof Summoned s){total++;if(Objects.equals(owner,s.ownerId()))owned++;}
+        for(Entity entity:world.getAllEntities())if(entity instanceof Summoned s){total++;if(Objects.equals(owner,s.ownerId()))owned++;}
         if(owned>=MAX_UNITS_PER_OWNER || total>=256)return null;
-        MobEntity mob=switch(kind) {
+        Mob mob=switch(kind) {
             case "skeleton" -> RoyaleSpells.SKELETON.create(world);
             case "barbarian", "hero" -> RoyaleSpells.BARBARIAN.create(world);
             case "recruit" -> RoyaleSpells.RECRUIT.create(world);
             case "barbarian_hut" -> RoyaleSpells.BARBARIAN_HUT.create(world);
+            case "inferno_dragon" -> RoyaleSpells.INFERNO_DRAGON.create(world);
             case "zombie" -> RoyaleSpells.ZOMBIE.create(world);
             default -> null;
         };
         if(mob==null)return null;
+        if(mob instanceof InfernoDragon dragon) {
+            Vec3 at=dragonPlacement(world,pos);if(at==null)return null;
+            dragon.setup(owner,InfernoDragon.LIFE_TICKS,false);dragon.moveTo(at.x,at.y,at.z,world.random.nextFloat()*360,0);
+            return world.addFreshEntity(dragon)?dragon:null;
+        }
         if(mob instanceof RoyaleUnit unit) {
             unit.setup(owner,600,false);
-            unit.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(65);unit.setHealth(65);
-            unit.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(0);
-            unit.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED).setBaseValue(0);
-            unit.getAttributeInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE).setBaseValue(1);
-            unit.refreshPositionAndAngles(pos.x,pos.y,pos.z,world.random.nextFloat()*360,0);
-            if(unit.building())unit.lockFacing(unit.getYaw());
-            if(!world.isSpaceEmpty(unit))return null;
-            return world.spawnEntity(unit)?unit:null;
+            unit.getAttribute(Attributes.MAX_HEALTH).setBaseValue(65);unit.setHealth(65);
+            unit.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(0);
+            unit.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
+            unit.getAttribute(Attributes.KNOCKBACK_RESISTANCE).setBaseValue(1);
+            unit.moveTo(pos.x,pos.y,pos.z,world.random.nextFloat()*360,0);
+            if(unit.building())unit.lockFacing(unit.getYRot());
+            if(!world.noCollision(unit))return null;
+            return world.addFreshEntity(unit)?unit:null;
         }
         ((Summoned)mob).setup(owner,kind.equals("skeleton")?400:600,false);
         boolean zombie=kind.equals("zombie");
         if(mob instanceof AllyZombie z){z.setBaby(zombie);z.hero=kind.equals("hero");}
         double hp=kind.equals("skeleton")?6:zombie?(decoy?3:10):kind.equals("recruit")?24:20;
-        mob.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(hp);mob.setHealth((float)hp);
-        mob.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED).setBaseValue(zombie?0.23:0.27);
-        mob.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(decoy?2:kind.equals("skeleton")?1.5:5);
-        mob.equipStack(EquipmentSlot.MAINHAND,new ItemStack(kind.equals("skeleton")?Items.STONE_SWORD:zombie?Items.WOODEN_SWORD:Items.IRON_SWORD));
+        mob.getAttribute(Attributes.MAX_HEALTH).setBaseValue(hp);mob.setHealth((float)hp);
+        mob.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(zombie?0.23:0.27);
+        mob.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(decoy?2:kind.equals("skeleton")?1.5:5);
+        mob.setItemSlot(EquipmentSlot.MAINHAND,new ItemStack(kind.equals("skeleton")?Items.STONE_SWORD:zombie?Items.WOODEN_SWORD:Items.IRON_SWORD));
         if(kind.equals("recruit")) {
-            mob.equipStack(EquipmentSlot.OFFHAND,new ItemStack(Items.SHIELD));
-            mob.equipStack(EquipmentSlot.HEAD,new ItemStack(Items.IRON_HELMET));
-            mob.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION,600,1));
+            mob.setItemSlot(EquipmentSlot.OFFHAND,new ItemStack(Items.SHIELD));
+            mob.setItemSlot(EquipmentSlot.HEAD,new ItemStack(Items.IRON_HELMET));
+            mob.addEffect(new MobEffectInstance(MobEffects.ABSORPTION,600,1));
         }
-        for(EquipmentSlot slot:EquipmentSlot.values())mob.setEquipmentDropChance(slot,0);
-        mob.refreshPositionAndAngles(pos.x,pos.y,pos.z,world.random.nextFloat()*360,0);
-        for(int i=0;i<4 && !world.isSpaceEmpty(mob);i++)mob.setPosition(mob.getPos().add(0,1,0));
-        if(!world.isSpaceEmpty(mob))return null;
-        return world.spawnEntity(mob)?mob:null;
+        for(EquipmentSlot slot:EquipmentSlot.values())mob.setDropChance(slot,0);
+        mob.moveTo(pos.x,pos.y,pos.z,world.random.nextFloat()*360,0);
+        for(int i=0;i<4 && !world.noCollision(mob);i++)mob.setPos(mob.position().add(0,1,0));
+        if(!world.noCollision(mob))return null;
+        return world.addFreshEntity(mob)?mob:null;
     }
-    public static void unitTick(MobEntity mob,UUID owner) {
-        if(!(mob.getWorld() instanceof ServerWorld world) || mob.age%10!=0)return;
-        LivingEntity target=mob.getTarget();
-        if(target==null || !enemy(owner,target) || mob.squaredDistanceTo(target)>24*24) {
-            target=targets(world,owner,mob.getPos(),16,false).stream()
-                .filter(e->mob.canSee(e)).min(Comparator.comparingDouble(mob::squaredDistanceTo)).orElse(null);
-            mob.setTarget(target);
+    /** Reserve a complete body-sized aerial spawn volume, within the loaded world. */
+    public static Vec3 dragonPlacement(ServerLevel world,Vec3 ground) {
+        for(int i=0;i<4;i++) {
+            Vec3 at=ground.add(0,InfernoDragon.MIN_HOVER_HEIGHT+i,0);var box=AABB.ofSize(at.add(0,.825,0),1.15,1.65,1.15);
+            if(box.maxY>=world.getMaxBuildHeight()||box.minY<world.getMinBuildHeight()||!world.getWorldBorder().isWithinBounds(box))continue;
+            boolean loaded=true;
+            for(int x=Mth.floor(box.minX);x<=Mth.floor(box.maxX);x++)for(int z=Mth.floor(box.minZ);z<=Mth.floor(box.maxZ);z++)
+                if(!world.hasChunkAt(new BlockPos(x,Mth.floor(at.y),z)))loaded=false;
+            if(loaded&&world.noCollision(box))return at;
         }
-        if(target==null && owner!=null && world.getEntity(owner) instanceof LivingEntity master && mob.squaredDistanceTo(master)>36)
-            mob.getNavigation().startMovingTo(master,1.1);
+        return null;
     }
-    public static void cloneAllies(ServerWorld world,UUID owner,Vec3d pos,double radius) {
+    public static void unitTick(Mob mob,UUID owner) {
+        SummonOrders.tick(mob,owner);
+    }
+    public static void cloneAllies(ServerLevel world,UUID owner,Vec3 pos,double radius) {
         cloneAllies(world,owner,pos,radius,1);
     }
-    public static void empower(MobEntity mob,float power) {
+    public static void empower(Mob mob,float power) {
         if(mob==null || power==1)return;
         if(mob instanceof RoyaleUnit unit)unit.setPower(unit.power()*power);
-        var health=mob.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);health.setBaseValue(health.getBaseValue()*power);mob.setHealth(mob.getMaxHealth());
-        var attack=mob.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
+        var health=mob.getAttribute(Attributes.MAX_HEALTH);health.setBaseValue(health.getBaseValue()*power);mob.setHealth(mob.getMaxHealth());
+        var attack=mob.getAttribute(Attributes.ATTACK_DAMAGE);
         if(mob instanceof AllySkeleton)attack.setBaseValue(attack.getBaseValue()*power);
-        else attack.addPersistentModifier(new net.minecraft.entity.attribute.EntityAttributeModifier(MIRROR_ATTACK,"Mirror level",power-1,net.minecraft.entity.attribute.EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+        else attack.addPermanentModifier(new net.minecraft.world.entity.ai.attributes.AttributeModifier(MIRROR_ATTACK,"royale_mirror_attack",power-1,net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.MULTIPLY_TOTAL));
     }
-    public static void cloneAllies(ServerWorld world,UUID owner,Vec3d pos,double radius,float power) {
+    public static void cloneAllies(ServerLevel world,UUID owner,Vec3 pos,double radius,float power) {
+        cloneAllies(world,owner,pos,radius,power,11);
+    }
+
+    public static void cloneAllies(ServerLevel world,UUID owner,Vec3 pos,double radius,float power,int cardLevel) {
         for(LivingEntity original:targets(world,owner,pos,radius,true)) {
+            if(!(original instanceof Summoned))continue;
             if(!(original instanceof Summoned summoned) || summoned.isClone() || original instanceof RoyaleUnit unit && unit.building())continue;
-            String kind=original instanceof RoyaleUnit unit?unit.kind():original instanceof AllySkeleton?"skeleton":original.getType()==RoyaleSpells.ZOMBIE?"zombie":
+            if(original instanceof RoyalWitch sourceWitch){
+                if(!CardDeployment.capacity(world,owner,1))continue;
+                var copy=RoyaleSpells.WITCH.create(world);if(copy==null)continue;
+                copy.configure(owner,sourceWitch.evolved(),cardLevel>0?cardLevel:sourceWitch.cardLevel());copy.setup(owner,400,true);
+                copy.setPos(original.position().add(.7,0,0));copy.setYRot(original.getYRot());copy.setYBodyRot(original.getYRot());
+                if(world.noCollision(copy))world.addFreshEntity(copy);continue;
+            }
+            if(original instanceof ElementalSpirit sourceSpirit){
+                if(sourceSpirit.chaining()||!CardDeployment.capacity(world,owner,1))continue;
+                var copy=RoyaleSpells.ELEMENTAL_SPIRIT.create(world);if(copy==null)continue;
+                copy.configure(owner,sourceSpirit.element(),sourceSpirit.power()*power);copy.setup(owner,400,true);copy.setCardLevel(cardLevel);
+                copy.setPos(original.position().add(.7,0,0));if(world.noCollision(copy))world.addFreshEntity(copy);continue;
+            }
+            String kind=original instanceof InfernoDragon?"inferno_dragon":original instanceof RoyaleUnit unit?unit.kind():original instanceof AllySkeleton?"skeleton":original.getType()==RoyaleSpells.ZOMBIE?"zombie":
                 original.getType()==RoyaleSpells.RECRUIT?"recruit":"barbarian";
-            MobEntity clone=summon(world,owner,original.getPos().add(0.7,0,0),kind,false);
+            Mob clone=summon(world,owner,original.position().add(0.7,0,0),kind,false);
             if(clone!=null) {
+                if(cardLevel>0)CardBalance.apply(clone,kind,false,cardLevel);
+                else if(CardBalance.isCard(original))CardBalance.apply(clone,kind,false,CardBalance.level(original));
                 ((Summoned)clone).setup(owner,400,true);
-                clone.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(1);clone.setHealth(1);
-                var attack=clone.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);var source=original.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-                attack.setBaseValue(source.getBaseValue()*(clone instanceof AllySkeleton?power:1));
-                if(!(clone instanceof AllySkeleton)) {
-                    var boost=source.getModifier(MIRROR_ATTACK);double factor=(boost==null?1:1+boost.getValue())*power;
-                    if(factor>1)attack.addPersistentModifier(new net.minecraft.entity.attribute.EntityAttributeModifier(MIRROR_ATTACK,"Mirror level",factor-1,net.minecraft.entity.attribute.EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+                // Minecraft MAX_HEALTH has a hard lower bound of 1. Clones stay at
+                // that minimum; every damaging card still kills them in one hit.
+                float cloneHealth=1;
+                clone.getAttribute(Attributes.MAX_HEALTH).setBaseValue(cloneHealth);clone.setHealth(cloneHealth);
+                var attack=clone.getAttribute(Attributes.ATTACK_DAMAGE);var source=original.getAttribute(Attributes.ATTACK_DAMAGE);
+                if(cardLevel<=0)attack.setBaseValue(source.getBaseValue()*(clone instanceof AllySkeleton?power:1));
+                if(cardLevel<=0&&!(clone instanceof AllySkeleton)) {
+                    var boost=source.getModifier(MIRROR_ATTACK);double factor=(boost==null?1:1+boost.getAmount())*power;
+                    if(factor>1)attack.addPermanentModifier(new net.minecraft.world.entity.ai.attributes.AttributeModifier(MIRROR_ATTACK,"royale_mirror_attack",factor-1,net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.MULTIPLY_TOTAL));
                 }
-                clone.removeStatusEffect(StatusEffects.ABSORPTION);
+                clone.removeEffect(MobEffects.ABSORPTION);clone.setAbsorptionAmount(0);
+                if(clone instanceof AllyZombie z)z.cardShield(cardLevel>0&&original instanceof AllyZombie s&&s.cardShield()>0?cloneHealth:0);
                 if(original instanceof RoyaleUnit sourceUnit && clone instanceof RoyaleUnit cloneUnit)cloneUnit.setPower(sourceUnit.power()*power);
             }
         }
     }
 }
-
-

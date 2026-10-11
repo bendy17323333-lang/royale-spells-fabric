@@ -1,0 +1,71 @@
+{
+  "version": "1.9.0",
+  "texture_generator": "built-in ImageGen",
+  "image_unmodified": true,
+  "face_reference_inputs": [
+    "docs/research/witch-original-render.png",
+    "docs/research/witch-evo-card.png",
+    "user-provided Minecraft Witch model screenshot"
+  ],
+  "mesh_and_rig": "Newly authored mesh/rig from build-witch-models.py plus witch_shape_refine.py and witch_staff_refine.py; no MineClash mesh copied",
+  "runtime_animation": "TroopModel; per-entity synchronized gameplay ages and independent cloth motion",
+  "native_editor_validation": "Editable bbmodel exported; successful live Blockbench import not established. Actual runtime visual review is recorded separately.",
+  "third_party_rights": "Original character designs/cards/audio/references excluded from MIT; see ASSETS.md",
+  "files": [
+    {
+      "path": "src/main/resources/assets/royalespells/textures/entity/witch_materials.png",
+      "sha256": "08f6c0b2819a9e800fc124f46d196d7d86b76d92977eea81929326cab08f8d6d",
+      "bytes": 1269686
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/entity/witch_face.png",
+      "sha256": "4974284419adf0ef987438de15dd0a14cfbd2ded5366d40981e923fcfdc981ac",
+      "bytes": 1194981
+    },
+    {
+      "path": "art/witch/witch.bbmodel",
+      "sha256": "acba070499e3b6646d020a06c1e2b22f70104c15762cac10eb6baa923537dcd1",
+      "bytes": 4274711
+    },
+    {
+      "path": "art/witch/witch_evolution.bbmodel",
+      "sha256": "300a114f60ad4b35a0a200335a97bba7ecaf9be203c22f5f721abd64c4af5719",
+      "bytes": 4320234
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/troop/witch.json",
+      "sha256": "ab47913d9dadd6a09a49ed2851c8c79f76f5b7a95b5dd80ea4c403d7348fdcb6",
+      "bytes": 1369756
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/models/troop/witch_evolution.json",
+      "sha256": "3a18e3bcf4215fb30f33a8789b8f5a012695532bc5059dfc5645569deea4f578",
+      "bytes": 1441564
+    },
+    {
+      "path": "art/witch/build-witch-models.py",
+      "sha256": "d3428ae5c60682b29d14cb561d480e0bb8e8e0fb8258c09e0f3beb7aba23a8bb",
+      "bytes": 15994
+    },
+    {
+      "path": "art/witch/witch_shape_refine.py",
+      "sha256": "fe706c89bb0aeb53c4ce887e6c652ade6328149792863748cb95d58488791f58",
+      "bytes": 11777
+    },
+    {
+      "path": "art/witch/witch_staff_refine.py",
+      "sha256": "0c9ac1c4ce999dfbca632987fe4f165887ff0e2a1a56957bfd2e4c7e983c37bc",
+      "bytes": 11130
+    },
+    {
+      "path": "art/witch/FACE-REFERENCED-IMAGEGEN-PROMPT.txt",
+      "sha256": "a525b29c1b06cd9b90d51fdfe691e5c0964379ee3194cb772e1dc027e4c3f3d5",
+      "bytes": 2033
+    },
+    {
+      "path": "art/witch/IMAGEGEN-PROMPT.md",
+      "sha256": "ca34c90ee47b0fbd41167d96a5ed8f140b25b5798fcb81c3d830b3c04bf76776",
+      "bytes": 1560
+    }
+  ]
+}

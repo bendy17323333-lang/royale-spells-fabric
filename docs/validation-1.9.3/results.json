@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-11",
+  "tests": {
+    "fabric": {
+      "passed": 51,
+      "failed": 0,
+      "sha256": "f0a30bc3588b5c6ef3ca2b03aada535e3fad7072b3668e76aa76d4cc1ac7a387"
+    },
+    "neoforge-standalone": {
+      "passed": 110,
+      "failed": 0,
+      "sha256": "61328562aeb744780c57693fa454d9bf02a5715792e7ed9aad2aae56abc4ebf0"
+    },
+    "neoforge-iron": {
+      "passed": 183,
+      "failed": 0,
+      "sha256": "36299a8d07acde9969ea187f30aaba980daf7d6c0fc68c4971d2f23f07580f66"
+    }
+  },
+  "jars": {
+    "fabric-1.20.1": {
+      "file": "royale-spells-fabric-1.20.1-1.9.3.jar",
+      "bytes": 20647632,
+      "sha256": "340b362b87a63045f3736e4ebfa757e4c027f6b8c18263d08af72fa716b6feec"
+    },
+    "neoforge-1.21.1": {
+      "file": "royale-spells-neoforge-1.21.1-1.9.3-beta.4.jar",
+      "bytes": 23675158,
+      "sha256": "34bc12f5df4dcdf2bd2313717105134b1adc50c8a657828c747a349c4a2dd29a"
+    }
+  },
+  "frames": {
+    "fabric": 62,
+    "neoforgeCards": 20,
+    "neoforgeTower": 24
+  },
+  "scope": "GameTest and isolated clients, not user modpack or MineClash integration"
+}

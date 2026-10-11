@@ -1,88 +1,62 @@
-# 素材记录
+# 素材出处与许可边界 · Fabric 1.9.1
 
-## 代码许可与第三方资产排除
+自编代码、脚本、配置和文档使用 MIT；第三方资产不被重新许可。完整法律范围见 [LICENSE-NOTICE.md](LICENSE-NOTICE.md)。以下历史来源清单保留采集时的版本与路径；其中法杖、卷轴图标和液体资源已从本版运行资源移除，不能把历史清单当作当前注册物品表。
 
-**本项目自编代码、构建／工具脚本、配置与技术文档采用 [MIT 许可证](LICENSE)。第三方资产不在该许可范围内。** 完整的中英文范围说明见 [LICENSE-NOTICE.md](LICENSE-NOTICE.md)。下文明确记录为本项目独立制作或 ImageGen 生成、未混入第三方内容的新素材，其可由本项目授予的原创贡献同样采用 MIT；这不包含原作角色设计、商标或第三方改编素材的权利。
-
-| 内容 | 适用说明 |
+| 素材 | 来源与说明 |
 | --- | --- |
-| 自编 Java、渲染／动画算法、法术／AI 机制、兼容层、测试和工具 | MIT，允许修改、再分发与商业使用，保留许可声明 |
-| 《皇室战争》卡图、原作参考图、角色图、音频及转换版本 | **排除**；Supercell 等原权利人保留权利 |
-| MineClash 冰精灵及冰法杖同源头部的模型、贴图、发光遮罩、工程和导出物 | **排除**；LiziYowo / MineClash 团队保留权利，源项目为 [MineClash](https://www.curseforge.com/minecraft/mc-mods/mineclash) |
-| Minecraft 运行时原版模型、纹理、声音 | **排除**；Mojang/Microsoft 的资源条款不变 |
-| Gradle Wrapper 与其它第三方软件 | 保留各自上游许可证；不被本项目重新许可 |
+| 37 张卡牌 | Supercell 原作卡图，来自 [RoyaleAPI/cr-api-assets](https://github.com/RoyaleAPI/cr-api-assets)；按原始 302:363 比例绘制，不裁切或重画；1.9.0 新增普通和觉醒女巫两图 |
+| 法术原作音效 | [Henrylq/Clash-Royale-SFX](https://github.com/Henrylq/Clash-Royale-SFX)、RoyaleAPI 的固定版本；部分立体声在历史版本转为单声道用于距离衰减 |
+| 冰精灵模型、贴图及发光遮罩 | 用户提供的 MineClash 0.7.5 素材，原作者 LiziYowo / MineClash 团队；[原项目](https://www.curseforge.com/minecraft/mc-mods/mineclash)。原始及改编素材均排除于 MIT，不声称取得公众再许可 |
+| 野蛮人、卫队、小屋、火／电／治疗精灵、地狱飞龙 | 本项目几何及专用材质；1.8.0 移植沿用既有资源；原作角色设计权利仍归原权利人 |
+| 粒子、火球核心及尾焰、历史专用材质图集 | 历史版本由内置 ImageGen 生成并记录提示词；1.8.0 移植沿用相同字节；1.9.0 女巫新增资产另列 |
+| 小骷髅、铁剑、石剑及原版方块材质 | 运行时调用 Minecraft 原版资源，权利归 Mojang/Microsoft；不把其原图复制为本项目原创纹理 |
+| 程序化电弧、领域、冰壳、藤蔓、军团头盔与旗帜动画 | 本项目程序实现，代码采用 MIT；不授予原作角色、商标权利 |
+| Gradle Wrapper / MixinExtras | 第三方软件保留上游许可；MixinExtras Fabric 0.5.0 嵌入 JAR，其许可证位于嵌套 JAR 的 LICENSE_MixinExtras |
 
-卡图通常位于 `src/main/resources/assets/royalespells/textures/card/` 与 `textures/gui/spell_icons/`，原作声音位于同一资源命名空间的 `sounds/`。MineClash 相关路径包括 `textures/entity/spirit_ice_mineclash*.png`、`models/troop/spirit_ice.json`、`models/item/furnace_staff_ice.obj` 和 `art/blockbench-v3/` 中对应冰精灵／冰法杖工程；各版本存在的文件以其来源清单为准。
+详细记录：`ASSET-SOURCES.json`、`ARMY-ASSET-SOURCES.json`、`AUDIO-SOURCES.json`、`BARBARIAN-AUDIO-SOURCES.json`、`SPELL-AUDIO-SOURCES.json`、`SPIRIT-ASSET-SOURCES.json`、`SPIRIT-AUDIO-SOURCES.json`、`SPIRIT-CARD-SOURCES.json`、`TROOP-ASSETS.json`、`GRAVEYARD-PARTICLE-SOURCE.json`，以及 `art/inferno-dragon/asset-sources.json`。
 
-这些排除同样适用于复制、改编、转换及嵌入代码或模型工程的资产数据。出处和已有使用授权不能替代原权利人的再许可；**含第三方资产的完整 JAR 不能被整体描述为“全部素材均为 MIT”。** 下文和 `*-SOURCES.json` 保留原始来源记录。
+1.8.0 基线打包的卡图、PNG、OGG、模型逐文件 SHA-256 在 `docs/reference/runtime-assets-1.8.0.json`，它不包含本轮女巫增量；新增原作卡图和音频详见 `WITCH-ASSET-SOURCES.json`。历史文件名变化不影响归属排除。冰精灵当前资源为 `models/troop/spirit_ice.json`、`textures/entity/spirit_ice_mineclash.png` 与 `spirit_ice_mineclash_glowmask.png`。
 
-28 张法术卡图直接取自 RoyaleAPI 维护的皇室战争原版素材仓库：
+虚空三次劈击音在既有档案中复用原作 `zap_02.ogg`，不是冒充已找到独立虚空劈击采样；温暖使用已记录的治疗音，派对火箭使用火箭／庆祝音。完整归属及复用说明保留在对应来源 JSON。本版延续既有空间音效衰减，不宣称所有事件都有独占采样。
 
-https://github.com/RoyaleAPI/cr-api-assets
+本项目独立制作／生成且不混入第三方内容的素材，其可由本项目授予的原创贡献同样适用 MIT；不包括第三方原作角色设计、商标和改编资产权利。完整 JAR 不应被称为“所有素材均为 MIT”。
 
-图像文件按原始字节保存在 `src/main/resources/assets/royalespells/textures/card/`，未重绘、裁切、缩放或改色。渲染器按卡牌比例绘制，避免非标准原图尺寸影响 Minecraft 方块图集 mipmap。逐图来源及文件哈希见 `ASSET-SOURCES.json`。卡牌美术和相关角色属于 Supercell；本项目为非官方 Minecraft 适配。
+## 1.9.0 女巫新增原作素材
 
-机制核对来源：
+两张卡图直接保存原始 PNG 字节，尺寸均为 302×363。上游为 RoyaleAPI 原作资源镜像，固定版本 `b4530a1043b213ee2baf9c50a3d0d7fae22c2313`：[普通女巫](https://github.com/RoyaleAPI/cr-api-assets/blob/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/witch.png)、[觉醒女巫](https://github.com/RoyaleAPI/cr-api-assets/blob/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/witch-ev1.png)。正式资源名为 `textures/card/witch.png` 和 `textures/card/witch_evolution.png`。
 
-- 全部法术分类：https://clashroyale.fandom.com/wiki/Category:Spell_Cards
-- Zap 重做：https://supercell.com/en/games/clashroyale/blog/release-notes/october-balance-changes/
-- 觉醒雪球：https://royaleapi.com/blog/giant-snowball-evolution-new-card-2024-december
-- 藤蔓介绍：https://supercell.com/en/games/clashroyale/blog/release-notes/new-season-back-to-drool/
-- 英雄滚桶：https://supercell.com/en/games/clashroyale/blog/release-notes/march-update-2026/
-- 2026 年 8 月调整：https://supercell.com/en/games/clashroyale/blog/news/final-august-balance-changes-826/
+十二份原作 OGG 来自 [Henrylq/Clash-Royale-SFX 的 Witch 目录](https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Witch)，固定版本 `c2d7d67271113cb9fe3ad896d9d03dd7f49eed52`。原始录音留存于 `art/witch/original-audio/`；运行资源在 `sounds/witch/`，必要时仅转为单声道 Vorbis，用于三维距离衰减，不改音高、播放速度、剪辑或响度。十二份均经 FFmpeg 完整解码检查。声音事件的衰减距离为 48 格。
 
-Minecraft 尺度下的具体伤害、半径、存活时间为本项目适配值，并非宣称与皇室战争等级数值一比一一致。
+| 事件 | 原作文件（省略 .ogg） | 说明 |
+| --- | --- | --- |
+| witch_deploy | summon_witch_01 | 普通部署 |
+| witch_attack | witch_attack_02 | 普通攻击 |
+| witch_impact | card_evolution_witch_attack_hit | 普通独立命中音未在该源中找到，明确复用原作觉醒命中音，事件增益 0.55 |
+| witch_summon | witch_summon_02 | 普通召唤 |
+| witch_heal | card_evolution_witch_healing | 觉醒回血 |
+| witch_death | npc_die_02 | 原作共享死亡音，不冒充女巫专属台词 |
+| evolved_witch_deploy | card_evolution_witch_deploy_sfx | 觉醒部署音效 |
+| evolved_witch_deploy_voice | card_evolution_witch_deploy_vo_01 / 02 | 随机选一条语音，与部署音效分别触发 |
+| evolved_witch_attack | card_evolution_witch_attack | 觉醒攻击 |
+| evolved_witch_impact | card_evolution_witch_attack_hit | 觉醒命中 |
+| evolved_witch_summon | card_evolution_witch_skill_skeleton_01 / 02 | 随机选一条召唤音 |
 
-## 新生成的魔法粒子
+未找到可靠的独立受伤语音，因此没有用 Minecraft 女巫或僵尸声音冒充。原始与转换后文件的 SHA-256、完整固定 URL、采集日期、声道和时长均在 [WITCH-ASSET-SOURCES.json](WITCH-ASSET-SOURCES.json)；导入步骤见 `tools/import-witch-assets.py`。
 
-工具：内置 **image_gen**（不是 CLI/API fallback）。
+**上述卡图、原作声音，以及 `docs/research/witch-*-original-*.jpg`、`witch-original-render.png`、`witch-evo-card.png` 等原作参考图，均为第三方资产，明确排除于 MIT 授权。** 可公开读取上游不等于取得再许可；角色设计、商标和录音权利仍归 Supercell 等原权利人。
 
-项目文件：`src/main/resources/assets/royalespells/textures/particle/spell_spark.png`。保留工具生成 PNG 的透明通道。粒子由 `MagicParticle` 加载，配合原版粒子和颜色圆环，用于实际游戏法术效果。
+女巫几何为本项目新建，没有复制 MineClash 网格或纹理；用户截图用于风格参考。法球、命中烟团和回血效果为世界坐标中的本项目实现，依据 [RoyaleAPI 觉醒女巫实机短片](https://www.youtube.com/watch?v=8Eoq4MF424g) 的外观观察。未分发该视频，也未提取其画面制作贴图。实机参考的观察范围、2026 年玩法重做与尚未量化的特效细节记录在 [研究档案](docs/research/witch-2026-10-10.md)。
 
-完整提示词：
+**历史 1.9.0 女巫材质**：旧 `witch_materials.png` 和 `witch_face.png` 曾使用内置 ImageGen，参考输入与提示词记录在旧 `art/witch/` 档案。它们不再代表 1.9.1 的当前女巫材质；旧面部生成图不是本轮最终脸部纹理。历史制作记录不用于宣称当前原生模型已通过验收。
 
-> Use case: stylized-concept. Asset type: a single Minecraft magic spell particle sprite texture, not a mockup. Create one centered luminous magical spark/rune sprite with true transparent background. Square image. A compact diamond-shaped white-hot core surrounded by four jagged violet magical tendrils, crisp pixel-art edges, Minecraft-compatible blocky pixel art with an apparent 32 by 32 pixel design enlarged with nearest-neighbor pixels. All art fully inside central 75 percent of canvas, transparent padding, no text, no letters, no border, no scene, no checkerboard, no drop shadow. Mainly white with pale violet accents so in-game tinting works for poison, zap, rage, void and curse spells. Output actual transparent PNG suitable for an in-game particle atlas.
+## 1.9.1 女巫原生模型与像素图集
 
-## 模型及原版效果复用
+普通与觉醒女巫在真实 Blockbench 项目中重新制作，可编辑源为 `art/blockbench/witch.bbmodel`、`art/blockbench/witch_evolution.bbmodel`。当前 `textures/entity/witch_materials.png` 是 **128×128 的新像素图集**，在 Blockbench 原生 Texture 对象中通过编辑器内绘图与像素编辑脚本制作，包含当前面部的像素表现；不采用旧的大幅 ImageGen 面部贴图。角色设计参考仍来自用户提供的 Minecraft 风格女巫图和 Supercell 原角色，不能因此授予第三方角色权利。
 
-- 滚木、尖刺、飞桶、皇家速递箱、火箭外壳和尾翼、雪球形体：在 `SpellRenderer` 中以 Minecraft 方块材质组合几何模型，并按飞行轨迹和滚动进度动态变换。
-- 野蛮人和皇家卫兵：`TroopModel` 加载关节几何与已生成的材质图集；野蛮人的剑使用 Minecraft 实际装备的手持物品渲染。
-- 小僵尸和持剑骷髅复用 Minecraft 原版模型及贴图。
-- 雷电复用原版闪电实体外观；其它效果使用原版音效、可着色粒子、生成魔法粒子及专用运动模型。
+制作过程脚本位于 `art/witch-remake/`：`build-in-blockbench.js`、`refine-in-blockbench.js`、`polish-in-blockbench.js`、`proportion-in-blockbench.js`、`face-opening-in-blockbench.js`、`evolution-in-blockbench.js`、`simplify-hands-in-blockbench.js`。原生到运行时的导出器为 `tools/export-native-witch.py`，导出核验记录为 `art/witch-remake/native-export-audit.json`；真实编辑器截取脚本为 `art/witch-remake/capture-native-witch.js`。最终两模型四视角保存在 `art/witch-remake/blockbench-final-*.png`，由 `model-provenance.json` 明确列出并逐文件绑定哈希。
 
-## 墓园登场音效（1.0.1）
+本项目制作的代码、脚本和独立原创贡献适用 MIT；上述角色衍生表现不授予 Supercell 的角色、原卡图、声音或其他第三方资产权利。原生项目截图只能证明相应编辑器中的实际外观，不能替代 Minecraft 渲染验收。最终游戏截图、模型审查和连续性 CSV 必须与当前 JAR 对应，不沿用 1.9.0 的美术结论。
 
-皇室战争素材归 Supercell 所有。选用 RoyaleAPI 公开素材库的经典 cemetary_deploy_01.ogg，原文件保持不变：
+## 1.9.2 共享女巫模型
 
-https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/sfx/cemetary_deploy_01.ogg
-
-SHA-256：06A0A9C773A06BA35E9364244C02D3B3CC11F358E5D6DC75F86C83FFDDA5AB94。单声道、44100 Hz、约 3.07 秒。Henrylq 的解包档案将同名素材归入 Cards/Graveyard，可交叉核对用途。具体地址见 AUDIO-SOURCES.json。交付的 WAV 试听版由 Minecraft 自带 OGG 解码器解码为 PCM，仅转换容器与编码，未调整音高、速度或混入其它音轨；模组中使用未改动的 OGG。
-
-## 1.0.2 虚空视觉参考
-
-参考 https://royaleapi.com/blog/void-2024-may?lang=en 的原版游戏截图，使用程序化几何重建暗色领域、红色边缘、亮色核心的三轮下劈光束。参考截图未作为模组贴图打包；本次无需新增位图素材。滚木继续使用 Minecraft 原版橡木材质，修正长轴与滚动轴。
-
-## 1.0.3 素材使用变化
-
-旧 imagegen 紫色星芒已停用，保留文件仅用于资源兼容。新增 Zap 折线电弧、独立领域以及虚空色彩均由程序化几何渲染。狂暴与克隆通过生物主体材质染色和透明渲染层实现；藤蔓、冰壳及拼装火箭使用 Minecraft 原版方块材质构成立体模型，本次没有新增 AI 位图。冻结和缠绕状态图标复用已有状态图标。
-
-## 当前保留的部队材质与模型
-
-1.1.0 使用内置 image_gen.imagegen 生成十六种材质图集并迭代一次，未使用 Python 重绘或拼贴图像。1.1.1 原样复用该图集：`src/main/resources/assets/royalespells/textures/entity/troop_materials.png`。原始与最终修改提示词见 `TROOP-ASSETS.json`。
-
-当前仅保留野蛮人、皇家卫队、野蛮人小屋三个模型。几何由代码制作，眼睛和武器的问题来自代码建模与挂点设计；没有通过浏览器操作 Blockbench。`art/blockbench` 中是从运行时几何导出的可编辑工程，内嵌同一张图集。几何生成脚本为 `art/make-troop-models.py`。
-
-小骷髅恢复 Minecraft 原版骷髅模型和贴图；野蛮人的剑使用 Minecraft 原版铁剑物品模型和贴图。去除石人、女巫、小石人、蝙蝠模型及两张卡牌素材；现存 29 张原版卡图的来源和原始哈希见 `ASSET-SOURCES.json`。
-
-## 野蛮人原版音效（1.1.1）
-
-15 个 OGG 均来自 [RoyaleAPI 固定版本的音效目录](https://github.com/RoyaleAPI/cr-api-assets/tree/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/sfx)，并与 [Henrylq 的 Barbarians 解包分类](https://github.com/Henrylq/Clash-Royale-SFX/tree/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Barbarians) 交叉核对：登场 deploy_barbarians_01，攻击 barbarian_attack_02 至 08，脚步 barb_footstep_01/02/03_no_vo/04/05/06，以及该分类中的通用死亡 npc_die_02。
-
-音频归 Supercell 所有；未剪辑、重编码、变速或变调。逐文件来源、用途、SHA-256 记录于 `BARBARIAN-AUDIO-SOURCES.json`。没有将其它角色的叫声冒充野蛮人待机或受伤语音，这两项不播放语音。
-
-
-## 1.1.2 造型参考与脚步筛选
-
-野蛮人头部与胡子轮廓参考 [RoyaleAPI 保存的原版部队渲染图](https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/chr/barbarians.png)，网格由 `art/make-troop-models.py` 编写。复用现有材质图集，野蛮人使用白色材质局部采样与顶点配色，避免脸部出现拉伸的发丝与皮肤纹理；没有新增或编辑位图。Blockbench 的网格导出保存顶点配色元数据，最终着色以游戏渲染器为准。
-
-脚步随机池只保留原始 `barb_footstep_03_no_vo.ogg`，五个含人声变体停用，原始字节与哈希档案仍保留；`BARBARIAN-AUDIO-SOURCES.json` 的 `used` 字段标明是否参与播放。脚步播放音量为 0.12、衰减距离 8 格、每个单位最短间隔 8 tick。原版音频未重编码或变调。
+本轮在现有原生 Blockbench 工程中重塑带厚度的衣身、补齐脖颈并重新分配身高；普通女巫保留腿，觉醒女巫移除腿和靴子并增加中空悬浮袍摆。两端共用 `.bbmodel`、导出网格和 128×128 图集。未新增 ImageGen 位图，沿用 1.9.1 的原生像素图集。动作和左手挂点为本项目代码；角色设计、声音的第三方权利保持原样。当前版本制作及核验记录见 `art/witch-remake/1.9.2/`。

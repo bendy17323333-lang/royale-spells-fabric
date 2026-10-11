@@ -1,0 +1,217 @@
+{
+  "date": "2026-09-07",
+  "purpose": "The references array contains reference-only Clash Royale artwork, not bundled in the JAR. Current generated textures and user-authorized MineClash ice assets are recorded separately below.",
+  "references": [
+    {
+      "path": "art/spirit-references/furnace.png",
+      "url": "https://clashroyale.inbox.supercell.com/9jtsgmsiuthj/1XiHQZmjWFEq5PYb5SbWOJ/670909257454a9b24331d57a6a175c34/furnace.png",
+      "sha256": "7e6c5115f7422208b959528bdffba3a727599f54ed9b786f024b4b2dce79bdbb"
+    },
+    {
+      "path": "art/spirit-references/spirits.png",
+      "url": "https://clashroyale.inbox.supercell.com/9jtsgmsiuthj/tkG34AyKFwVbM0EleE9wS/3e9ba01d794e95c091ad0e88100dc3ca/spirits.png",
+      "sha256": "1cdbcfb320f5a60695a6c16937cbc3674c8c0c78bbaab91a0c5278a9d16a9402"
+    },
+    {
+      "path": "art/spirit-references/furnace-full.png",
+      "url": "https://i.17173cdn.com/2fhnvk/YWxqaGBf/cms3/ThpxAlbtboAzyki.png!a-3-854x.png",
+      "sha256": "d379d88486a33a5f967f7482bb3532d50569acb0d6185e5a94d3b9ebae30cf05"
+    }
+  ],
+  "created_assets": "Eight actual Blockbench projects exported to runtime JSON/OBJ. Fire/electro/heal and staff use ImageGen pixel material maps; ice reuses the supplied MineClash geometry, diffuse texture and glow mask.",
+  "sound_reuse": "Replaced by 22 original spirit-category clips and 16 phase events; see SPIRIT-AUDIO-SOURCES.json for documented shared cues.",
+  "staff_texture": {
+    "generator": "built-in image_gen",
+    "prompt_file": "art/FURNACE-IMAGEGEN-PROMPT.md",
+    "path": "src/main/resources/assets/royalespells/textures/item/furnace_staff_atlas.png",
+    "sha256": "9f5603eae8bfdc58bfdcd23b33445dd549dc8cabdca48c227ede01fec2b685c5",
+    "size": [
+      1254,
+      1254
+    ],
+    "handling": "Copied unchanged; no bitmap recolouring or alteration. Dedicated UVs select the 4x4 material atlas.",
+    "status": "Superseded Beta 2 texture; excluded from the block/item atlas in Beta 3."
+  },
+  "version": "1.6.1-beta.2",
+  "current_generated_assets": [
+    {
+      "path": "src/main/resources/assets/royalespells/textures/entity/spirit_materials.png",
+      "sha256": "f4f4aabd4bb510781a6a899c0df220cb32b02b5915c06d171c4846f8145190f6",
+      "bytes": 988395,
+      "generator": "built-in image_gen",
+      "generation_file": "exec-bd642dfc-f2df-40eb-9320-4fb61b1034f5.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "prompt_file": "art/blockbench-v3/PIXEL-FINAL-PROMPTS.md",
+      "handling": "Original PNG bytes; only in-memory nearest-neighbor atlas upload adapts size."
+    },
+    {
+      "path": "src/main/resources/assets/royalespells/textures/entity/spirit_flame.png",
+      "sha256": "265e7942bad4bd851a1cfe805efb48c63f32b364573dc4ba7a80e3cd78ebecd1",
+      "bytes": 701048,
+      "generator": "built-in image_gen",
+      "generation_file": "exec-98352c00-1a0e-46a7-8e26-23e5557abdf3.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "prompt_file": "art/blockbench-v3/PIXEL-FINAL-PROMPTS.md",
+      "handling": "Original PNG bytes; only in-memory nearest-neighbor atlas upload adapts size."
+    }
+  ],
+  "mineclash_ice": {
+    "source_archive": "mineclash-0.7.5-1.21.1.jar",
+    "source_archive_sha256": "08a8b5a902677f3c979f1330151134d207bf81f72177defd205c0e5e477e6a63",
+    "authors": [
+      "LiziYowo",
+      "YangXuKun",
+      "4y4u",
+      "AX_ZHANG",
+      "LieNiaoBiBai"
+    ],
+    "declared_license": "All Rights Reserved",
+    "authorization": "User supplied archive and explicitly authorized ice model reference or reuse for future merge.",
+    "runtime_code_merged": false,
+    "full_animation_port": false,
+    "files": [
+      {
+        "path": "src/main/resources/assets/royalespells/textures/entity/spirit_ice_mineclash.png",
+        "sha256": "14cc25bcca3e3cc0a0a6ae3d2e0d138230253a525f46906d562f5d53aea934c5",
+        "bytes": 3208,
+        "source_entry": "assets/mineclash/textures/entity/ice_spirit.png",
+        "handling": "Byte-identical original texture"
+      },
+      {
+        "path": "src/main/resources/assets/royalespells/textures/entity/spirit_ice_mineclash_glowmask.png",
+        "sha256": "a4ae2083dee513e4e2eb9683cae8a7915d1c4230010b7c8656ef3a7d198c0def",
+        "bytes": 2513,
+        "source_entry": "assets/mineclash/textures/entity/ice_spirit_glowmask.png",
+        "handling": "Byte-identical original texture"
+      },
+      {
+        "path": "art/mineclash-reference/assets/mineclash/geo/ice_spirit.geo.json",
+        "sha256": "941e1be65a4f95d97bb1bec15f962c6ff75da4a5cd64c5aa0848255560672afb",
+        "bytes": 2746,
+        "handling": "Original source; runtime geometry adapted via Blockbench, uniform 0.75 scale"
+      }
+    ],
+    "project_url": "https://www.curseforge.com/minecraft/mc-mods/mineclash",
+    "author": "LiziYowo / MineClash team"
+  },
+  "blockbench_projects": [
+    {
+      "path": "art/blockbench-v3/spirit_fire.bbmodel",
+      "sha256": "539bb32a1cccdf764ff8baf56377e1b740260fb4a049c8654b76f4adfa0c3667",
+      "bytes": 3718659,
+      "meshes": 24,
+      "faces": 116,
+      "source_sha256": "539bb32a1cccdf764ff8baf56377e1b740260fb4a049c8654b76f4adfa0c3667"
+    },
+    {
+      "path": "art/blockbench-v3/spirit_ice.bbmodel",
+      "sha256": "0c591718d28780706b31530aafe934e6a57476576149847cfa9d2a6cbfbe4858",
+      "bytes": 30631,
+      "meshes": 16,
+      "faces": 68,
+      "source_sha256": "0c591718d28780706b31530aafe934e6a57476576149847cfa9d2a6cbfbe4858"
+    },
+    {
+      "path": "art/blockbench-v3/spirit_electro.bbmodel",
+      "sha256": "e66420d882d7245479ac1c6af9ae0e6b948702999dbba0161980be7206cc54dc",
+      "bytes": 2424822,
+      "meshes": 27,
+      "faces": 316,
+      "source_sha256": "e66420d882d7245479ac1c6af9ae0e6b948702999dbba0161980be7206cc54dc"
+    },
+    {
+      "path": "art/blockbench-v3/spirit_heal.bbmodel",
+      "sha256": "80cb5e5cdf8cebfd6a55c4d4145b3bd915e3da6dd2a2dbf2d0b5e490f9d8e200",
+      "bytes": 2374870,
+      "meshes": 21,
+      "faces": 126,
+      "source_sha256": "80cb5e5cdf8cebfd6a55c4d4145b3bd915e3da6dd2a2dbf2d0b5e490f9d8e200"
+    },
+    {
+      "path": "art/blockbench-v3/furnace_staff_fire.bbmodel",
+      "sha256": "e8d939fb9c2881e212e708e641f47533b38cc5bba75008951f98614aa13207d8",
+      "bytes": 3960876,
+      "meshes": 43,
+      "faces": 992,
+      "source_sha256": "e8d939fb9c2881e212e708e641f47533b38cc5bba75008951f98614aa13207d8"
+    },
+    {
+      "path": "art/blockbench-v3/furnace_staff_ice.bbmodel",
+      "sha256": "c84538f7b46170779358c4f76861226bee0905d8850fd832be975a58ce599865",
+      "bytes": 2602183,
+      "meshes": 35,
+      "faces": 944,
+      "source_sha256": "c84538f7b46170779358c4f76861226bee0905d8850fd832be975a58ce599865"
+    },
+    {
+      "path": "art/blockbench-v3/furnace_staff_electro.bbmodel",
+      "sha256": "d465a3d20909df4b8c627cd9aafe849d137fff7253e7f4524e8ceba78dc07741",
+      "bytes": 2670862,
+      "meshes": 46,
+      "faces": 1192,
+      "source_sha256": "d465a3d20909df4b8c627cd9aafe849d137fff7253e7f4524e8ceba78dc07741"
+    },
+    {
+      "path": "art/blockbench-v3/furnace_staff_heal.bbmodel",
+      "sha256": "c2355424164d56c2dd50f2ba5e882255d8cf496b052b586d6f91e9a9f0bdc965",
+      "bytes": 2618157,
+      "meshes": 40,
+      "faces": 1002,
+      "source_sha256": "c2355424164d56c2dd50f2ba5e882255d8cf496b052b586d6f91e9a9f0bdc965"
+    }
+  ],
+  "icons": [
+    {
+      "element": "fire",
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/summon_fire_spirit.png",
+      "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/fire-spirit.png",
+      "sha256": "12fa2adbe28b57b8caa1d9bd7fa6d6c22e8e2f7196f1591fdbb00a8cdf0104b5",
+      "size": [
+        302,
+        363
+      ],
+      "handling": "Original PNG bytes, no crop, resize or added border. Original artwork belongs to Supercell."
+    },
+    {
+      "element": "ice",
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/summon_ice_spirit.png",
+      "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/ice-spirit.png",
+      "sha256": "634e23f7cfe7508f8833216a4c657abb90bd47916364eba4701dd7e622f028d5",
+      "size": [
+        302,
+        363
+      ],
+      "handling": "Original PNG bytes, no crop, resize or added border. Original artwork belongs to Supercell."
+    },
+    {
+      "element": "electro",
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/summon_electro_spirit.png",
+      "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/electro-spirit.png",
+      "sha256": "b3ad3838e1889fa60b4c94558834765de8b3b3fb5e26d86cda51827c6dd1d2c3",
+      "size": [
+        302,
+        363
+      ],
+      "handling": "Original PNG bytes, no crop, resize or added border. Original artwork belongs to Supercell."
+    },
+    {
+      "element": "heal",
+      "path": "src/main/resources/assets/royalespells/textures/gui/spell_icons/summon_heal_spirit.png",
+      "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/heal-spirit.png",
+      "sha256": "fdcce46eee982d7cf67e68bf7e3c319363448af9527836fdced5421b03741b61",
+      "size": [
+        302,
+        363
+      ],
+      "handling": "Original PNG bytes, no crop, resize or added border. Original artwork belongs to Supercell."
+    }
+  ],
+  "beta4_changes": "Body-wrapping fire sheets and short electro crest rebuilt in actual Blockbench projects; fire/electro staffs updated. Original Clash Royale portraits replace model-rendered icons.",
+  "public_beta2_changes": "Electro spirit and staff: three chamfered purple tufts, no floating horizontal ornament, longer lightning moustache. Original-category phase sounds imported with pinned provenance."
+}

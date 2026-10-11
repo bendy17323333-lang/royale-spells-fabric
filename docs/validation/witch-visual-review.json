@@ -1,0 +1,118 @@
+{
+  "status": "reviewed",
+  "release": "1.9.1",
+  "date": "2026-10-10",
+  "jar_sha256": "e05413ab460a423436aaeeed499fc6997069cb89da13000b7b379bc7078fa75b",
+  "reviewer": "Codex direct inspection of 20 final-JAR Minecraft framebuffer images. Native Blockbench four-view checks were separate.",
+  "production_world": "Witch-1.9.1-QA-remake-1791690996523",
+  "environment": "Minecraft 1.20.1 / Fabric Loader 0.16.14 / Fabric API 0.92.6+1.20.1 / Java 17 / Fancy / 1280x800 / no external shader or Bloom mod",
+  "reviewed_images": [
+    {
+      "path": "docs/validation/witch19-normal-three-quarter.png",
+      "sha256": "6e0d6f7cf33cf287567e20645aa506fd957bedc19ce7cad865f64bca82be8406",
+      "observation": "平顶兜帽、短脸、收束腰部和分层袍摆可辨；整体块状手掌握杖，没有独立手指或尖刺。"
+    },
+    {
+      "path": "docs/validation/witch19-evolved-three-quarter.png",
+      "sha256": "38cc957576422356add222b05cda5347e5e32a105bc205b100554bd96eb83fc8",
+      "observation": "深色兜帽、额饰和骷髅法杖与普通版区分，肩甲与袍摆层次可见。"
+    },
+    {
+      "path": "docs/validation/witch19-face-close.png",
+      "sha256": "1a24bdfadd4143466a18d079698ff8f5994a1619b5bf1d703ed5d1798bea4bc9",
+      "observation": "灰紫短脸、倾斜粉紫眼睛、额前尖角和兜帽侧壁可见；没有写实脸贴图。表情仍偏冷峻，不能代替用户审美认可。"
+    },
+    {
+      "path": "docs/validation/witch19-profile-and-grip.png",
+      "sha256": "7413d36eb59744830e24f03da87693ad211c9abd5252fc7e12ae5f1db40bc9d5",
+      "observation": "侧面显示兜帽深度、折弯前臂及块状手掌握杖，没有此前手掌尖刺。"
+    },
+    {
+      "path": "docs/validation/witch19-walk-stride-a.png",
+      "sha256": "eb97dfddad33d79e7fbd0cb2060e13441fb9bb0fcb0bfb42e0cd853b9c479607",
+      "observation": "自然寻路第一相位，角色向目标移动，手掌与法杖维持连接。"
+    },
+    {
+      "path": "docs/validation/witch19-walk-stride-b.png",
+      "sha256": "53d497c2a21bb4888a803ac2a9b1289567183e7f81c9830eab9921e99bd7d647",
+      "observation": "另一腿部相位且位置前移，袍摆随运动改变，没有明显握杖脱离。"
+    },
+    {
+      "path": "docs/validation/witch19-normal-front.png",
+      "sha256": "65ebf275075aa32d642f6c5c63069bfe6cad85c0d31dc26fda18a06020118304",
+      "observation": "额前V形开口、斜眼和骷髅肩饰可辨，头部、肩宽和裙摆形成角色剪影。"
+    },
+    {
+      "path": "docs/validation/witch19-normal-back.png",
+      "sha256": "d24422894385dcdaa0f48774dcf33e6bead8cf19a1ace60d5d4eccce03cfb1b3",
+      "observation": "后脑闭合，披风与两侧袍摆分层，破损下缘长度不同。"
+    },
+    {
+      "path": "docs/validation/witch19-evolved-front.png",
+      "sha256": "5f5e8e1a63842292ab3dcf4635510538259fb18327501312faed2309acfd4e03",
+      "observation": "深色额饰与骷髅法杖辨识清楚，身体比例和普通版一致。"
+    },
+    {
+      "path": "docs/validation/witch19-evolved-back.png",
+      "sha256": "e44b15ba09c51ebb1b71f6f107e3cddf9ea26683d9bfc6bbbace9cd476e4b823",
+      "observation": "后脑与披风衔接没有明显缺面，袍摆与披风可区分。"
+    },
+    {
+      "path": "docs/validation/witch19-close-side-flight.png",
+      "sha256": "388cf3ada19c8a926db61369f75992725f167297b2a9c1bb40f82bd1443c9be9",
+      "observation": "亮粉紫核心与暗紫柔雾边缘相连，未见分散圆泡或白色过曝。"
+    },
+    {
+      "path": "docs/validation/witch19-close-side-impact-core.png",
+      "sha256": "43f10bbd0ea3a253401851e921b0609c06c3969c5da3f521bca648ab8673992b",
+      "observation": "雾从实际碰撞区域展开；首张可见命中帧已有少量扩散，补程会占用最初约两tick。"
+    },
+    {
+      "path": "docs/validation/witch19-close-side-impact-expansion.png",
+      "sha256": "46d9b35e94ce99158be03dd15ff5baa4c659287fb816176db5bcaa176305c980",
+      "observation": "雾围绕碰撞位置扩大，内亮外暗、边缘透出背景，没有硬球壳。"
+    },
+    {
+      "path": "docs/validation/witch19-close-side-impact-smoke.png",
+      "sha256": "ad75820ad98d8aef559d009be7ba0aa73a17664dc66cc21557a214e681ba24ba",
+      "observation": "后段轮廓上浮并不规则展开，明暗区域变化。"
+    },
+    {
+      "path": "docs/validation/witch19-close-side-impact-embers.png",
+      "sha256": "f8fe8094a9f6c9d807a28bf9aefe08311dbf9592fcc6c16b307be5a9f84e730b",
+      "observation": "末段浓度降低，目标和地面逐渐恢复可见。"
+    },
+    {
+      "path": "docs/validation/witch19-stone-occlusion-impact-expansion.png",
+      "sha256": "7ecdf1c9b620be816f861e51ddd063bb89eee5c1ae1eb3783133aa01092ad87f",
+      "observation": "石柱遮挡雾体中心，柱边雾仍可见，真实场景深度遮挡成立。"
+    },
+    {
+      "path": "docs/validation/witch19-high-impact-expansion.png",
+      "sha256": "ba2d75e4f46c1af6d9fcf816445bc3746441cf9985b3ec5c4d9084adcae6f4e3",
+      "observation": "俯视显示目标前方雾的空间分布，轮廓随观察方向改变。"
+    },
+    {
+      "path": "docs/validation/witch19-rear-flight.png",
+      "sha256": "fb09c71825f2e2de1ad02f4a5aa20e0dcf29abca0ae4d6f8002a552adf366596",
+      "observation": "从背后观察，法球位于杖与目标之间，没有平面十字轮廓。"
+    },
+    {
+      "path": "docs/validation/witch19-front-oblique-windup.png",
+      "sha256": "c785606ca947d98a23318a67eb72cc46f8681ed8af1aba0157a01cf4b9fb37e4",
+      "observation": "前摇抬臂和杖姿态可见，袖口、肩甲与手部连接正常。"
+    },
+    {
+      "path": "docs/validation/witch19-front-oblique-release.png",
+      "sha256": "e7bf198b64100e41e8299a77431b415644299b6a1a8eda875120a05c6ad5d8a9",
+      "observation": "前摇后产生凝聚法球，身体和杖姿态连贯；阶段截图不能单独证明连续播放完全无卡顿。"
+    }
+  ],
+  "verdict": "原生模型、块状手掌及连续呈现修正完成，所查看画面没有明显缺面、手掌尖刺或屏幕平面雾层。仍需用户按审美验收，不以采集成功声明达到专业美术质量。",
+  "limits": [
+    "20 reviewed images out of 62 captures; not every capture manually reviewed.",
+    "Mist remains intentionally soft; no claim of exact original-game frame matching.",
+    "Frame stalls remain measurable; bounded catch-up is not weak-network or FPS acceptance.",
+    "No player-modpack compatibility or large-army performance acceptance."
+  ]
+}
