@@ -1,0 +1,214 @@
+{
+  "version": "1.9.0",
+  "retrieved_on": "2026-10-10",
+  "rights": "Supercell; third-party assets excluded from MIT",
+  "card_repository_revision": "b4530a1043b213ee2baf9c50a3d0d7fae22c2313",
+  "audio_repository_revision": "c2d7d67271113cb9fe3ad896d9d03dd7f49eed52",
+  "audio_notes": [
+    "Original archive contains no separately labelled normal Witch impact; normal impact intentionally reuses the original evolved Witch impact at reduced runtime gain (0.55).",
+    "npc_die_02 is a shared game death cue, not a Witch-exclusive voice.",
+    "No dedicated hurt voice was found; no replacement Minecraft witch/zombie sound is substituted.",
+    "Deployment sound and voice are distinct events; a random sound list is not used to pretend simultaneous layering."
+  ],
+  "events": {
+    "witch_deploy": [
+      "summon_witch_01"
+    ],
+    "witch_attack": [
+      "witch_attack_02"
+    ],
+    "witch_impact": [
+      "card_evolution_witch_attack_hit"
+    ],
+    "witch_summon": [
+      "witch_summon_02"
+    ],
+    "witch_heal": [
+      "card_evolution_witch_healing"
+    ],
+    "witch_death": [
+      "npc_die_02"
+    ],
+    "evolved_witch_deploy": [
+      "card_evolution_witch_deploy_sfx"
+    ],
+    "evolved_witch_deploy_voice": [
+      "card_evolution_witch_deploy_vo_01",
+      "card_evolution_witch_deploy_vo_02"
+    ],
+    "evolved_witch_attack": [
+      "card_evolution_witch_attack"
+    ],
+    "evolved_witch_impact": [
+      "card_evolution_witch_attack_hit"
+    ],
+    "evolved_witch_summon": [
+      "card_evolution_witch_skill_skeleton_01",
+      "card_evolution_witch_skill_skeleton_02"
+    ]
+  },
+  "files": [
+    {
+      "kind": "card",
+      "path": "src/main/resources/assets/royalespells/textures/card/witch.png",
+      "source_url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/witch.png",
+      "sha256": "37287bf62936eae84fd5d898110381af59e033841a707b91d33bb4ebe995d8af",
+      "width": 302,
+      "height": 363,
+      "operation": "original bytes; not cropped, recolored or resized"
+    },
+    {
+      "kind": "card",
+      "path": "src/main/resources/assets/royalespells/textures/card/witch_evolution.png",
+      "source_url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/witch-ev1.png",
+      "sha256": "08e3303f390edd6c2eb4d7f6b2a779e2e0b02f27f7ca38e7f0c6f6f14c544436",
+      "width": 302,
+      "height": 363,
+      "operation": "original bytes; not cropped, recolored or resized"
+    },
+    {
+      "kind": "audio",
+      "path": "src/main/resources/assets/royalespells/sounds/witch/summon_witch_01.ogg",
+      "source_url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Witch/summon_witch_01.ogg",
+      "original_sha256": "888b662aff0ddcd797082d77ea8527d00a8c88ca6d0c17168756c266f0d7f378",
+      "sha256": "888b662aff0ddcd797082d77ea8527d00a8c88ca6d0c17168756c266f0d7f378",
+      "original_channels": 1,
+      "channels": 1,
+      "sample_rate": 48000,
+      "duration": "00:00:01.19",
+      "operation": "verbatim original mono OGG"
+    },
+    {
+      "kind": "audio",
+      "path": "src/main/resources/assets/royalespells/sounds/witch/witch_attack_02.ogg",
+      "source_url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Witch/witch_attack_02.ogg",
+      "original_sha256": "7fbab4fb6fd3ff5ce00662d0a7fdf6f715a8e3f5084a540e7de1ce9210523325",
+      "sha256": "7fbab4fb6fd3ff5ce00662d0a7fdf6f715a8e3f5084a540e7de1ce9210523325",
+      "original_channels": 1,
+      "channels": 1,
+      "sample_rate": 48000,
+      "duration": "00:00:01.28",
+      "operation": "verbatim original mono OGG"
+    },
+    {
+      "kind": "audio",
+      "path": "src/main/resources/assets/royalespells/sounds/witch/witch_summon_02.ogg",
+      "source_url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Witch/witch_summon_02.ogg",
+      "original_sha256": "effb6558dd3c30282424cf8296c650bfd55f08e733698898149a9209e08da826",
+      "sha256": "effb6558dd3c30282424cf8296c650bfd55f08e733698898149a9209e08da826",
+      "original_channels": 1,
+      "channels": 1,
+      "sample_rate": 48000,
+      "duration": "00:00:00.97",
+      "operation": "verbatim original mono OGG"
+    },
+    {
+      "kind": "audio",
+      "path": "src/main/resources/assets/royalespells/sounds/witch/npc_die_02.ogg",
+      "source_url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Witch/npc_die_02.ogg",
+      "original_sha256": "7bbbe10854d59f091c98126ff14ac9c58c02d8f6e0b0cfdd5c96f853f70ff1ff",
+      "sha256": "7bbbe10854d59f091c98126ff14ac9c58c02d8f6e0b0cfdd5c96f853f70ff1ff",
+      "original_channels": 1,
+      "channels": 1,
+      "sample_rate": 48000,
+      "duration": "00:00:01.29",
+      "operation": "verbatim original mono OGG"
+    },
+    {
+      "kind": "audio",
+      "path": "src/main/resources/assets/royalespells/sounds/witch/card_evolution_witch_attack.ogg",
+      "source_url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Witch/card_evolution_witch_attack.ogg",
+      "original_sha256": "1dfd70b41e0e0a63859bf28f316968daa37eefe1cf8e929587e84a2d1d036d35",
+      "sha256": "0cf28971b6faa6db67823063f0f84596b656342eb6902cec230f94774971edd4",
+      "original_channels": 2,
+      "channels": 1,
+      "sample_rate": 48000,
+      "duration": "00:00:01.53",
+      "operation": "stereo to mono Vorbis q5 only; no pitch, speed, trim or loudness change"
+    },
+    {
+      "kind": "audio",
+      "path": "src/main/resources/assets/royalespells/sounds/witch/card_evolution_witch_attack_hit.ogg",
+      "source_url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Witch/card_evolution_witch_attack_hit.ogg",
+      "original_sha256": "4500bc8166a67ceec99952abb9e9647a1c8aae0ade34b0cf29c98ed75d904515",
+      "sha256": "6db7304b21f765b4e82f00c4d6c79f8920bb0226cc83fb4efb519ce1463085ae",
+      "original_channels": 2,
+      "channels": 1,
+      "sample_rate": 48000,
+      "duration": "00:00:00.75",
+      "operation": "stereo to mono Vorbis q5 only; no pitch, speed, trim or loudness change"
+    },
+    {
+      "kind": "audio",
+      "path": "src/main/resources/assets/royalespells/sounds/witch/card_evolution_witch_deploy_sfx.ogg",
+      "source_url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Witch/card_evolution_witch_deploy_sfx.ogg",
+      "original_sha256": "e64921b8ccc8ba38994aef8d05df6f661821f87e8912a480ae868a085a241558",
+      "sha256": "c2b9ea9c645dda8dfd01cfbf4b94299783375b8c6d11bfcccdd0412b7b97f206",
+      "original_channels": 2,
+      "channels": 1,
+      "sample_rate": 48000,
+      "duration": "00:00:04.90",
+      "operation": "stereo to mono Vorbis q5 only; no pitch, speed, trim or loudness change"
+    },
+    {
+      "kind": "audio",
+      "path": "src/main/resources/assets/royalespells/sounds/witch/card_evolution_witch_deploy_vo_01.ogg",
+      "source_url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Witch/card_evolution_witch_deploy_vo_01.ogg",
+      "original_sha256": "f3d29bcf4ee3438d2c3825497620f1538478f763f80709d49ce1ebc443d8a48e",
+      "sha256": "07667c6c7e19cdb30db692291b790ba16fed2ef82df89134cee2d2f800c3cc97",
+      "original_channels": 2,
+      "channels": 1,
+      "sample_rate": 48000,
+      "duration": "00:00:03.58",
+      "operation": "stereo to mono Vorbis q5 only; no pitch, speed, trim or loudness change"
+    },
+    {
+      "kind": "audio",
+      "path": "src/main/resources/assets/royalespells/sounds/witch/card_evolution_witch_deploy_vo_02.ogg",
+      "source_url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Witch/card_evolution_witch_deploy_vo_02.ogg",
+      "original_sha256": "a47e9eb106bbcffb8e1b3ac4f63f174455d6270655c461a73d191bbd55befb87",
+      "sha256": "e6473b6d93c13dbfa3764c77a7a5bb966e0627ca4f37b6b2ac412632e40520a7",
+      "original_channels": 2,
+      "channels": 1,
+      "sample_rate": 48000,
+      "duration": "00:00:03.58",
+      "operation": "stereo to mono Vorbis q5 only; no pitch, speed, trim or loudness change"
+    },
+    {
+      "kind": "audio",
+      "path": "src/main/resources/assets/royalespells/sounds/witch/card_evolution_witch_healing.ogg",
+      "source_url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Witch/card_evolution_witch_healing.ogg",
+      "original_sha256": "a5fc9b580bc7be862352e2d402be91b97bae8ee03ed2ec1222a048749254e86c",
+      "sha256": "51935558f60e6f28235f96d5f1e727cbd8ce9176947d07dd658f9906e8663222",
+      "original_channels": 2,
+      "channels": 1,
+      "sample_rate": 48000,
+      "duration": "00:00:01.84",
+      "operation": "stereo to mono Vorbis q5 only; no pitch, speed, trim or loudness change"
+    },
+    {
+      "kind": "audio",
+      "path": "src/main/resources/assets/royalespells/sounds/witch/card_evolution_witch_skill_skeleton_01.ogg",
+      "source_url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Witch/card_evolution_witch_skill_skeleton_01.ogg",
+      "original_sha256": "24ec8132d4ed7fa1b44b2fc0875a99e2334eb929bca4fd54e1833b03846de994",
+      "sha256": "98b522dbffe5064da25410e61c13e43f3ccc49bb26569e70f94e9886a54c86fb",
+      "original_channels": 2,
+      "channels": 1,
+      "sample_rate": 48000,
+      "duration": "00:00:01.81",
+      "operation": "stereo to mono Vorbis q5 only; no pitch, speed, trim or loudness change"
+    },
+    {
+      "kind": "audio",
+      "path": "src/main/resources/assets/royalespells/sounds/witch/card_evolution_witch_skill_skeleton_02.ogg",
+      "source_url": "https://raw.githubusercontent.com/Henrylq/Clash-Royale-SFX/c2d7d67271113cb9fe3ad896d9d03dd7f49eed52/Cards/Witch/card_evolution_witch_skill_skeleton_02.ogg",
+      "original_sha256": "49fe311c3710c1c3b71f299f9bbdd49b46092f08560d5b8a078e6a02b769d57c",
+      "sha256": "1197699b1f85aee0a1a19e96e6e47f50b12b122867cce862fae4a6e840c42885",
+      "original_channels": 2,
+      "channels": 1,
+      "sample_rate": 48000,
+      "duration": "00:00:01.45",
+      "operation": "stereo to mono Vorbis q5 only; no pitch, speed, trim or loudness change"
+    }
+  ]
+}

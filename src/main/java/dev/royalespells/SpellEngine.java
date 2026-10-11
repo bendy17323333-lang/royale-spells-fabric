@@ -34,6 +34,7 @@ public final class SpellEngine {
     private static class State { double elixir=10; Spell last; TroopCard lastTroop; int cooldown; }
     private record Curse(UUID owner,long until,float power,String ironSpell,int ironLevel,int cardLevel){}
     public static void clear(){PLAYERS.clear();CURSES.clear();clock=0;}
+    public static double elixir(ServerPlayer player){return PLAYERS.computeIfAbsent(player.getUUID(),id->new State()).elixir;}
     public static void refill(ServerPlayer player){PLAYERS.computeIfAbsent(player.getUUID(),id->new State()).elixir=10;}
     public static void resetForRecording(ServerPlayer player){if(ShowcaseMap.enabled(player.serverLevel()))PLAYERS.remove(player.getUUID());}
     public static void tick(MinecraftServer server) {
@@ -63,7 +64,8 @@ public final class SpellEngine {
         if(unit==null){player.displayClientMessage(Component.translatable("message.royalespells.deployment_blocked"),true);return false;}
         unit.setYRot(player.getYRot());unit.setYBodyRot(player.getYRot());
         if(unit instanceof RoyaleUnit deployed && deployed.building())deployed.lockFacing(player.getYRot());
-        CardBalance.apply(unit,card.unit,false,mirror?12:11);
+        if(unit instanceof RoyalWitch witch)witch.configure(player.getUUID(),card==TroopCard.WITCH_EVOLUTION,mirror?12:11);
+        else CardBalance.apply(unit,card.unit,false,mirror?12:11);
         if(!player.isCreative())state.elixir-=cost;
         state.cooldown=10;if(!mirror){state.lastTroop=card;state.last=null;}
         player.swing(player.getUsedItemHand(),true);return true;
@@ -203,6 +205,8 @@ public final class SpellEngine {
         for(Entity entity:world.getAllEntities())if(entity instanceof Summoned s){total++;if(Objects.equals(owner,s.ownerId()))owned++;}
         if(owned>=MAX_UNITS_PER_OWNER || total>=256)return null;
         Mob mob=switch(kind) {
+            case "witch" -> RoyaleSpells.WITCH.create(world);
+            case "witch_evolution" -> RoyaleSpells.EVOLVED_WITCH.create(world);
             case "skeleton" -> RoyaleSpells.SKELETON.create(world);
             case "barbarian", "hero" -> RoyaleSpells.BARBARIAN.create(world);
             case "recruit" -> RoyaleSpells.RECRUIT.create(world);
@@ -212,6 +216,10 @@ public final class SpellEngine {
             default -> null;
         };
         if(mob==null)return null;
+        if(mob instanceof RoyalWitch witch){
+            witch.configure(owner,kind.equals("witch_evolution"),11);witch.setPos(pos);
+            return world.noCollision(witch)&&world.addFreshEntity(witch)?witch:null;
+        }
         if(mob instanceof InfernoDragon dragon) {
             Vec3 at=dragonPlacement(world,pos);if(at==null)return null;
             dragon.setup(owner,InfernoDragon.LIFE_TICKS,false);dragon.moveTo(at.x,at.y,at.z,world.random.nextFloat()*360,0);
@@ -260,6 +268,7 @@ public final class SpellEngine {
         return null;
     }
     public static void unitTick(Mob mob,UUID owner) {
+        if(IronSpellSystem.loaded&&mob instanceof dev.royalespells.entity.WitchSkeleton guard){guard.tickOrders();return;}
         SummonOrders.tick(mob,owner);
     }
     public static void cloneAllies(ServerLevel world,UUID owner,Vec3 pos,double radius) {
@@ -281,6 +290,12 @@ public final class SpellEngine {
     }
     public static void cloneAllies(ServerLevel world,UUID owner,Vec3 pos,double radius,float power,String spell,int level,int cardLevel) {
         for(LivingEntity original:targets(world,owner,pos,radius,true)) {
+            if(original instanceof RoyalWitch sourceWitch){
+                if(sourceWitch.isClone())continue;
+                var copy=RoyaleSpells.WITCH.create(world);if(copy==null)continue;
+                copy.configure(owner,sourceWitch.evolved(),cardLevel>0?cardLevel:sourceWitch.cardLevel());copy.setup(owner,400,true);
+                copy.setPos(sourceWitch.position().add(.7,0,0));if(world.noCollision(copy))world.addFreshEntity(copy);continue;
+            }
             if(!(original instanceof Summoned)){IronSpellSystem.cloneNative(original,owner,power,spell,level);continue;}
             if(!(original instanceof Summoned summoned) || summoned.isClone() || original instanceof RoyaleUnit unit && unit.building())continue;
             String kind=original instanceof InfernoDragon?"inferno_dragon":original instanceof RoyaleUnit unit?unit.kind():original instanceof AllySkeleton?"skeleton":original.getType()==RoyaleSpells.ZOMBIE?"zombie":

@@ -1,0 +1,473 @@
+[01:20:32] [main/INFO]: Loading Minecraft 1.20.1 with Fabric Loader 0.16.14
+[01:20:32] [main/INFO]: Loading 58 mods:
+	- fabric-api 0.92.6+1.20.1
+	   |-- fabric-api-base 0.4.32+1802ada577
+	   |-- fabric-api-lookup-api-v1 1.6.37+1802ada577
+	   |-- fabric-biome-api-v1 13.0.14+1802ada577
+	   |-- fabric-block-api-v1 1.0.12+1802ada577
+	   |-- fabric-block-view-api-v2 1.0.3+924f046a77
+	   |-- fabric-blockrenderlayer-v1 1.1.42+1802ada577
+	   |-- fabric-client-tags-api-v1 1.1.3+1802ada577
+	   |-- fabric-command-api-v1 1.2.35+f71b366f77
+	   |-- fabric-command-api-v2 2.2.14+1802ada577
+	   |-- fabric-commands-v0 0.2.52+df3654b377
+	   |-- fabric-containers-v0 0.1.67+df3654b377
+	   |-- fabric-content-registries-v0 4.0.13+1802ada577
+	   |-- fabric-convention-tags-v1 1.5.6+1802ada577
+	   |-- fabric-crash-report-info-v1 0.2.20+1802ada577
+	   |-- fabric-data-attachment-api-v1 1.0.2+de0fd6d177
+	   |-- fabric-data-generation-api-v1 12.3.7+1802ada577
+	   |-- fabric-dimensions-v1 2.1.55+1802ada577
+	   |-- fabric-entity-events-v1 1.6.1+1c78457f77
+	   |-- fabric-events-interaction-v0 0.6.5+13a40c6677
+	   |-- fabric-events-lifecycle-v0 0.2.64+df3654b377
+	   |-- fabric-game-rule-api-v1 1.0.41+1802ada577
+	   |-- fabric-item-api-v1 2.1.29+1802ada577
+	   |-- fabric-item-group-api-v1 4.0.14+1802ada577
+	   |-- fabric-key-binding-api-v1 1.0.38+1802ada577
+	   |-- fabric-keybindings-v0 0.2.36+df3654b377
+	   |-- fabric-lifecycle-events-v1 2.2.23+1802ada577
+	   |-- fabric-loot-api-v2 1.2.3+1802ada577
+	   |-- fabric-loot-tables-v1 1.1.47+9e7660c677
+	   |-- fabric-message-api-v1 5.1.10+1802ada577
+	   |-- fabric-mining-level-api-v1 2.1.52+1802ada577
+	   |-- fabric-model-loading-api-v1 1.0.4+1802ada577
+	   |-- fabric-models-v0 0.4.3+9386d8a777
+	   |-- fabric-networking-api-v1 1.3.14+a158aa0477
+	   |-- fabric-networking-v0 0.3.54+df3654b377
+	   |-- fabric-object-builder-api-v1 11.1.5+e35120df77
+	   |-- fabric-particles-v1 1.1.3+1802ada577
+	   |-- fabric-recipe-api-v1 1.0.24+1802ada577
+	   |-- fabric-registry-sync-v0 2.3.6+1802ada577
+	   |-- fabric-renderer-api-v1 3.2.2+1802ada577
+	   |-- fabric-renderer-indigo 1.5.3+85287f9f77
+	   |-- fabric-renderer-registries-v1 3.2.47+df3654b377
+	   |-- fabric-rendering-data-attachment-v1 0.3.39+92a0d36777
+	   |-- fabric-rendering-fluids-v1 3.0.29+1802ada577
+	   |-- fabric-rendering-v0 1.1.50+df3654b377
+	   |-- fabric-rendering-v1 3.0.9+1802ada577
+	   |-- fabric-resource-conditions-api-v1 2.3.9+1802ada577
+	   |-- fabric-resource-loader-v0 0.11.12+fb82e9d777
+	   |-- fabric-screen-api-v1 2.0.9+1802ada577
+	   |-- fabric-screen-handler-api-v1 1.3.33+1802ada577
+	   |-- fabric-sound-api-v1 1.0.14+1802ada577
+	   |-- fabric-transfer-api-v1 3.3.6+8dd72ea377
+	   \-- fabric-transitive-access-wideners-v1 4.3.2+1802ada577
+	- fabricloader 0.16.14
+	- java 17
+	- minecraft 1.20.1
+	- royalespells 1.9.3
+	   \-- mixinextras 0.5.0
+[01:20:32] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/<workspace>/work/royale-spells-fabric-1.20.1-standalone/run-production-witch/libraries/net/fabricmc/sponge-mixin/0.15.5+mixin.0.8.7/sponge-mixin-0.15.5+mixin.0.8.7.jar Service=Knot/Fabric Env=CLIENT
+[01:20:32] [main/INFO]: Compatibility level set to JAVA_16
+[01:20:32] [main/INFO]: Compatibility level set to JAVA_17
+[01:20:33] [main/INFO]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.0).
+[01:20:40] [Datafixer Bootstrap/INFO]: 188 Datafixer optimizations took 208 milliseconds
+[01:20:43] [Render thread/INFO]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[01:20:43] [Render thread/ERROR]: Failed to verify authentication
+com.mojang.authlib.exceptions.InvalidCredentialsException: Status: 401
+	at com.mojang.authlib.exceptions.MinecraftClientHttpException.toAuthenticationException(MinecraftClientHttpException.java:56) ~[authlib-4.0.43.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilUserApiService.fetchProperties(YggdrasilUserApiService.java:156) ~[authlib-4.0.43.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilUserApiService.<init>(YggdrasilUserApiService.java:55) ~[authlib-4.0.43.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.createUserApiService(YggdrasilAuthenticationService.java:124) ~[authlib-4.0.43.jar:?]
+	at net.minecraft.class_310.method_31382(class_310.java:733) ~[client-intermediary.jar:?]
+	at net.minecraft.class_310.<init>(class_310.java:442) ~[client-intermediary.jar:?]
+	at net.minecraft.client.main.Main.main(Main.java:211) ~[1.20.1.jar:?]
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:480) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:74) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23) ~[fabric-loader-0.16.14.jar:?]
+Caused by: com.mojang.authlib.exceptions.MinecraftClientHttpException: Status: 401
+	at com.mojang.authlib.minecraft.client.MinecraftClient.readInputStream(MinecraftClient.java:85) ~[authlib-4.0.43.jar:?]
+	at com.mojang.authlib.minecraft.client.MinecraftClient.get(MinecraftClient.java:48) ~[authlib-4.0.43.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilUserApiService.fetchProperties(YggdrasilUserApiService.java:129) ~[authlib-4.0.43.jar:?]
+	... 8 more
+[01:20:44] [Render thread/INFO]: Setting user: RoyaleFabricQA
+[01:20:44] [Render thread/ERROR]: No data fixer registered for royalespells:spell
+[01:20:44] [Render thread/ERROR]: No data fixer registered for royalespells:baby_zombie
+[01:20:44] [Render thread/ERROR]: No data fixer registered for royalespells:barbarian
+[01:20:44] [Render thread/ERROR]: No data fixer registered for royalespells:royal_recruit
+[01:20:44] [Render thread/ERROR]: No data fixer registered for royalespells:graveyard_skeleton
+[01:20:44] [Render thread/ERROR]: No data fixer registered for royalespells:army_skeleton
+[01:20:44] [Render thread/ERROR]: No data fixer registered for royalespells:elemental_spirit
+[01:20:44] [Render thread/ERROR]: No data fixer registered for royalespells:inferno_dragon
+[01:20:44] [Render thread/ERROR]: No data fixer registered for royalespells:witch
+[01:20:44] [Render thread/ERROR]: No data fixer registered for royalespells:witch_evolution
+[01:20:44] [Render thread/ERROR]: No data fixer registered for royalespells:witch_bolt
+[01:20:44] [Render thread/ERROR]: No data fixer registered for royalespells:spirit_chain_arc
+[01:20:44] [Render thread/ERROR]: No data fixer registered for royalespells:evolution_deployment
+[01:20:44] [Render thread/ERROR]: No data fixer registered for royalespells:barbarian_hut
+[01:20:44] [Render thread/INFO]: [Indigo] Registering Indigo renderer!
+[01:20:44] [Render thread/INFO]: Backend library: LWJGL version 3.3.1 SNAPSHOT
+[01:20:46] [Render thread/INFO]: Reloading ResourceManager: vanilla, fabric (fabric-api, fabric-api-base, fabric-api-lookup-api-v1, fabric-biome-api-v1, fabric-block-api-v1, fabric-block-view-api-v2, fabric-blockrenderlayer-v1, fabric-client-tags-api-v1, fabric-command-api-v1, fabric-command-api-v2, fabric-commands-v0, fabric-containers-v0, fabric-content-registries-v0, fabric-convention-tags-v1, fabric-crash-report-info-v1, fabric-data-attachment-api-v1, fabric-data-generation-api-v1, fabric-dimensions-v1, fabric-entity-events-v1, fabric-events-interaction-v0, fabric-events-lifecycle-v0, fabric-game-rule-api-v1, fabric-item-api-v1, fabric-item-group-api-v1, fabric-key-binding-api-v1, fabric-keybindings-v0, fabric-lifecycle-events-v1, fabric-loot-api-v2, fabric-loot-tables-v1, fabric-message-api-v1, fabric-mining-level-api-v1, fabric-model-loading-api-v1, fabric-models-v0, fabric-networking-api-v1, fabric-networking-v0, fabric-object-builder-api-v1, fabric-particles-v1, fabric-recipe-api-v1, fabric-registry-sync-v0, fabric-renderer-api-v1, fabric-renderer-indigo, fabric-renderer-registries-v1, fabric-rendering-data-attachment-v1, fabric-rendering-fluids-v1, fabric-rendering-v0, fabric-rendering-v1, fabric-resource-conditions-api-v1, fabric-resource-loader-v0, fabric-screen-api-v1, fabric-screen-handler-api-v1, fabric-sound-api-v1, fabric-transfer-api-v1, fabric-transitive-access-wideners-v1, fabricloader, royalespells)
+[01:20:46] [Worker-Main-1/INFO]: Found unifont_all_no_pua-15.0.06.hex, loading
+[01:20:46] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: 0
+[01:20:48] [Render thread/WARN]: Missing sound for event: minecraft:item.goat_horn.play
+[01:20:48] [Render thread/WARN]: Missing sound for event: minecraft:entity.goat.screaming.horn_break
+[01:20:48] [Render thread/INFO]: OpenAL initialized on device OpenAL Soft on ������ (BlackShark V3 Pro XBOX - Game)
+[01:20:48] [Render thread/INFO]: Sound engine started
+[01:20:48] [Render thread/INFO]: Created: 1024x512x4 minecraft:textures/atlas/blocks.png-atlas
+[01:20:49] [Render thread/INFO]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
+[01:20:49] [Render thread/INFO]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
+[01:20:49] [Render thread/INFO]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
+[01:20:49] [Render thread/INFO]: Created: 1024x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
+[01:20:49] [Render thread/INFO]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
+[01:20:49] [Render thread/INFO]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
+[01:20:49] [Render thread/INFO]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
+[01:20:49] [Render thread/INFO]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
+[01:20:49] [Render thread/WARN]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: WITCH_VOLUME_SHADER_READY: bounded 3D density integration, SceneDepth sampler, V3
+[01:20:49] [Render thread/INFO]: Created: 4096x2048x0 minecraft:textures/atlas/particles.png-atlas
+[01:20:49] [Render thread/INFO]: Created: 256x256x0 minecraft:textures/atlas/paintings.png-atlas
+[01:20:49] [Render thread/INFO]: Created: 256x128x0 minecraft:textures/atlas/mob_effects.png-atlas
+[01:20:52] [Render thread/INFO]: Found new data pack fabric, loading it automatically
+[01:20:53] [Render thread/INFO]: Loaded 7 recipes
+[01:20:53] [Render thread/INFO]: Loaded 1271 advancements
+[01:20:53] [Render thread/INFO]: Applied 0 biome modifications to 0 of 64 new biomes in 1.265 ms
+[01:20:53] [Server thread/INFO]: Starting integrated minecraft server version 1.20.1
+[01:20:53] [Server thread/INFO]: Generating keypair
+[01:20:54] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[01:20:55] [Render thread/INFO]: ׼�����������У�0%
+[01:20:55] [Render thread/INFO]: ׼�����������У�0%
+[01:20:55] [Render thread/INFO]: ׼�����������У�33%
+[01:20:56] [Render thread/INFO]: ׼�����������У�96%
+[01:20:56] [Render thread/INFO]: Time elapsed: 1537 ms
+[01:20:56] [Server thread/INFO]: Changing view distance to 5, from 10
+[01:20:56] [Server thread/INFO]: Changing simulation distance to 5, from 0
+[01:20:56] [Server thread/INFO]: RoyaleFabricQA[local:E:955bd793] logged in with entity id 1 at (-2.5, -60.0, -4.5)
+[01:20:57] [Server thread/INFO]: RoyaleFabricQA��������Ϸ
+[01:20:57] [Server thread/INFO]: [STDOUT]: WITCH_QA_RENDER_BASELINE externalShaderMods=[] vanillaPipeline=true externalBloom=false visualQualityRequiresHumanReview=true
+[01:20:57] [Render thread/INFO]: Loaded 2 advancements
+[01:20:59] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=normal-front frame=116 worldTick=58 partial=0.04000187 witch=3 attackAge=0 summonAge=0 healFlash=0 pose=1608766259 staffPitch=0.6632251143455505
+[01:20:59] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME normal-front �ѽ���ͼ����Ϊwitch19-normal-front.png
+[01:21:02] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=normal-three-quarter frame=291 worldTick=118 partial=0.28000283 witch=5 attackAge=0 summonAge=0 healFlash=0 pose=740407386 staffPitch=0.6632251143455505
+[01:21:02] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME normal-three-quarter �ѽ���ͼ����Ϊwitch19-normal-three-quarter.png
+[01:21:05] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=normal-back frame=469 worldTick=178 partial=0.32000363 witch=7 attackAge=0 summonAge=0 healFlash=0 pose=-1506404914 staffPitch=0.6632251143455505
+[01:21:05] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME normal-back �ѽ���ͼ����Ϊwitch19-normal-back.png
+[01:21:08] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=evolved-front frame=647 worldTick=238 partial=0.180004 witch=9 attackAge=0 summonAge=0 healFlash=0 pose=927028456 staffPitch=0.6632251143455505
+[01:21:08] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME evolved-front �ѽ���ͼ����Ϊwitch19-evolved-front.png
+[01:21:11] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=evolved-three-quarter frame=824 worldTick=298 partial=0.08000493 witch=11 attackAge=0 summonAge=0 healFlash=0 pose=27357479 staffPitch=0.6632251143455505
+[01:21:11] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME evolved-three-quarter �ѽ���ͼ����Ϊwitch19-evolved-three-quarter.png
+[01:21:14] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=evolved-back frame=1003 worldTick=358 partial=0.20000589 witch=13 attackAge=0 summonAge=0 healFlash=0 pose=-796872132 staffPitch=0.6632251143455505
+[01:21:14] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME evolved-back �ѽ���ͼ����Ϊwitch19-evolved-back.png
+[01:21:15] [Render thread/INFO]: WITCH_VOLUME_ACTIVE: frame=1, volumes=1, marchSteps=36, totalDraws=1, depth=1280x800, sampledDepthTexture=52
+[01:21:16] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=front-oblique-windup frame=1097 worldTick=389 partial=0.76000637 witch=15 attackAge=6 summonAge=0 healFlash=0 pose=-577679564 staffPitch=0.6632251143455505
+[01:21:16] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME front-oblique-windup �ѽ���ͼ����Ϊwitch19-front-oblique-windup.png
+[01:21:16] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=front-oblique-release frame=1118 worldTick=396 partial=0.86000645 witch=15 attackAge=13 summonAge=0 healFlash=0 pose=1977950564 staffPitch=0.6632251143455505
+[01:21:16] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=15 actual=( 1.349E+0  5.900E-1 -8.009E+0) expected=( 1.349E+0  6.074E-1 -8.004E+0) gap=0.017961403
+[01:21:16] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME front-oblique-release �ѽ���ͼ����Ϊwitch19-front-oblique-release.png
+[01:21:16] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=15 actual=( 1.349E+0  6.071E-1 -8.004E+0) expected=( 1.349E+0  6.074E-1 -8.004E+0) gap=3.547859E-4
+[01:21:16] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=15 actual=( 1.349E+0  6.003E-1 -8.006E+0) expected=( 1.349E+0  6.074E-1 -8.004E+0) gap=0.007334292
+[01:21:16] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=front-oblique-flight frame=1127 worldTick=399 partial=0.9200067 bolt=23 flightAge=2 impactAge=0 visibleImpactAge=-1.0 serverImpacted=false point=(0.0, 0.0, 0.0)
+[01:21:16] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME front-oblique-flight �ѽ���ͼ����Ϊwitch19-front-oblique-flight.png
+[01:21:16] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=front-oblique-impact-core frame=1140 worldTick=404 partial=0.300007 bolt=23 flightAge=5 impactAge=2 visibleImpactAge=1.6799998 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:21:16] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME front-oblique-impact-core �ѽ���ͼ����Ϊwitch19-front-oblique-impact-core.png
+[01:21:16] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=front-oblique-impact-expansion frame=1144 worldTick=406 partial=0.86000705 bolt=23 flightAge=5 impactAge=5 visibleImpactAge=4.2400002 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:21:17] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME front-oblique-impact-expansion �ѽ���ͼ����Ϊwitch19-front-oblique-impact-expansion.png
+[01:21:17] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=front-oblique-impact-smoke frame=1148 worldTick=410 partial=0.7000071 bolt=23 flightAge=5 impactAge=9 visibleImpactAge=8.08 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:21:17] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME front-oblique-impact-smoke �ѽ���ͼ����Ϊwitch19-front-oblique-impact-smoke.png
+[01:21:17] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=front-oblique-impact-embers frame=1154 worldTick=416 partial=0.080007076 bolt=23 flightAge=5 impactAge=14 visibleImpactAge=13.460001 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:21:17] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=15 actual=( 1.349E+0  5.953E-1 -8.007E+0) expected=( 1.349E+0  6.074E-1 -8.004E+0) gap=0.012501304
+[01:21:17] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=15 actual=( 1.349E+0  6.085E-1 -8.004E+0) expected=( 1.349E+0  6.074E-1 -8.004E+0) gap=0.0011631468
+[01:21:17] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=15 actual=( 1.349E+0  6.046E-1 -8.005E+0) expected=( 1.349E+0  6.074E-1 -8.004E+0) gap=0.0029076722
+[01:21:17] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME front-oblique-impact-embers �ѽ���ͼ����Ϊwitch19-front-oblique-impact-embers.png
+[01:21:18] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=15 actual=( 1.349E+0  6.046E-1 -8.005E+0) expected=( 1.349E+0  6.074E-1 -8.004E+0) gap=0.0028933398
+[01:21:18] [Render thread/INFO]: WITCH_VOLUME_ACTIVE: frame=120, volumes=1, marchSteps=36, totalDraws=146, depth=1280x800, sampledDepthTexture=52
+[01:21:19] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=15 actual=( 1.349E+0  6.081E-1 -8.004E+0) expected=( 1.349E+0  6.074E-1 -8.004E+0) gap=7.5557554E-4
+[01:21:20] [Server thread/INFO]: [STDOUT]: WITCH_QA_SPLASH_VICTIM scene=front-oblique x=-0.68 health=480.0 / 500.0
+[01:21:20] [Server thread/INFO]: [STDOUT]: WITCH_QA_SPLASH_VICTIM scene=front-oblique x=0.0 health=480.0 / 500.0
+[01:21:20] [Server thread/INFO]: [STDOUT]: WITCH_QA_SPLASH_VICTIM scene=front-oblique x=0.68 health=480.0 / 500.0
+[01:21:20] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=15 actual=( 1.349E+0  5.997E-1 -8.006E+0) expected=( 1.349E+0  6.074E-1 -8.004E+0) gap=0.0079164235
+[01:21:22] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=high-windup frame=1304 worldTick=511 partial=0.94000757 witch=33 attackAge=6 summonAge=0 healFlash=0 pose=2021693218 staffPitch=0.6632251143455505
+[01:21:22] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME high-windup �ѽ���ͼ����Ϊwitch19-high-windup.png
+[01:21:22] [Render thread/INFO]: WITCH_VOLUME_ACTIVE: frame=240, volumes=1, marchSteps=36, totalDraws=301, depth=1280x800, sampledDepthTexture=52
+[01:21:22] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=high-release frame=1324 worldTick=518 partial=0.70000774 witch=33 attackAge=13 summonAge=0 healFlash=0 pose=-1332760151 staffPitch=0.6632251143455505
+[01:21:22] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME high-release �ѽ���ͼ����Ϊwitch19-high-release.png
+[01:21:22] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=33 actual=( 1.476E+0 -3.650E-1 -8.228E+0) expected=( 1.477E+0 -3.704E-1 -8.239E+0) gap=0.01270392
+[01:21:22] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=33 actual=( 1.477E+0 -3.595E-1 -8.216E+0) expected=( 1.477E+0 -3.704E-1 -8.239E+0) gap=0.025173906
+[01:21:22] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=33 actual=( 1.477E+0 -3.609E-1 -8.219E+0) expected=( 1.477E+0 -3.704E-1 -8.239E+0) gap=0.02203277
+[01:21:22] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=high-flight frame=1333 worldTick=520 partial=0.7000077 bolt=41 flightAge=2 impactAge=0 visibleImpactAge=-1.0 serverImpacted=false point=(0.0, 0.0, 0.0)
+[01:21:22] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME high-flight �ѽ���ͼ����Ϊwitch19-high-flight.png
+[01:21:22] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=high-impact-core frame=1346 worldTick=525 partial=0.08000767 bolt=41 flightAge=5 impactAge=2 visibleImpactAge=1.3399997 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:21:22] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME high-impact-core �ѽ���ͼ����Ϊwitch19-high-impact-core.png
+[01:21:22] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=high-impact-expansion frame=1352 worldTick=528 partial=0.30000782 bolt=41 flightAge=5 impactAge=5 visibleImpactAge=4.56 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:21:23] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME high-impact-expansion �ѽ���ͼ����Ϊwitch19-high-impact-expansion.png
+[01:21:23] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=high-impact-smoke frame=1358 worldTick=532 partial=0.30000782 bolt=41 flightAge=5 impactAge=9 visibleImpactAge=8.559999 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:21:23] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME high-impact-smoke �ѽ���ͼ����Ϊwitch19-high-impact-smoke.png
+[01:21:23] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=high-impact-embers frame=1367 worldTick=536 partial=0.84000796 bolt=41 flightAge=5 impactAge=14 visibleImpactAge=13.1 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:21:23] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME high-impact-embers �ѽ���ͼ����Ϊwitch19-high-impact-embers.png
+[01:21:23] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=33 actual=( 1.476E+0 -3.747E-1 -8.248E+0) expected=( 1.477E+0 -3.704E-1 -8.239E+0) gap=0.010220887
+[01:21:23] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=33 actual=( 1.477E+0 -3.688E-1 -8.236E+0) expected=( 1.477E+0 -3.704E-1 -8.239E+0) gap=0.0034543665
+[01:21:23] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=33 actual=( 1.477E+0 -3.709E-1 -8.241E+0) expected=( 1.477E+0 -3.704E-1 -8.239E+0) gap=0.0016464439
+[01:21:24] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=33 actual=( 1.477E+0 -3.805E-1 -8.261E+0) expected=( 1.477E+0 -3.704E-1 -8.239E+0) gap=0.024150766
+[01:21:24] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=33 actual=( 1.476E+0 -3.827E-1 -8.266E+0) expected=( 1.477E+0 -3.704E-1 -8.239E+0) gap=0.029444082
+[01:21:25] [Render thread/INFO]: WITCH_VOLUME_ACTIVE: frame=360, volumes=1, marchSteps=36, totalDraws=464, depth=1280x800, sampledDepthTexture=52
+[01:21:25] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=33 actual=( 1.476E+0 -3.749E-1 -8.249E+0) expected=( 1.477E+0 -3.704E-1 -8.239E+0) gap=0.010515886
+[01:21:25] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=33 actual=( 1.477E+0 -3.670E-1 -8.232E+0) expected=( 1.477E+0 -3.704E-1 -8.239E+0) gap=0.0075737746
+[01:21:25] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=33 actual=( 1.476E+0 -3.693E-1 -8.237E+0) expected=( 1.477E+0 -3.704E-1 -8.239E+0) gap=0.0022374988
+[01:21:26] [Server thread/INFO]: [STDOUT]: WITCH_QA_SPLASH_VICTIM scene=high x=-0.68 health=480.0 / 500.0
+[01:21:26] [Server thread/INFO]: [STDOUT]: WITCH_QA_SPLASH_VICTIM scene=high x=0.0 health=480.0 / 500.0
+[01:21:26] [Server thread/INFO]: [STDOUT]: WITCH_QA_SPLASH_VICTIM scene=high x=0.68 health=480.0 / 500.0
+[01:21:26] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=33 actual=( 1.476E+0 -3.658E-1 -8.229E+0) expected=( 1.477E+0 -3.704E-1 -8.239E+0) gap=0.010829449
+[01:21:26] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=33 actual=( 1.477E+0 -3.604E-1 -8.218E+0) expected=( 1.477E+0 -3.704E-1 -8.239E+0) gap=0.023221621
+[01:21:26] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=33 actual=( 1.477E+0 -3.626E-1 -8.223E+0) expected=( 1.477E+0 -3.704E-1 -8.239E+0) gap=0.018188613
+[01:21:28] [Render thread/INFO]: WITCH_VOLUME_ACTIVE: frame=480, volumes=1, marchSteps=36, totalDraws=638, depth=1280x800, sampledDepthTexture=52
+[01:21:28] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=rear-windup frame=1564 worldTick=629 partial=0.7000084 witch=51 attackAge=6 summonAge=0 healFlash=0 pose=-1254294217 staffPitch=0.6632251143455505
+[01:21:28] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME rear-windup �ѽ���ͼ����Ϊwitch19-rear-windup.png
+[01:21:28] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=rear-release frame=1585 worldTick=636 partial=0.7600084 witch=51 attackAge=13 summonAge=0 healFlash=0 pose=-70216210 staffPitch=0.6632251143455505
+[01:21:28] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=51 actual=(-1.164E+0  6.596E-2 -6.204E+0) expected=(-1.164E+0  5.693E-2 -6.206E+0) gap=0.009220606
+[01:21:28] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME rear-release �ѽ���ͼ����Ϊwitch19-rear-release.png
+[01:21:28] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=51 actual=(-1.164E+0  8.018E-2 -6.199E+0) expected=(-1.164E+0  5.693E-2 -6.206E+0) gap=0.024250524
+[01:21:28] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=51 actual=(-1.164E+0  7.605E-2 -6.200E+0) expected=(-1.164E+0  5.693E-2 -6.206E+0) gap=0.019868981
+[01:21:28] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=rear-flight frame=1594 worldTick=639 partial=0.7800083 bolt=59 flightAge=2 impactAge=0 visibleImpactAge=-1.0 serverImpacted=false point=(0.0, 0.0, 0.0)
+[01:21:28] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME rear-flight �ѽ���ͼ����Ϊwitch19-rear-flight.png
+[01:21:28] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=rear-impact-core frame=1607 worldTick=644 partial=0.14000833 bolt=59 flightAge=5 impactAge=2 visibleImpactAge=1.3399997 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:21:28] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME rear-impact-core �ѽ���ͼ����Ϊwitch19-rear-impact-core.png
+[01:21:28] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=rear-impact-expansion frame=1614 worldTick=647 partial=0.18000829 bolt=59 flightAge=5 impactAge=5 visibleImpactAge=4.3799996 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:21:29] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME rear-impact-expansion �ѽ���ͼ����Ϊwitch19-rear-impact-expansion.png
+[01:21:29] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=rear-impact-smoke frame=1622 worldTick=651 partial=0.34000826 bolt=59 flightAge=5 impactAge=9 visibleImpactAge=8.539999 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:21:29] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME rear-impact-smoke �ѽ���ͼ����Ϊwitch19-rear-impact-smoke.png
+[01:21:29] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=rear-impact-embers frame=1632 worldTick=655 partial=0.88000816 bolt=59 flightAge=5 impactAge=14 visibleImpactAge=13.08 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:21:29] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME rear-impact-embers �ѽ���ͼ����Ϊwitch19-rear-impact-embers.png
+[01:21:29] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=51 actual=(-1.164E+0  4.853E-2 -6.209E+0) expected=(-1.164E+0  5.693E-2 -6.206E+0) gap=0.009038679
+[01:21:29] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=51 actual=(-1.164E+0  6.201E-2 -6.204E+0) expected=(-1.164E+0  5.693E-2 -6.206E+0) gap=0.0053005335
+[01:21:29] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=51 actual=(-1.164E+0  5.693E-2 -6.206E+0) expected=(-1.164E+0  5.693E-2 -6.206E+0) gap=4.098594E-4
+[01:21:30] [Render thread/INFO]: WITCH_VOLUME_ACTIVE: frame=600, volumes=2, marchSteps=50, totalDraws=804, depth=1280x800, sampledDepthTexture=52
+[01:21:30] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=51 actual=(-1.164E+0  2.322E-2 -6.216E+0) expected=(-1.164E+0  5.693E-2 -6.206E+0) gap=0.035362568
+[01:21:30] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=51 actual=(-1.164E+0  3.416E-2 -6.212E+0) expected=(-1.164E+0  5.693E-2 -6.206E+0) gap=0.02376676
+[01:21:30] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=51 actual=(-1.164E+0  3.136E-2 -6.213E+0) expected=(-1.164E+0  5.693E-2 -6.206E+0) gap=0.026730655
+[01:21:31] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=51 actual=(-1.164E+0  4.300E-2 -6.211E+0) expected=(-1.164E+0  5.693E-2 -6.206E+0) gap=0.014862529
+[01:21:31] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=51 actual=(-1.164E+0  6.184E-2 -6.204E+0) expected=(-1.164E+0  5.693E-2 -6.206E+0) gap=0.005105035
+[01:21:31] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=51 actual=(-1.164E+0  5.585E-2 -6.206E+0) expected=(-1.164E+0  5.693E-2 -6.206E+0) gap=0.0013817848
+[01:21:32] [Server thread/INFO]: [STDOUT]: WITCH_QA_SPLASH_VICTIM scene=rear x=-0.68 health=480.0 / 500.0
+[01:21:32] [Server thread/INFO]: [STDOUT]: WITCH_QA_SPLASH_VICTIM scene=rear x=0.0 health=480.0 / 500.0
+[01:21:32] [Server thread/INFO]: [STDOUT]: WITCH_QA_SPLASH_VICTIM scene=rear x=0.68 health=480.0 / 500.0
+[01:21:32] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=51 actual=(-1.164E+0  7.140E-2 -6.202E+0) expected=(-1.164E+0  5.693E-2 -6.206E+0) gap=0.014953219
+[01:21:32] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=51 actual=(-1.164E+0  5.895E-2 -6.206E+0) expected=(-1.164E+0  5.693E-2 -6.206E+0) gap=0.002111521
+[01:21:32] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=51 actual=(-1.164E+0  7.789E-2 -6.199E+0) expected=(-1.164E+0  5.693E-2 -6.206E+0) gap=0.021828596
+[01:21:32] [Render thread/INFO]: WITCH_VOLUME_ACTIVE: frame=720, volumes=1, marchSteps=36, totalDraws=981, depth=1280x800, sampledDepthTexture=52
+[01:21:34] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=summon-opening frame=1907 worldTick=765 partial=0.24000955 witch=69 attackAge=0 summonAge=2 healFlash=0 pose=-1390114096 staffPitch=0.6632251143455505
+[01:21:34] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME summon-opening �ѽ���ͼ����Ϊwitch19-summon-opening.png
+[01:21:36] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=summon-four-skeletons frame=1984 worldTick=791 partial=0.14000988 witch=69 attackAge=0 summonAge=0 healFlash=0 pose=1331096994 staffPitch=0.6632251143455505
+[01:21:36] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME summon-four-skeletons �ѽ���ͼ����Ϊwitch19-summon-four-skeletons.png
+[01:21:38] [Render thread/INFO]: WITCH_VOLUME_ACTIVE: frame=840, volumes=1, marchSteps=36, totalDraws=1120, depth=1280x800, sampledDepthTexture=52
+[01:21:39] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=evolved-first-wave frame=2213 worldTick=868 partial=0.20001137 witch=79 attackAge=0 summonAge=0 healFlash=0 pose=-703530121 staffPitch=0.6632251143455505
+[01:21:40] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME evolved-first-wave �ѽ���ͼ����Ϊwitch19-evolved-first-wave.png
+[01:21:40] [Server thread/INFO]: [STDOUT]: WITCH_QA_SOUL_BEFORE health=25.074074 max=31.074074 skeleton=6e9cffb5-e6e5-429e-9735-7ba90d0704fe
+[01:21:40] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=soul-04 frame=2271 worldTick=887 partial=0.68001187 soul=91 flightAge=4 impactAge=0 visibleImpactAge=-1.0 serverImpacted=false
+[01:21:41] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME soul-04 �ѽ���ͼ����Ϊwitch19-soul-04.png
+[01:21:41] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=soul-10 frame=2289 worldTick=893 partial=0.72001183 soul=91 flightAge=10 impactAge=0 visibleImpactAge=-1.0 serverImpacted=false
+[01:21:41] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME soul-10 �ѽ���ͼ����Ϊwitch19-soul-10.png
+[01:21:41] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=soul-17 frame=2310 worldTick=900 partial=0.7600118 soul=91 flightAge=17 impactAge=0 visibleImpactAge=-1.0 serverImpacted=false
+[01:21:41] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME soul-17 �ѽ���ͼ����Ϊwitch19-soul-17.png
+[01:21:41] [Render thread/INFO]: WITCH_VOLUME_ACTIVE: frame=960, volumes=1, marchSteps=36, totalDraws=1240, depth=1280x800, sampledDepthTexture=52
+[01:21:41] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=heal-flash frame=2319 worldTick=903 partial=0.78001183 witch=79 attackAge=0 summonAge=0 healFlash=10 pose=-1447639056 staffPitch=0.6632251143455505
+[01:21:41] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME heal-flash �ѽ���ͼ����Ϊwitch19-heal-flash.png
+[01:21:41] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=soul-arrival frame=2325 worldTick=905 partial=0.8200118 soul=91 flightAge=20 impactAge=3 visibleImpactAge=2.039999 serverImpacted=true
+[01:21:41] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME soul-arrival �ѽ���ͼ����Ϊwitch19-soul-arrival.png
+[01:21:43] [Server thread/INFO]: [STDOUT]: WITCH_QA_SOUL_AFTER health=30.74074 max=31.074074 healed=1 remainingFirstWave=3
+[01:21:44] [Server thread/INFO]: [STDOUT]: WITCH_QA_CONTROL_SETUP active=9b773bd1-6dd8-41f4-b926-a430414617a0 idle=1221f75a-b7a1-4de2-856b-38728418d705 sharedNormalModel=true
+[01:21:44] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.272E-1  5.268E-1 -7.964E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.013985469
+[01:21:44] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.275E-1  5.411E-1 -7.960E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=8.8402635E-4
+[01:21:45] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.273E-1  5.362E-1 -7.961E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.0042158957
+[01:21:45] [Render thread/INFO]: WITCH_VOLUME_ACTIVE: frame=1080, volumes=2, marchSteps=72, totalDraws=1404, depth=1280x800, sampledDepthTexture=52
+[01:21:45] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=two-witches-one-attacking frame=2543 worldTick=983 partial=0.5000136 witch=93 attackAge=7 summonAge=0 healFlash=0 pose=1964017350 staffPitch=0.6632251143455505
+[01:21:45] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME two-witches-one-attacking �ѽ���ͼ����Ϊwitch19-two-witches-one-attacking.png
+[01:21:46] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.272E-1  5.296E-1 -7.963E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.011101665
+[01:21:46] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.275E-1  5.414E-1 -7.960E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.0012149895
+[01:21:46] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.274E-1  5.379E-1 -7.961E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.0025127367
+[01:21:46] [Server thread/INFO]: [STDOUT]: WITCH_QA_SNOW enabled=true attackAge=18 serverTick=993
+[01:21:47] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.271E-1  5.261E-1 -7.964E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.014671054
+[01:21:47] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.275E-1  5.411E-1 -7.960E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=8.8648644E-4
+[01:21:47] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.273E-1  5.362E-1 -7.961E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.0041911528
+[01:21:47] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.271E-1  5.261E-1 -7.964E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.014669968
+[01:21:47] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.275E-1  5.408E-1 -7.960E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=6.0807914E-4
+[01:21:47] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=snow-slow-early frame=2625 worldTick=1023 partial=0.16001344 witch=93 attackAge=14 summonAge=0 healFlash=0 pose=1298293545 staffPitch=0.6632251143455505
+[01:21:47] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.273E-1  5.353E-1 -7.962E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.0051506674
+[01:21:47] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME snow-slow-early �ѽ���ͼ����Ϊwitch19-snow-slow-early.png
+[01:21:48] [Render thread/INFO]: WITCH_VOLUME_ACTIVE: frame=1200, volumes=1, marchSteps=36, totalDraws=1551, depth=1280x800, sampledDepthTexture=52
+[01:21:49] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.271E-1  5.268E-1 -7.964E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.013925641
+[01:21:49] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.275E-1  5.411E-1 -7.960E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=8.862867E-4
+[01:21:49] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.273E-1  5.362E-1 -7.961E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.004195739
+[01:21:49] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.271E-1  5.268E-1 -7.964E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.01392714
+[01:21:49] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.275E-1  5.411E-1 -7.960E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=8.862145E-4
+[01:21:49] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.273E-1  5.362E-1 -7.961E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.004196482
+[01:21:50] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=snow-slow-late frame=2740 worldTick=1078 partial=0.32001376 witch=93 attackAge=6 summonAge=0 healFlash=0 pose=1084658639 staffPitch=0.6632251143455505
+[01:21:50] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME snow-slow-late �ѽ���ͼ����Ϊwitch19-snow-slow-late.png
+[01:21:51] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.272E-1  5.245E-1 -7.965E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.016318955
+[01:21:51] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.275E-1  5.408E-1 -7.960E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=6.0409016E-4
+[01:21:51] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.273E-1  5.353E-1 -7.962E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.005180011
+[01:21:51] [Render thread/INFO]: WITCH_VOLUME_ACTIVE: frame=1320, volumes=1, marchSteps=36, totalDraws=1685, depth=1280x800, sampledDepthTexture=52
+[01:21:52] [Server thread/INFO]: [STDOUT]: WITCH_QA_SNOW enabled=false attackAge=8 serverTick=1113
+[01:21:52] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.272E-1  5.275E-1 -7.964E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.013231073
+[01:21:52] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.275E-1  5.413E-1 -7.960E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.0010902355
+[01:21:52] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.274E-1  5.371E-1 -7.961E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.003324158
+[01:21:53] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=snow-recovered-early frame=2875 worldTick=1138 partial=0.90001464 witch=93 attackAge=11 summonAge=4 healFlash=0 pose=2129360229 staffPitch=0.6632251143455505
+[01:21:53] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.274E-1  5.288E-1 -7.964E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.0120536415
+[01:21:53] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.275E-1  5.408E-1 -7.960E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=6.197459E-4
+[01:21:53] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.274E-1  5.368E-1 -7.962E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.003667635
+[01:21:53] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME snow-recovered-early �ѽ���ͼ����Ϊwitch19-snow-recovered-early.png
+[01:21:54] [Render thread/INFO]: WITCH_VOLUME_ACTIVE: frame=1440, volumes=3, marchSteps=108, totalDraws=1911, depth=1280x800, sampledDepthTexture=52
+[01:21:55] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.275E-1  5.415E-1 -7.960E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.0012467224
+[01:21:55] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.274E-1  5.382E-1 -7.961E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.0021395413
+[01:21:56] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=two-witches-independent-attacks frame=2980 worldTick=1193 partial=0.14001441 witch=93 attackAge=21 summonAge=0 healFlash=0 pose=1805271982 staffPitch=0.6632251143455505
+[01:21:56] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME two-witches-independent-attacks �ѽ���ͼ����Ϊwitch19-two-witches-independent-attacks.png
+[01:21:56] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=94 actual=( 1.357E+0  2.590E-2 -6.354E+0) expected=( 1.358E+0  2.484E-2 -6.354E+0) gap=0.0010909764
+[01:21:56] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=94 actual=( 1.357E+0  2.088E-2 -6.355E+0) expected=( 1.358E+0  2.484E-2 -6.354E+0) gap=0.004188974
+[01:21:56] [Server thread/INFO]: [STDOUT]: WITCH_QA_HARD_FREEZE enabled=true attackAge=11 serverTick=1204
+[01:21:57] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=freeze-hold-01 frame=3014 worldTick=1219 partial=0.8600147 witch=93 attackAge=11 summonAge=0 healFlash=0 pose=-2138693909 staffPitch=0.6632251143455505
+[01:21:57] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME freeze-hold-01 �ѽ���ͼ����Ϊwitch19-freeze-hold-01.png
+[01:21:57] [Render thread/INFO]: WITCH_VOLUME_ACTIVE: frame=1560, volumes=2, marchSteps=72, totalDraws=2171, depth=1280x800, sampledDepthTexture=52
+[01:21:58] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=freeze-hold-02 frame=3067 worldTick=1248 partial=0.1000154 witch=93 attackAge=11 summonAge=0 healFlash=0 pose=-2138693909 staffPitch=0.6632251143455505
+[01:21:59] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME freeze-hold-02 �ѽ���ͼ����Ϊwitch19-freeze-hold-02.png
+[01:21:59] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=94 actual=( 1.357E+0  1.357E-2 -6.358E+0) expected=( 1.358E+0  2.484E-2 -6.354E+0) gap=0.011782065
+[01:21:59] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=94 actual=( 1.357E+0  2.506E-2 -6.354E+0) expected=( 1.358E+0  2.484E-2 -6.354E+0) gap=2.9311533E-4
+[01:22:00] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=freeze-hold-03 frame=3110 worldTick=1274 partial=0.1600151 witch=93 attackAge=11 summonAge=0 healFlash=0 pose=-2138693909 staffPitch=0.6632251143455505
+[01:22:00] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME freeze-hold-03 �ѽ���ͼ����Ϊwitch19-freeze-hold-03.png
+[01:22:00] [Server thread/INFO]: [STDOUT]: WITCH_QA_HARD_FREEZE enabled=false attackAge=11 serverTick=1283
+[01:22:00] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=94 actual=( 1.357E+0  3.552E-3 -6.361E+0) expected=( 1.358E+0  2.484E-2 -6.354E+0) gap=0.022234488
+[01:22:00] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.272E-1  5.237E-1 -7.965E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.017140305
+[01:22:00] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.275E-1  5.405E-1 -7.960E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=2.9032788E-4
+[01:22:00] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.273E-1  5.343E-1 -7.962E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.006223355
+[01:22:01] [Render thread/INFO]: WITCH_VOLUME_ACTIVE: frame=1680, volumes=2, marchSteps=72, totalDraws=2503, depth=1280x800, sampledDepthTexture=52
+[01:22:01] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=freeze-resumed frame=3154 worldTick=1303 partial=0.020015478 witch=93 attackAge=8 summonAge=0 healFlash=0 pose=2054083194 staffPitch=0.6632251143455505
+[01:22:01] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=94 actual=( 1.357E+0  7.701E-3 -6.359E+0) expected=( 1.358E+0  2.484E-2 -6.354E+0) gap=0.017900795
+[01:22:01] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=94 actual=( 1.357E+0  2.485E-2 -6.354E+0) expected=( 1.358E+0  2.484E-2 -6.354E+0) gap=2.309898E-4
+[01:22:02] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME freeze-resumed �ѽ���ͼ����Ϊwitch19-freeze-resumed.png
+[01:22:02] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=94 actual=( 1.357E+0  1.842E-2 -6.356E+0) expected=( 1.358E+0  2.484E-2 -6.354E+0) gap=0.0067441245
+[01:22:02] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.271E-1  5.222E-1 -7.965E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.018759001
+[01:22:02] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.274E-1  5.398E-1 -7.960E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=5.7702546E-4
+[01:22:02] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.273E-1  5.332E-1 -7.962E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.0073129013
+[01:22:03] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=94 actual=( 1.357E+0  5.961E-3 -6.360E+0) expected=( 1.358E+0  2.484E-2 -6.354E+0) gap=0.019675419
+[01:22:03] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=93 actual=( 1.271E-1  5.206E-1 -7.966E+0) expected=( 1.277E-1  5.403E-1 -7.960E+0) gap=0.020435972
+[01:22:03] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=close-side-windup frame=3216 worldTick=1339 partial=0.7600159 witch=161 attackAge=6 summonAge=0 healFlash=0 pose=140756145 staffPitch=0.6632251143455505
+[01:22:03] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME close-side-windup �ѽ���ͼ����Ϊwitch19-close-side-windup.png
+[01:22:03] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=close-side-release frame=3237 worldTick=1346 partial=0.8200158 witch=161 attackAge=13 summonAge=0 healFlash=0 pose=1572633911 staffPitch=0.6632251143455505
+[01:22:03] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=161 actual=( 2.208E+0  2.887E-1 -2.597E+0) expected=( 2.209E+0  2.811E-1 -2.599E+0) gap=0.0077262297
+[01:22:03] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME close-side-release �ѽ���ͼ����Ϊwitch19-close-side-release.png
+[01:22:03] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=161 actual=( 2.209E+0  3.048E-1 -2.595E+0) expected=( 2.209E+0  2.811E-1 -2.599E+0) gap=0.023984388
+[01:22:04] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=161 actual=( 2.209E+0  2.998E-1 -2.595E+0) expected=( 2.209E+0  2.811E-1 -2.599E+0) gap=0.01896935
+[01:22:04] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=close-side-flight frame=3246 worldTick=1349 partial=0.8400159 bolt=169 flightAge=2 impactAge=0 visibleImpactAge=-1.0 serverImpacted=false point=(0.0, 0.0, 0.0)
+[01:22:04] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME close-side-flight �ѽ���ͼ����Ϊwitch19-close-side-flight.png
+[01:22:04] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=close-side-impact-core frame=3255 worldTick=1354 partial=0.12001586 bolt=169 flightAge=5 impactAge=2 visibleImpactAge=1.3600001 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:22:04] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=close-side-impact-expansion frame=3256 worldTick=1364 partial=0.7200155 bolt=169 flightAge=5 impactAge=8 visibleImpactAge=6.9599996 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:22:04] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME close-side-impact-core �ѽ���ͼ����Ϊwitch19-close-side-impact-core.png
+[01:22:04] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=close-side-impact-smoke frame=3257 worldTick=1366 partial=0.10001564 bolt=169 flightAge=5 impactAge=9 visibleImpactAge=8.34 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:22:04] [IO-Worker-32/INFO]: [STDOUT]: WITCH_QA_FRAME close-side-impact-expansion �ѽ���ͼ����Ϊwitch19-close-side-impact-expansion.png
+[01:22:04] [IO-Worker-34/INFO]: [STDOUT]: WITCH_QA_FRAME close-side-impact-smoke �ѽ���ͼ����Ϊwitch19-close-side-impact-smoke.png
+[01:22:04] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=close-side-impact-embers frame=3264 worldTick=1371 partial=0.28001547 bolt=169 flightAge=5 impactAge=14 visibleImpactAge=13.52 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:22:05] [Render thread/INFO]: WITCH_VOLUME_ACTIVE: frame=1800, volumes=1, marchSteps=36, totalDraws=2736, depth=1280x800, sampledDepthTexture=52
+[01:22:05] [IO-Worker-34/INFO]: [STDOUT]: WITCH_QA_FRAME close-side-impact-embers �ѽ���ͼ����Ϊwitch19-close-side-impact-embers.png
+[01:22:06] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=161 actual=( 2.209E+0  2.573E-1 -2.603E+0) expected=( 2.209E+0  2.811E-1 -2.599E+0) gap=0.024268348
+[01:22:07] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=161 actual=( 2.209E+0  2.855E-1 -2.598E+0) expected=( 2.209E+0  2.811E-1 -2.599E+0) gap=0.004392199
+[01:22:08] [Server thread/INFO]: [STDOUT]: WITCH_QA_SPLASH_VICTIM scene=close-side x=-0.68 health=480.0 / 500.0
+[01:22:08] [Server thread/INFO]: [STDOUT]: WITCH_QA_SPLASH_VICTIM scene=close-side x=0.0 health=480.0 / 500.0
+[01:22:08] [Server thread/INFO]: [STDOUT]: WITCH_QA_SPLASH_VICTIM scene=close-side x=0.68 health=480.0 / 500.0
+[01:22:08] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=161 actual=( 2.209E+0  2.939E-1 -2.596E+0) expected=( 2.209E+0  2.811E-1 -2.599E+0) gap=0.0130023165
+[01:22:09] [Server thread/INFO]: [STDOUT]: WITCH_QA_OCCLUSION wall=[1,-60..-59,1] camera=(3.8, -58.6, 0.4) attackPathX=0 sceneDepthMustHideCentre=true outerVolumeShouldRemainVisible=true visualCheckOnly=true
+[01:22:09] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=stone-occlusion-windup frame=3358 worldTick=1459 partial=0.8800161 witch=179 attackAge=6 summonAge=0 healFlash=0 pose=0 staffPitch=NaN
+[01:22:09] [IO-Worker-34/INFO]: [STDOUT]: WITCH_QA_FRAME stone-occlusion-windup �ѽ���ͼ����Ϊwitch19-stone-occlusion-windup.png
+[01:22:09] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=stone-occlusion-release frame=3378 worldTick=1466 partial=0.6200162 witch=179 attackAge=13 summonAge=0 healFlash=0 pose=0 staffPitch=NaN
+[01:22:09] [IO-Worker-34/INFO]: [STDOUT]: WITCH_QA_FRAME stone-occlusion-release �ѽ���ͼ����Ϊwitch19-stone-occlusion-release.png
+[01:22:10] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=stone-occlusion-flight frame=3387 worldTick=1469 partial=0.6400163 bolt=187 flightAge=2 impactAge=0 visibleImpactAge=-1.0 serverImpacted=false point=(0.0, 0.0, 0.0)
+[01:22:10] [IO-Worker-34/INFO]: [STDOUT]: WITCH_QA_FRAME stone-occlusion-flight �ѽ���ͼ����Ϊwitch19-stone-occlusion-flight.png
+[01:22:10] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=stone-occlusion-impact-core frame=3399 worldTick=1474 partial=0.28001654 bolt=187 flightAge=5 impactAge=2 visibleImpactAge=1.3400002 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:22:10] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=stone-occlusion-impact-expansion frame=3401 worldTick=1477 partial=0.24001634 bolt=187 flightAge=5 impactAge=5 visibleImpactAge=4.299999 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:22:10] [IO-Worker-34/INFO]: [STDOUT]: WITCH_QA_FRAME stone-occlusion-impact-core �ѽ���ͼ����Ϊwitch19-stone-occlusion-impact-core.png
+[01:22:10] [IO-Worker-34/INFO]: [STDOUT]: WITCH_QA_FRAME stone-occlusion-impact-expansion �ѽ���ͼ����Ϊwitch19-stone-occlusion-impact-expansion.png
+[01:22:10] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=stone-occlusion-impact-smoke frame=3406 worldTick=1481 partial=0.5000162 bolt=187 flightAge=5 impactAge=9 visibleImpactAge=8.559999 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:22:10] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=stone-occlusion-impact-embers frame=3408 worldTick=1486 partial=0.16001642 bolt=187 flightAge=5 impactAge=14 visibleImpactAge=13.22 serverImpacted=true point=(0.039561882615089417, -58.97819137573242, 1.7799999713897705)
+[01:22:10] [IO-Worker-34/INFO]: [STDOUT]: WITCH_QA_FRAME stone-occlusion-impact-smoke �ѽ���ͼ����Ϊwitch19-stone-occlusion-impact-smoke.png
+[01:22:11] [IO-Worker-34/INFO]: [STDOUT]: WITCH_QA_FRAME stone-occlusion-impact-embers �ѽ���ͼ����Ϊwitch19-stone-occlusion-impact-embers.png
+[01:22:11] [Render thread/INFO]: WITCH_VOLUME_ACTIVE: frame=1920, volumes=1, marchSteps=36, totalDraws=2892, depth=1280x800, sampledDepthTexture=52
+[01:22:14] [Server thread/INFO]: [STDOUT]: WITCH_QA_SPLASH_VICTIM scene=stone-occlusion x=-0.68 health=480.0 / 500.0
+[01:22:14] [Server thread/INFO]: [STDOUT]: WITCH_QA_SPLASH_VICTIM scene=stone-occlusion x=0.0 health=480.0 / 500.0
+[01:22:14] [Server thread/INFO]: [STDOUT]: WITCH_QA_SPLASH_VICTIM scene=stone-occlusion x=0.68 health=480.0 / 500.0
+[01:22:15] [Render thread/INFO]: WITCH_VOLUME_ACTIVE: frame=2040, volumes=1, marchSteps=36, totalDraws=3012, depth=1280x800, sampledDepthTexture=52
+[01:22:17] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=face-close frame=3633 worldTick=1628 partial=0.10001731 witch=209 attackAge=0 summonAge=0 healFlash=0 pose=72419300 staffPitch=0.6632251143455505
+[01:22:18] [IO-Worker-34/INFO]: [STDOUT]: WITCH_QA_FRAME face-close �ѽ���ͼ����Ϊwitch19-face-close.png
+[01:22:20] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=profile-and-grip frame=3767 worldTick=1673 partial=0.20001781 witch=211 attackAge=0 summonAge=0 healFlash=0 pose=-1544147079 staffPitch=0.6632251143455505
+[01:22:20] [IO-Worker-34/INFO]: [STDOUT]: WITCH_QA_FRAME profile-and-grip �ѽ���ͼ����Ϊwitch19-profile-and-grip.png
+[01:22:21] [Server thread/INFO]: [STDOUT]: WITCH_QA_WALK_SETUP witch=72fa440d-74a3-4a03-bd74-75ed0b094d9f naturalPathfinding=true targetDistance=12 captureRequiresMovementAndOppositeLegPoses=true
+[01:22:22] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=walk-stride-a frame=3881 worldTick=1711 partial=0.7800187 witch=213 moved=0.047067509154002755 rightLeg=0.031958580017089844 leftLeg=-0.031958580017089844 pose=1330401912
+[01:22:22] [IO-Worker-34/INFO]: [STDOUT]: WITCH_QA_FRAME walk-stride-a �ѽ���ͼ����Ϊwitch19-walk-stride-a.png
+[01:22:22] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_RENDER name=walk-stride-b frame=3907 worldTick=1720 partial=0.5000187 witch=213 moved=0.8186865963942315 rightLeg=-0.03493523597717285 leftLeg=0.03493523597717285 pose=-1901050861
+[01:22:22] [IO-Worker-34/INFO]: [STDOUT]: WITCH_QA_FRAME walk-stride-b �ѽ���ͼ����Ϊwitch19-walk-stride-b.png
+[01:22:25] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=213 actual=( 5.261E+0  5.080E-1 -5.275E+0) expected=( 5.271E+0  5.230E-1 -5.253E+0) gap=0.029069988
+[01:22:25] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=213 actual=( 5.260E+0  5.268E-1 -5.271E+0) expected=( 5.271E+0  5.230E-1 -5.253E+0) gap=0.022147316
+[01:22:25] [Render thread/INFO]: [STDOUT]: WITCH192_PALM entity=213 actual=( 5.260E+0  5.199E-1 -5.273E+0) expected=( 5.271E+0  5.230E-1 -5.253E+0) gap=0.023074148
+[01:22:26] [Render thread/INFO]: [STDOUT]: WITCH_QA_CONTROL_CHECK passed=true snowStaffSpanRadians=1.1162641048431396 recoveredStaffSpanRadians=1.1167659759521484 snowActionStepsPerWorldTick=0.65 recoveredActionStepsPerWorldTick=1.0 frozenSamples=97 frozenPoseVariants=1 frozenAttackVariants=1 otherSamples=97 otherPoseVariants=97
+[01:22:26] [Render thread/INFO]: [STDOUT]: WITCH_QA_VISUAL_CONTINUITY passed=true samples=1721 flightSubjects=47 flightPairs=648 stationaryPairs=68 stationaryRatio=0.10493827160493827 stairEvents=0 positionSpikes=0 clockBackwards=0 phaseBackwards=0 impactPairs=585 impactClockDiscontinuities=0 nonFinite=0 excludedFrameGaps=247 maxFlightStep=0.6709106753833686 maxStepPerVisualTick=1.0239710662807722 maxFlightToImpactJoin=1.0179237320906493 completionSamples=143 maxReceivedImpactGap=1.722740418346503 serverSpeed=0.72 csv=witch-visual-continuity.csv scope=actual-rendered-frames notNetworkImpairmentTest=true visualQualityRequiresHumanReview=true
+[01:22:26] [Render thread/INFO]: [STDOUT]: WITCH_QA_FRAME_INTERVALS samples=4037 meanMs=21.613957815209314 p50Ms=17.1236 p95Ms=50.4573 maxMs=289.0665 includesScreenshotReadbacks=true frameCap=60 scope=isolated-flat-QA-only notAPlayerModpackPerformancePromise=true
+[01:22:26] [Render thread/INFO]: [STDOUT]: WITCH_CLIENT_QA_COMPLETE frames=62 renderedFrames=4123 controlsPassed=true missing=[] world=Witch-1.9.2-QA-remake-1791706844583
+[01:22:26] [Render thread/INFO]: Stopping!
+[01:22:26] [Server thread/INFO]: RoyaleFabricQA lost connection: �����ж�
+[01:22:26] [Server thread/INFO]: RoyaleFabricQA�˳�����Ϸ
+[01:22:26] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[01:22:26] [Server thread/INFO]: Stopping server
+[01:22:26] [Server thread/INFO]: Saving players
+[01:22:26] [Server thread/INFO]: Saving worlds
+[01:22:26] [Server thread/INFO]: Saving chunks for level 'ServerLevel[Witch-1.9.2-QA-remake-1791706844583]'/minecraft:overworld
+[01:22:27] [Server thread/INFO]: Saving chunks for level 'ServerLevel[Witch-1.9.2-QA-remake-1791706844583]'/minecraft:the_end
+[01:22:27] [Server thread/INFO]: Saving chunks for level 'ServerLevel[Witch-1.9.2-QA-remake-1791706844583]'/minecraft:the_nether
+[01:22:27] [Server thread/INFO]: ThreadedAnvilChunkStorage (Witch-1.9.2-QA-remake-1791706844583): All chunks are saved
+[01:22:27] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[01:22:27] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[01:22:27] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved

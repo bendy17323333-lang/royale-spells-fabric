@@ -164,3 +164,13 @@ Beta 3 的模型渲染图标已被替换。四张精灵法术图标采用原作�
 `textures/entity/fireball_plume.png` 是本轮通过内置 ImageGen 新生成的专用四帧火焰团图集。PNG 按原字节导入，保留透明度；没有复制或改编 MineClash 火球素材。它由短小、重叠的摄像机朝向面片显示，沿真实飞行轨迹形成连续燃烧尾迹；不是将此前精灵火焰拉成长条。完整提示词见 [art/FIREBALL-PLUME-IMAGEGEN-PROMPT.md](art/FIREBALL-PLUME-IMAGEGEN-PROMPT.md)，文件哈希见 `docs/validation-dev6/asset-verification.json`。
 
 火球核心继续使用上一版独立 ImageGen 材质。烟雾、细小火星与短促火焰通过 Minecraft 粒子系统在运行时引用，未复制这些原版纹理进 JAR。上述原版资源依旧属于 Mojang/Microsoft。本轮独立生成的火焰贡献按根目录许可范围采用 MIT；《皇室战争》卡图与原作音效继续明确排除。
+
+## 1.9.2 共享女巫模型
+
+本轮在现有原生 Blockbench 工程中重塑带厚度的衣身、补齐脖颈并重新分配身高；普通女巫保留腿，觉醒女巫移除腿和靴子并增加中空悬浮袍摆。两端共用 `.bbmodel`、导出网格和 128×128 图集。未新增 ImageGen 位图，沿用 1.9.1 的原生像素图集。动作和左手挂点为本项目代码；角色设计、声音的第三方权利保持原样。当前版本制作及核验记录见 `art/witch-remake/1.9.2/`。
+
+NeoForge 女巫模型与声音移植自本项目 Fabric 1.9.2：几何、动作和体积雾算法为本项目制作，女巫原作声音来自 Henrylq/Clash-Royale-SFX 固定版本的 Witch 分类，具体来源和文件哈希见 `WITCH-ASSET-SOURCES.json`。Supercell 角色、录音与原作卡图不属于 MIT 授权。
+
+## 女巫塔使用已安装的 Iron’s Spells 结构
+
+原作者 [iron431 / Iron’s Spells ’n Spellbooks](https://github.com/iron431/irons-spells-n-spellbooks)，验证版本 1.21.1-3.16.3。上游采用 ALL RIGHTS RESERVED；本项目不重新分发其塔建筑 NBT 或授予素材许可。运行时通过已安装本体的结构资源创建女巫塔变体，在内存中调整驻军、笼中实体和地下刷怪笼。原模板和缓存保持不变，自编适配代码与新生成配置适用本项目代码许可。引用清单位于 `art/witch-tower/provenance.json`。

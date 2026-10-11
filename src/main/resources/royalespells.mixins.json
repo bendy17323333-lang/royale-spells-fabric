@@ -15,7 +15,8 @@
     "TowerPoolsMixin",
     "ItemCombinerPlayerAccess",
     "IronElixirForgeMixin",
-    "IronElixirAnvilMixin"
+    "IronElixirAnvilMixin",
+    "WitchTowerTemplateMixin"
   ],
   "injectors": {
     "defaultRequire": 1

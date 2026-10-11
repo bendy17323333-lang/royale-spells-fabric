@@ -19,7 +19,8 @@ public final class TroopModel<T extends LivingEntity> extends EntityModel<T> imp
     private final String kind;
     private float opacity=1,tintRed=1,tintGreen=1,tintBlue=1;
     private boolean emissivePass,flamePass;
-    private float animationAge;
+    private float animationAge,renderPartial;
+    public void setRenderPartial(float partial){renderPartial=partial;}
     private static class Part {
         String name,parent;float[] pivot,rotation;float pitch,yaw,roll;boolean visible=true;List<Mesh> boxes=new ArrayList<>();List<Part> children=new ArrayList<>();
     }
@@ -70,6 +71,36 @@ public final class TroopModel<T extends LivingEntity> extends EntityModel<T> imp
             pose("jaw",dragon.heatTicks()>0?Mth.clamp(dragon.heatTicks()/8f,0,1)*.42f:.04f+Mth.sin(age*.09f)*.015f,0,0);
             pose("tail_1",0,Mth.cos(age*.14f)*.052f,0);pose("tail_2",0,Mth.sin(age*.14f)*.05f,0);
         }
+        if(entity instanceof dev.royalespells.entity.WitchAppearance witch){
+            // Timelines live on each entity. Always start from the rest pose;
+            // neither a neighbouring witch nor a dead model can retain our bones.
+            float partial=renderPartial;
+            float attack=witch.attackAge()>0?witch.attackAge()+partial:0;
+            float summon=witch.summonAge()>0?witch.summonAge()+partial:0;
+            float cast=attack<=14?Mth.clamp(attack/14f,0,1):Mth.clamp((22-attack)/8f,0,1);
+            cast=cast*cast*(3-2*cast);
+            float raise=Mth.sin(Mth.clamp(summon/24f,0,1)*Mth.PI)*(1-cast);
+            // Right hand braces the staff. The free LEFT palm gathers and releases
+            // the bolt; the held prop never performs the casting thrust.
+            pose("body",0,0,breathe*.18f*(1-cast));
+            pose("right_arm",-14*Mth.DEG_TO_RAD+walk*.015f,0,7*Mth.DEG_TO_RAD);
+            pose("right_forearm",-24*Mth.DEG_TO_RAD,0,0);
+            pose("staff",38*Mth.DEG_TO_RAD,0,0);
+            pose("left_arm",(-12-64*cast-12*raise)*Mth.DEG_TO_RAD-walk*.18f,0,(-15+13*cast-18*raise)*Mth.DEG_TO_RAD);
+            pose("left_forearm",(-24+10*cast-10*raise)*Mth.DEG_TO_RAD,0,0);
+            pose("right_leg",witch.evolved()?0:walk*.48f,0,0);
+            pose("left_leg",witch.evolved()?0:-walk*.48f,0,0);
+            pose("robe_right",walk*.30f+.04f,0,-.025f);
+            pose("robe_left",-walk*.30f+.04f,0,.025f);
+            pose("robe_side_right",.03f+Math.abs(walk)*.11f,0,-breathe);
+            pose("robe_side_left",.03f+Math.abs(walk)*.11f,0,breathe);
+            pose("cape",.08f+Math.abs(walk)*.12f,Mth.sin(age*.06f)*.025f,0);
+            pose("cape_tail",.025f+Mth.sin(age*.08f)*.025f+Math.abs(walk)*.08f,0,0);
+            pose("cape_ribbon_-1",.045f+Mth.sin(age*.073f-1)*.035f+Math.abs(walk)*.08f,.025f,0);
+            pose("cape_ribbon_1",.035f+Mth.sin(age*.071f+1)*.032f+Math.abs(walk)*.10f,-.025f,0);
+            pose("staff_crystal",0,Mth.sin(age*.055f)*.20f,0);
+            if(witch.healFlash()>5){tintRed=.82f;tintGreen=1;tintBlue=.89f;}
+        }
         for(var p:parts.values()){var held=FrozenRender.pose(p,p.pitch,p.yaw,p.roll);p.pitch=held[0];p.yaw=held[1];p.roll=held[2];}
     }
     private static float infernoWing(float seconds){
@@ -87,6 +118,12 @@ public final class TroopModel<T extends LivingEntity> extends EntityModel<T> imp
     private void applyParents(Part part,PoseStack matrices){
         if(!part.parent.isEmpty())applyParents(parts.get(part.parent),matrices);
         transform(part,matrices,1/16f);
+    }
+    public boolean transformToJoint(String name,PoseStack matrices){
+        Part part=parts.get(name);
+        if(part==null)return false;
+        applyParents(part,matrices);
+        return true;
     }
     private void transform(Part p,PoseStack m,float unit){
         m.translate(p.pivot[0]*unit,p.pivot[1]*unit,p.pivot[2]*unit);

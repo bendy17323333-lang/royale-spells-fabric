@@ -1,0 +1,45 @@
+{
+  "version": "1.9.2",
+  "nativeEditor": {
+    "version": "5.2.2",
+    "plugin": "1.10.0",
+    "actualEndpointUsed": true,
+    "normalProject": "dc0733ef-53fc-c6bf-7852-1ac4ddca6f3c",
+    "evolvedProject": "ae7e9aa9-710b-8ab5-14d1-f4f31fe499b1"
+  },
+  "scope": [
+    "neck joins head and collar",
+    "bodice has outward-facing dimensional geometry",
+    "hood top 1.894725 blocks",
+    "longer normal legs",
+    "evolved open robe with zero leg or boot geometry",
+    "planted right staff and free left hand casting"
+  ],
+  "authoritativeFiles": {
+    "art/blockbench/witch.bbmodel": "dc6091443e8835f3f293a6bd571ac507fd72a0060998c779b527fe52e0cf3c88",
+    "art/blockbench/witch_evolution.bbmodel": "132ec6c33b1767a89e70e3752147adf1123d51515d5bb42b6424704a91c966f0",
+    "src/main/resources/assets/royalespells/models/troop/witch.json": "4ce7555335f3d40596c911887c7cbe00e33cf44eafb1f089286dab7cec9d1909",
+    "src/main/resources/assets/royalespells/models/troop/witch_evolution.json": "f58f318602461025ec32c1b3a4a0b6523795c22a344efd0f6bfd1e0a9892aae1",
+    "src/main/resources/assets/royalespells/textures/entity/witch_materials.png": "a0258cd3b01f53e22d66ef896d90f34c273cdc6a09f45da18124ca678ee2f8de"
+  },
+  "captureType": "Actual private Blockbench Preview framebuffer, no paintover; not Minecraft screenshots",
+  "captures": {
+    "native-final-witch-angle.png": "264542a65cddc49c323103608c396ea5d4778b9f8328e68573873d05707f6286",
+    "native-final-witch-back.png": "525c27e9c62865b6b47bcd451505711fd469fb6a93babcb11d322e72f1a6d916",
+    "native-final-witch-casting.png": "bdf2561069bb6946fba29aa4f26933cc06f547aae7232df20c181a29be0b1070",
+    "native-final-witch-front.png": "23e2c60f1209322e5b3d25bd5dd5fe822d0ea09edc8e8734dfcaa523a16a7314",
+    "native-final-witch-side.png": "a0190741c18d2a42dd8a0e852bfd1feee31dd913969b5831775f02cb1bf39f2e",
+    "native-final-witch_evolution-angle.png": "cd67ae0ebb1541af944373c1479f42eb2c07ca9097c2ce76259a70b3c5f8648a",
+    "native-final-witch_evolution-back.png": "3124f46a261c6b2b00c6c5b633bf114d6054348df6cc5c2c6475f050b338b478",
+    "native-final-witch_evolution-casting.png": "e8a0011846642b2a51842eee5987d8e46d190d9bbfc6e588fc6b619b7a6d7215",
+    "native-final-witch_evolution-front.png": "1d4df5d7142815168ff4975ea51cb4f6cf5177f79c260d649961226e036dcd35",
+    "native-final-witch_evolution-side.png": "fd89ad495f496559b465eea7e919621792de84df7b8e336da285f20c305fc889"
+  },
+  "manualRefinementsAfterRemodelScript": [
+    "Reverse bodice and neck faces to outward winding",
+    "Deepen center chest valley by 0.03 of front depth",
+    "Extend both named staff shafts and bindings to meet the planted pommel",
+    "Match idle reference additive staff roll to 0; left arm pitch 12 and forearm pitch 24"
+  ],
+  "performance": "Normal 1149 native faces; evolved 1306 native faces; same 128x128 atlas; no new full-screen image overlay"
+}

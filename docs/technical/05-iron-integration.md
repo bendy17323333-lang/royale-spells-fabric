@@ -1,5 +1,7 @@
 # 05 铁魔法系统接入
 
+> 1.9.3 增量：普通/觉醒女巫只提供不依赖铁魔法的卡牌；塔居民为可选 NeutralWizard。召唤物目标/跟随职责已分离，详见 [第 17 章](17-witch-cards-and-ai.md)。本章其余 Iron 法术机制不自动套用到女巫。
+
 [返回目录](README.md)
 
 核心：[IronIntegration](../../src/main/java/dev/royalespells/iron/IronIntegration.java)、[RoyaleIronSpell](../../src/main/java/dev/royalespells/iron/RoyaleIronSpell.java)、[MirrorIronSpell](../../src/main/java/dev/royalespells/iron/MirrorIronSpell.java)。本章按 3.16.3 的调用契约整理，不承诺任意未来铁魔法版本二进制兼容。

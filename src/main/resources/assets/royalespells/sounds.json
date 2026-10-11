@@ -915,5 +915,126 @@
         "preload": true
       }
     ]
+  },
+  "witch_deploy": {
+    "subtitle": "subtitles.royalespells.witch_deploy",
+    "sounds": [
+      {
+        "name": "royalespells:witch/summon_witch_01",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "witch_attack": {
+    "subtitle": "subtitles.royalespells.witch_attack",
+    "sounds": [
+      {
+        "name": "royalespells:witch/witch_attack_02",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "witch_impact": {
+    "subtitle": "subtitles.royalespells.witch_impact",
+    "sounds": [
+      {
+        "name": "royalespells:witch/card_evolution_witch_attack_hit",
+        "preload": true,
+        "attenuation_distance": 48,
+        "volume": 0.55
+      }
+    ]
+  },
+  "witch_summon": {
+    "subtitle": "subtitles.royalespells.witch_summon",
+    "sounds": [
+      {
+        "name": "royalespells:witch/witch_summon_02",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "witch_heal": {
+    "subtitle": "subtitles.royalespells.witch_heal",
+    "sounds": [
+      {
+        "name": "royalespells:witch/card_evolution_witch_healing",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "witch_death": {
+    "subtitle": "subtitles.royalespells.witch_death",
+    "sounds": [
+      {
+        "name": "royalespells:witch/npc_die_02",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "evolved_witch_deploy": {
+    "subtitle": "subtitles.royalespells.evolved_witch_deploy",
+    "sounds": [
+      {
+        "name": "royalespells:witch/card_evolution_witch_deploy_sfx",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "evolved_witch_deploy_voice": {
+    "subtitle": "subtitles.royalespells.evolved_witch_deploy_voice",
+    "sounds": [
+      {
+        "name": "royalespells:witch/card_evolution_witch_deploy_vo_01",
+        "preload": true,
+        "attenuation_distance": 48
+      },
+      {
+        "name": "royalespells:witch/card_evolution_witch_deploy_vo_02",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "evolved_witch_attack": {
+    "subtitle": "subtitles.royalespells.evolved_witch_attack",
+    "sounds": [
+      {
+        "name": "royalespells:witch/card_evolution_witch_attack",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "evolved_witch_impact": {
+    "subtitle": "subtitles.royalespells.evolved_witch_impact",
+    "sounds": [
+      {
+        "name": "royalespells:witch/card_evolution_witch_attack_hit",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "evolved_witch_summon": {
+    "subtitle": "subtitles.royalespells.evolved_witch_summon",
+    "sounds": [
+      {
+        "name": "royalespells:witch/card_evolution_witch_skill_skeleton_01",
+        "preload": true,
+        "attenuation_distance": 48
+      },
+      {
+        "name": "royalespells:witch/card_evolution_witch_skill_skeleton_02",
+        "preload": true,
+        "attenuation_distance": 48
+      }
+    ]
   }
 }

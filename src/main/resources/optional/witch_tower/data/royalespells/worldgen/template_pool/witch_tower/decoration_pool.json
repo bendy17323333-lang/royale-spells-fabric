@@ -1,0 +1,123 @@
+{
+  "name": "irons_spellbooks:evoker_fort_decoration_pool",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "royalespells:witch_tower/decorations/barrels",
+        "processors": "irons_spellbooks:evoker_fort_randomizer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "royalespells:witch_tower/decorations/hay",
+        "processors": "irons_spellbooks:evoker_fort_randomizer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "royalespells:witch_tower/decorations/iron_golem_cage",
+        "processors": "irons_spellbooks:evoker_fort_randomizer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "royalespells:witch_tower/decorations/logs",
+        "processors": "irons_spellbooks:evoker_fort_randomizer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "royalespells:witch_tower/decorations/potato",
+        "processors": "irons_spellbooks:evoker_fort_randomizer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "royalespells:witch_tower/decorations/pumpkin",
+        "processors": "irons_spellbooks:evoker_fort_randomizer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "royalespells:witch_tower/decorations/rock_1",
+        "processors": "irons_spellbooks:evoker_fort_randomizer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "royalespells:witch_tower/decorations/rock_2",
+        "processors": "irons_spellbooks:evoker_fort_randomizer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "royalespells:witch_tower/decorations/shack",
+        "processors": "irons_spellbooks:evoker_fort_randomizer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "royalespells:witch_tower/decorations/targets",
+        "processors": "irons_spellbooks:evoker_fort_randomizer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "royalespells:witch_tower/decorations/tent",
+        "processors": "irons_spellbooks:evoker_fort_randomizer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "royalespells:witch_tower/decorations/tower",
+        "processors": "irons_spellbooks:evoker_fort_randomizer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "royalespells:witch_tower/decorations/mobs",
+        "processors": "irons_spellbooks:evoker_fort_randomizer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

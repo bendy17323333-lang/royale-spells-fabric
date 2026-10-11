@@ -29,6 +29,7 @@ public final class ArmySkeleton extends AllySkeleton {
     @Override protected void registerGoals(){
         goalSelector.addGoal(0,new FloatGoal(this));
         goalSelector.addGoal(2,new ArmyCombatGoal(this));
+        goalSelector.addGoal(5,new FollowSummonerGoal(this));
         goalSelector.addGoal(8,new RandomLookAroundGoal(this));
     }
     public boolean general(){return entityData.get(GENERAL);}public boolean ghost(){return entityData.get(GHOST);}public float shield(){return entityData.get(SHIELD);}public int age(){return entityData.get(AGE);}public int dissolve(){return entityData.get(DISSOLVE);}public UUID armyId(){return army;}

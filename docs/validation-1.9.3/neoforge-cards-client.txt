@@ -1,0 +1,135 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.4.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :createMinecraftArtifacts UP-TO-DATE
+> Task :compileJava
+> Task :processResources UP-TO-DATE
+> Task :classes
+> Task :downloadAssets UP-TO-DATE
+> Task :writeWitchCardVisualLegacyClasspath UP-TO-DATE
+> Task :prepareWitchCardVisualRun UP-TO-DATE
+
+> Task :runWitchCardVisual
+WARN StatusConsoleListener Advanced terminal features are not available in this environment
+[01:42:08] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientdev, --version, 21.1.249, --assetIndex, 17, --assetsDir, C:\\Users\\BliBe\\.gradle\\caches\\neoformruntime\\assets, --gameDir, ., --fml.fmlVersion, 4.0.44, --fml.mcVersion, 1.21.1, --fml.neoForgeVersion, 21.1.249, --fml.neoFormVersion, 20240808.144430, --username, WitchCardQA, --width, 1280, --height, 900]
+[01:42:08] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: JVM identified as Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 21.0.12+7-LTS-205
+[01:42:08] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: ModLauncher 11.0.5+main.901c6ea8 starting: java version 21.0.12 by Oracle Corporation; OS Windows 11 arch amd64 version 10.0
+[01:42:08] [main/INFO] [ne.ne.fm.lo.ImmediateWindowHandler/]: Loading ImmediateWindowProvider fmlearlywindow
+[01:42:08] [main/INFO] [EARLYDISPLAY/]: Trying GL version 4.6
+[01:42:08] [main/INFO] [EARLYDISPLAY/]: Requested GL version 4.6 got version 4.6
+[01:42:08] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=union:/<user-home>/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.15.2+mixin.0.8.7/2af2f021d8e02a0220dc27a7a72b4666d66d44ca/sponge-mixin-0.15.2+mixin.0.8.7.jar%23138!/ Service=ModLauncher Env=CLIENT
+[01:42:08] [pool-2-thread-1/INFO] [EARLYDISPLAY/]: GL info: Intel(R) RaptorLake-S Mobile Graphics Controller GL version 4.6.0 - Build 32.0.101.7092, Intel
+[01:42:09] [main/INFO] [ne.ne.fm.lo.mo.lo.JarInJarDependencyLocator/]: Found 2 dependencies adding them to mods collection
+[01:42:09] [main/INFO] [ne.ne.fm.lo.mo.ModDiscoverer/]: 
+     Mod List:
+		Name Version (Mod Id)
+
+		Minecraft 1.21.1 (minecraft)
+		NeoForge 21.1.249 (neoforge)
+		皇室法术 · Royale Spells 1.9.3-beta.4 (royalespells)
+[01:42:10] [main/INFO] [mixin/]: Compatibility level set to JAVA_21
+[01:42:10] [main/INFO] [cp.mo.mo.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientdev' with arguments [--version, 21.1.249, --gameDir, ., --assetsDir, <user-home>\.gradle\caches\neoformruntime\assets, --assetIndex, 17, --username, WitchCardQA, --width, 1280, --height, 900]
+[01:42:10] [main/WARN] [mixin/]: Error loading class: io/redspace/ironsspellbooks/player/ServerPlayerEvents (java.lang.ClassNotFoundException: io.redspace.ironsspellbooks.player.ServerPlayerEvents)
+[01:42:10] [main/WARN] [mixin/]: Error loading class: io/redspace/ironsspellbooks/api/registry/SpellRegistry (java.lang.ClassNotFoundException: io.redspace.ironsspellbooks.api.registry.SpellRegistry)
+[01:42:10] [main/WARN] [mixin/]: Error loading class: io/redspace/ironsspellbooks/loot/SpellFilter (java.lang.ClassNotFoundException: io.redspace.ironsspellbooks.loot.SpellFilter)
+[01:42:10] [main/WARN] [mixin/]: Error loading class: io/redspace/ironsspellbooks/gui/scroll_forge/ScrollForgeMenu (java.lang.ClassNotFoundException: io.redspace.ironsspellbooks.gui.scroll_forge.ScrollForgeMenu)
+[01:42:10] [main/WARN] [mixin/]: Error loading class: io/redspace/ironsspellbooks/gui/arcane_anvil/ArcaneAnvilMenu (java.lang.ClassNotFoundException: io.redspace.ironsspellbooks.gui.arcane_anvil.ArcaneAnvilMenu)
+[01:42:10] [main/WARN] [mixin/]: Error loading class: io/redspace/ironsspellbooks/gui/overlays/SpellBarOverlay (java.lang.ClassNotFoundException: io.redspace.ironsspellbooks.gui.overlays.SpellBarOverlay)
+[01:42:10] [main/WARN] [mixin/]: Error loading class: io/redspace/ironsspellbooks/gui/overlays/SpellWheelOverlay (java.lang.ClassNotFoundException: io.redspace.ironsspellbooks.gui.overlays.SpellWheelOverlay)
+[01:42:10] [main/WARN] [mixin/]: Error loading class: io/redspace/ironsspellbooks/gui/scroll_forge/ScrollForgeScreen (java.lang.ClassNotFoundException: io.redspace.ironsspellbooks.gui.scroll_forge.ScrollForgeScreen)
+[01:42:11] [Datafixer Bootstrap/INFO] [mojang/DataFixerBuilder]: 229 Datafixer optimizations took 253 milliseconds
+[01:42:12] [pool-7-thread-1/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.3).
+[01:42:16] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[01:42:16] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[01:42:16] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[01:42:16] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[01:42:16] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[01:42:16] [Render thread/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/<workspace>/work/royale-spells-iron-1.21.1/build/moddev/artifacts/neoforge-21.1.249.jar%23189!/assets/.mcassetsroot' uses unexpected schema
+[01:42:16] [Render thread/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/<workspace>/work/royale-spells-iron-1.21.1/build/moddev/artifacts/neoforge-21.1.249.jar%23189!/data/.mcassetsroot' uses unexpected schema
+[01:42:16] [Render thread/INFO] [mojang/YggdrasilAuthenticationService]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[01:42:16] [Render thread/INFO] [minecraft/Minecraft]: Setting user: WitchCardQA
+[01:42:16] [Render thread/INFO] [minecraft/Minecraft]: Backend library: LWJGL version 3.3.3+5
+[01:42:16] [modloading-worker-0/INFO] [ne.ne.ne.co.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.1.249, for MC 1.21.1
+[01:42:17] [modloading-sync-worker/WARN] [minecraft/SynchedEntityData]: defineId called for: class dev.royalespells.entity.RoyalWitch from class dev.royalespells.entity.WitchBehavior$Data
+[01:42:17] [modloading-sync-worker/WARN] [minecraft/SynchedEntityData]: defineId called for: class dev.royalespells.entity.RoyalWitch from class dev.royalespells.entity.WitchBehavior$Data
+[01:42:17] [modloading-sync-worker/WARN] [minecraft/SynchedEntityData]: defineId called for: class dev.royalespells.entity.RoyalWitch from class dev.royalespells.entity.WitchBehavior$Data
+[01:42:17] [modloading-sync-worker/WARN] [minecraft/SynchedEntityData]: defineId called for: class dev.royalespells.entity.RoyalWitch from class dev.royalespells.entity.WitchBehavior$Data
+[01:42:17] [modloading-sync-worker/WARN] [minecraft/SynchedEntityData]: defineId called for: class dev.royalespells.entity.RoyalWitch from class dev.royalespells.entity.WitchBehavior$Data
+[01:42:17] [modloading-sync-worker/WARN] [minecraft/SynchedEntityData]: defineId called for: class dev.royalespells.entity.RoyalWitch from class dev.royalespells.entity.WitchBehavior$Data
+[01:42:17] [Render thread/INFO] [ne.ne.ne.ga.GameTestHooks/]: Enabled Gametest Namespaces: []
+[01:42:17] [Render thread/INFO] [minecraft/ReloadableResourceManager]: Reloading ResourceManager: vanilla, mod_resources, mod/royalespells, mod/neoforge
+[01:42:17] [Worker-Main-5/INFO] [minecraft/UnihexProvider]: Found unifont_jp_patch-15.1.05.hex, loading
+[01:42:17] [Worker-Main-6/INFO] [minecraft/UnihexProvider]: Found unifont_all_no_pua-15.1.05.hex, loading
+[01:42:19] [Render thread/WARN] [minecraft/SoundEngine]: Missing sound for event: minecraft:item.goat_horn.play
+[01:42:19] [Render thread/WARN] [minecraft/SoundEngine]: Missing sound for event: minecraft:entity.goat.screaming.horn_break
+[01:42:19] [Render thread/INFO] [mojang/Library]: OpenAL initialized on device OpenAL Soft on 扬声器 (BlackShark V3 Pro XBOX - Game)
+[01:42:19] [Render thread/INFO] [minecraft/SoundEngine]: Sound engine started
+[01:42:19] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 2048x1024x4 minecraft:textures/atlas/blocks.png-atlas
+[01:42:20] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
+[01:42:20] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
+[01:42:20] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
+[01:42:20] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 1024x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
+[01:42:20] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
+[01:42:20] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
+[01:42:20] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
+[01:42:20] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
+[01:42:20] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 4096x2048x0 minecraft:textures/atlas/particles.png-atlas
+[01:42:20] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
+[01:42:20] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 256x128x0 minecraft:textures/atlas/mob_effects.png-atlas
+[01:42:20] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 64x64x0 minecraft:textures/atlas/map_decorations.png-atlas
+[01:42:20] [Render thread/INFO] [minecraft/TextureAtlas]: Created: 1024x512x0 minecraft:textures/atlas/gui.png-atlas
+[01:42:20] [Render thread/WARN] [minecraft/ShaderInstance]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
+[01:42:20] [Render thread/INFO] [royalespells-witch-volume/]: WITCH_VOLUME_SHADER_READY
+[01:42:20] [Render thread/INFO] [ne.ne.ne.cl.en.an.js.AnimationLoader/]: Loaded 0 entity animations
+[01:42:23] [Render thread/INFO] [minecraft/RecipeManager]: Loaded 1327 recipes
+[01:42:23] [Render thread/INFO] [minecraft/AdvancementTree]: Loaded 1404 advancements
+[01:42:24] [Server thread/INFO] [minecraft/IntegratedServer]: Starting integrated minecraft server version 1.21.1
+[01:42:24] [Server thread/INFO] [minecraft/MinecraftServer]: Generating keypair
+[01:42:24] [Server thread/INFO] [minecraft/MinecraftServer]: Preparing start region for dimension minecraft:overworld
+[01:42:24] [progressListener/INFO] [minecraft/LoggerChunkProgressListener]: 准备生成区域中：2%
+[01:42:24] [Server thread/INFO] [ne.ne.ne.se.pe.PermissionAPI/]: Successfully initialized permission handler neoforge:default_handler
+[01:42:24] [progressListener/INFO] [minecraft/LoggerChunkProgressListener]: Time elapsed: 164 ms
+[01:42:24] [Server thread/INFO] [minecraft/IntegratedServer]: Changing view distance to 6, from 10
+[01:42:24] [Server thread/INFO] [minecraft/IntegratedServer]: Changing simulation distance to 5, from 0
+[01:42:25] [Server thread/INFO] [minecraft/PlayerList]: WitchCardQA[local:E:fd2bb11a] logged in with entity id 1 at (0.5, -60.0, 7.5)
+[01:42:25] [Server thread/INFO] [minecraft/MinecraftServer]: WitchCardQA加入了游戏
+[01:42:25] [Render thread/INFO] [minecraft/AdvancementTree]: Loaded 2 advancements
+WITCH193_FRAME normal-front �ѽ���ͼ����Ϊwitch193-normal-front.png
+WITCH193_FRAME normal-angle �ѽ���ͼ����Ϊwitch193-normal-angle.png
+WITCH193_FRAME normal-side �ѽ���ͼ����Ϊwitch193-normal-side.png
+WITCH193_FRAME normal-back �ѽ���ͼ����Ϊwitch193-normal-back.png
+WITCH193_FRAME evolved-front �ѽ���ͼ����Ϊwitch193-evolved-front.png
+WITCH193_FRAME evolved-angle �ѽ���ͼ����Ϊwitch193-evolved-angle.png
+WITCH193_FRAME evolved-side �ѽ���ͼ����Ϊwitch193-evolved-side.png
+WITCH193_FRAME evolved-back �ѽ���ͼ����Ϊwitch193-evolved-back.png
+[01:42:45] [Render thread/INFO] [royalespells-witch-volume/]: WITCH_VOLUME_ACTIVE: frame=1, volumes=1, marchSteps=36, totalDraws=1, depth=1280x900, sampledDepthTexture=52
+WITCH193_FRAME left-palm-charge-8 �ѽ���ͼ����Ϊwitch193-left-palm-charge-8.png
+WITCH193_FRAME left-palm-release-8 �ѽ���ͼ����Ϊwitch193-left-palm-release-8.png
+WITCH193_FRAME volume-flight-8 �ѽ���ͼ����Ϊwitch193-volume-flight-8.png
+WITCH193_FRAME volume-impact-8 �ѽ���ͼ����Ϊwitch193-volume-impact-8.png
+WITCH193_FRAME volume-impact-9 �ѽ���ͼ����Ϊwitch193-volume-impact-9.png
+WITCH193_FRAME left-palm-charge-9 �ѽ���ͼ����Ϊwitch193-left-palm-charge-9.png
+WITCH193_FRAME left-palm-release-9 �ѽ���ͼ����Ϊwitch193-left-palm-release-9.png
+WITCH193_FRAME volume-flight-9 �ѽ���ͼ����Ϊwitch193-volume-flight-9.png
+WITCH193_FRAME volume-impact-10 �ѽ���ͼ����Ϊwitch193-volume-impact-10.png
+WITCH193_FRAME left-palm-charge-10 �ѽ���ͼ����Ϊwitch193-left-palm-charge-10.png
+WITCH193_FRAME left-palm-release-10 �ѽ���ͼ����Ϊwitch193-left-palm-release-10.png
+WITCH193_FRAME volume-flight-10 �ѽ���ͼ����Ϊwitch193-volume-flight-10.png
+WITCH193_CARD_COMPLETE captures=20 volumeFrames=359 names=[normal-front, normal-angle, normal-side, normal-back, evolved-front, evolved-angle, evolved-side, evolved-back, left-palm-charge-8, left-palm-release-8, volume-flight-8, volume-impact-8, volume-impact-9, left-palm-charge-9, left-palm-release-9, volume-flight-9, volume-impact-10, left-palm-charge-10, left-palm-release-10, volume-flight-10]
+[01:42:59] [Render thread/INFO] [minecraft/Minecraft]: Stopping!
+[01:42:59] [Server thread/INFO] [minecraft/ServerGamePacketListenerImpl]: WitchCardQA lost connection: 连接中断
+[01:42:59] [Server thread/INFO] [minecraft/MinecraftServer]: WitchCardQA退出了游戏
+[01:42:59] [Server thread/INFO] [minecraft/ServerCommonPacketListenerImpl]: Stopping singleplayer server as player logged out
+[01:42:59] [Server thread/INFO] [minecraft/MinecraftServer]: Stopping server
+[01:42:59] [Server thread/INFO] [minecraft/MinecraftServer]: Saving players
+[01:42:59] [Server thread/INFO] [minecraft/MinecraftServer]: Saving worlds
+[01:42:59] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[Witch-Neo-193-QA-1791708142852]'/minecraft:overworld
+[01:43:00] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[Witch-Neo-193-QA-1791708142852]'/minecraft:the_end
+[01:43:00] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[Witch-Neo-193-QA-1791708142852]'/minecraft:the_nether
+[01:43:00] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (Witch-Neo-193-QA-1791708142852): All chunks are saved
+[01:43:00] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[01:43:00] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[01:43:00] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage: All dimensions are saved
+
+BUILD SUCCESSFUL in 1m 1s
+7 actionable tasks: 2 executed, 5 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.4.1/userguide/configuration_cache_enabling.html

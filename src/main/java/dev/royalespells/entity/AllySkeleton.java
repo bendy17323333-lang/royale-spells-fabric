@@ -21,7 +21,7 @@ public class AllySkeleton extends Skeleton implements Summoned {
     public AllySkeleton(EntityType<? extends Skeleton> type,Level world){super(type,world);xpReward=0;}
     @Override protected void registerGoals() {
         goalSelector.addGoal(0,new FloatGoal(this));goalSelector.addGoal(2,new RageMeleeGoal(this));
-        goalSelector.addGoal(7,new WaterAvoidingRandomStrollGoal(this,0.65));goalSelector.addGoal(8,new RandomLookAroundGoal(this));
+        goalSelector.addGoal(5,new FollowSummonerGoal(this));goalSelector.addGoal(7,new WaterAvoidingRandomStrollGoal(this,0.65));goalSelector.addGoal(8,new RandomLookAroundGoal(this));
     }
     @Override public void reassessWeaponGoal(){}
     @Override protected boolean isSunBurnTick(){return false;}

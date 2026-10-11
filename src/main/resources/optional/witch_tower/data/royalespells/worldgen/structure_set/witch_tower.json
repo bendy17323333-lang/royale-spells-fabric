@@ -1,0 +1,18 @@
+{
+  "structures": [
+    {
+      "structure": "royalespells:witch_tower",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 19021034,
+    "spacing": 85,
+    "separation": 50,
+    "exclusion_zone": {
+      "other_set": "irons_spellbooks:evoker_fort",
+      "chunk_count": 10
+    }
+  }
+}

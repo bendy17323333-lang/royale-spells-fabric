@@ -17,6 +17,18 @@ neoForge {
     version = '21.1.249'
     runs {
         client { client(); gameDirectory = project.file('run-client') }
+        witchCardVisual {
+            client();gameDirectory=project.file('run-witch-card-visual')
+            systemProperty 'royalespells.witchCardSmoke','true'
+            jvmArgument '-Xmx3G'
+            programArguments.addAll('--username','WitchCardQA','--width','1280','--height','900')
+        }
+        witchVisual {
+            client();gameDirectory=project.file('run-witch-visual')
+            systemProperty 'royalespells.witchSmoke','true'
+            jvmArgument '-Xmx4G'
+            programArguments.addAll('--username','WitchWorldQA','--width','1280','--height','900')
+        }
         server { server(); gameDirectory = project.file('run-server'); programArgument '--nogui' }
         gameTestServer {
             type = 'gameTestServer'
@@ -76,10 +88,10 @@ processResources {
 tasks.withType(JavaCompile).configureEach { options.release = 21; options.encoding = 'UTF-8' }
 
 // All opt-in graphical checks get their own first-run options and save directories.
-for (taskName in ['runVisualSmoke','runShowcase','runCompatVisual','runSpiritVisual']) {
+for (taskName in ['runVisualSmoke','runShowcase','runCompatVisual','runSpiritVisual','runWitchVisual','runWitchCardVisual']) {
     tasks.named(taskName).configure {
         doFirst {
-            def dirName=[runVisualSmoke:'run-visual',runShowcase:'run-showcase',runCompatVisual:'run-compat-visual',runSpiritVisual:'run-spirit-visual'][taskName]
+            def dirName=[runVisualSmoke:'run-visual',runShowcase:'run-showcase',runCompatVisual:'run-compat-visual',runSpiritVisual:'run-spirit-visual',runWitchVisual:'run-witch-visual',runWitchCardVisual:'run-witch-card-visual'][taskName]
             def options=file("${dirName}/options.txt")
             if(!options.exists()) {
                 options.parentFile.mkdirs()

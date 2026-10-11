@@ -34,7 +34,7 @@ public class AllyZombie extends Zombie implements Summoned {
     @Override protected void registerGoals() {
         goalSelector.addGoal(0,new FloatGoal(this));
         goalSelector.addGoal(2,new RageMeleeGoal(this));
-        goalSelector.addGoal(7,new WaterAvoidingRandomStrollGoal(this,0.65));
+        goalSelector.addGoal(5,new FollowSummonerGoal(this));goalSelector.addGoal(7,new WaterAvoidingRandomStrollGoal(this,0.65));
         goalSelector.addGoal(8,new RandomLookAroundGoal(this));
     }
     @Override protected boolean isSunSensitive() { return false; }

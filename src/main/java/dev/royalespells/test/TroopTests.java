@@ -31,7 +31,7 @@ public class TroopTests {
     private void cleanup(GameTestHelper c,UUID owner){for(var e:com.google.common.collect.ImmutableList.copyOf(c.getLevel().getAllEntities()))if(e instanceof Summoned s&&owner.equals(s.ownerId()))e.discard();}
     @GameTest(template=EMPTY_STRUCTURE,batch="retained-cards")
     public void retainedCardsAndOriginalSkeleton(GameTestHelper c){
-        c.assertTrue(RoyaleSpells.TROOP_ITEMS.keySet().equals(EnumSet.of(TroopCard.BARBARIAN_HUT,TroopCard.INFERNO_DRAGON)),"Hut and newly requested Inferno Dragon are the two retained troop cards");
+        c.assertTrue(RoyaleSpells.TROOP_ITEMS.keySet().equals(EnumSet.allOf(TroopCard.class)),"Hut, dragon and both independent Witch cards are registered");
         c.assertTrue(c.getLevel().getRecipeManager().byKey(RoyaleSpells.id("barbarian_hut")).isPresent()!=IronSpellSystem.loaded,"Hut uses native scroll progression when Iron's is installed");
         for(String name:List.of("golem","night_witch","golemite","royale_bat","bat")){
             c.assertTrue(!BuiltInRegistries.ENTITY_TYPE.containsKey(RoyaleSpells.id(name)),"Removed troop entity: "+name);

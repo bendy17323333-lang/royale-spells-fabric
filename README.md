@@ -1,16 +1,24 @@
-# 皇室法术 · 铁魔法适配 Beta 3
+# 皇室法术 · 女巫卡牌与女巫塔
 
-**Royale Spells `1.7.1-beta.3` · Minecraft 1.21.1 · NeoForge · Java 21**
+**Royale Spells `1.9.3-beta.4` · Minecraft 1.21.1 · NeoForge · Java 21**
 
-将皇室战争法术接入 Iron’s Spells ’n Spellbooks 的魔力、学派、稀有度、卷轴、抄写、法术书和奥术铁砧。新版汇总地狱飞龙、雪球与火球视觉更新、电击暂停和卡牌数值重做。
+女巫与觉醒女巫只提供不依赖铁魔法的卡牌和刷怪蛋。安装铁魔法时另有自然女巫塔；已有的其它皇室法术继续接入 Iron’s Spells ’n Spellbooks 的魔力、学派、稀有度、卷轴、抄写、法术书和奥术铁砧。
 
-[下载 Beta 3](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.7.1-beta.3-neoforge-mc1.21.1) · [本版更新](CHANGELOG-1.7.1.md) · [卡牌数值与来源](CARD-BALANCE.md) · [验证记录](VALIDATION-1.7.1-beta.3.md) · [完整技术档案](docs/technical/README.md)
+[下载本版](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.9.3-beta.4-neoforge-mc1.21.1) · [本版更新](CHANGELOG-1.9.3.md) · [验证记录](VALIDATION-1.9.3.md) · [完整技术档案](docs/technical/README.md) · **[MineClash 女巫特效交接](docs/technical/16-witch-vfx-handoff.md)**
 
 ## 开源许可证
 
 自编代码、工具和文档采用 **[MIT](LICENSE)**。原作卡图、音频、MineClash 原始和改编素材等第三方资产明确排除，保留其原作者权利；详见 [LICENSE-NOTICE.md](LICENSE-NOTICE.md) 与 [ASSETS.md](ASSETS.md)。Original code is MIT licensed; third-party assets are excluded and retain their respective terms.
 
-## 本版重点
+## 本版女巫更新
+
+普通/觉醒女巫卡牌与两枚刷怪蛋始终可用，均不需要铁魔法，不新增对应卷轴、抄写或可学习法术。两张卡各花费 5 圣水，配方与 Fabric 相同，安装铁魔法也可以在生存模式直接使用。详见 [女巫卡牌和 AI](docs/technical/17-witch-cards-and-ai.md)。
+
+安装铁魔法时，新增独立自然生成的女巫塔，保留原劫掠者法师塔；女巫作为铁魔法世界法师居住在塔顶，笼内为灾厄村民，地面有小骷髅巡逻，地下恼鬼刷怪笼改成小骷髅。未新增女巫卷轴或可学习法术。模型与 Fabric 1.9.3 同步，右手拄杖、左手施法，觉醒版为无腿悬空袍摆。
+
+[女巫塔使用、指令与实现说明](docs/WITCH-TOWER-1.9.2.md) · [本轮验证记录](VALIDATION-1.9.3.md)。
+
+## 保留的 Beta 3 功能
 
 - 卡牌以原作 11 级小骷髅 81 HP 对应模组 3 HP：伤害与召唤生命除以 27，范围一格一个方块，镜像使用 12 级数据。
 - **只调整卡牌形态与指定的觉醒军团**。普通铁魔法法术、精灵法杖及 MineClash 数值不套用换算。卡牌冰冻同步为 3.5 秒，铁魔法版仍为 5 秒。
@@ -20,9 +28,9 @@
 
 ## 安装
 
-下载 `royale-spells-neoforge-1.21.1-1.7.1-beta.3.jar` 放入 `mods`。电车功能还需同次发布的 **`mineclash-zappies-neoforge-1.21.1-0.1.1.jar`** 和 MineClash 0.7.5；只装皇室法术与 MineClash 不会加载这个独立附属的机制或电弧。
+下载 `royale-spells-neoforge-1.21.1-1.9.3-beta.4.jar` 放入 `mods`。电车功能使用旧版 Beta 3 单独发布的 **`mineclash-zappies-neoforge-1.21.1-0.1.1.jar`** 和 MineClash 0.7.5；只装皇室法术与 MineClash 不会加载这个独立附属的机制或电弧。
 
-`royale-spells-1.7.1-beta.3-with-zappies.zip` 包含这两份 JAR、安装说明、许可和数值表，第三方依赖另装。`source.zip` 是源码与可编辑模型，不要放入 mods。更新前保存并退出游戏、备份旧 JAR 与存档，同一实例只留一份本体和一份电车附属。
+历史 `royale-spells-1.7.1-beta.3-with-zappies.zip` 包含这两份 JAR、安装说明、许可和数值表，第三方依赖另装。`source.zip` 是源码与可编辑模型，不要放入 mods。更新前保存并退出游戏、备份旧 JAR 与存档，同一实例只留一份本体和一份电车附属。
 
 | 依赖 | 本轮验证版本 |
 | --- | --- |
@@ -74,7 +82,7 @@
 
 ## 验证与反馈
 
-本版通过 96 项独立 GameTest、162 项 Iron/MineClash/电车同装 GameTest，独立电车附属通过 12 项。新增回归覆盖完整卡牌伤害、原生数值隔离、持剑伤害、盾牌、镜像及军团旧存档，原有精灵、召唤 AI、电击暂停与生还者测试继续保留。成品客户端的具体结果与截图见 [验证记录](VALIDATION-1.7.1-beta.3.md)。测试不等于覆盖所有整合包、多人延迟、复杂地形或光影。
+本轮通过 110 项独立与 183 项铁魔法同装 GameTest，包括两张女巫卡真正右键使用、两枚刷怪蛋、配方、归魂、护卫索敌与实际近战路径，以及塔居民身份和结构。两个客户端分别检查无铁魔法卡牌女巫和有铁魔法塔居民；NeoForge 图形检查使用 ModDev 开发环境。本轮没有重新验证 MineClash/电车附属，旧验证保留在对应 Beta 3 文档。详见 [本版验证](VALIDATION-1.9.3.md)。
 
 反馈请附版本、加载器、铁魔法版本、复现步骤与 `latest.log`。开发入口、准星渲染、音频、数值、AI、模型和存档说明见 [技术档案](docs/technical/README.md)。
 

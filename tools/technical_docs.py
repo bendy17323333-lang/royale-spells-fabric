@@ -26,13 +26,33 @@ CHAPTERS = (
     "03-target-preview.md", "04-rendering-and-audio.md", "05-iron-integration.md",
     "06-summons-and-combat.md", "07-elixir-structures-rituals.md",
     "08-data-and-mixins.md", "09-development-and-validation.md",
-    "10-extension-and-troubleshooting.md", "11-furnace-staff-and-spirits.md", "12-inferno-dragon.md", "13-electrical-pause.md", "14-snowball-and-projectile-visuals.md", "15-card-balance.md", *GENERATED,
+    "10-extension-and-troubleshooting.md", "11-furnace-staff-and-spirits.md", "12-inferno-dragon.md", "13-electrical-pause.md", "14-snowball-and-projectile-visuals.md", "15-card-balance.md", "16-witch-vfx-handoff.md", "17-witch-cards-and-ai.md", *GENERATED,
 )
 
 # Curated descriptions complement the mechanically extracted path/line counts.
 # A new source file must receive a description instead of silently appearing as
 # an undocumented runtime feature. Presence does not imply active registration.
 ROLES_TEXT = """
+WitchSounds|女巫原作声音事件与单次服务端播放
+client/WitchClient|只在同装铁魔法时注册塔居民与护卫渲染器
+client/WitchMagicRenderer|女巫体积模式、连续尾迹、命中接缝和真实掌心挂点收集
+client/WitchRenderer|普通及觉醒模型、左掌矩阵、眼睛与回血模型层
+client/WitchVolume|世界三维密度积分、深度复制、GL 状态恢复及有界性能预算
+client/WitchWorldSmoke|显式 opt-in 的独立卡牌及同装塔居民客户端场景和真实帧捕获
+entity/FollowSummonerGoal|只在无敌人时运行的 MOVE Goal，跟随主人或站在母体前方
+entity/RoyalWitch|不依赖铁魔法的普通及觉醒卡牌实体，共用 WitchBehavior
+entity/WitchActor|两种女巫宿主的组合行为与渲染桥接契约
+entity/WitchAppearance|模型读取普通/觉醒身份及动作年龄的外观契约
+entity/WitchBehavior|卡牌及塔居民共用攻击、召唤、首波归魂账本、状态与存档
+entity/WitchBolt|真实碰撞范围攻击、命中余效、归魂飞行与网络连续插值
+entity/WitchSkeleton|塔巡逻与母体护卫，持久化 home 只限制闲置活动
+iron/TowerWitch|可选 NeutralWizard 世界居民，组合复用女巫行为，不注册法术卷轴
+iron/WitchContent|可选女巫塔居民和巡逻实体、属性、资源包及结构测试注册
+iron/WitchTowerTemplates|在独立 NBT 副本中替换居民、笼内灾厄村民及小骷髅刷怪笼
+mixin/WitchTowerTemplateMixin|按需生成并缓存独立女巫塔模板，不改原劫掠者塔
+test/SummonAiTests|实际寻路接敌、目标保持、优先命令、前排护卫与和平生物规则
+test/WitchCardTests|独立卡牌及刷怪蛋真使用、配方、弹体、归魂、克隆、存档与控制
+test/WitchTowerTests|真实法师身份、无卷轴、原塔共存、实际模板居民和刷怪笼
 CardBalance|2026-09-08 卡牌独立数值配置；11/12 级、每次伤害、召唤物武器与盾
 test/CardBalanceTests|完整卡牌伤害、配置隔离、转换继承、盾牌与军团存档回归
 AnimationTimeline|积分局部动画时钟，支持降速、暂停输入和连续恢复

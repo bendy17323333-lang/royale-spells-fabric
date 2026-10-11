@@ -166,7 +166,7 @@
 | `inferno_dragon` / wing | `inferno_dragon_wing` | [original/inferno_dragon_wing](../../src/main/resources/assets/royalespells/sounds/original/inferno_dragon_wing.ogg) | 0.085 | 0.0765 | 64 |
 | `inferno_dragon` / beam | `inferno_dragon_beam` | [original/inferno_dragon_beam](../../src/main/resources/assets/royalespells/sounds/original/inferno_dragon_beam.ogg) | 0.34 | 0.306 | 64 |
 
-## 数据包合成配方（36）
+## 数据包合成配方（38）
 
 旧卡配方只在未加载铁魔法时生效；熔炉法杖是加载铁魔法后的有序配方。原生卷轴锻造和铁砧升级通过 Java 接口接入，不是漏列的 JSON。浓缩顺序、天然重油仪式与等级映射见 [材料与结构](07-elixir-structures-rituals.md)。四种法杖绑定法术单独见 [熔炉法杖与精灵](11-furnace-staff-and-spirits.md)，不计入旧有 30 种 IronSpellProfile 表。
 
@@ -206,5 +206,7 @@
 | [vines](../../src/main/resources/data/royalespells/recipe/vines.json) | 1×`minecraft:paper` + 1×`minecraft:vine` | 1×`royalespells:vines` | 未加载铁魔法；无序 |
 | [void](../../src/main/resources/data/royalespells/recipe/void.json) | 1×`minecraft:paper` + 1×`minecraft:ender_pearl` | 1×`royalespells:void` | 未加载铁魔法；无序 |
 | [warmth](../../src/main/resources/data/royalespells/recipe/warmth.json) | 1×`minecraft:paper` + 1×`minecraft:magma_cream` | 1×`royalespells:warmth` | 未加载铁魔法；无序 |
+| [witch](../../src/main/resources/data/royalespells/recipe/witch.json) | 1×`minecraft:paper` + 1×`minecraft:bone` + 1×`minecraft:amethyst_shard` + 1×`minecraft:fermented_spider_eye` | 1×`royalespells:witch` | 无模组条件；无序 |
+| [witch_evolution](../../src/main/resources/data/royalespells/recipe/witch_evolution.json) | 1×`royalespells:witch` + 2×`minecraft:amethyst_shard` + 1×`minecraft:totem_of_undying` | 1×`royalespells:witch_evolution` | 无模组条件；无序 |
 | [zap](../../src/main/resources/data/royalespells/recipe/zap.json) | 1×`minecraft:paper` + 1×`minecraft:copper_ingot` | 1×`royalespells:zap` | 未加载铁魔法；无序 |
 | [zap_evolution](../../src/main/resources/data/royalespells/recipe/zap_evolution.json) | 1×`royalespells:zap` + 1×`minecraft:nether_star` | 1×`royalespells:zap_evolution` | 未加载铁魔法；无序 |

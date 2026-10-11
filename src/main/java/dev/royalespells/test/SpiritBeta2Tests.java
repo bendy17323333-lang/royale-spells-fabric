@@ -88,7 +88,7 @@ public class SpiritBeta2Tests {
         for(var e:units){e.setNoAi(true);if(!e.general())e.moveTo(at.add((e.formationSlot()%5-2)*.7,0,-3));}
         var victim=EntityType.HUSK.create(c.getLevel());victim.moveTo(at.add(0,0,1.15));victim.setNoAi(true);victim.getAttribute(Attributes.MAX_HEALTH).setBaseValue(500);victim.getAttribute(Attributes.ARMOR).setBaseValue(0);victim.setHealth(500);c.getLevel().addFreshEntity(victim);general.setNoAi(false);
         double[] farthestBack={0};for(int t=1;t<=70;t++)c.runAfterDelay(t,()->farthestBack[0]=Math.max(farthestBack[0],at.z-general.getZ()));
-        c.runAfterDelay(75,()->{c.assertTrue(farthestBack[0]<.35,"General never retreats to the soldiers behind it: "+farthestBack[0]);c.assertTrue(victim.getHealth()<498,"General actually strikes the nearby enemy");units.forEach(Entity::discard);victim.discard();chunks.forEach(p->c.getLevel().setChunkForced(p.x,p.z,false));c.succeed();});
+        c.runAfterDelay(75,()->{c.assertTrue(farthestBack[0]<.35,"General never retreats to the soldiers behind it: "+farthestBack[0]);c.assertTrue(victim.getHealth()<498,"General actually strikes the nearby enemy; target="+general.getTarget()+" victimHP="+victim.getHealth()+" age="+general.age()+" supported="+general.supported()+" pos="+general.position()+" victim="+victim.position());units.forEach(Entity::discard);victim.discard();chunks.forEach(p->c.getLevel().setChunkForced(p.x,p.z,false));c.succeed();});
     }
     @GameTest(template="empty",batch="beta2-living-survivors",timeoutTicks=110)
     public void livingSoldiersSurviveGeneralDeathAndCannotBecomeGhostsAfterward(GameTestHelper c){

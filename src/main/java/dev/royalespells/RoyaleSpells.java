@@ -25,7 +25,9 @@ public final class RoyaleSpells {
     public static final String MOD_ID="royalespells";
     public static final Map<Spell,SpellItem> ITEMS=new EnumMap<>(Spell.class);
     public static final Map<TroopCard,TroopItem> TROOP_ITEMS=new EnumMap<>(TroopCard.class);
-    public static Item PREVIOUS_SCENE,NEXT_SCENE,NEUTRAL_ARMY_EGG;
+    public static Item PREVIOUS_SCENE,NEXT_SCENE,NEUTRAL_ARMY_EGG,WITCH_EGG,EVOLVED_WITCH_EGG;
+    public static EntityType<RoyalWitch> WITCH,EVOLVED_WITCH;
+    public static EntityType<WitchBolt> WITCH_BOLT;
     public static ResourceLocation id(String path) { return ResourceLocation.fromNamespaceAndPath(MOD_ID,path); }
     public static Holder<MobEffect> STUN,RAGED,FROZEN,ROOTED,CLONED,ELECTRICAL_STUN,SNOWBOUND,CARD_SLOW,CARD_SPEED;
     public static final SimpleParticleType SPARK=new SimpleParticleType(false);
@@ -69,6 +71,8 @@ public final class RoyaleSpells {
         });
         events.addListener(net.neoforged.bus.api.EventPriority.LOWEST,(net.neoforged.neoforge.event.entity.living.LivingDeathEvent event)->SpellEngine.onDeath(event.getEntity()));
         events.addListener(this::commands);
+        events.addListener(net.neoforged.bus.api.EventPriority.LOWEST,(net.neoforged.neoforge.event.entity.living.LivingDeathEvent event)->WitchBehavior.onSkeletonDeath(event.getEntity()));
+        bus.addListener((net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent event)->{if(event.getTabKey().equals(net.minecraft.world.item.CreativeModeTabs.SPAWN_EGGS)){event.accept(WITCH_EGG);event.accept(EVOLVED_WITCH_EGG);}});
         ShowcaseMap.install();CombatCompatibility.install();IronSpellSystem.install(bus);SummonOrders.install();ControlCooldown.install();dev.royalespells.elixir.ElixirContent.install(bus);
     }
     private void register(net.neoforged.neoforge.registries.RegisterEvent event) {
@@ -84,6 +88,9 @@ public final class RoyaleSpells {
             ROOTED=Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT,id("rooted"),IronSpellSystem.effect(MobEffectCategory.HARMFUL,0x438724));
             CLONED=Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT,id("cloned"),IronSpellSystem.effect(MobEffectCategory.NEUTRAL,0x14CCFF));
         } else if(key.equals(net.minecraft.core.registries.Registries.ENTITY_TYPE)) {
+            WITCH=unit("witch_troop",RoyalWitch::new,.65f,1.95f);
+            EVOLVED_WITCH=unit("witch_evolution",(type,level)->{var w=new RoyalWitch(type,level);w.setEvolved(true);return w;},.65f,1.95f);
+            WITCH_BOLT=Registry.register(BuiltInRegistries.ENTITY_TYPE,id("witch_bolt"),EntityType.Builder.of(WitchBolt::new,MobCategory.MISC).sized(.15f,.15f).clientTrackingRange(80).updateInterval(1).build("royalespells:witch_bolt"));
             SPELL=Registry.register(BuiltInRegistries.ENTITY_TYPE,id("spell"),EntityType.Builder.<SpellEntity>of(SpellEntity::new,MobCategory.MISC).sized(.1f,.1f).clientTrackingRange(96).updateInterval(1).build(id("spell").toString()));
             ZOMBIE=unit("baby_zombie",AllyZombie::new,.6f,1.95f);
             BARBARIAN=unit("barbarian",AllyZombie::new,.6f,1.95f);
@@ -97,6 +104,8 @@ public final class RoyaleSpells {
             EVOLUTION_BURST=Registry.register(BuiltInRegistries.ENTITY_TYPE,id("evolution_deployment"),EntityType.Builder.<EvolutionBurst>of(EvolutionBurst::new,MobCategory.MISC).sized(.1f,.1f).clientTrackingRange(96).updateInterval(1).build(id("evolution_deployment").toString()));
             BARBARIAN_HUT=unit("barbarian_hut",RoyaleUnit::new,3.2f,3.4f);
         } else if(key.equals(net.minecraft.core.registries.Registries.ITEM)) {
+            WITCH_EGG=Registry.register(BuiltInRegistries.ITEM,id("witch_spawn_egg"),new net.neoforged.neoforge.common.DeferredSpawnEggItem(()->WITCH,0x3E216E,0xDBC078,new Item.Properties()));
+            EVOLVED_WITCH_EGG=Registry.register(BuiltInRegistries.ITEM,id("witch_evolution_spawn_egg"),new net.neoforged.neoforge.common.DeferredSpawnEggItem(()->EVOLVED_WITCH,0x281447,0xF08CF0,new Item.Properties()));
             for(Spell spell:Spell.values())ITEMS.put(spell,Registry.register(BuiltInRegistries.ITEM,id(spell.id()),new SpellItem(spell)));
             for(TroopCard card:TroopCard.values())TROOP_ITEMS.put(card,Registry.register(BuiltInRegistries.ITEM,id(card.id()),new TroopItem(card)));
             PREVIOUS_SCENE=Registry.register(BuiltInRegistries.ITEM,id("previous_scene"),new SceneControlItem(-1));
@@ -107,15 +116,16 @@ public final class RoyaleSpells {
             Registry.register(BuiltInRegistries.PARTICLE_TYPE,id("grave_mote"),GRAVE_MOTE);
         }
         else if(key.equals(net.minecraft.core.registries.Registries.SOUND_EVENT)) {
-            Registry.register(BuiltInRegistries.SOUND_EVENT,id("graveyard_deploy"),GRAVEYARD_DEPLOY);UnitSounds.initialize();SpellSounds.initialize();dev.royalespells.army.ArmySounds.register();
+            Registry.register(BuiltInRegistries.SOUND_EVENT,id("graveyard_deploy"),GRAVEYARD_DEPLOY);UnitSounds.initialize();SpellSounds.initialize();WitchSounds.register();dev.royalespells.army.ArmySounds.register();
         } else if(key.equals(net.minecraft.core.registries.Registries.INSTRUMENT)) {
             dev.royalespells.army.ArmySounds.INSTRUMENT=Registry.registerForHolder(BuiltInRegistries.INSTRUMENT,id("skeleton_army_horn"),new net.minecraft.world.item.Instrument(Holder.direct(dev.royalespells.army.ArmySounds.DEPLOY),40,32));
         } else if(key.equals(net.minecraft.core.registries.Registries.CREATIVE_MODE_TAB))
             Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB,id("spells"),net.minecraft.world.item.CreativeModeTab.builder()
                 .title(Component.translatable("itemGroup.royalespells.spells")).icon(()->new ItemStack(ITEMS.get(Spell.ZAP_EVOLUTION)))
-                .displayItems((ctx,entries)->{ITEMS.values().forEach(entries::accept);TROOP_ITEMS.values().forEach(entries::accept);entries.accept(NEUTRAL_ARMY_EGG);dev.royalespells.elixir.ElixirContent.creative(entries);}).build());
+                .displayItems((ctx,entries)->{ITEMS.values().forEach(entries::accept);TROOP_ITEMS.values().forEach(entries::accept);entries.accept(NEUTRAL_ARMY_EGG);entries.accept(WITCH_EGG);entries.accept(EVOLVED_WITCH_EGG);dev.royalespells.elixir.ElixirContent.creative(entries);}).build());
     }
     private void attributes(net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent event) {
+        event.put(WITCH,RoyalWitch.attributes().build());event.put(EVOLVED_WITCH,RoyalWitch.attributes().build());
         event.put(ZOMBIE,AllyZombie.createAttributes().build());event.put(BARBARIAN,AllyZombie.createAttributes().build());
         event.put(RECRUIT,AllyZombie.createAttributes().build());event.put(SKELETON,AllySkeleton.createAttributes().add(Attributes.ATTACK_DAMAGE,3).build());
         event.put(BARBARIAN_HUT,RoyaleUnit.attributes().build());

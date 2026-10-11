@@ -1,0 +1,130 @@
+{
+  "implementation": "Runtime StructureTemplateManager adapter; no Iron building NBT redistributed",
+  "upstream": "https://github.com/iron431/irons-spells-n-spellbooks",
+  "pinnedVersion": "1.21.1-3.16.3",
+  "license": "Upstream ALL RIGHTS RESERVED; building templates stay in the installed Iron mod",
+  "sourceReferences": [
+    {
+      "source": "structure\\evoker_fort\\camp_north.nbt",
+      "sourceSha256": "958830efbf1b43773e634b0da48f5ef4f8a3beeecf03f83ba5126054cfbccf34"
+    },
+    {
+      "source": "structure\\evoker_fort\\camp_south.nbt",
+      "sourceSha256": "06b8aa5d0dba0c0fa76b5f7c5191335df747fbd79d4e2481afeb02fa860f6933"
+    },
+    {
+      "source": "structure\\evoker_fort\\tower.nbt",
+      "sourceSha256": "778b79e56810edaa6e436fac507acaca8033eba2d6b54e54abe5b15329aff0d1"
+    },
+    {
+      "source": "structure\\evoker_fort\\decorations\\barrels.nbt",
+      "sourceSha256": "cd73884748a85a3bacadeb0ab759765ca88c0555986e0cfee715a6684404d1a1"
+    },
+    {
+      "source": "structure\\evoker_fort\\decorations\\hay.nbt",
+      "sourceSha256": "99f6c3ebaf0dd784e245360cb43687bef96827a550604bb8069684e7fe07d207"
+    },
+    {
+      "source": "structure\\evoker_fort\\decorations\\iron_golem_cage.nbt",
+      "sourceSha256": "97731cf3901f94d603517a0397b3e6c602ff2b023262c948c98d852889deb387"
+    },
+    {
+      "source": "structure\\evoker_fort\\decorations\\logs.nbt",
+      "sourceSha256": "1c41c1a3faee6ada98807b79ddb0aba70242729fd20bb68a507ba89c2eb5e262"
+    },
+    {
+      "source": "structure\\evoker_fort\\decorations\\mobs.nbt",
+      "sourceSha256": "1eaf29fa0bb2716a7362b92685e2de91c85c70859ef697c4a828b1afed9c61cc"
+    },
+    {
+      "source": "structure\\evoker_fort\\decorations\\potato.nbt",
+      "sourceSha256": "96eee7dcab41488e563dff6473fde64a510c1894eee988dbcb405e49aeb6995d"
+    },
+    {
+      "source": "structure\\evoker_fort\\decorations\\pumpkin.nbt",
+      "sourceSha256": "bb5c989724860ce84f392e8520bc92db76b237c5e32e62a5018ccf825d0c2c4a"
+    },
+    {
+      "source": "structure\\evoker_fort\\decorations\\rock_1.nbt",
+      "sourceSha256": "14976d2f4615d013937d9390fded5841b2648bb869dc6d70f6e6d4ace19282da"
+    },
+    {
+      "source": "structure\\evoker_fort\\decorations\\rock_2.nbt",
+      "sourceSha256": "cb7c4373291aceb71485e2df507a100c8159ae7f5040cb48a93a2c374186a761"
+    },
+    {
+      "source": "structure\\evoker_fort\\decorations\\shack.nbt",
+      "sourceSha256": "4e5246bc25a0d30cc1167da55cfdecdac0ce133c33cc314bcded0f983a7e35e2"
+    },
+    {
+      "source": "structure\\evoker_fort\\decorations\\targets.nbt",
+      "sourceSha256": "574e4895223108cdc5f545258d25a9e49224f850649594d05a559e18eea72ee7"
+    },
+    {
+      "source": "structure\\evoker_fort\\decorations\\tent.nbt",
+      "sourceSha256": "b284c55c656b42d667d13448ffae751a6b3f5b03989bbe7ba9fdc25f6c47e2e3"
+    },
+    {
+      "source": "structure\\evoker_fort\\decorations\\tower.nbt",
+      "sourceSha256": "a2ee1c76a286766d4c8f3655852123a4886bab2a1fa06c167b143f7c8af60018"
+    },
+    {
+      "source": "structure\\evoker_fort\\decorations\\tree.nbt",
+      "sourceSha256": "dcf71f809b61672cec1729b9175b1d75509dc26721decaf3cb154c6168989366"
+    },
+    {
+      "source": "structure\\evoker_fort\\decorations\\villager_cage_half_cage.nbt",
+      "sourceSha256": "a498c3ece3f43e5f8abe220601a6ff168e525b7fc531fc49dad3731b0f2c39a9"
+    },
+    {
+      "source": "structure\\evoker_fort\\decorations\\villager_cage_half_guard_tower.nbt",
+      "sourceSha256": "139db89f5ae9a0916d9a49101803b88b85a3e550e1b98b10c803443f5c497634"
+    },
+    {
+      "source": "structure\\evoker_fort\\halves\\campsite.nbt",
+      "sourceSha256": "878161300074d11eb1fb71bab7a4fa1e706b9bf11c47d3725c497de6576c7ce1"
+    },
+    {
+      "source": "structure\\evoker_fort\\halves\\gallows.nbt",
+      "sourceSha256": "384a32e82720fc812c40fa3cbfc5718af2689b4da622e37a4cc30ce13dd2308e"
+    },
+    {
+      "source": "structure\\evoker_fort\\halves\\medium_decorations.nbt",
+      "sourceSha256": "4eaf96652ffd077c56876f6a2765f9f36a19d5f3d4dddc0f2f5e42ed5fbe2244"
+    },
+    {
+      "source": "structure\\evoker_fort\\halves\\small_decorations.nbt",
+      "sourceSha256": "612506561292a8e174cde84c234d5520f09c1e1e15b05ded052ffaf7d1c6f568"
+    },
+    {
+      "source": "structure\\evoker_fort\\halves\\tree.nbt",
+      "sourceSha256": "647f379f12573e94c53adbd5951d83573ac4101dd8cfdfe8851e92d20befeb12"
+    },
+    {
+      "source": "structure\\evoker_fort\\halves\\villager_cage.nbt",
+      "sourceSha256": "0a6cdf5b7c17e0f2ffe3f77bdd31ac259f57d7f502af44447c440e48c3937d43"
+    },
+    {
+      "source": "structure\\evoker_fort\\villager_spawns\\villager_bible.nbt",
+      "sourceSha256": "d2c375cef9cf6ec69313329d98fe9a71fb9b5aa96ee1c5b4241b11b72c2ca510"
+    },
+    {
+      "source": "structure\\evoker_fort\\villager_spawns\\villager_mage.nbt",
+      "sourceSha256": "a283253bdcc44bc28ec401f12c055de77454a135bb96aa713cfd1a8bdfc268cb"
+    },
+    {
+      "source": "structure\\evoker_fort\\villager_spawns\\villager_normal.nbt",
+      "sourceSha256": "b7bdedcb960e9cab71287a58683ff21db24d279071de109b970f01bd985fde39"
+    }
+  ],
+  "modifications": {
+    "witches": 1,
+    "captive_pillagers": 2,
+    "captive_vindicators": 1,
+    "skeletons": 9,
+    "vex_spawners": 1
+  },
+  "code": "src/main/java/dev/royalespells/iron/WitchTowerTemplates.java",
+  "cache": "Normal per-world StructureTemplateManager cache; cleared on resource reload; original template left untouched",
+  "dataOverrides": "An explicit datapack template at royalespells:witch_tower/... takes precedence"
+}
