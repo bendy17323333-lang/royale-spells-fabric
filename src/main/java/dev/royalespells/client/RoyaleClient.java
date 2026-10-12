@@ -18,18 +18,23 @@ import org.joml.Vector3f;
 @net.neoforged.fml.common.Mod(value=RoyaleSpells.MOD_ID,dist=net.neoforged.api.distmarker.Dist.CLIENT)
 public class RoyaleClient {
     public RoyaleClient(net.neoforged.bus.api.IEventBus bus) {
-        ElixirClient.install(bus);WitchMagicRenderer.install(bus);InfernoDragonAudio.install();bus.addListener(this::renderers);bus.addListener(this::layers);
+        CardLevelScreen.install(bus);ElixirClient.install(bus);WitchMagicRenderer.install(bus);InfernoDragonAudio.install();bus.addListener(this::renderers);bus.addListener(this::layers);
         bus.addListener((net.neoforged.neoforge.client.event.RegisterSpriteSourceTypesEvent event)->event.register(RoyaleSpells.id("furnace_material"),FurnaceSpriteSource.TYPE));
         bus.addListener((net.neoforged.neoforge.client.event.RegisterColorHandlersEvent.Item event)->event.register((stack,tint)->tint==0?0xFFE3D9BF:0xFF842BDC,RoyaleSpells.NEUTRAL_ARMY_EGG));
         bus.addListener((net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent event)->event.registerSpriteSet(RoyaleSpells.SPARK,MagicParticle.Factory::new));
         bus.addListener((net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent event)->event.registerSpriteSet(RoyaleSpells.GRAVE_MOTE,GraveMoteParticle.Factory::new));
         bus.addListener(CardRenderer::register);
+        bus.addListener((net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent e)->{
+            CardRenderer.reload(e);
+            e.registerReloadListener((net.minecraft.server.packs.resources.ResourceManagerReloadListener)manager->EvolvedSnowballModel.reload());
+        });
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(this::fields);
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(TargetPreview::render);
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(this::customEntityOverlays);
         SpellEntity.visualTick=RoyaleClient::particles;
         SpellEntity.impactVisual=ProjectileVisuals::impact;
-        if(Boolean.getBoolean("royalespells.witchCardSmoke")||IronSpellSystem.loaded&&Boolean.getBoolean("royalespells.witchSmoke"))WitchWorldSmoke.install();
+        if(Boolean.getBoolean("royalespells.beta5Smoke"))Beta5VisualSmoke.install();
+        else if(Boolean.getBoolean("royalespells.witchCardSmoke")||IronSpellSystem.loaded&&Boolean.getBoolean("royalespells.witchSmoke"))WitchWorldSmoke.install();
         else if(Boolean.getBoolean("royalespells.buildShowcase"))ShowcaseCapture.install();
         else if(Boolean.getBoolean("royalespells.visualSmoke"))VisualSmoke.install();
     }

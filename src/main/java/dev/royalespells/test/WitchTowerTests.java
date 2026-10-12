@@ -20,6 +20,36 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 @PrefixGameTestTemplate(false)
 public class WitchTowerTests {
+    @GameTest(template="empty",templateNamespace="royalespells",batch="witch-patrol-defense",timeoutTicks=160)
+    public void residentDefendsPatrolUsingItsOriginalRangedAttack(GameTestHelper c){
+        var w=witch(c);var at=w.position();
+        var guard=WitchContent.SKELETON.create(c.getLevel());guard.setPos(at.add(2,0,0));guard.setNoAi(true);c.getLevel().addFreshEntity(guard);
+        var enemy=EntityType.HUSK.create(c.getLevel());enemy.setPos(at.add(0,0,4));enemy.setNoAi(true);enemy.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH).setBaseValue(200);enemy.setHealth(200);c.getLevel().addFreshEntity(enemy);
+        var seenBolt=new java.util.concurrent.atomic.AtomicBoolean();
+        c.runAfterDelay(5,()->{guard.setTarget(enemy);w.setNoAi(false);});
+        for(int tick=25;tick<=60;tick++)c.runAtTickTime(tick,()->{
+            if(!c.getLevel().getEntitiesOfClass(WitchBolt.class,w.getBoundingBox().inflate(12),b->b.kind()==WitchBolt.ATTACK).isEmpty())seenBolt.set(true);
+        });
+        c.runAtTickTime(70,()->{
+            c.assertTrue(w.getTarget()==enemy,"Mother must defend the patrol's actual enemy when initially idle");
+            c.assertTrue(seenBolt.get()&&enemy.getHealth()<200,"Original ranged windup must launch a physical damaging bolt");
+            c.assertTrue(w.position().distanceToSqr(at)<1,"In-range witch must not flee or chase past its guards");
+            for(var e:c.getLevel().getEntitiesOfClass(Mob.class,w.getBoundingBox().inflate(24)))e.discard();c.succeed();
+        });
+    }
+    @GameTest(template="empty",templateNamespace="royalespells",batch="witch-patrol-orphan",timeoutTicks=160)
+    public void towerSummonContinuesFightingAfterResidentDeath(GameTestHelper c){
+        var w=witch(c);w.summonWave();
+        var troops=c.getLevel().getEntitiesOfClass(WitchSkeleton.class,w.getBoundingBox().inflate(16),e->w.getUUID().equals(e.ownerId()));
+        c.assertTrue(!troops.isEmpty(),"Use the resident's real spawned children");
+        var enemy=EntityType.HUSK.create(c.getLevel());enemy.setPos(w.position().add(0,0,4));enemy.setNoAi(true);enemy.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH).setBaseValue(500);enemy.setHealth(500);c.getLevel().addFreshEntity(enemy);
+        c.runAfterDelay(5,()->{for(var s:troops)s.setTarget(enemy);w.hurt(c.getLevel().damageSources().genericKill(),Float.MAX_VALUE);});
+        c.runAtTickTime(85,()->{
+            c.assertTrue(w.isRemoved()&&enemy.getHealth()<500,"Dead resident must not suspend surviving patrol combat");
+            c.assertTrue(troops.stream().anyMatch(s->s.isAlive()&&s.getTarget()==enemy),"Surviving guards retain a real target");
+            troops.forEach(Entity::discard);enemy.discard();c.succeed();
+        });
+    }
     @GameTest(template="empty",templateNamespace="royalespells",batch="witch-world")
     public void runtimeVariantDoesNotMutateOriginalTemplate(GameTestHelper c){
         var manager=c.getLevel().getStructureManager();

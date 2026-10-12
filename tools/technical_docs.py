@@ -26,13 +26,21 @@ CHAPTERS = (
     "03-target-preview.md", "04-rendering-and-audio.md", "05-iron-integration.md",
     "06-summons-and-combat.md", "07-elixir-structures-rituals.md",
     "08-data-and-mixins.md", "09-development-and-validation.md",
-    "10-extension-and-troubleshooting.md", "11-furnace-staff-and-spirits.md", "12-inferno-dragon.md", "13-electrical-pause.md", "14-snowball-and-projectile-visuals.md", "15-card-balance.md", "16-witch-vfx-handoff.md", "17-witch-cards-and-ai.md", *GENERATED,
+    "10-extension-and-troubleshooting.md", "11-furnace-staff-and-spirits.md", "12-inferno-dragon.md", "13-electrical-pause.md", "14-snowball-and-projectile-visuals.md", "15-card-balance.md", "16-witch-vfx-handoff.md", "17-witch-cards-and-ai.md", "18-beta5-card-levels-and-mineclash.md", *GENERATED,
 )
 
 # Curated descriptions complement the mechanically extracted path/line counts.
 # A new source file must receive a description instead of silently appearing as
 # an undocumented runtime feature. Presence does not imply active registration.
 ROLES_TEXT = """
+CardLevels|独立卡牌 1–16 级、11 级默认值、比例、物品组件与命令权限
+MineClashCards|可选的原生刷怪蛋卡面包装，不改实体属性与生成行为
+WitchTargeting|已交战小队的近战就近/远程保持锁定，以及塔巡逻防卫
+client/CardLevelScreen|创造模式等级选择，通过原版背包事务提交，保留组件并校验物品
+client/EvolvedSnowballModel|加载 Blockbench 方形雪球网格、嵌入紫晶、光照与连续滚动变换
+client/Beta5VisualSmoke|显式隔离客户端检查等级同步、MineClash 卡面、雪球及虚空音效
+test/Beta5Tests|真实等级施法/召唤、权限、零单多目标虚空和原蛋卡牌属性对照
+test/WitchTargetingTests|母体死亡后实际寻路、近战/远程锁定、视线与玩家指令回归
 WitchSounds|女巫原作声音事件与单次服务端播放
 client/WitchClient|只在同装铁魔法时注册塔居民与护卫渲染器
 client/WitchMagicRenderer|女巫体积模式、连续尾迹、命中接缝和真实掌心挂点收集
@@ -53,7 +61,7 @@ mixin/WitchTowerTemplateMixin|按需生成并缓存独立女巫塔模板，不�
 test/SummonAiTests|实际寻路接敌、目标保持、优先命令、前排护卫与和平生物规则
 test/WitchCardTests|独立卡牌及刷怪蛋真使用、配方、弹体、归魂、克隆、存档与控制
 test/WitchTowerTests|真实法师身份、无卷轴、原塔共存、实际模板居民和刷怪笼
-CardBalance|2026-09-08 卡牌独立数值配置；11/12 级、每次伤害、召唤物武器与盾
+CardBalance|2026-09-08 的 11 级卡牌基准与通用等级成长；每次伤害、武器与盾
 test/CardBalanceTests|完整卡牌伤害、配置隔离、转换继承、盾牌与军团存档回归
 AnimationTimeline|积分局部动画时钟，支持降速、暂停输入和连续恢复
 SnowballChill|雪球专用状态、60 tick 缓慢和 65% 动画速率

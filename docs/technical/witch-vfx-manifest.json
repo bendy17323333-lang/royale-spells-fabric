@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "release": "1.9.3",
+  "release": "1.9.4-beta.5",
   "loader": "neoforge-1.21.1",
-  "runtimeVersion": "1.9.3-beta.4",
+  "runtimeVersion": "1.9.4-beta.5",
   "scope": "Migration references, not a stable binary API or independently compilable SDK",
   "licenseNotice": "Original code MIT; original game audio/card art and third-party derived assets excluded. Model original contributions do not license Supercell character design.",
   "files": [
@@ -60,7 +60,7 @@
       "purpose": "client registration and event integration reference",
       "category": "source-reference",
       "license": "MIT",
-      "sha256": "023d0b30e324df308ec36742ffb31c89e44907bdd4ecd1bc2b7efcc6b8917583"
+      "sha256": "123f531df7caa3e25780db12af99057ae62543bced895e7549bef5abc552faeb"
     },
     {
       "path": "src/main/java/dev/royalespells/client/TargetPreview.java",
@@ -102,7 +102,7 @@
       "purpose": "NeoForge shared card/resident state owner",
       "category": "source-reference",
       "license": "MIT",
-      "sha256": "8151d73313023e04c74fda7242d111c502ba53cc0bc04334ff41d60e4aa7157d"
+      "sha256": "5dca154fcc9244fcbd98b1021f0e0ad4c225ce4710afc6a5ae19638b4634a35a"
     },
     {
       "path": "src/main/java/dev/royalespells/entity/EvolutionBurst.java",
@@ -130,7 +130,7 @@
       "purpose": "escort and attack target policy reference",
       "category": "source-reference",
       "license": "MIT",
-      "sha256": "2beb5f467449b4a1ddcd33cbe8beb90eadfdc31c1d2a01e2dd30ca8df284821b"
+      "sha256": "78b5e1210e36cbc2e3deac26957e06170a41a1189920a99049fac63ea9bebb5c"
     },
     {
       "path": "src/main/java/dev/royalespells/entity/FollowSummonerGoal.java",
@@ -144,14 +144,14 @@
       "purpose": "NeoForge gameplay regression reference",
       "category": "source-reference",
       "license": "MIT",
-      "sha256": "8deb5ca80b12febaa9322c1eabb97a407feae009dee2b1df211575884e56baa3"
+      "sha256": "fbe5f17e8effb94d93a6b4d9a55ae9ce44f7e8b47902302c0e6319d9f0be53ff"
     },
     {
       "path": "src/main/java/dev/royalespells/test/SummonAiTests.java",
       "purpose": "real-world pathfinding regression reference",
       "category": "source-reference",
       "license": "MIT",
-      "sha256": "99e6f2b1cb721c2fa357c4cf493692b92e9ac83a87d4db25674e9f6ee9c19b58"
+      "sha256": "5f91ed31f06dc23e2f8323f3edf3073fa11a95414d5afcc655d93bf5b451056f"
     },
     {
       "path": "src/main/resources/assets/royalespells/shaders/core/witch_volume.json",

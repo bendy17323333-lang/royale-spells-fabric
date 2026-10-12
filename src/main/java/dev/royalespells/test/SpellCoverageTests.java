@@ -47,11 +47,11 @@ public class SpellCoverageTests {
     public void mirrorScalesDamageHealingAndEquippedAttack(GameTestHelper c) {
         UUID owner=UUID.randomUUID();var world=c.getLevel();var target=c.spawnWithNoFreeWill(EntityType.IRON_GOLEM,2,2,2);target.setNoAi(true);var at=target.position();
         var zap=SpellEntity.create(world,Spell.ZAP,owner,at,at);zap.setCardLevel(12);zap.tick();
-        c.assertTrue(Math.abs(target.getHealth()-(100-CardBalance.convert(210)))<.001,"Mirrored card Zap must use the exact level 12 value");
+        c.assertTrue(Math.abs(target.getHealth()-(100-CardBalance.convert(192*1.1)))<.001,"Mirrored card Zap must use the level 11 baseline scaled to level 12 value");
         var unit=SpellEngine.summon(world,owner,at.add(1,0,0),"barbarian",false);unit.tick();double before=unit.getAttributeValue(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE);
         SpellEngine.empower(unit,1.1f);c.assertTrue(Math.abs(unit.getAttributeValue(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE)-before*1.1)<.001,"Summon attack scaling must include its weapon bonus");
         unit.setHealth(3);var heal=SpellEntity.create(world,Spell.HEAL,owner,at,at);heal.setCardLevel(12);heal.tick();
-        c.assertTrue(Math.abs(unit.getHealth()-(3+CardBalance.convert(86)))<.001,"Mirrored healing must scale by one level");target.discard();cleanup(c,owner);c.succeed();
+        c.assertTrue(Math.abs(unit.getHealth()-(3+CardBalance.convert(78*1.1)))<.001,"Mirrored healing must scale by one level");target.discard();cleanup(c,owner);c.succeed();
     }
     @GameTest(template=EMPTY_STRUCTURE,batch="skeleton-iframe")
     public void skeletonSwarmBypassesOnlyItsOwnHitCooldown(GameTestHelper c) {
@@ -99,7 +99,7 @@ public class SpellCoverageTests {
         var nbt=new net.minecraft.nbt.CompoundTag();effect.saveWithoutId(nbt);var loaded=RoyaleSpells.SPELL.create(c.getLevel());loaded.load(nbt);
         c.assertTrue(loaded.cardLevel()==12,"Mirror level survives save reload");for(int i=0;i<30;i++)loaded.tick();
         var zombies=c.getLevel().getEntitiesOfClass(AllyZombie.class,player.getBoundingBox().inflate(50),e->owner.equals(e.ownerId()));
-        c.assertTrue(zombies.size()==3 && zombies.stream().allMatch(e->Math.abs(e.getMaxHealth()-CardBalance.convert(221))<.001),"Mirrored summons use exact level 12 hitpoints");
+        c.assertTrue(zombies.size()==3 && zombies.stream().allMatch(e->Math.abs(e.getMaxHealth()-CardBalance.convert(202*1.1))<.001),"Mirrored summons use level 11 baseline scaled to level 12 hitpoints");
         cleanup(c,owner);c.getLevel().getServer().getPlayerList().remove(player);player.discard();c.succeed();
     }
     @GameTest(template=EMPTY_STRUCTURE,batch="log-axis")

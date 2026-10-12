@@ -24,8 +24,9 @@ public class NeoForgeEventTests {
     @GameTest(template="empty",batch="neo-void-audio")
     public void voidEmitsOneImpactSoundAtEachOfItsThreeDamageTicks(GameTestHelper c){
         var w=c.getLevel();var at=Vec3.atCenterOf(c.absolutePos(new BlockPos(2,12,2)));var fx=dev.royalespells.entity.SpellEntity.create(w,Spell.VOID,UUID.randomUUID(),at,at);var ticks=new java.util.ArrayList<Integer>();
-        Consumer<net.neoforged.neoforge.event.PlayLevelSoundEvent.AtPosition> listener=e->{if(e.getLevel()==w&&e.getSound()!=null&&e.getSound().value().getLocation().equals(RoyaleSpells.id("spell_void_strike"))){ticks.add(fx.time());c.assertTrue(Math.abs(e.getNewVolume()-.63f)<.001,"Only a ten percent reduction from the original .7 impact mix");}};
-        NeoForge.EVENT_BUS.addListener(listener);try{for(int i=0;i<70;i++)fx.tick();c.assertTrue(ticks.equals(java.util.List.of(16,36,56)),"Exactly three timed impacts: "+ticks);}finally{NeoForge.EVENT_BUS.unregister(listener);fx.discard();}c.succeed();
+        var victim=EntityType.IRON_GOLEM.create(w);victim.setPos(at);victim.setNoAi(true);victim.setNoGravity(true);w.addFreshEntity(victim);
+        Consumer<net.neoforged.neoforge.event.PlayLevelSoundEvent.AtPosition> listener=e->{if(e.getLevel()==w&&e.getSound()!=null&&e.getSound().value().getLocation().equals(RoyaleSpells.id("spell_void_strike_single"))){ticks.add(fx.time());c.assertTrue(Math.abs(e.getNewVolume()-.63f)<.001,"Preserve the quiet 64-block mix");}};
+        NeoForge.EVENT_BUS.addListener(listener);try{for(int i=0;i<70;i++)fx.tick();c.assertTrue(ticks.equals(java.util.List.of(16,36,56)),"Exactly three single-target impacts: "+ticks);}finally{NeoForge.EVENT_BUS.unregister(listener);fx.discard();victim.discard();}c.succeed();
     }
     @GameTest(template="empty",batch="neo-audio-distance")
     public void allSpellCuesHaveMatchingNetworkAndClientFalloffIndependentOfVolume(GameTestHelper c)throws Exception{

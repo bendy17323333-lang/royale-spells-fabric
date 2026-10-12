@@ -272,6 +272,11 @@
         "file": "zap_02",
         "volume": 0.7,
         "event": "spell_void_strike"
+      },
+      "strike_single": {
+        "file": "void_single_strike",
+        "volume": 0.7,
+        "event": "spell_void_strike_single"
       }
     },
     "vines": {
@@ -332,6 +337,92 @@
         "file": "boulder_impact_01",
         "volume": 0.55,
         "event": "spell_barbarian_hut_end"
+      }
+    },
+    "spirit_fire": {
+      "deploy": {
+        "event": "spirit_fire_deploy",
+        "volume": 0.46
+      },
+      "jump": {
+        "event": "spirit_fire_jump",
+        "volume": 0.38
+      },
+      "impact": {
+        "event": "spirit_fire_impact",
+        "volume": 0.48
+      },
+      "step": {
+        "event": "spirit_fire_step",
+        "volume": 0.075
+      }
+    },
+    "spirit_ice": {
+      "deploy": {
+        "event": "spirit_ice_deploy",
+        "volume": 0.46
+      },
+      "jump": {
+        "event": "spirit_ice_jump",
+        "volume": 0.38
+      },
+      "impact": {
+        "event": "spirit_ice_impact",
+        "volume": 0.48
+      },
+      "step": {
+        "event": "spirit_ice_step",
+        "volume": 0.075
+      }
+    },
+    "spirit_electro": {
+      "deploy": {
+        "event": "spirit_electro_deploy",
+        "volume": 0.46
+      },
+      "jump": {
+        "event": "spirit_electro_jump",
+        "volume": 0.38
+      },
+      "impact": {
+        "event": "spirit_electro_impact",
+        "volume": 0.28
+      },
+      "step": {
+        "event": "spirit_electro_step",
+        "volume": 0.075
+      }
+    },
+    "spirit_heal": {
+      "deploy": {
+        "event": "spirit_heal_deploy",
+        "volume": 0.46
+      },
+      "jump": {
+        "event": "spirit_heal_jump",
+        "volume": 0.38
+      },
+      "impact": {
+        "event": "spirit_heal_impact",
+        "volume": 0.48
+      },
+      "step": {
+        "event": "spirit_heal_step",
+        "volume": 0.075
+      }
+    },
+    "inferno_dragon": {
+      "deploy": {
+        "event": "inferno_dragon_deploy",
+        "volume": 0.43
+      },
+      "wing": {
+        "event": "inferno_dragon_wing",
+        "volume": 0.085
+      },
+      "beam": {
+        "event": "inferno_dragon_beam",
+        "volume": 0.34
       }
     }
   },
@@ -722,5 +813,32 @@
       64
     ],
     "void_impact": "Original archived zap_02.ogg electric impact, independently triggered; the archive has no separate Void impact recording."
+  },
+  "audio_update_beta5": {
+    "original_mapping_commit": "59ef870142cef9b9dbf24ee07a05d3fd272b0e01",
+    "mapping_sources": [
+      "https://github.com/Lee-The-Tree/Cr_Unpacked/blob/59ef870142cef9b9dbf24ee07a05d3fd272b0e01/Unpacked_Assets/toml/area/area_effect_objects.toml",
+      "https://github.com/Lee-The-Tree/Cr_Unpacked/blob/59ef870142cef9b9dbf24ee07a05d3fd272b0e01/Unpacked_Assets/csv/effects/effects.csv",
+      "https://github.com/Lee-The-Tree/Cr_Unpacked/blob/59ef870142cef9b9dbf24ee07a05d3fd272b0e01/Unpacked_Assets/csv/sounds/sounds.csv"
+    ],
+    "single_target": "PaoloFirstEffectEverStrong adds Fire ball explo; Paolo_zap_effect3 also plays sound_spell_zap.",
+    "group": "Keep the original zap_02 impact; no added blast layer.",
+    "empty": "No impact event. Independent field ambience still plays on deployment.",
+    "processing": "Offline mono mix: zap 0.45 + fireball explosion 0.309375, original speed/pitch; Vorbis q6 48 kHz. No generated substitute audio.",
+    "files": [
+      {
+        "path": "src/main/resources/assets/royalespells/sounds/original/zap_02.ogg",
+        "sha256": "d9c8b209fe840f91d2f5bc3deb203e3ee800c39a6952ead44dd6f41ae1f9cd50"
+      },
+      {
+        "path": "src/main/resources/assets/royalespells/sounds/original/fire_ball_explo_02.ogg",
+        "sha256": "c20f2c526a5e452e212711d2829d3baaf35cb734bd6f9bc419675632179a30c1"
+      },
+      {
+        "path": "src/main/resources/assets/royalespells/sounds/original/void_single_strike.ogg",
+        "sha256": "afa50daf541a82857d7daf5310ace748e89550acefaf5587265a6c1e43179366"
+      }
+    ],
+    "rights": "Supercell original audio and derivative mix excluded from MIT."
   }
 }

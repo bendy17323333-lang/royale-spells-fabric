@@ -1,0 +1,12 @@
+{
+  "source": "evolved_snowball.bbmodel",
+  "sourceSha256": "5b6b4286f47e5569c162f90eae2cb8bc18126205071f056411288e81bef5c3eb",
+  "runtime": "src/main/resources/assets/royalespells/models/effects/evolved_snowball.json",
+  "runtimeSha256": "be10ea3bf4dab1d1180b084e0894324593ea96043fc2259fbb071b0b84e1fa3c",
+  "meshes": 14,
+  "vertices": 300,
+  "faces": 346,
+  "closedManifoldMeshes": true,
+  "normals": "flat square snow faces, narrow bevels and crystal facets",
+  "axis": "Blockbench Y-up, one block = 16 units"
+}

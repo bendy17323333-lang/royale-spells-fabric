@@ -270,6 +270,11 @@
       "file": "zap_02",
       "volume": 0.7,
       "event": "spell_void_strike"
+    },
+    "strike_single": {
+      "file": "void_single_strike",
+      "volume": 0.7,
+      "event": "spell_void_strike_single"
     }
   },
   "vines": {

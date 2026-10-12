@@ -71,6 +71,7 @@ public final class RoyaleSpells {
         });
         events.addListener(net.neoforged.bus.api.EventPriority.LOWEST,(net.neoforged.neoforge.event.entity.living.LivingDeathEvent event)->SpellEngine.onDeath(event.getEntity()));
         events.addListener(this::commands);
+        events.addListener(CardLevels::register);
         events.addListener(net.neoforged.bus.api.EventPriority.LOWEST,(net.neoforged.neoforge.event.entity.living.LivingDeathEvent event)->WitchBehavior.onSkeletonDeath(event.getEntity()));
         bus.addListener((net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent event)->{if(event.getTabKey().equals(net.minecraft.world.item.CreativeModeTabs.SPAWN_EGGS)){event.accept(WITCH_EGG);event.accept(EVOLVED_WITCH_EGG);}});
         ShowcaseMap.install();CombatCompatibility.install();IronSpellSystem.install(bus);SummonOrders.install();ControlCooldown.install();dev.royalespells.elixir.ElixirContent.install(bus);
@@ -108,6 +109,7 @@ public final class RoyaleSpells {
             EVOLVED_WITCH_EGG=Registry.register(BuiltInRegistries.ITEM,id("witch_evolution_spawn_egg"),new net.neoforged.neoforge.common.DeferredSpawnEggItem(()->EVOLVED_WITCH,0x281447,0xF08CF0,new Item.Properties()));
             for(Spell spell:Spell.values())ITEMS.put(spell,Registry.register(BuiltInRegistries.ITEM,id(spell.id()),new SpellItem(spell)));
             for(TroopCard card:TroopCard.values())TROOP_ITEMS.put(card,Registry.register(BuiltInRegistries.ITEM,id(card.id()),new TroopItem(card)));
+            MineClashCards.register();
             PREVIOUS_SCENE=Registry.register(BuiltInRegistries.ITEM,id("previous_scene"),new SceneControlItem(-1));
             NEXT_SCENE=Registry.register(BuiltInRegistries.ITEM,id("next_scene"),new SceneControlItem(1));
             NEUTRAL_ARMY_EGG=Registry.register(BuiltInRegistries.ITEM,id("neutral_skeleton_army_spawn_egg"),new dev.royalespells.army.NeutralArmyEgg());
@@ -122,7 +124,7 @@ public final class RoyaleSpells {
         } else if(key.equals(net.minecraft.core.registries.Registries.CREATIVE_MODE_TAB))
             Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB,id("spells"),net.minecraft.world.item.CreativeModeTab.builder()
                 .title(Component.translatable("itemGroup.royalespells.spells")).icon(()->new ItemStack(ITEMS.get(Spell.ZAP_EVOLUTION)))
-                .displayItems((ctx,entries)->{ITEMS.values().forEach(entries::accept);TROOP_ITEMS.values().forEach(entries::accept);entries.accept(NEUTRAL_ARMY_EGG);entries.accept(WITCH_EGG);entries.accept(EVOLVED_WITCH_EGG);dev.royalespells.elixir.ElixirContent.creative(entries);}).build());
+                .displayItems((ctx,entries)->{ITEMS.values().forEach(entries::accept);TROOP_ITEMS.values().forEach(entries::accept);MineClashCards.creative(entries);entries.accept(NEUTRAL_ARMY_EGG);entries.accept(WITCH_EGG);entries.accept(EVOLVED_WITCH_EGG);dev.royalespells.elixir.ElixirContent.creative(entries);}).build());
     }
     private void attributes(net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent event) {
         event.put(WITCH,RoyalWitch.attributes().build());event.put(EVOLVED_WITCH,RoyalWitch.attributes().build());
@@ -135,8 +137,8 @@ public final class RoyaleSpells {
     }
     private void commands(net.neoforged.neoforge.event.RegisterCommandsEvent event) {
         event.getDispatcher().register(
-            Commands.literal("royalespells").requires(source->source.hasPermission(2))
-              .then(Commands.literal("give").executes(ctx->{
+            Commands.literal("royalespells")
+              .then(Commands.literal("give").requires(source->source.hasPermission(2)).executes(ctx->{
                   var player=ctx.getSource().getPlayerOrException();
                   for(var item:ITEMS.values()) player.addItem(new ItemStack(item));
                   for(var item:TROOP_ITEMS.values()) player.addItem(new ItemStack(item));
@@ -151,11 +153,11 @@ public final class RoyaleSpells {
                   }
                   ctx.getSource().sendFailure(Component.literal("Unknown spell: "+id)); return 0;
               })))
-              .then(Commands.literal("refill").executes(ctx->{SpellEngine.refill(ctx.getSource().getPlayerOrException());return 1;}))
-              .then(Commands.literal("scene").executes(ctx->{ShowcaseMap.switchScene(ctx.getSource().getPlayerOrException(),0);return 1;})
+              .then(Commands.literal("refill").requires(source->source.hasPermission(2)).executes(ctx->{SpellEngine.refill(ctx.getSource().getPlayerOrException());return 1;}))
+              .then(Commands.literal("scene").requires(source->source.hasPermission(2)).executes(ctx->{ShowcaseMap.switchScene(ctx.getSource().getPlayerOrException(),0);return 1;})
                   .then(Commands.literal("next").executes(ctx->{ShowcaseMap.switchScene(ctx.getSource().getPlayerOrException(),1);return 1;}))
                   .then(Commands.literal("previous").executes(ctx->{ShowcaseMap.switchScene(ctx.getSource().getPlayerOrException(),-1);return 1;})))
-              .then(Commands.literal("clear").executes(ctx->{
+              .then(Commands.literal("clear").requires(source->source.hasPermission(2)).executes(ctx->{
                   var player=ctx.getSource().getPlayerOrException();
                   for(Entity e:com.google.common.collect.ImmutableList.copyOf(player.serverLevel().getAllEntities()))
                       if((e instanceof Summoned s && player.getUUID().equals(s.ownerId())) ||

@@ -85,8 +85,8 @@ public class TroopTests {
         player.setPos(player.position().add(5,0,0));
         c.assertTrue(SpellEngine.cast(player,Spell.MIRROR),"Mirror copies the Hut card");
         var boosted=(RoyaleUnit)units(c,owner).stream().filter(e->e instanceof RoyaleUnit u&&CardBalance.level(u)==12).findFirst().orElseThrow();
-        c.assertTrue(Math.abs(boosted.getMaxHealth()-CardBalance.convert(1278))<.001,"Mirrored hut gains one level of health");boosted.tick();
-        c.assertTrue(units(c,owner).stream().anyMatch(e->e.getType()==RoyaleSpells.BARBARIAN&&Math.abs(e.getMaxHealth()-CardBalance.convert(786))<.001),"Produced barbarians inherit Mirror's one-level boost");
+        c.assertTrue(Math.abs(boosted.getMaxHealth()-CardBalance.convert(1164*1.1))<.001,"Mirrored hut gains one level of health");boosted.tick();
+        c.assertTrue(units(c,owner).stream().anyMatch(e->e.getType()==RoyaleSpells.BARBARIAN&&Math.abs(e.getMaxHealth()-CardBalance.convert(716*1.1))<.001),"Produced barbarians inherit Mirror's one-level boost");
         cleanup(c,owner);player.discard();c.succeed();
     }
 }

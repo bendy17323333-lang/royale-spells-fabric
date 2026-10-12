@@ -50,7 +50,7 @@ public class CardBalanceTests {
         var at=at(c);var card=SpellEntity.create(c.getLevel(),Spell.FREEZE,UUID.randomUUID(),at,at);card.setCardLevel(12);
         var iron=SpellEntity.create(c.getLevel(),Spell.FREEZE,UUID.randomUUID(),at,at);iron.setIronSpell("royalespells:freeze",3,1);
         c.assertTrue(card.duration()==70&&iron.duration()==100,"Card freezes 3.5 seconds, Iron still 5 seconds");
-        near(c,card.hitAmount(2),162/27.0,"Mirror uses exact level 12 hit");near(c,iron.hitAmount(2),2,"Iron uses its existing level/power pipeline");
+        near(c,card.hitAmount(2),148*1.1/27.0,"Mirror uses level 11 baseline scaled to level 12 hit");near(c,iron.hitAmount(2),2,"Iron uses its existing level/power pipeline");
         var n=new CompoundTag();card.saveWithoutId(n);var loaded=RoyaleSpells.SPELL.create(c.getLevel());loaded.load(n);
         c.assertTrue(loaded.cardLevel()==12&&loaded.duration()==70,"Card profile and mirror survive save/load");
         var fire=SpellEntity.create(c.getLevel(),Spell.FIREBALL,UUID.randomUUID(),at,at);near(c,fire.radius(),2.5,"Card radius");fire.setIronSpell("royalespells:fireball",1,1);near(c,fire.radius(),2.8,"Iron radius");c.succeed();
@@ -76,14 +76,14 @@ public class CardBalanceTests {
     public void curseConversionInheritsTheCastingCardLevel(GameTestHelper c){
         var victim=victim(c);UUID owner=UUID.randomUUID();SpellEngine.curse(owner,victim,1,"",1,12);victim.hurt(c.getLevel().damageSources().generic(),2000);
         var babies=c.getLevel().getEntitiesOfClass(AllyZombie.class,victim.getBoundingBox().inflate(8),e->owner.equals(e.ownerId()));
-        c.assertTrue(babies.size()==1,"Exactly one converted baby");near(c,babies.getFirst().getMaxHealth(),221/27.0,"Mirrored curse health");near(c,babies.getFirst().getAttribute(Attributes.ATTACK_DAMAGE).getBaseValue(),137/27.0,"Mirrored curse attack");clean(c,owner);victim.discard();c.succeed();
+        c.assertTrue(babies.size()==1,"Exactly one converted baby");near(c,babies.getFirst().getMaxHealth(),202*1.1/27.0,"Mirrored curse health");near(c,babies.getFirst().getAttribute(Attributes.ATTACK_DAMAGE).getBaseValue(),125*1.1/27.0,"Mirrored curse attack");clean(c,owner);victim.discard();c.succeed();
     }
     @GameTest(template="empty",batch="card-clone-profile")
     public void mirroredCloneUsesCloneCardLevelAndScaledOneHitpoint(GameTestHelper c){
         UUID owner=UUID.randomUUID();var original=SpellEngine.summon(c.getLevel(),owner,at(c),"barbarian",false);CardBalance.apply(original,"barbarian",false,11);
         SpellEngine.cloneAllies(c.getLevel(),owner,at(c),3,1,"",1,12);
         var clones=c.getLevel().getEntitiesOfClass(AllyZombie.class,original.getBoundingBox().inflate(5),e->owner.equals(e.ownerId())&&e.isClone());
-        c.assertTrue(clones.size()==1,"One clone");near(c,clones.getFirst().getMaxHealth(),1,"Minecraft health attribute floor is 1");near(c,clones.getFirst().getAttribute(Attributes.ATTACK_DAMAGE).getBaseValue(),210/27.0,"Mirrored clone uses level 12 attack");
+        c.assertTrue(clones.size()==1,"One clone");near(c,clones.getFirst().getMaxHealth(),1,"Minecraft health attribute floor is 1");near(c,clones.getFirst().getAttribute(Attributes.ATTACK_DAMAGE).getBaseValue(),192*1.1/27.0,"Mirrored clone uses level 12 attack");
         near(c,original.getMaxHealth(),716/27.0,"Original not changed");clean(c,owner);c.succeed();
     }
     @GameTest(template="empty",batch="card-army-health")

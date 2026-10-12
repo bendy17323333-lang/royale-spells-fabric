@@ -42,7 +42,7 @@ public final class WitchSkeleton extends AllySkeleton {
         if(!(level() instanceof ServerLevel world)||isNoAi())return;
         if(!homeSet){if(ownerId()==null)restrictTo(blockPosition(),12);homeSet=true;}
         if(tickCount%5!=0)return;
-        Mob commander=ownerId()!=null&&world.getEntity(ownerId()) instanceof Mob m?m:null;
+        Mob commander=ownerId()!=null&&world.getEntity(ownerId()) instanceof Mob m&&m.isAlive()?m:null;
         if(commander!=null)getPersistentData().putUUID(dev.royalespells.SummonOrders.ESCORT,commander.getUUID());
         if(commander==null)commander=world.getEntitiesOfClass(Mob.class,getBoundingBox().inflate(24),
             m->m instanceof WitchActor w&&w.behavior().resident()&&m.isAlive()).stream()

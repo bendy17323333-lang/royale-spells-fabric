@@ -31,7 +31,17 @@ public final class TowerWitch extends io.redspace.ironsspellbooks.entity.mobs.ab
         goalSelector.addGoal(8,new LookAtPlayerGoal(this,net.minecraft.world.entity.player.Player.class,8));
         targetSelector.addGoal(1,new net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal(this));
         targetSelector.addGoal(3,new net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal<>(this,net.minecraft.world.entity.player.Player.class,10,true,false,this::isHostileTowards));}
-    @Override public void tick(){super.tick();if(!level().isClientSide&&!hasRestriction())restrictTo(blockPosition(),6);behavior.tick();}
+    @Override public void tick(){
+        super.tick();
+        if(!level().isClientSide){
+            if(!hasRestriction())restrictTo(blockPosition(),6);
+            if(!isNoAi()&&tickCount%5==0&&!validEnemy(getTarget())){
+                LivingEntity defended=WitchTargeting.patrolEnemy(this);
+                if(defended!=null)setTarget(defended);
+            }
+        }
+        behavior.tick();
+    }
     @Override public boolean residentEnemy(LivingEntity victim){
         if(victim instanceof net.minecraft.world.entity.player.Player p)return !p.isCreative()&&!p.isSpectator()&&(victim==getTarget()||isHostileTowards(victim));
         return victim==getTarget()||victim==getLastHurtByMob()||victim instanceof Mob m&&m.getTarget()==this;

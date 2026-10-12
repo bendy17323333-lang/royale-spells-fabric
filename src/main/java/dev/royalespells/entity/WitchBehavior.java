@@ -62,9 +62,9 @@ public final class WitchBehavior {
     public Set<UUID> eligibleSkeletons(){return Set.copyOf(firstWave);}
     public float castProgress(float partial){return attackAge()==0?0:Mth.clamp((attackAge()+partial)/WINDUP_TICKS,0,1);}
     public float attackProgress(float partial){return attackAge()==0?0:(attackAge()+partial)/ATTACK_TICKS;}
-    public float initialHealth(){return CardBalance.convert(CardBalance.value(cardLevel(),839,921));}
-    public float soulHealing(){return CardBalance.convert(CardBalance.value(cardLevel(),153,168));}
-    public float evolutionHealthCap(){return CardBalance.convert(CardBalance.value(cardLevel(),1451,1593));}
+    public float initialHealth(){return CardBalance.convert(CardBalance.value(cardLevel(),839));}
+    public float soulHealing(){return CardBalance.convert(CardBalance.value(cardLevel(),153));}
+    public float evolutionHealthCap(){return CardBalance.convert(CardBalance.value(cardLevel(),1451));}
     public float projectileDamage(){return (float)mob.getAttributeValue(Attributes.ATTACK_DAMAGE);}
     public Vec3 muzzle(){
         Vec3 front=SpellEngine.horizontal(mob.getViewVector(1));
@@ -74,10 +74,10 @@ public final class WitchBehavior {
     }
     public boolean inAttackRange(LivingEntity victim){Vec3 d=victim.position().subtract(mob.position());return d.horizontalDistanceSqr()<=RANGE*RANGE&&Math.abs(d.y)<=6;}
     public void configure(UUID player,boolean evolved,int level){
-        setup(player,LIFE_TICKS,false);entityData.set(keys.EVO,evolved);entityData.set(keys.CARD_LEVEL,level>=12?12:11);
+        setup(player,LIFE_TICKS,false);entityData.set(keys.EVO,evolved);entityData.set(keys.CARD_LEVEL,CardLevels.unitLevel(level));
         mob.getPersistentData().putInt(CardBalance.TAG,cardLevel());
         mob.getAttribute(Attributes.MAX_HEALTH).setBaseValue(initialHealth());mob.setHealth(initialHealth());
-        mob.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(CardBalance.convert(CardBalance.value(cardLevel(),135,148)));
+        mob.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(CardBalance.convert(CardBalance.value(cardLevel(),135)));
     }
     public void setup(UUID player,int duration,boolean clone){owner=player;life=duration;entityData.set(keys.CLONE,clone);
         mob.setPersistenceRequired();mob.setCanPickUpLoot(false);if(clone){firstWave.clear();pendingSouls.clear();mob.getAttribute(Attributes.MAX_HEALTH).setBaseValue(1);mob.setHealth(1);}}
@@ -202,7 +202,7 @@ public final class WitchBehavior {
     }
     public void load(CompoundTag n){
         owner=n.hasUUID("SpellOwner")?n.getUUID("SpellOwner"):resident?null:mob.getUUID();life=n.contains("SpellLife")?Mth.clamp(n.getInt("SpellLife"),1,LIFE_TICKS):LIFE_TICKS;
-        if(n.contains("WitchEvolved"))entityData.set(keys.EVO,n.getBoolean("WitchEvolved"));entityData.set(keys.CLONE,n.getBoolean("SpellClone"));entityData.set(keys.CARD_LEVEL,n.getInt("WitchLevel")>=12?12:11);
+        if(n.contains("WitchEvolved"))entityData.set(keys.EVO,n.getBoolean("WitchEvolved"));entityData.set(keys.CLONE,n.getBoolean("SpellClone"));entityData.set(keys.CARD_LEVEL,CardLevels.unitLevel(n.getInt("WitchLevel")));
         deploy=Mth.clamp(n.getInt("Deploy"),0,DEPLOY_TICKS);summonClock=Mth.clamp(n.getInt("SummonClock"),0,SUMMON_TICKS-1);waves=Math.max(0,n.getInt("Waves"));soulReturns=Mth.clamp(n.getInt("SoulReturns"),0,4);
         entityData.set(keys.ATTACK_AGE,Mth.clamp(n.getInt("AttackAge"),0,ATTACK_TICKS));entityData.set(keys.SUMMON_AGE,Mth.clamp(n.getInt("SummonAge"),0,24));
         actionFraction=Mth.clamp(n.getDouble("ActionFraction"),0,.999);deploymentSound=n.getBoolean("DeploymentSound");firstWave.clear();pendingSouls.clear();

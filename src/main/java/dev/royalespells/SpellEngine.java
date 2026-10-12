@@ -53,8 +53,9 @@ public final class SpellEngine {
         }
     }
     public static boolean isCard(Item item){return item instanceof SpellItem || item instanceof TroopItem;}
-    public static boolean deploy(ServerPlayer player,TroopCard card){return deploy(player,card,false);}
-    private static boolean deploy(ServerPlayer player,TroopCard card,boolean mirror) {
+    public static boolean deploy(ServerPlayer player,TroopCard card){return deploy(player,card,CardLevels.BASE);}
+    public static boolean deploy(ServerPlayer player,TroopCard card,int level){return deploy(player,card,false,CardLevels.unitLevel(level));}
+    private static boolean deploy(ServerPlayer player,TroopCard card,boolean mirror,int level) {
         State state=PLAYERS.computeIfAbsent(player.getUUID(),id->new State());int cost=card.cost+(mirror?1:0);
         if(state.cooldown>0 || (player.hasEffect(RoyaleSpells.STUN)||dev.royalespells.pause.ElectricPause.active(player)))return false;
         if(!player.isCreative() && state.elixir<cost)return insufficient(player);
@@ -64,19 +65,24 @@ public final class SpellEngine {
         if(unit==null){player.displayClientMessage(Component.translatable("message.royalespells.deployment_blocked"),true);return false;}
         unit.setYRot(player.getYRot());unit.setYBodyRot(player.getYRot());
         if(unit instanceof RoyaleUnit deployed && deployed.building())deployed.lockFacing(player.getYRot());
-        if(unit instanceof RoyalWitch witch)witch.configure(player.getUUID(),card==TroopCard.WITCH_EVOLUTION,mirror?12:11);
-        else CardBalance.apply(unit,card.unit,false,mirror?12:11);
+        if(unit instanceof RoyalWitch witch)witch.configure(player.getUUID(),card==TroopCard.WITCH_EVOLUTION,level);
+        else CardBalance.apply(unit,card.unit,false,level);
         if(!player.isCreative())state.elixir-=cost;
         state.cooldown=10;if(!mirror){state.lastTroop=card;state.last=null;}
         player.swing(player.getUsedItemHand(),true);return true;
     }
     public static boolean cast(ServerPlayer player,Spell requested) {
+        return cast(player,requested,CardLevels.BASE);
+    }
+    public static boolean cast(ServerPlayer player,Spell requested,int level) {
+        level=CardLevels.unitLevel(level);
         State state=PLAYERS.computeIfAbsent(player.getUUID(),id->new State());
         if(state.cooldown>0 || (player.hasEffect(RoyaleSpells.STUN)||dev.royalespells.pause.ElectricPause.active(player)))return false;
         Spell spell=requested;
         int cost=spell.cost;
         if(spell==Spell.MIRROR) {
-            if(state.lastTroop!=null){boolean cast=deploy(player,state.lastTroop,true);if(cast)SpellSounds.play(player.level(),player.position(),Spell.MIRROR,"deploy");return cast;}
+            level=CardLevels.unitLevel(level+1);
+            if(state.lastTroop!=null){boolean cast=deploy(player,state.lastTroop,true,level);if(cast)SpellSounds.play(player.level(),player.position(),Spell.MIRROR,"deploy");return cast;}
             if(state.last==null) {player.displayClientMessage(Component.translatable("message.royalespells.no_mirror"),true);return false;}
             spell=state.last;cost=spell.cost+1;
         }
@@ -104,7 +110,7 @@ public final class SpellEngine {
             target=start.add(horizontal(player.getViewVector(1)).scale(CardBalance.range(spell)));
         }
         SpellEntity effect=SpellEntity.create(world,spell,player.getUUID(),start,target);
-        if(requested==Spell.MIRROR)effect.setCardLevel(12);
+        effect.setCardLevel(level);
         if(!world.addFreshEntity(effect))return false;
         if(ControlCooldown.controls(spell))ControlCooldown.start(player);
         if(requested==Spell.MIRROR)SpellSounds.play(world,player.position(),Spell.MIRROR,"deploy");

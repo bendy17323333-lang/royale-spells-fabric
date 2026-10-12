@@ -42,8 +42,8 @@ public class SpellEntity extends Entity {
     public String ironSpellId(){return entityData.get(DATA).getString("IronSpell");}
     public int ironLevel(){return Math.max(1,entityData.get(DATA).getInt("IronLevel"));}
     public boolean cardCast(){return ironSpellId().isEmpty();}
-    public int cardLevel(){return Math.max(11,entityData.get(DATA).getInt("CardLevel"));}
-    public void setCardLevel(int level){var data=entityData.get(DATA).copy();data.putInt("CardLevel",level>=12?12:11);entityData.set(DATA,data);}
+    public int cardLevel(){return CardLevels.unitLevel(entityData.get(DATA).getInt("CardLevel"));}
+    public void setCardLevel(int level){var data=entityData.get(DATA).copy();data.putInt("CardLevel",CardLevels.unitLevel(level));entityData.set(DATA,data);}
     public double radius(){return cardCast()?CardBalance.stats(spell()).radius():spell().radius;}
     public float hitAmount(float ironAmount){return cardCast()?CardBalance.stats(spell()).hit(cardLevel()):ironAmount;}
     public float strikeRadius(int tick){return cardCast()?(float)(spell()==Spell.ZAP_EVOLUTION&&tick>=21?3:2.5):zapRadius(tick);}
@@ -269,8 +269,8 @@ public class SpellEntity extends Entity {
             }
             case VOID -> {
                 if(t==16||t==(cardCast()?36:40)||t==(cardCast()?56:64)) {
-                    SpellSounds.play(world,target(),spell(),"strike");
                     var list=enemies(world,target(),radius());float dmg=cardCast()?CardBalance.voidHit(list.size(),cardLevel()):list.size()==1?20:list.size()<=4?9:4;
+                    if(!list.isEmpty())SpellSounds.play(world,target(),spell(),list.size()==1?"strike_single":"strike");
                     recordVoidStrike(list,t);
                     for(LivingEntity e:list)damage(world,e,dmg);
                 }

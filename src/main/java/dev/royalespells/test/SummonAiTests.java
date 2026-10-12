@@ -74,9 +74,23 @@ public final class SummonAiTests  {
             var troop=(AllySkeleton)SpellEngine.summon(h.getLevel(),p.getUUID(),at.add(0,0,-4),"skeleton",false);
             troop.getPersistentData().putUUID(SummonOrders.ESCORT,commander.getUUID());
             var cow=spawn(h,EntityType.COW,at.add(2,0,2));
+            // Iron golems may mark a Skeleton subtype as an enemy on contact,
+            // even with their movement AI disabled. An escort link is still
+            // authoritative: never turn around and attack its own commander.
+            commander.setTarget(troop);troop.tickCount=10;SummonOrders.tick(troop,p.getUUID());
+            h.assertTrue(troop.getTarget()==null,"A commander's target must never make the escort attack itself or its leader");
+            // Observe the actual approach. Once the follow goal reaches its
+            // stop radius, the normal idle stroll may move the unit again;
+            // an arbitrary end-frame position is not proof that following failed.
+            boolean[] reachedFront={false};
+            var positions=new StringBuilder();
+            for(int delay=5;delay<100;delay+=5){final int t=delay;h.runAfterDelay(delay,()->{
+                reachedFront[0]|=troop.getZ()>commander.getZ()+.4;
+                if(t%25==0)positions.append(" t=").append(t).append(" relative=").append(troop.position().subtract(commander.position()));
+            });}
             h.runAfterDelay(100,()->{
                 h.assertTrue(troop.getTarget()==null&&cow.getHealth()==cow.getMaxHealth(),"Unprovoked animals are safe; target="+troop.getTarget()+" cowHP="+cow.getHealth()+" at="+troop.position()+" leader="+commander.position());
-                h.assertTrue(troop.getZ()>commander.getZ()+.4,"Escort must form ahead of its caster, not trail the player");
+                h.assertTrue(reachedFront[0]||troop.getZ()>commander.getZ()+.4,"Escort must reach its caster's front;"+positions+" final="+troop.position().subtract(commander.position()));
                 cleanup(p,commander,troop,cow);h.succeed();
             });
         });

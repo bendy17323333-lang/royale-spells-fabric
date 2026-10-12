@@ -1,0 +1,197 @@
+[
+  {
+    "item": "royalespells:mineclash_knight_zombie",
+    "egg": "mineclash:knight_zombie_spawn_egg",
+    "portrait": "knight",
+    "path": "src/main/resources/assets/royalespells/textures/card/mineclash_knight_zombie.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/knight.png",
+    "sha256": "bc85a17a817c5e29d0e12adc854499670b648e710985a8d05dea9ccfcaa95abe",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes. Artwork belongs to Supercell, excluded from MIT. Cosmetic portrait does not change MineClash spawn count or behavior."
+  },
+  {
+    "item": "royalespells:mineclash_skeleton",
+    "egg": "mineclash:skeleton_spawn_egg",
+    "portrait": "skeletons",
+    "path": "src/main/resources/assets/royalespells/textures/card/mineclash_skeleton.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/skeletons.png",
+    "sha256": "577c897f22f0270ed7f7297f9f8e52c72557b43e673e7ea2368e00309bdece6b",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes. Artwork belongs to Supercell, excluded from MIT. Cosmetic portrait does not change MineClash spawn count or behavior."
+  },
+  {
+    "item": "royalespells:mineclash_royal_recruits",
+    "egg": "mineclash:royal_recruits_spawn_egg",
+    "portrait": "royal-recruits",
+    "path": "src/main/resources/assets/royalespells/textures/card/mineclash_royal_recruits.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/royal-recruits.png",
+    "sha256": "c822b24b5b42d34fc2289e341f746274f0d9b666900d2966bc32c45df865226a",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes. Artwork belongs to Supercell, excluded from MIT. Cosmetic portrait does not change MineClash spawn count or behavior."
+  },
+  {
+    "item": "royalespells:mineclash_ice_spirit",
+    "egg": "mineclash:ice_spirit_spawn_egg",
+    "portrait": "ice-spirit",
+    "path": "src/main/resources/assets/royalespells/textures/card/mineclash_ice_spirit.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/ice-spirit.png",
+    "sha256": "634e23f7cfe7508f8833216a4c657abb90bd47916364eba4701dd7e622f028d5",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes. Artwork belongs to Supercell, excluded from MIT. Cosmetic portrait does not change MineClash spawn count or behavior."
+  },
+  {
+    "item": "royalespells:mineclash_elite_musketeer",
+    "egg": "mineclash:elite_musketeer_spawn_egg",
+    "portrait": "three-musketeers",
+    "path": "src/main/resources/assets/royalespells/textures/card/mineclash_elite_musketeer.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/three-musketeers.png",
+    "sha256": "562e00986f6e4f6e63ebf6a5a07d5342317b1aaac5e42875fc199ec4e5fede82",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes. Artwork belongs to Supercell, excluded from MIT. Cosmetic portrait does not change MineClash spawn count or behavior."
+  },
+  {
+    "item": "royalespells:mineclash_zappies",
+    "egg": "mineclash:zappies_spawn_egg",
+    "portrait": "zappies",
+    "path": "src/main/resources/assets/royalespells/textures/card/mineclash_zappies.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/zappies.png",
+    "sha256": "10cd81d6143a32d876bf50dfb2453018828865edcc8d35f2b2fa546184abc703",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes. Artwork belongs to Supercell, excluded from MIT. Cosmetic portrait does not change MineClash spawn count or behavior."
+  },
+  {
+    "item": "royalespells:mineclash_pekka",
+    "egg": "mineclash:pekka_spawn_egg",
+    "portrait": "pekka",
+    "path": "src/main/resources/assets/royalespells/textures/card/mineclash_pekka.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/pekka.png",
+    "sha256": "e00b43b02ae1a7b2c1517577f7bbaf96cd405f2ed549df195d6ed38beef90d45",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes. Artwork belongs to Supercell, excluded from MIT. Cosmetic portrait does not change MineClash spawn count or behavior."
+  },
+  {
+    "item": "royalespells:mineclash_mini_pekka",
+    "egg": "mineclash:mini_pekka_spawn_egg",
+    "portrait": "mini-pekka",
+    "path": "src/main/resources/assets/royalespells/textures/card/mineclash_mini_pekka.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/mini-pekka.png",
+    "sha256": "dcf726551fb3c83db8bc304bdeaff48e1f7553127567b5669573674b81204a1f",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes. Artwork belongs to Supercell, excluded from MIT. Cosmetic portrait does not change MineClash spawn count or behavior."
+  },
+  {
+    "item": "royalespells:mineclash_super_mini_pekka",
+    "egg": "mineclash:super_mini_pekka_spawn_egg",
+    "portrait": "super-mini-pekka",
+    "path": "src/main/resources/assets/royalespells/textures/card/mineclash_super_mini_pekka.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/super-mini-pekka.png",
+    "sha256": "666e97b262790d1ae4abde08b1519df94c2965603abcf067a52511676594be35",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes. Artwork belongs to Supercell, excluded from MIT. Cosmetic portrait does not change MineClash spawn count or behavior."
+  },
+  {
+    "item": "royalespells:mineclash_golem",
+    "egg": "mineclash:golem_spawn_egg",
+    "portrait": "golem",
+    "path": "src/main/resources/assets/royalespells/textures/card/mineclash_golem.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/golem.png",
+    "sha256": "3104284ac5620aa3fe11da23bf7b6676a138b7fba356a3a6ca4000c1542ef699",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes. Artwork belongs to Supercell, excluded from MIT. Cosmetic portrait does not change MineClash spawn count or behavior."
+  },
+  {
+    "item": "royalespells:mineclash_valkyrie",
+    "egg": "mineclash:valkyrie_spawn_egg",
+    "portrait": "valkyrie",
+    "path": "src/main/resources/assets/royalespells/textures/card/mineclash_valkyrie.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/valkyrie.png",
+    "sha256": "ed98ea746360fdca51628b5ce3e16ad40f15ba296478409a52e8c6ba0aed682e",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes. Artwork belongs to Supercell, excluded from MIT. Cosmetic portrait does not change MineClash spawn count or behavior."
+  },
+  {
+    "item": "royalespells:mineclash_monk",
+    "egg": "mineclash:monk_spawn_egg",
+    "portrait": "monk",
+    "path": "src/main/resources/assets/royalespells/textures/card/mineclash_monk.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/monk.png",
+    "sha256": "52eed14e0b21d503d109632180c8748b504d4958a0733b2178d785c41ebe5c3f",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes. Artwork belongs to Supercell, excluded from MIT. Cosmetic portrait does not change MineClash spawn count or behavior."
+  },
+  {
+    "item": "royalespells:mineclash_mega_knight",
+    "egg": "mineclash:mega_knight_spawn_egg",
+    "portrait": "mega-knight",
+    "path": "src/main/resources/assets/royalespells/textures/card/mineclash_mega_knight.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/mega-knight.png",
+    "sha256": "53e65d46cf12c77ddbd7cb66002a79906477c2fe3a61ac264dad6bf279f1e7ce",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes. Artwork belongs to Supercell, excluded from MIT. Cosmetic portrait does not change MineClash spawn count or behavior."
+  },
+  {
+    "item": "royalespells:mineclash_guard",
+    "egg": "mineclash:guard_spawn_egg",
+    "portrait": "guards",
+    "path": "src/main/resources/assets/royalespells/textures/card/mineclash_guard.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/guards.png",
+    "sha256": "bfc68221b68ab264d95ac45961d5ea6d59324692b78f19e6740cb55f7a8bd9a9",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes. Artwork belongs to Supercell, excluded from MIT. Cosmetic portrait does not change MineClash spawn count or behavior."
+  },
+  {
+    "item": "royalespells:mineclash_general_gerry",
+    "egg": "mineclash:general_gerry_spawn_egg",
+    "portrait": "skeleton-army-ev1",
+    "path": "src/main/resources/assets/royalespells/textures/card/mineclash_general_gerry.png",
+    "url": "https://raw.githubusercontent.com/RoyaleAPI/cr-api-assets/b4530a1043b213ee2baf9c50a3d0d7fae22c2313/cards/skeleton-army-ev1.png",
+    "sha256": "cbaf4a2cb7b2c24015f83a3e0b45ef8cc2d9c75bff294dcc33fe90703aee2a6a",
+    "size": [
+      302,
+      363
+    ],
+    "handling": "Original PNG bytes. Artwork belongs to Supercell, excluded from MIT. Cosmetic portrait does not change MineClash spawn count or behavior."
+  }
+]

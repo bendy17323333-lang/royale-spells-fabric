@@ -67,7 +67,8 @@ public class SpellRenderer extends EntityRenderer<SpellEntity> {
                 box(m,v,light,Blocks.SANDSTONE,-.55,-.1,-.08,1.1f,.1f,.16f);
                 box(m,v,light,Blocks.IRON_BLOCK,-.24,.08,.51,.45f,.35f,.04f);
                 box(m,v,0xF000F0,Blocks.ORANGE_STAINED_GLASS,-.18,-1.45,-.18,.36f,.48f,.36f);
-            }            case GIANT_SNOWBALL, GIANT_SNOWBALL_EVOLUTION -> {
+            }            case GIANT_SNOWBALL_EVOLUTION -> EvolvedSnowballModel.render(e,delta,m,v,light);
+            case GIANT_SNOWBALL -> {
                 m.translate(0,.5,0);
                 Vec3 forward=e.castDirection();m.mulPose(Axis.YP.rotation((float)Math.atan2(forward.x,forward.z)));
                 m.mulPose(Axis.XP.rotationDegrees(spin));

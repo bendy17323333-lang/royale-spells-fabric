@@ -85,6 +85,9 @@ public final class SummonOrders {
     private static boolean allowedForLeader(Mob mob,UUID owner,LivingEntity leader,LivingEntity target){
         if(!eligible(mob,owner,target)||target==leader)return false;
         if(leader instanceof ServerPlayer player)return allowed(mob,player,target);
+        // An orphan keeps its already authorized fight, including a neutral
+        // attacker. New targets still pass the hostile/retaliation rules below.
+        if(leader==null&&escort(mob)&&target==mob.getTarget())return true;
         if(leader instanceof Mob commander&&commander.getTarget()==target)return true;
         if(recentAttacker(mob,target)||leader!=null&&recentAttacker(leader,target))return true;
         if(target instanceof Mob enemy&&(enemy.getTarget()==mob||leader!=null&&enemy.getTarget()==leader))return true;
@@ -95,15 +98,19 @@ public final class SummonOrders {
     public static LivingEntity select(Mob mob,UUID owner){
         var world=(ServerLevel)mob.level();
         Entity master=CombatCompatibility.resolve(world,owner);
+        if(master instanceof LivingEntity living&&!living.isAlive())master=null;
         LivingEntity leader=leader(mob);
-        if(owner!=null&&master==null&&leader==null&&!(mob instanceof ArmySkeleton army&&army.neutralArmy()))return null;
-        return select(mob,owner,master,leader,false);
+        // Egg witches use their own UUID as the squad owner. Keep that faction
+        // after death/unload; a missing mother must not disable her survivors.
+        boolean orphan=mob instanceof AllySkeleton&&escort(mob)&&leader==null;
+        if(owner!=null&&master==null&&leader==null&&!orphan&&!(mob instanceof ArmySkeleton army&&army.neutralArmy()))return null;
+        return select(mob,owner,master,leader,orphan);
     }
     private static LivingEntity select(Mob mob,UUID owner,Entity master,LivingEntity leader,boolean guard){
         var world=(ServerLevel)mob.level();
-        java.util.function.Predicate<LivingEntity> permitted=target->master instanceof ServerPlayer player
+        java.util.function.Predicate<LivingEntity> permitted=target->target!=leader&&(master instanceof ServerPlayer player
             ?allowed(mob,player,target)
-            :leader!=null||guard?allowedForLeader(mob,owner,leader,target):eligible(mob,owner,target);
+            :leader!=null||guard?allowedForLeader(mob,owner,leader,target):eligible(mob,owner,target));
         if(master instanceof ServerPlayer player){
             LivingEntity order=priority(mob,player);
             if(order!=null&&permitted.test(order))return order;

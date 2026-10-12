@@ -20,11 +20,12 @@ public class SpellItem extends Item {
     @Override public InteractionResultHolder<ItemStack> use(Level world,Player user,InteractionHand hand) {
         ItemStack stack=user.getItemInHand(hand);
         if(user.hasEffect(RoyaleSpells.STUN) || !IronSpellSystem.allowCard(user)) return InteractionResultHolder.fail(stack);
-        if(!world.isClientSide && !SpellEngine.cast((ServerPlayer)user,spell)) return InteractionResultHolder.fail(stack);
+        if(!world.isClientSide && !SpellEngine.cast((ServerPlayer)user,spell,CardLevels.get(stack))) return InteractionResultHolder.fail(stack);
         return InteractionResultHolder.sidedSuccess(stack,world.isClientSide);
     }
     @Override public boolean isFoil(ItemStack stack) { return spell.evolved() || super.isFoil(stack); }
     @Override public void appendHoverText(ItemStack stack,Item.TooltipContext context,List<Component> tooltip,TooltipFlag type) {
+        CardLevels.tooltip(stack,tooltip);
         tooltip.add(Component.translatable("tooltip.royalespells.cost",spell.cost).withStyle(ChatFormatting.LIGHT_PURPLE));
         tooltip.add(Component.translatable("spell.royalespells."+spell.id()).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("tooltip.royalespells.use").withStyle(ChatFormatting.DARK_GRAY));

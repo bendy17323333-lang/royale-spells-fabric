@@ -83,7 +83,7 @@
 | 26 | `party_rocket` | 派对火箭（活动） | 5 | 3 | 40 | `#82F280` |
 | 27 | `barbarian_barrel_hero` | 英雄野蛮人滚桶 | 2 | 1.5 | 22 | `#F5D075` |
 
-## 法术声音阶段（74）
+## 法术声音阶段（75）
 
 服务端事件固定传播半径声明为 64 格，cue 音量乘 0.9。客户端衰减距离单独从 sounds.json 读取；实际声音仍受玩家音量设置、距离和同屏混音影响。
 
@@ -136,6 +136,7 @@
 | `goblin_curse` / end | `spell_goblin_curse_end` | [original/gob_spell_end_01](../../src/main/resources/assets/royalespells/sounds/original/gob_spell_end_01.ogg) | 0.5 | 0.45 | 64 |
 | `void` / deploy | `spell_void_deploy` | [original/dark_void_spell_01](../../src/main/resources/assets/royalespells/sounds/original/dark_void_spell_01.ogg) | 0.7 | 0.63 | 64 |
 | `void` / strike | `spell_void_strike` | [original/zap_02](../../src/main/resources/assets/royalespells/sounds/original/zap_02.ogg) | 0.7 | 0.63 | 64 |
+| `void` / strike_single | `spell_void_strike_single` | [original/void_single_strike](../../src/main/resources/assets/royalespells/sounds/original/void_single_strike.ogg) | 0.7 | 0.63 | 64 |
 | `vines` / deploy | `spell_vines_deploy` | [original/card_epic_vines_cast](../../src/main/resources/assets/royalespells/sounds/original/card_epic_vines_cast.ogg) | 0.65 | 0.585 | 64 |
 | `vines` / hit | `spell_vines_hit` | [original/card_epic_vines_debuff](../../src/main/resources/assets/royalespells/sounds/original/card_epic_vines_debuff.ogg) | 0.45 | 0.405 | 64 |
 | `vines` / end | `spell_vines_end` | [original/card_epic_vines_end](../../src/main/resources/assets/royalespells/sounds/original/card_epic_vines_end.ogg) | 0.5 | 0.45 | 64 |

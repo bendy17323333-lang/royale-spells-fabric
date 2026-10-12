@@ -109,7 +109,7 @@ SHA-256：06A0A9C773A06BA35E9364244C02D3B3CC11F358E5D6DC75F86C83FFDDA5AB94。单
 
 觉醒骷髅军团图标来自 RoyaleAPI/cr-api-assets 固定版本 `b4530a1043b213ee2baf9c50a3d0d7fae22c2313` 的 `cards/skeleton-army-ev1.png`。7 个声音取自 Henrylq/Clash-Royale-SFX 固定版本 `c2d7d67271113cb9fe3ad896d9d03dd7f49eed52`：军团与骷髅专属声音来自 Skeleton Army／Skeletons 分类，通用死亡 `npc_die_02` 来自 Zappies 分类；原始 URL 和转换前后哈希见 `ARMY-ASSET-SOURCES.json`。单声道转换不变速、不变调，骷髅单位播放时的轻微音高参数属于运行时配置。
 
-虚空三次劈击复用已导入的原作 `zap_02.ogg` 电击声，不重复播放 6 秒领域音轨。素材档案没有单独的虚空劈击文件；来源清单明确记录复用。`tools/update-audio-1.5.py` 在既有导入器之后统一应用 64 格衰减和三次劈击配置。
+当时的虚空三次劈击仅复用已导入的原作 `zap_02.ogg` 电击声，不重复播放 6 秒领域音轨。`tools/update-audio-1.5.py` 在既有导入器之后统一应用 64 格衰减和三次劈击配置。**这一单体声音配置已由下述 Beta 5 的原作双层映射补全。**
 
 仪式的环阵、光束、物品轨道、闪光、将军攻击与旗帜摆动均由代码实时绘制。飘散粒子复用已记录来源的墓园紫色粒子，不使用末影粒子。
 
@@ -174,3 +174,11 @@ NeoForge 女巫模型与声音移植自本项目 Fabric 1.9.2：几何、动作�
 ## 女巫塔使用已安装的 Iron’s Spells 结构
 
 原作者 [iron431 / Iron’s Spells ’n Spellbooks](https://github.com/iron431/irons-spells-n-spellbooks)，验证版本 1.21.1-3.16.3。上游采用 ALL RIGHTS RESERVED；本项目不重新分发其塔建筑 NBT 或授予素材许可。运行时通过已安装本体的结构资源创建女巫塔变体，在内存中调整驻军、笼中实体和地下刷怪笼。原模板和缓存保持不变，自编适配代码与新生成配置适用本项目代码许可。引用清单位于 `art/witch-tower/provenance.json`。
+
+## 1.9.4-beta.5：MineClash 卡面、虚空单体声音与觉醒雪球
+
+新增 15 张 MineClash 刷怪蛋的外观卡牌，PNG 原样取自 RoyaleAPI/cr-api-assets 固定提交 `b4530a1043b213ee2baf9c50a3d0d7fae22c2313` 的 `cards/`。逐文件原名、对应蛋、URL、尺寸及 SHA-256 在 [MINECLASH-CARD-SOURCES.json](MINECLASH-CARD-SOURCES.json)，可用 `tools/import-mineclash-cards.py` 复现。卡图归 Supercell，**不是 MIT 资产**；MineClash 由 [LiziYowo / MineClash 团队](https://www.curseforge.com/minecraft/mc-mods/mineclash) 制作。包装代码为本项目 MIT 贡献，不复制本体源码、模型或 JAR，不重写其 AI/属性/生成数量。
+
+虚空单体补用原作 `zap_02.ogg` 与 `fire_ball_explo_02.ogg` 的分层关系，依据 Lee-The-Tree/Cr_Unpacked 固定提交 `59ef870142cef9b9dbf24ee07a05d3fd272b0e01` 中 `DarkMagicAOE → PaoloFirstEffectEverStrong / Paolo_zap_effect3 → Fire ball explo / sound_spell_zap`。精确来源链接、原样本哈希和处理结果记在 [SPELL-AUDIO-SOURCES.json](SPELL-AUDIO-SOURCES.json) 的 `audio_update_beta5`。生成工具 [update-beta5-audio.py](tools/update-beta5-audio.py) 将已导入原录音按 80:55 相对音量、保留速度/音高合成为一个单声道 OGG，并为峰值留出余量。输出名 `void_single_strike.ogg` 是本项目命名，不冒充独立原作文件；**原录音及其混音衍生文件仍归 Supercell，不属于 MIT**。原作配置仅用于研究映射，没有打包进模组。
+
+觉醒雪球按用户指定的方形轮廓，在 Blockbench 5.2.2 的 Generic Model 项目中经 MCP 1.10.0 脚本建模、四视角检查并原生导出。14 个闭合网格、300 个顶点、346 个面以及 8 张纯色色板见 [原生工程与制作说明](art/evolved-snowball/README.md)。这些新建几何、色板、导出器和渲染代码为本项目贡献；原作觉醒雪球卡图仅作配色和晶块参考，Supercell 角色设计不适用 MIT。导出器直接转换保存的 `.bbmodel`，游戏不会重新生成另一套几何。运行时只引用 Minecraft 的 `snow.png` 与 `white_concrete.png`，没有复制 Mojang 纹理，也没有新增 AI 位图。Minecraft 原资产的权利不变。

@@ -1036,5 +1036,15 @@
         "attenuation_distance": 48
       }
     ]
+  },
+  "spell_void_strike_single": {
+    "subtitle": "subtitles.royalespells.void_strike_single",
+    "sounds": [
+      {
+        "name": "royalespells:original/void_single_strike",
+        "attenuation_distance": 64,
+        "preload": true
+      }
+    ]
   }
 }

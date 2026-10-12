@@ -1,15 +1,15 @@
 # 16 · 女巫特效交接：分类、源码与 MineClash 接入
 
-本文对应 **Fabric 1.20.1 / Royale Spells 1.9.3** 与 **NeoForge 1.21.1 / Royale Spells 1.9.3-beta.4**，整理日期 2026-10-11。面向希望保留 MineClash 自己的女巫模型、动画与战斗逻辑，只移植这套表现的开发者。
+本文对应 **Fabric 1.20.1 / Royale Spells 1.9.3** 与 **NeoForge 1.21.1 / Royale Spells 1.9.4-beta.5**，整理日期 2026-10-11。Beta 5 保留女巫主体 VFX，同时更新 NeoForge 卡牌等级、护卫 AI 及客户端注册引用；Fabric 资源和代码维持 1.9.3。面向希望保留 MineClash 自己的女巫模型、动画与战斗逻辑，只移植这套表现的开发者。
 
 **先看结论：主体攻击使用世界内三维密度场，不是 PNG 序列。** 左掌蓄力、飞行尾雾、命中范围雾、归魂与回血雾均由同一个 GLSL 体积着色器绘制；出土的小粒子、觉醒部署几何和眼睛发光是另外的系统。没有可以把所有效果拖进 GeckoLib 就直接播放的“特效动画文件”。
 
-发布页附 `royale-witch-vfx-handoff-1.9.3.zip`，按共享资源和两个加载器的源码参考分类，并附逐文件 SHA-256、声音配置和许可说明。它是移植资料包，**不是可直接安装的模组或稳定二进制 API**。完整可构建项目请下载对应版本的 source ZIP，或检出下面的分支/标签。
+发布页附 `royale-witch-vfx-handoff-1.9.4-beta.5.zip`，按共享资源和两个加载器的源码参考分类，并附逐文件 SHA-256、声音配置和许可说明。它是移植资料包，**不是可直接安装的模组或稳定二进制 API**。完整可构建项目请下载对应版本的 source ZIP，或检出下面的分支/标签。
 
 | 项目 | 分支 | 固定发布标签 | 主要区别 |
 | --- | --- | --- | --- |
 | Fabric 1.20.1 | [main](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/main) | [v1.9.3-fabric-mc1.20.1](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/v1.9.3-fabric-mc1.20.1) | Java 17 字节码；独立卡牌女巫；Mojang official mappings |
-| NeoForge 1.21.1 | [iron-integration-1.21.1](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/iron-integration-1.21.1) | [v1.9.3-beta.4-neoforge-mc1.21.1](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/v1.9.3-beta.4-neoforge-mc1.21.1) | Java 21；普通/觉醒卡牌及两枚蛋始终注册；另有可选铁魔法塔内法师；没有女巫卷轴 |
+| NeoForge 1.21.1 | [iron-integration-1.21.1](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/iron-integration-1.21.1) | [v1.9.4-beta.5-neoforge-mc1.21.1](https://github.com/bendy17323333-lang/royale-spells-fabric/tree/v1.9.4-beta.5-neoforge-mc1.21.1) | Java 21；普通/觉醒卡牌及两枚蛋始终注册；另有可选铁魔法塔内法师；没有女巫卷轴 |
 
 MineClash 1.21.1 应从 **NeoForge 源码**开始。1.9.3 的卡牌女巫、弹体、声音和体积渲染已完全移出铁魔法条件注册。只有 `iron/TowerWitch`、塔结构和世界巡逻单位需要铁魔法。MineClash 应接自己的实体与客户端初始化，不要把可选塔居民继承链一起搬入。
 

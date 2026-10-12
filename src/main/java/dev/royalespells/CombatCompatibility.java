@@ -17,6 +17,9 @@ public final class CombatCompatibility {
     public static void install() {
         ironLoaded=ModList.get().isLoaded("irons_spellbooks");
         NeoForge.EVENT_BUS.addListener(CombatCompatibility::targetChanged);
+        NeoForge.EVENT_BUS.addListener((net.neoforged.neoforge.event.tick.EntityTickEvent.Post event)->{
+            if(event.getEntity() instanceof net.minecraft.world.entity.Mob mob)WitchTargeting.tick(mob);
+        });
     }
 
     public static UUID ownerOf(Entity entity) {
@@ -26,6 +29,7 @@ public final class CombatCompatibility {
     }
     public static boolean magicSummon(Entity entity){return ironLoaded&&IronBridge.magicSummon(entity);}
     public static boolean nativeSkeleton(Entity entity){return ironLoaded&&IronBridge.nativeSkeleton(entity);}
+    public static boolean spellCaster(Entity entity){return ironLoaded&&IronBridge.spellCaster(entity);}
 
     public static Entity resolve(ServerLevel level,UUID uuid) {
         if(uuid==null)return null;
@@ -45,13 +49,16 @@ public final class CombatCompatibility {
         // Restrict this hook to our units; unrelated Iron's combat keeps its own rules.
         if(attacker instanceof Summoned ours && SpellEngine.friendly(ours.ownerId(),target)
             || target instanceof Summoned theirs && SpellEngine.friendly(theirs.ownerId(),attacker))
-            event.setNewAboutToBeSetTarget(null);
+            {event.setNewAboutToBeSetTarget(null);return;}
+        if(attacker instanceof net.minecraft.world.entity.Mob mob&&mob.level() instanceof ServerLevel)
+            event.setNewAboutToBeSetTarget(WitchTargeting.choose(mob,target));
     }
 
     /** Loaded only after ModList confirms the optional mod is present. */
     private static final class IronBridge {
         static boolean magicSummon(Entity e){return e instanceof io.redspace.ironsspellbooks.entity.mobs.IMagicSummon;}
         static boolean nativeSkeleton(Entity e){return e instanceof io.redspace.ironsspellbooks.entity.mobs.SummonedSkeleton;}
+        static boolean spellCaster(Entity e){return e instanceof io.redspace.ironsspellbooks.entity.mobs.abstract_spell_casting_mob.AbstractSpellCastingMob;}
         static UUID ownerOf(Entity entity) {
             if(entity instanceof io.redspace.ironsspellbooks.entity.mobs.IMagicSummon summon) {
                 Entity owner=summon.getSummoner();return owner==null?null:owner.getUUID();
