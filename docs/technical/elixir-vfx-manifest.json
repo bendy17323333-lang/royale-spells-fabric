@@ -1,0 +1,135 @@
+{
+  "format": 1,
+  "date": "2026-10-12",
+  "delivery": "source and documentation only; no mod JAR",
+  "files": {
+    "19-mineclash-elixir-death-vfx.md": {
+      "bytes": 14551,
+      "sha256": "7656a9290ce124fbdd27ddb6851af368e3fdd1e87666677ccde8339a58a8cd39"
+    },
+    "downloads/mineclash-elixir-splash-import-2026-10-12.zip": {
+      "bytes": 13986,
+      "sha256": "6a395184f762fc47ade6f94c7c0df7e4f80979c1db0cc305ef61addd90f17fc5"
+    },
+    "examples/mineclash-elixir-splash/.gitattributes": {
+      "bytes": 45,
+      "sha256": "8d75fbed0329d55480242ea79c61cbdd3da312c700298bfba9572b81ec325cc6"
+    },
+    "examples/mineclash-elixir-splash/.gitignore": {
+      "bytes": 51,
+      "sha256": "18454d295b4d4b05cb6656d00b0cc4fb7bfb138de9564ab46c88b60d50435167"
+    },
+    "examples/mineclash-elixir-splash/ASSETS.md": {
+      "bytes": 1495,
+      "sha256": "be275c5ee79316a4eae2798e04d3f0242cff6d0d03ea70058731ad6e51063f96"
+    },
+    "examples/mineclash-elixir-splash/build.gradle": {
+      "bytes": 2011,
+      "sha256": "e63728e0b71512bb07a17c41f84c56efe54ea6742c3b56c9932ecfbb83bfaf66"
+    },
+    "examples/mineclash-elixir-splash/docs/validation/burst.png": {
+      "bytes": 295466,
+      "sha256": "d1225b204887bbb88e487261449f63d148888032f807c1178e9dfd64fea676c8"
+    },
+    "examples/mineclash-elixir-splash/docs/validation/client-markers.txt": {
+      "bytes": 8277,
+      "sha256": "ced41dc7f7fb371a04f4acae097bc828773bf73e580fd94bd23ce63eb720d44d"
+    },
+    "examples/mineclash-elixir-splash/docs/validation/ground.png": {
+      "bytes": 291968,
+      "sha256": "e5e2bc8eb84816a72eca9c98174bb32dcc0289b1cec69309a4b18ff6adeec631"
+    },
+    "examples/mineclash-elixir-splash/docs/validation/night.png": {
+      "bytes": 304758,
+      "sha256": "b7cc3533e3a5c009bd3234e5aaa00a052cd2150b5cd663d8a9aff90f62a76a9b"
+    },
+    "examples/mineclash-elixir-splash/docs/validation/README.md": {
+      "bytes": 2783,
+      "sha256": "978cd53b932ee87936fca63eae698d575b2f77e18726c5f66fa1e9a1f7650559"
+    },
+    "examples/mineclash-elixir-splash/docs/validation/result.json": {
+      "bytes": 1654,
+      "sha256": "cbdf5ff671872369318e275f6be29993e11319f0c4bcacb492cf0a71af438961"
+    },
+    "examples/mineclash-elixir-splash/docs/validation/slab.png": {
+      "bytes": 259982,
+      "sha256": "fd9f0c30841cc559b6487e1c75c66239ab894492c7c31c9ecf6052913e8a3323"
+    },
+    "examples/mineclash-elixir-splash/docs/validation/spray.png": {
+      "bytes": 299071,
+      "sha256": "ba28852ddc3b6627c72b5857e96df97dce388aea297ff46d3a7dd6ceca47f8d9"
+    },
+    "examples/mineclash-elixir-splash/docs/validation/stress.png": {
+      "bytes": 879522,
+      "sha256": "00e56d18d1d393c202aa5066ed3460ad7b6ac0afca6a0926ddafb4783ca166a2"
+    },
+    "examples/mineclash-elixir-splash/docs/validation/wall.png": {
+      "bytes": 333597,
+      "sha256": "d9a35b2b0da0402c33014ede99d3b0b57c243db6581c8601049e006aa315a1e1"
+    },
+    "examples/mineclash-elixir-splash/docs/validation/water.png": {
+      "bytes": 484899,
+      "sha256": "34e757d77cfc76fdbb148494346073bc75d642d5f659f5754fe552079339955b"
+    },
+    "examples/mineclash-elixir-splash/gradle.properties": {
+      "bytes": 68,
+      "sha256": "17d2ceb37b1b5c704ba3bbca3beeabf95d8fb49ba67db27789f2b8b1eb7bca7f"
+    },
+    "examples/mineclash-elixir-splash/integration/MineClashElixirClient.java": {
+      "bytes": 935,
+      "sha256": "2ab16d9eaab3e856b6dc08a73aed76c0ab36b6de02c2c8e811b3e6caabe79f61"
+    },
+    "examples/mineclash-elixir-splash/LICENSE": {
+      "bytes": 1315,
+      "sha256": "46b9edef550a5dc5922fe3428b11c01ec87ebd93cf7f84b7abe93dc63f7c389f"
+    },
+    "examples/mineclash-elixir-splash/README.md": {
+      "bytes": 2615,
+      "sha256": "c3a4de10f2b9410b6a34762a7ab055aa4adef9bf001baf9d99d61ed42c2dc448"
+    },
+    "examples/mineclash-elixir-splash/settings.gradle": {
+      "bytes": 104,
+      "sha256": "ffc05c1439dfc4424875063cc648ffe8a8ef44083ac8dd7e165b396a98f49f01"
+    },
+    "examples/mineclash-elixir-splash/src/main/java/dev/mineclash/elixirsplash/client/LiquidMesh.java": {
+      "bytes": 8221,
+      "sha256": "bf0732caefb20c73504818fd16f99fca18a72f565b4b04d2f27da01c43325601"
+    },
+    "examples/mineclash-elixir-splash/src/main/java/dev/mineclash/elixirsplash/client/Splash.java": {
+      "bytes": 6677,
+      "sha256": "fc83bcfc1190d07eef1abc35a228aa7e58b315a98ffc2908c6bb040ab7bc8064"
+    },
+    "examples/mineclash-elixir-splash/src/main/java/dev/mineclash/elixirsplash/client/SplashEffects.java": {
+      "bytes": 2465,
+      "sha256": "f9f42de1d9058daea904e1ad8844ef2b5a95bfe07ac4e98023b8cfe399f3e838"
+    },
+    "examples/mineclash-elixir-splash/src/main/java/dev/mineclash/elixirsplash/client/SplashRenderer.java": {
+      "bytes": 4201,
+      "sha256": "310c15e9c62f75fcca1c8b6f0139b4056fa281f3a32a1bb2fa3df4f7bb7b205a"
+    },
+    "examples/mineclash-elixir-splash/src/main/java/dev/mineclash/elixirsplash/client/VisualTest.java": {
+      "bytes": 13481,
+      "sha256": "5b42e6c8519648c1a17a1daf5a2a338538d65676ade152476160d595e527fe93"
+    },
+    "examples/mineclash-elixir-splash/src/main/java/dev/mineclash/elixirsplash/ElixirSplash.java": {
+      "bytes": 1001,
+      "sha256": "57b7d2fba1f21b8d2f6e344fbbc5a6a3ee54a1568559dc8a98944453350744ca"
+    },
+    "examples/mineclash-elixir-splash/src/main/java/dev/mineclash/elixirsplash/mixin/DeathPoofMixin.java": {
+      "bytes": 866,
+      "sha256": "db0372e679cb97cf3e6e7a1675bb506b62f863cc338d0cd51d5daf992b4446bb"
+    },
+    "examples/mineclash-elixir-splash/src/main/java/dev/mineclash/elixirsplash/SplashConfig.java": {
+      "bytes": 857,
+      "sha256": "c3cb7241838ebfb609b2442b09e40ab45d1d59d9b4fcc966117d296e45cba279"
+    },
+    "examples/mineclash-elixir-splash/src/main/resources/elixirsplash.mixins.json": {
+      "bytes": 200,
+      "sha256": "4dc2c68e054f768e0a060ac58e1f34a0a231814167ba8f5c864ad46ce735014a"
+    },
+    "examples/mineclash-elixir-splash/src/main/resources/META-INF/neoforge.mods.toml": {
+      "bytes": 736,
+      "sha256": "af71a18c3e096f056c01552746dd61774a4a46bbb10de443ff80673d8f318384"
+    }
+  }
+}

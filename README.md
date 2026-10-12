@@ -6,6 +6,8 @@
 
 [下载本版](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.9.4-beta.5-neoforge-mc1.21.1) · [本版更新](CHANGELOG-1.9.4-beta.5.md) · [验证记录](VALIDATION-1.9.4-beta.5.md) · [完整技术档案](docs/technical/README.md) · **[MineClash 女巫特效交接](docs/technical/16-witch-vfx-handoff.md)**
 
+给 MineClash 合作开发者：**[圣水死亡动画源码、实机预览与导入教程](docs/technical/19-mineclash-elixir-death-vfx.md)**（2026-10-12，NeoForge 1.21.1）。包含最小源码导入包；本次只更新技术资料，不发布新 JAR。
+
 ## Beta 5 更新
 
 - 独立皇室卡牌新增 **1–16 级**：创造模式持卡按 **G** 选择，或使用 `/royalespells level 16`。旧卡默认 11 级；生命、伤害、治疗与盾按 `1.1^(等级−11)` 成长。镜像使用自己的等级 +1，最高内部 17 级。范围、控制时间、费用、数量和攻击节拍不随等级改变；没有新增生存升级配方，也不改铁魔法数值。

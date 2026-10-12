@@ -2,6 +2,8 @@
 
 本档案面向接手维护、排查问题和添加内容的开发者。它解释代码实际怎样运行、关键设计为什么这样实现，以及修改时需要一起检查哪些位置。
 
+2026-10-12 技术资料新增：[19 · MineClash 圣水死亡动画：源码、导入与实机验证](19-mineclash-elixir-death-vfx.md)。附最小源码导入包；此次不更改发布版本或提供新 JAR。
+
 **当前版本：`1.9.4-beta.5`，Minecraft 1.21.1 / NeoForge，可选铁魔法 1.21.1-3.16.3、MineClash 0.7.5。**
 
 Beta 5 入口：[18 卡牌等级、MineClash 卡面、虚空音效与觉醒雪球](18-beta5-card-levels-and-mineclash.md)、[17 母体死亡及近战/远程索敌修复](17-witch-cards-and-ai.md)、[本轮验证](../../VALIDATION-1.9.4-beta.5.md)。等级只作用于独立皇室卡牌；不缩放 MineClash 和铁魔法原生通道。
@@ -36,6 +38,7 @@ Beta 5 入口：[18 卡牌等级、MineClash 卡面、虚空音效与觉醒雪�
 | [16 女巫特效交接](16-witch-vfx-handoff.md) | 体积攻击、掌心挂点、召唤与归魂 | MineClash 怎样移植各类特效？ |
 | [17 女巫与召唤 AI](17-witch-cards-and-ai.md) | 宿主分离、护卫、死亡后继续战斗、敌人锁定 | 怎样避免跟随覆盖攻击或母体死亡丢仇恨？ |
 | [18 Beta 5 等级与适配](18-beta5-card-levels-and-mineclash.md) | 1–16 级、原蛋卡面包装、单体声音、闭合雪球网格 | 等级如何同步，为什么不改 MineClash 数值？ |
+| [19 MineClash 圣水死亡动画](19-mineclash-elixir-death-vfx.md) | 三维液滴、残液、原生死亡结束事件、最小导入包 | 怎样把死亡圣水飞溅合并到 MineClash？ |
 | [源码索引](source-index.md) | 全部 Java 文件及资源、工具入口 | 按类名快速定位 |
 | [生成的参数参考](spell-reference.md) | 从枚举与资源提取的参数、音效阶段、配方 | 核对当前源码默认值 |
 

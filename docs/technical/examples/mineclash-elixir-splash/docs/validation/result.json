@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-12",
+  "target": "Minecraft 1.21.1 / NeoForge 21.1.249 / Java 21.0.12",
+  "mods": {
+    "mineclash": "0.7.5-1.21.1",
+    "geckolib": "4.9.2",
+    "royalespells": "1.9.4-beta.5",
+    "zappiesaddon": "0.1.1"
+  },
+  "visualScenesPassed": 9,
+  "stageScreenshots": 55,
+  "renderedFrames": 3139,
+  "nativeRegisteredMobDeaths": 20,
+  "registeredMobDeathEffects": 20,
+  "skippedMissingRenderer": [
+    "mineclash:super_mini_pekka"
+  ],
+  "vanillaAndDiscardIgnored": true,
+  "duplicateSuppression": true,
+  "cleanupPassed": true,
+  "simultaneousDeaths": 45,
+  "maxActiveBursts": 24,
+  "renderCpuMilliseconds": {
+    "p50": 0.1811,
+    "p95": 0.9259,
+    "samples": 2038,
+    "isGpuOrFrameTime": false
+  },
+  "peakQuads": 40608,
+  "adapterCompilePassed": true,
+  "publishedModJars": 0,
+  "verificationLimits": [
+    "No remote multiplayer test",
+    "No shader-pack or Sodium/Embeddium test",
+    "No user-instance installation"
+  ],
+  "screenshotSha256": {
+    "burst.png": "d1225b204887bbb88e487261449f63d148888032f807c1178e9dfd64fea676c8",
+    "spray.png": "ba28852ddc3b6627c72b5857e96df97dce388aea297ff46d3a7dd6ceca47f8d9",
+    "ground.png": "e5e2bc8eb84816a72eca9c98174bb32dcc0289b1cec69309a4b18ff6adeec631",
+    "slab.png": "fd9f0c30841cc559b6487e1c75c66239ab894492c7c31c9ecf6052913e8a3323",
+    "wall.png": "d9a35b2b0da0402c33014ede99d3b0b57c243db6581c8601049e006aa315a1e1",
+    "night.png": "b7cc3533e3a5c009bd3234e5aaa00a052cd2150b5cd663d8a9aff90f62a76a9b",
+    "water.png": "34e757d77cfc76fdbb148494346073bc75d642d5f659f5754fe552079339955b",
+    "stress.png": "00e56d18d1d393c202aa5066ed3460ad7b6ac0afca6a0926ddafb4783ca166a2"
+  }
+}
