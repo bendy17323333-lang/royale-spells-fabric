@@ -1,0 +1,28 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT; original code and procedural geometry. See ASSETS.md."
+[[mods]]
+modId="elixirsplash"
+version="${version}"
+displayName="MineClash · 圣水飞溅"
+description="Client-side volumetric elixir death splashes for MineClash. Preserves native death animations and all gameplay."
+[[mixins]]
+config="elixirsplash.mixins.json"
+[[dependencies.elixirsplash]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="CLIENT"
+[[dependencies.elixirsplash]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.219,)"
+ordering="NONE"
+side="CLIENT"
+[[dependencies.elixirsplash]]
+modId="mineclash"
+type="required"
+versionRange="[0.7.5-1.21.1,)"
+ordering="AFTER"
+side="CLIENT"

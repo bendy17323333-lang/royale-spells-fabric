@@ -1,0 +1,48 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.146'
+}
+version = project.mod_version
+group = 'dev.mineclash.elixirsplash'
+base { archivesName = 'mineclash-elixir-splash-neoforge-1.21.1' }
+java { toolchain.languageVersion = JavaLanguageVersion.of(21); withSourcesJar() }
+repositories { mavenCentral() }
+neoForge {
+    version = '21.1.249'
+    runs {
+        client { client(); gameDirectory = file('run-client') }
+        visual {
+            client(); gameDirectory = file('run-visual')
+            systemProperty 'elixirsplash.visualTest', 'true'
+            jvmArgument '-Xmx3G'
+            programArguments.addAll('--username', 'ElixirQA', '--width', '1280', '--height', '900')
+        }
+        server { server(); gameDirectory = file('run-server'); programArgument '--nogui' }
+    }
+    mods { elixirsplash { sourceSet sourceSets.main } }
+}
+dependencies {
+    // Development only. Neither MineClash nor GeckoLib is bundled in the addon.
+    runtimeOnly fileTree(dir: findProperty('compatModsDir') ?: 'test-mods', include: '*.jar')
+}
+processResources {
+    from('LICENSE', 'ASSETS.md')
+    inputs.property 'version', project.version
+    filesMatching('META-INF/neoforge.mods.toml') { expand 'version': project.version }
+}
+tasks.withType(JavaCompile).configureEach { options.release = 21; options.encoding = 'UTF-8' }
+tasks.register('verifyImport', JavaCompile) {
+    dependsOn tasks.named('classes')
+    source = fileTree('integration') { include '**/*.java' }
+    classpath = sourceSets.main.compileClasspath + sourceSets.main.output
+    destinationDirectory = layout.buildDirectory.dir('verified-import')
+}
+tasks.named('runVisual').configure {
+    doFirst {
+        def options = file('run-visual/options.txt')
+        if (!options.exists()) {
+            options.parentFile.mkdirs()
+            options.text = 'lang:zh_cn\nrenderDistance:5\nsimulationDistance:5\nguiScale:2\nmaxFps:60\ntutorialStep:none\npauseOnLostFocus:false\nonboardAccessibility:false\n'
+        }
+    }
+}

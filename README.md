@@ -16,6 +16,8 @@
 
 给 MineClash 合作开发者：[最新 NeoForge 女巫特效分类与接入手册](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/v1.9.4-beta.5-neoforge-mc1.21.1/docs/technical/16-witch-vfx-handoff.md) · [Beta 5 详细技术说明与方形雪球工程](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/v1.9.4-beta.5-neoforge-mc1.21.1/docs/technical/18-beta5-card-levels-and-mineclash.md) · [Fabric 1.9.3 特效手册](docs/technical/16-witch-vfx-handoff.md)。
 
+**新增：[MineClash 圣水死亡动画源码、实机预览与导入教程](docs/technical/19-mineclash-elixir-death-vfx.md)**（2026-10-12）。附最小源码导入包，适用 NeoForge 1.21.1；本次只上传技术资料，不发布新 JAR，也不改变 Fabric 的运行时代码。
+
 ## 1.9.3：女巫卡牌与召唤 AI
 
 普通/觉醒女巫各有独立刷怪蛋。小骷髅和小僵尸改用统一目标选择与互斥的战斗/跟随 Goal，避免跟随路径覆盖追敌；女巫护卫会主动寻找附近敌对单位，保留自己的战斗并尝试站在母体前方。配方和详细规则见 [女巫卡牌与 AI](docs/technical/17-witch-cards-and-ai.md)。

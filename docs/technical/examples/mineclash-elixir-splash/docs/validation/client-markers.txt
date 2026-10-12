@@ -1,0 +1,166 @@
+ELIXIR_FRAME 0-mini_pekka-alive
+ELIXIR_DEATH type=mineclash:mini_pekka id=3 deathTime=19 active=1
+ELIXIR_FRAME 0-mini_pekka-burst
+ELIXIR_FRAME 0-mini_pekka-spray
+ELIXIR_FRAME 0-mini_pekka-falling
+ELIXIR_FRAME 0-mini_pekka-ground
+ELIXIR_FRAME 0-mini_pekka-fade
+ELIXIR_SCENE mini_pekka oneBurst=true
+ELIXIR_FRAME 1-skeleton-alive
+ELIXIR_DEATH type=mineclash:skeleton id=7 deathTime=19 active=1
+ELIXIR_FRAME 1-skeleton-burst
+ELIXIR_FRAME 1-skeleton-spray
+ELIXIR_FRAME 1-skeleton-falling
+ELIXIR_FRAME 1-skeleton-ground
+ELIXIR_FRAME 1-skeleton-fade
+ELIXIR_SCENE skeleton oneBurst=true
+ELIXIR_FRAME 2-zappies-alive
+ELIXIR_DEATH type=mineclash:zappies id=11 deathTime=39 active=1
+ELIXIR_FRAME 2-zappies-burst
+ELIXIR_FRAME 2-zappies-spray
+ELIXIR_FRAME 2-zappies-falling
+ELIXIR_FRAME 2-zappies-ground
+ELIXIR_SCENE zappies oneBurst=true
+ELIXIR_FRAME 2-zappies-fade
+ELIXIR_FRAME 3-golem-alive
+ELIXIR_DEATH type=mineclash:golem id=15 deathTime=19 active=1
+ELIXIR_FRAME 3-golem-burst
+ELIXIR_FRAME 3-golem-spray
+ELIXIR_FRAME 3-golem-falling
+ELIXIR_FRAME 3-golem-ground
+ELIXIR_FRAME 3-golem-fade
+ELIXIR_SCENE golem oneBurst=true
+ELIXIR_FRAME 4-ice_spirit-alive
+ELIXIR_DEATH type=mineclash:ice_spirit id=19 deathTime=19 active=1
+ELIXIR_FRAME 4-ice_spirit-burst
+ELIXIR_FRAME 4-ice_spirit-spray
+ELIXIR_FRAME 4-ice_spirit-falling
+ELIXIR_FRAME 4-ice_spirit-ground
+ELIXIR_SCENE ice_spirit oneBurst=true
+ELIXIR_FRAME 4-ice_spirit-fade
+ELIXIR_FRAME 5-pekka-alive
+ELIXIR_DEATH type=mineclash:pekka id=23 deathTime=19 active=1
+ELIXIR_FRAME 5-pekka-burst
+ELIXIR_FRAME 5-pekka-spray
+ELIXIR_FRAME 5-pekka-falling
+ELIXIR_FRAME 5-pekka-ground
+ELIXIR_FRAME 5-pekka-fade
+ELIXIR_SCENE pekka oneBurst=true
+ELIXIR_FRAME 6-royal_recruits-alive
+ELIXIR_DEATH type=mineclash:royal_recruits id=27 deathTime=19 active=1
+ELIXIR_FRAME 6-royal_recruits-burst
+ELIXIR_FRAME 6-royal_recruits-spray
+ELIXIR_FRAME 6-royal_recruits-falling
+ELIXIR_FRAME 6-royal_recruits-ground
+ELIXIR_FRAME 6-royal_recruits-fade
+ELIXIR_SCENE royal_recruits oneBurst=true
+ELIXIR_FRAME 7-elite_musketeer-alive
+ELIXIR_DEATH type=mineclash:elite_musketeer id=31 deathTime=29 active=1
+ELIXIR_FRAME 7-elite_musketeer-burst
+ELIXIR_FRAME 7-elite_musketeer-spray
+ELIXIR_FRAME 7-elite_musketeer-falling
+ELIXIR_FRAME 7-elite_musketeer-ground
+ELIXIR_SCENE elite_musketeer oneBurst=true
+ELIXIR_FRAME 7-elite_musketeer-fade
+ELIXIR_FRAME 8-skeleton-alive
+ELIXIR_DEATH type=mineclash:skeleton id=35 deathTime=19 active=1
+ELIXIR_FRAME 8-skeleton-burst
+ELIXIR_FRAME 8-skeleton-spray
+ELIXIR_FRAME 8-skeleton-falling
+ELIXIR_FRAME 8-skeleton-ground
+ELIXIR_FRAME 8-skeleton-fade
+ELIXIR_SCENE skeleton oneBurst=true
+ELIXIR_SCOPE vanillaAndDiscardIgnored=true
+ELIXIR_DEATH type=mineclash:skeleton id=45 deathTime=0 active=1
+ELIXIR_DUPLICATE suppressed=true
+ELIXIR_LIFETIME empty=true
+ELIXIR_DEATH type=mineclash:skeleton id=46 deathTime=19 active=1
+ELIXIR_DEATH type=mineclash:skeleton id=47 deathTime=19 active=2
+ELIXIR_DEATH type=mineclash:skeleton id=48 deathTime=19 active=3
+ELIXIR_DEATH type=mineclash:skeleton id=49 deathTime=19 active=4
+ELIXIR_DEATH type=mineclash:skeleton id=50 deathTime=19 active=5
+ELIXIR_DEATH type=mineclash:skeleton id=51 deathTime=19 active=6
+ELIXIR_DEATH type=mineclash:skeleton id=52 deathTime=19 active=7
+ELIXIR_DEATH type=mineclash:skeleton id=53 deathTime=19 active=8
+ELIXIR_DEATH type=mineclash:skeleton id=54 deathTime=19 active=9
+ELIXIR_DEATH type=mineclash:skeleton id=55 deathTime=19 active=10
+ELIXIR_DEATH type=mineclash:skeleton id=56 deathTime=19 active=11
+ELIXIR_DEATH type=mineclash:skeleton id=57 deathTime=19 active=12
+ELIXIR_DEATH type=mineclash:skeleton id=58 deathTime=19 active=13
+ELIXIR_DEATH type=mineclash:skeleton id=59 deathTime=19 active=14
+ELIXIR_DEATH type=mineclash:skeleton id=60 deathTime=19 active=15
+ELIXIR_DEATH type=mineclash:skeleton id=61 deathTime=19 active=16
+ELIXIR_DEATH type=mineclash:skeleton id=62 deathTime=19 active=17
+ELIXIR_DEATH type=mineclash:skeleton id=63 deathTime=19 active=18
+ELIXIR_DEATH type=mineclash:skeleton id=64 deathTime=19 active=19
+ELIXIR_DEATH type=mineclash:skeleton id=65 deathTime=19 active=20
+ELIXIR_DEATH type=mineclash:skeleton id=66 deathTime=19 active=21
+ELIXIR_DEATH type=mineclash:skeleton id=67 deathTime=19 active=22
+ELIXIR_DEATH type=mineclash:skeleton id=68 deathTime=19 active=23
+ELIXIR_DEATH type=mineclash:skeleton id=69 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=70 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=71 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=72 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=73 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=74 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=75 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=76 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=77 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=78 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=79 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=80 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=81 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=82 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=83 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=84 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=85 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=86 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=87 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=88 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=89 deathTime=19 active=24
+ELIXIR_DEATH type=mineclash:skeleton id=90 deathTime=19 active=24
+ELIXIR_FRAME stress-45-deaths
+ELIXIR_REGISTRY_NO_RENDERER mineclash:super_mini_pekka
+ELIXIR_REGISTRY_EXPECT mineclash:knight_zombie
+ELIXIR_REGISTRY_EXPECT mineclash:skeleton
+ELIXIR_REGISTRY_EXPECT mineclash:royal_recruits
+ELIXIR_REGISTRY_EXPECT mineclash:ice_spirit
+ELIXIR_REGISTRY_EXPECT mineclash:elite_musketeer
+ELIXIR_REGISTRY_EXPECT mineclash:zappies
+ELIXIR_REGISTRY_EXPECT mineclash:pekka
+ELIXIR_REGISTRY_EXPECT mineclash:mini_pekka
+ELIXIR_REGISTRY_EXPECT mineclash:golem
+ELIXIR_REGISTRY_EXPECT mineclash:valkyrie
+ELIXIR_REGISTRY_EXPECT mineclash:monk
+ELIXIR_REGISTRY_EXPECT mineclash:mega_knight
+ELIXIR_REGISTRY_EXPECT mineclash:guard
+ELIXIR_REGISTRY_EXPECT mineclash:skeleton_servant
+ELIXIR_REGISTRY_EXPECT mineclash:general_gerry
+ELIXIR_REGISTRY_EXPECT mineclash:hoglin_rider
+ELIXIR_REGISTRY_EXPECT mineclash:crown_tower
+ELIXIR_REGISTRY_EXPECT mineclash:king_tower
+ELIXIR_REGISTRY_EXPECT mineclash:tower_princess
+ELIXIR_REGISTRY_EXPECT mineclash:wall
+ELIXIR_DEATH type=mineclash:knight_zombie id=162 deathTime=19 active=1
+ELIXIR_DEATH type=mineclash:skeleton id=163 deathTime=19 active=2
+ELIXIR_DEATH type=mineclash:royal_recruits id=164 deathTime=19 active=3
+ELIXIR_DEATH type=mineclash:pekka id=168 deathTime=19 active=4
+ELIXIR_DEATH type=mineclash:mini_pekka id=169 deathTime=19 active=5
+ELIXIR_DEATH type=mineclash:golem id=170 deathTime=19 active=6
+ELIXIR_DEATH type=mineclash:valkyrie id=171 deathTime=19 active=7
+ELIXIR_DEATH type=mineclash:monk id=172 deathTime=19 active=8
+ELIXIR_DEATH type=mineclash:mega_knight id=173 deathTime=19 active=9
+ELIXIR_DEATH type=mineclash:guard id=174 deathTime=19 active=10
+ELIXIR_DEATH type=mineclash:skeleton_servant id=175 deathTime=19 active=11
+ELIXIR_DEATH type=mineclash:general_gerry id=176 deathTime=19 active=12
+ELIXIR_DEATH type=mineclash:hoglin_rider id=192 deathTime=19 active=13
+ELIXIR_DEATH type=mineclash:crown_tower id=193 deathTime=19 active=14
+ELIXIR_DEATH type=mineclash:king_tower id=194 deathTime=19 active=15
+ELIXIR_DEATH type=mineclash:tower_princess id=195 deathTime=19 active=16
+ELIXIR_DEATH type=mineclash:wall id=196 deathTime=19 active=17
+ELIXIR_DEATH type=mineclash:ice_spirit id=165 deathTime=19 active=18
+ELIXIR_DEATH type=mineclash:elite_musketeer id=166 deathTime=29 active=19
+ELIXIR_DEATH type=mineclash:zappies id=167 deathTime=39 active=20
+ELIXIR_REGISTRY_ALL expected=20 actual=20 pass=true
+ELIXIR_RENDER_CPU_MS p50=0.1811 p95=0.9259 samples=2038
+ELIXIR_VISUAL_PASS scenes=9 frames=55 renderFrames=3139 peakFaces=40608 registeredMobs=20
