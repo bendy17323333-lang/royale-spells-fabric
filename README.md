@@ -9,10 +9,12 @@
 | Minecraft / 加载器 | 最新发布 | 内容 |
 | --- | --- | --- |
 | 1.20.1 Fabric | [1.9.3](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.9.3-fabric-mc1.20.1) | 37 张独立卡牌，普通/觉醒女巫及两枚蛋，不需要铁魔法 |
-| 1.21.1 NeoForge | [1.9.3-beta.4](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.9.3-beta.4-neoforge-mc1.21.1) | 独立女巫卡牌；可选完整铁魔法接入与新增女巫塔 |
+| 1.21.1 NeoForge | [1.9.4-beta.5](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.9.4-beta.5-neoforge-mc1.21.1) | 卡牌 1–16 级、女巫护卫 AI 修复、方形觉醒雪球、虚空单体音效、可选 MineClash 卡面 |
 | 1.21.1 Fabric | [历史 1.2.0](https://github.com/bendy17323333-lang/royale-spells-fabric/releases/tag/v1.2.0-mc1.21.1) | 旧版移植与录制地图，未包含本轮女巫更新 |
 
-两份新发布均有 JAR、完整源码、验证资料和女巫 VFX 交接包。**给 MineClash 合作开发者：[女巫全部特效分类与接入手册](docs/technical/16-witch-vfx-handoff.md)**，含动画挂点、GLSL、声音、生命周期、性能和许可边界。
+各当前版本发布页均提供 JAR、完整源码、验证资料和女巫 VFX 交接包。**NeoForge Beta 5** 的独立卡牌可在创造模式持卡按 G 改级，旧卡默认 11；MineClash 新卡只包装原生刷怪蛋，保留原数值和行为。Beta 4 保留下载；本 `main` 分支的 Fabric 1.20.1 仍为 **1.9.3**，尚未包含 Beta 5 的等级与卡面适配。
+
+给 MineClash 合作开发者：[最新 NeoForge 女巫特效分类与接入手册](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/v1.9.4-beta.5-neoforge-mc1.21.1/docs/technical/16-witch-vfx-handoff.md) · [Beta 5 详细技术说明与方形雪球工程](https://github.com/bendy17323333-lang/royale-spells-fabric/blob/v1.9.4-beta.5-neoforge-mc1.21.1/docs/technical/18-beta5-card-levels-and-mineclash.md) · [Fabric 1.9.3 特效手册](docs/technical/16-witch-vfx-handoff.md)。
 
 ## 1.9.3：女巫卡牌与召唤 AI
 
